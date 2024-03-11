@@ -13,8 +13,37 @@
 
  # NOTE: Unique configuration.nix content for desktop:
   networking.hostName = "laptop"; # Define your hostname.
-  services.syncthing.guiAddress = "127.0.0.1:8383";
   networking.firewall.enable = true;
+  services = {
+  syncthing = {
+    guiAddress = "127.0.0.1:8383";
+    enable = true;
+    user = "daniel";
+    dataDir = "/home/daniel/";
+    configDir = "/home/daniel/.config/syncthing";
+    overrideDevices = true;     # overrides any devices added or deleted through the WebUI
+    overrideFolders = true;     # overrides any folders added or deleted through the WebUI
+    settings = {
+      devices = {
+        "desktop" = { id = ""; };
+        # "phone" = { id = ""; };
+        # "device2" = { id = "DEVICE-ID-GOES-HERE"; };
+      };
+      # folders = {
+      #   "Documents" = {         # Name of folder in Syncthing, also the folder ID
+      #     path = "/home/daniel/Documents";    # Which folder to add to Syncthing
+      #     # devices = [ "device1" "device2" ];      # Which devices to share the folder with
+      #     devices = [ "laptop" ];      # Which devices to share the folder with
+      #   };
+        # "Example" = {
+        #   path = "/home/daniel/Example";
+        #   devices = [ "device1" ];
+        #   ignorePerms = false;  # By default, Syncthing doesn't sync file permissions. This line enables it for this folder.
+        # };
+      # };
+    };
+  };
+};
 
   services.xserver = {
    # enable = true;
