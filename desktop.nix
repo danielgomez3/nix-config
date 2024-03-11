@@ -16,7 +16,38 @@
   services.xserver = {
     xkb.options = "";
   };
-  services.syncthing.guiAddress = "127.0.0.1:8385";
+  services = {
+  syncthing = {
+    guiAddress = "127.0.0.1:8385";
+    enable = true;
+    user = "daniel";
+    dataDir = "/home/daniel/";
+    configDir = "/home/daniel/.config/syncthing";
+    overrideDevices = true;     # overrides any devices added or deleted through the WebUI
+    overrideFolders = true;     # overrides any folders added or deleted through the WebUI
+    settings = {
+      devices = {
+        "laptop" = { id = "TTRXXSV-ELR4VWC-7XXOUPC-QCIAOB3-HGTNIDW-3FRWNO7-TX6FPVU-7I3BTAC"; };
+        # "phone" = { id = ""; };
+        # "device2" = { id = "DEVICE-ID-GOES-HERE"; };
+      };
+      folders = {
+        "Documents" = {         # Name of folder in Syncthing, also the folder ID
+          path = "/home/daniel/Documents";    # Which folder to add to Syncthing
+          # devices = [ "device1" "device2" ];      # Which devices to share the folder with
+          devices = [ "laptop" ];      # Which devices to share the folder with
+        };
+        # "Example" = {
+        #   path = "/home/daniel/Example";
+        #   devices = [ "device1" ];
+        #   ignorePerms = false;  # By default, Syncthing doesn't sync file permissions. This line enables it for this folder.
+        # };
+      };
+    };
+  };
+};
+
+
 
   # virtualisation.virtualbox.host.enable = true;
   # users.extraGroups.vboxusers.members = [ "daniel" ];

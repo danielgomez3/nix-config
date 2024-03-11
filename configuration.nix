@@ -95,11 +95,6 @@
   programs.zsh.enable = true;
 
   # Allow unfree packages
-  # nixpkgs = {
-  #   config = { 
-  #     allowUnfree = true;
-  #   };
-  # };
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
@@ -109,6 +104,9 @@
     helix victor-mono
     lm_sensors android-tools
     bluez bluez-alsa bluez-tools
+    seafile-shared
+    resilio-sync
+    syncthing
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
