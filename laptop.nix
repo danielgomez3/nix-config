@@ -13,7 +13,6 @@
 
  # NOTE: Unique configuration.nix content for desktop:
   networking.hostName = "laptop"; # Define your hostname.
-  networking.firewall.enable = true;
   services = {
   syncthing = {
     guiAddress = "127.0.0.1:8383";
