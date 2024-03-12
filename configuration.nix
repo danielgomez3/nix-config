@@ -154,7 +154,14 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   security.sudo.wheelNeedsPassword = false;
-  services.syncthing.enable = true;
+  services = {
+  syncthing = {
+    enable = true;
+    user = username;
+    dataDir = "/home/${username}/";
+    configDir = "/home/${username}/.config/syncthing";
+    };
+  };
 
 
  home-manager = { 

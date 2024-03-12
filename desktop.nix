@@ -17,50 +17,46 @@
     xkb.options = "";
   };
   services = {
-  syncthing = {
-    guiAddress = "127.0.0.1:8385";
-    enable = true;
-    user = username;
-    dataDir = "/home/daniel/";
-    configDir = "/home/daniel/.config/syncthing";
-    overrideDevices = true;     # overrides any devices added or deleted through the WebUI
-    overrideFolders = true;     # overrides any folders added or deleted through the WebUI
-    settings = {
-      devices = {
-        "laptop" = { id = "U7M722H-57HZKWB-YFB64YJ-ZC7G3HS-T5G5JZY-UR2PHKH-FUBZ3QR-SPHZPQI"; };
-        "phone" = { id = "HT5SYAA-6OGDLUU-T4PBNX5-OGLRVOI-EQK6ZHW-4VTTPQB-FVNFAQX-TTD42AQ"; };
-        # "device2" = { id = "DEVICE-ID-GOES-HERE"; };
-      };
-      folders = {
-        "nixos" = {
-          path = "/etc/nixos/";
-          devices = [ "laptop" ];
-          ignorePerms = true;  # By default, Syncthing doesn't sync file permissions. This line enables it for this folder.
+    syncthing = {
+      guiAddress = "127.0.0.1:8385";
+      overrideDevices = true;     # overrides any devices added or deleted through the WebUI
+      overrideFolders = true;     # overrides any folders added or deleted through the WebUI
+      settings = {
+        devices = {
+          "laptop" = { id = "U7M722H-57HZKWB-YFB64YJ-ZC7G3HS-T5G5JZY-UR2PHKH-FUBZ3QR-SPHZPQI"; };
+          "phone" = { id = "HT5SYAA-6OGDLUU-T4PBNX5-OGLRVOI-EQK6ZHW-4VTTPQB-FVNFAQX-TTD42AQ"; };
+          # "device2" = { id = "DEVICE-ID-GOES-HERE"; };
         };
-        ".when" = {
-          path = "/home/daniel/.when/";
-          devices = [ "laptop" ];
-        };
-        "Documents" = {         # Name of folder in Syncthing, also the folder ID
-          path = "/home/daniel/Documents";    # Which folder to add to Syncthing
-          # devices = [ "device1" "device2" ];      # Which devices to share the folder with
-          devices = [ "laptop" ];      # Which devices to share the folder with
-        };
-        "Productivity" = {         # Name of folder in Syncthing, also the folder ID
-          path = "/home/daniel/Productivity";    # Which folder to add to Syncthing
-          devices = [ "laptop" "phone" ];      # Which devices to share the folder with
-        };
-        "Music/playlists/spotify_workout" = {         # Name of folder in Syncthing, also the folder ID
-          path = "/home/daniel/Music/playlists/spotify_workout";    # Which folder to add to Syncthing
-          devices = [ "laptop" "phone" ];      # Which devices to share the folder with
-        };
-        "Music/playlists/spotify_chillstep" = {         # Name of folder in Syncthing, also the folder ID
-          path = "/home/daniel/Music/playlists/spotify_chillstep";    # Which folder to add to Syncthing
-          devices = [ "laptop" ];      # Which devices to share the folder with
+        folders = {
+          "nixos" = {
+            path = "/etc/nixos/";
+            devices = [ "laptop" ];
+            ignorePerms = true;  # By default, Syncthing doesn't sync file permissions. This line enables it for this folder.
+          };
+          ".when" = {
+            path = "/home/daniel/.when/";
+            devices = [ "laptop" ];
+          };
+          "Documents" = {         # Name of folder in Syncthing, also the folder ID
+            path = "/home/daniel/Documents";    # Which folder to add to Syncthing
+            # devices = [ "device1" "device2" ];      # Which devices to share the folder with
+            devices = [ "laptop" ];      # Which devices to share the folder with
+          };
+          "Productivity" = {         # Name of folder in Syncthing, also the folder ID
+            path = "/home/daniel/Productivity";    # Which folder to add to Syncthing
+            devices = [ "laptop" "phone" ];      # Which devices to share the folder with
+          };
+          "Music/playlists/spotify_workout" = {         # Name of folder in Syncthing, also the folder ID
+            path = "/home/daniel/Music/playlists/spotify_workout";    # Which folder to add to Syncthing
+            devices = [ "laptop" "phone" ];      # Which devices to share the folder with
+          };
+          "Music/playlists/spotify_chillstep" = {         # Name of folder in Syncthing, also the folder ID
+            path = "/home/daniel/Music/playlists/spotify_chillstep";    # Which folder to add to Syncthing
+            devices = [ "laptop" ];      # Which devices to share the folder with
+          };
         };
       };
     };
-  };
 };
 
 

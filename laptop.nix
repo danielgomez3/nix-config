@@ -1,7 +1,7 @@
 # laptop.nix
 # NOTE: This contains all common features I want only my laptop to have!
 
-{ config, pkgs, lib, inputs, modulesPath, ... }:
+{ config, pkgs, lib, inputs, modulesPath, username, host, ... }:
 
 {
   imports =
@@ -12,12 +12,12 @@
     ];
 
  # NOTE: Unique configuration.nix content for desktop:
-  networking.hostName = "laptop"; # Define your hostname.
+  networking.hostName = host; # Define your hostname.
   services = {
   syncthing = {
     guiAddress = "127.0.0.1:8383";
     enable = true;
-    user = "daniel";
+    user = username;
     dataDir = "/home/daniel/";
     configDir = "/home/daniel/.config/syncthing";
     overrideDevices = false;     # overrides any devices added or deleted through the WebUI
@@ -53,7 +53,7 @@
   # NOTE: Unique home-manager config for laptop:
   home-manager = { 
     extraSpecialArgs = { inherit inputs; };
-    users.daniel = {
+    users.${username} = {
     };
   };
 
