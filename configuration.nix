@@ -5,10 +5,17 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, username, ... }:
 {
 
   # NOTE: Unique configuration.nix content:
+  services.openssh = {
+    enable = true;
+    # require public key authentication for better security
+    settings.PasswordAuthentication = false;
+    settings.KbdInteractiveAuthentication = false;
+    #settings.PermitRootLogin = "yes";
+  };
   # Bootloader.
   boot.loader = {
     systemd-boot.enable = true;
@@ -83,7 +90,7 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.daniel = {
+  users.users.${username} = {
     isNormalUser = true;
     description = "desktop";
     extraGroups = [ "networkmanager" "wheel" ];
@@ -91,6 +98,16 @@
     # packages = with pkgs; [
     #   firefox
     # ];
+    openssh = {
+      authorizedKeys.keys = [
+        ## This is my Desktop pub key:
+        # "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICKAtRI1bbUVZtT1uSRpI0sD3F4Lc4pTHqgqqoI8x8rV daniel@desktop"
+        ## This is my Laptop pub key:
+        # ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKOydruQkRyP2lx+REMSqEFOcP0hB/s/SBpyG2NBB6rD daniel@laptop
+
+      ];
+      
+    };
   };
   programs.zsh.enable = true;
 
@@ -119,8 +136,6 @@
 
   # List services that you want to enable:
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ 80 5000 ];
@@ -139,12 +154,12 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   security.sudo.wheelNeedsPassword = false;
-  # services.syncthing.enable = true;
+  services.syncthing.enable = true;
 
 
  home-manager = { 
     extraSpecialArgs = { inherit inputs; };
-    users.daniel = {
+    users.${username} = {
       # NOTE: Ubiquitous home-manager config for every system:
       home.stateVersion = "23.11";
       home.sessionVariables = {

@@ -12,7 +12,11 @@
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+          inherit inputs;
+          username = "daniel";
+          host = "desktop";
+          };
         modules = [
           ./configuration.nix
           ./desktop.nix
@@ -21,16 +25,38 @@
       };
       laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+          inherit inputs;
+          username = "daniel";
+          host = "laptop";
+          };
         modules = [
+          ./configuration.nix
           ./laptop.nix
           inputs.home-manager.nixosModules.default
         ];
       };
       # REVIEW: This is how you would add more!
+      vps = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+          username = "gandi";
+          host = "vps";
+          };
+        modules = [
+          ./configuration.nix
+          ./vps.nix
+          inputs.home-manager.nixosModules.default
+        ];
+      };
+      ## REVIEW: This is how you would add more!
       # raspberry-pi = nixpkgs.lib.nixosSystem {
       #   system = "x86_64-linux";
-      #   specialArgs = {inherit inputs;};
+      #   specialArgs = {
+      # inherit inputs;
+      #   username = "";
+      # };
       #   modules = [
       #     ./raspberry-pi.nix
       #     inputs.home-manager.nixosModules.default
