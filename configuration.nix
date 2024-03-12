@@ -155,11 +155,22 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   security.sudo.wheelNeedsPassword = false;
   services = {
-  syncthing = {
-    enable = true;
-    user = username;
-    dataDir = "/home/${username}/";
-    configDir = "/home/${username}/.config/syncthing";
+    syncthing = {
+      enable = true;
+      user = username;
+      overrideDevices = true;     # overrides any devices added or deleted through the WebUI
+      overrideFolders = true;     # overrides any folders added or deleted through the WebUI
+      dataDir = "/home/${username}/";
+      configDir = "/home/${username}/.config/syncthing";
+      settings = {
+        options.urAccepted = 1;
+        devices = {
+          "laptop" = { id = "U7M722H-57HZKWB-YFB64YJ-ZC7G3HS-T5G5JZY-UR2PHKH-FUBZ3QR-SPHZPQI"; autoAcceptFolders = true; };
+          "phone" = { id = "HT5SYAA-6OGDLUU-T4PBNX5-OGLRVOI-EQK6ZHW-4VTTPQB-FVNFAQX-TTD42AQ"; autoAcceptFolders = true;};
+          "vps" = { id = ""; autoAcceptFolders = true;};
+          # "device2" = { id = "DEVICE-ID-GOES-HERE"; };
+        };
+      };
     };
   };
 
@@ -196,6 +207,16 @@
       };
 
       programs = with pkgs; {
+        ssh = {
+          enable = true;
+          extraConfig = ''
+            Host vps
+               HostName 92.243.25.214
+               User root
+               IdentityFile ~/.ssh/id_ed25519
+
+          '';
+        };
         # bash = {
         #   enable = true;
         #   enableCompletion = true;

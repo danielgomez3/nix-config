@@ -45,7 +45,7 @@
           host = "vps";
           };
         modules = [
-          ./configuration.nix
+          # ./configuration.nix
           ./vps.nix
           inputs.home-manager.nixosModules.default
         ];
