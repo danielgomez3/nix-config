@@ -211,7 +211,7 @@
           enable = true;
           extraConfig = ''
             Host vps
-               HostName 92.243.25.214
+               HostName 46.226.105.34
                User root
                IdentityFile ~/.ssh/id_ed25519
 

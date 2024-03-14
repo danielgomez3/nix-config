@@ -12,6 +12,10 @@
     ];
 
   # NOTE: Unique configuration.nix content for desktop:
+  environment.systemPackages = with pkgs; [
+    libsForQt5.kdenlive
+  ];
+
   networking.hostName = host; # Define your hostname.
   services.xserver = {
     xkb.options = "";
@@ -50,6 +54,10 @@
           "Music/playlists/spotify_chillstep" = {         # Name of folder in Syncthing, also the folder ID
             path = "~/Music/playlists/spotify_chillstep";    # Which folder to add to Syncthing
             devices = [ "laptop" ];      # Which devices to share the folder with
+          };
+          "Music/playlists/memorize" = {         # Name of folder in Syncthing, also the folder ID
+            path = "~/Music/playlists/memorize";    # Which folder to add to Syncthing
+            devices = [ "laptop" "phone" ];      # Which devices to share the folder with
           };
         };
       };

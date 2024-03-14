@@ -1,13 +1,11 @@
-{ config, pkgs, lib, inputs, modulesPath, username, host, ... }:
-
+# This is the configuration required to run NixOS on GandiCloud.
+{ lib, modulesPath, ... }:
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      inputs.home-manager.nixosModules.default
-      (modulesPath + "/virtualisation/openstack-config.nix")
-      (modulesPath + "/installer/scan/not-detected.nix")
-    ];
-
+  imports = [
+    <nixpkgs/nixos/modules/virtualisation/openstack-config.nix>
+    (modulesPath + "/virtualisation/openstack-config.nix")
+  ];
+  config = {
     boot.initrd.kernelModules = [
       "xen-blkfront" "xen-tpmfront" "xen-kbdfront" "xen-fbfront"
       "xen-netfront" "xen-pcifront" "xen-scsifront"
@@ -43,8 +41,5 @@
     '';
 
     system.stateVersion = "23.11";
-  
+  };
 }
-
-
-
