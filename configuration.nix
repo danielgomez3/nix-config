@@ -117,13 +117,28 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    git wget curl pigz tree
-    helix victor-mono
+    git wget curl pigz tree bat
+    victor-mono
     lm_sensors android-tools
     bluez bluez-alsa bluez-tools
-    seafile-shared
-    resilio-sync
-    syncthing
+    helix syncthing
+    exercism
+  #   (vscode-with-extensions.override {
+  #   vscode = vscodium;
+  #   vscodeExtensions = with vscode-extensions; [
+  #     bbenoist.nix
+  #     ms-python.python
+  #     ms-azuretools.vscode-docker
+  #     ms-vscode-remote.remote-ssh
+  #   ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+  #     {
+  #       name = "remote-ssh-edit";
+  #       publisher = "ms-vscode-remote";
+  #       version = "0.47.2";
+  #       sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
+  #     }
+  #   ];
+  # })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -161,11 +176,10 @@
       overrideDevices = true;     # overrides any devices added or deleted through the WebUI
       overrideFolders = true;     # overrides any folders added or deleted through the WebUI
       dataDir = "/home/${username}/";
-      configDir = "/home/${username}/.config/syncthing";
       settings = {
-        options.urAccepted = 1;
+        options.urAccepted = -1;
         devices = {
-          "laptop" = { id = "U7M722H-57HZKWB-YFB64YJ-ZC7G3HS-T5G5JZY-UR2PHKH-FUBZ3QR-SPHZPQI"; autoAcceptFolders = true; };
+          "laptop" = { id = ""; autoAcceptFolders = true; };
           "phone" = { id = "HT5SYAA-6OGDLUU-T4PBNX5-OGLRVOI-EQK6ZHW-4VTTPQB-FVNFAQX-TTD42AQ"; autoAcceptFolders = true;};
           "vps" = { id = ""; autoAcceptFolders = true;};
           # "device2" = { id = "DEVICE-ID-GOES-HERE"; };
@@ -175,20 +189,20 @@
   };
 
 
+  # NOTE: Ubiquitous home-manager config for every system:
  home-manager = { 
     extraSpecialArgs = { inherit inputs; };
     users.${username} = {
-      # NOTE: Ubiquitous home-manager config for every system:
       home.stateVersion = "23.11";
       home.sessionVariables = {
         TERMINAL = "kitty";
       };
       home.packages = with pkgs; [
         # cli apps
-        krabby cowsay when unipicker emote
+        krabby cowsay when emote
         fd xclip wl-clipboard
         youtube-dl spotdl feh vlc yt-dlp
-        slides graph-easy python311Packages.grip
+        haskellPackages.patat graph-easy python311Packages.grip
         # coding
         shellcheck 
         # gui apps
@@ -235,7 +249,7 @@
           enableCompletion = true;
           enableAutosuggestions = true;
           shellAliases = {
-            prod = "cd ~/Productivity && sudo -E hx ~/Productivity/planning/todo.md ~/Productivity/notes/index.md /etc/nixos/configuration.nix";
+            prod = "cd ~/Productivity && sudo -E hx ~/Productivity/planning/todo.md ~/Productivity/notes/index.md";
           };
           initExtra = ''
             krabby random 1-4
@@ -246,6 +260,8 @@
             mom=4434723947
 
             export GIT_ASKPASS=""
+            eval "$(direnv hook zsh)"
+            exercism configure --token=4ba248cd-b97d-499f-bd0e-41178bc8825a
           '';
         };
         starship = {
@@ -282,8 +298,8 @@
             confirm_os_window_close = -1;
           };
           extraConfig = ''
-          {
-            }
+          italic_font   Victor Mono Italic
+          map ctrl+shift+enter new_window_with_cwd
           '';
         };
       
@@ -329,10 +345,12 @@
             lua-language-server
             rust-analyzer
             bash-language-server
+            haskell-language-server
           ];
           settings = {
-              theme = "varua";
+              theme = "catppuccin_frappe";
               editor = {
+                mouse = true;
                 bufferline = "multiple";
                 soft-wrap = {
                   enable = true;

@@ -12,8 +12,18 @@
     ];
 
   # NOTE: Unique configuration.nix content for desktop:
-  environment.systemPackages = with pkgs; [
-    libsForQt5.kdenlive
+  # environment.systemPackages = with pkgs; [
+  #   libsForQt5.kdenlive
+  # ];
+  environment.systemPackages = with pkgs; with libsForQt5; [
+  vscode
+  node2nix
+  (kdenlive.overrideAttrs (prevAttrs: {
+    nativeBuildInputs = (prevAttrs.nativeBuildInputs or [ ]) ++ [ makeBinaryWrapper ];
+    postInstall = (prevAttrs.postInstall or "") + ''
+      wrapProgram $out/bin/kdenlive --prefix LADSPA_PATH : ${rnnoise-plugin}/lib/ladspa
+    '';
+  }))
   ];
 
   networking.hostName = host; # Define your hostname.
@@ -47,17 +57,13 @@
             path = "~/Productivity";    # Which folder to add to Syncthing
             devices = [ "laptop" "phone" ];      # Which devices to share the folder with
           };
-          "Music/playlists/spotify_workout" = {         # Name of folder in Syncthing, also the folder ID
-            path = "~/Music/playlists/spotify_workout";    # Which folder to add to Syncthing
-            devices = [ "laptop" "phone" ];      # Which devices to share the folder with
-          };
-          "Music/playlists/spotify_chillstep" = {         # Name of folder in Syncthing, also the folder ID
-            path = "~/Music/playlists/spotify_chillstep";    # Which folder to add to Syncthing
+          # "Projects/repos/repos-learning/learning-haskell" = {         # Name of folder in Syncthing, also the folder ID
+          #   path = "~/Projects/repos/repos-learning/learning-haskell/";    # Which folder to add to Syncthing
+          #   devices = [ "laptop" ];      # Which devices to share the folder with
+          # };
+          "Projects/repos-learning/learning-haskell" = {         # Name of folder in Syncthing, also the folder ID
+            path = "~/Projects/repos/repos-learning/learning-haskell/";    # Which folder to add to Syncthing
             devices = [ "laptop" ];      # Which devices to share the folder with
-          };
-          "Music/playlists/memorize" = {         # Name of folder in Syncthing, also the folder ID
-            path = "~/Music/playlists/memorize";    # Which folder to add to Syncthing
-            devices = [ "laptop" "phone" ];      # Which devices to share the folder with
           };
         };
       };
