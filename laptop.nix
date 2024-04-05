@@ -49,12 +49,12 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/1af91d55-108c-4ac5-ae52-11f61424a875";
+    { device = "/dev/disk/by-uuid/859d7abd-a8d0-47cb-9641-cee376ae2847";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/4943-1681";
+    { device = "/dev/disk/by-uuid/18EF-0255";
       fsType = "vfat";
     };
 
@@ -70,6 +70,5 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
  
 }
