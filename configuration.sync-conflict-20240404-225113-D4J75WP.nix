@@ -50,6 +50,8 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  # Enable the X11 windowing system.
+  # services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
@@ -117,11 +119,10 @@
   environment.systemPackages = with pkgs; [
     git wget curl pigz tree bat
     victor-mono
-    lm_sensors ntfs3g
+    lm_sensors android-tools
     bluez bluez-alsa bluez-tools
-    syncthing 
-    google-chrome
-    helix zed-editor
+    helix syncthing
+    exercism
   #   (vscode-with-extensions.override {
   #   vscode = vscodium;
   #   vscodeExtensions = with vscode-extensions; [
@@ -169,7 +170,6 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   security.sudo.wheelNeedsPassword = false;
   services = {
-    gnome.gnome-online-accounts.enable = true;
     syncthing = {
       enable = true;
       user = username;
@@ -179,7 +179,7 @@
       settings = {
         options.urAccepted = -1;
         devices = {
-          "laptop" = { id = "COP4ZK5-M65LTJE-ALF2JGJ-7Z7ZSLS-7F5LJQK-34HIRK2-6JX722F-VAZT6AY"; autoAcceptFolders = true; };
+          "laptop" = { id = ""; autoAcceptFolders = true; };
           "phone" = { id = "HT5SYAA-6OGDLUU-T4PBNX5-OGLRVOI-EQK6ZHW-4VTTPQB-FVNFAQX-TTD42AQ"; autoAcceptFolders = true;};
           "vps" = { id = ""; autoAcceptFolders = true;};
           # "device2" = { id = "DEVICE-ID-GOES-HERE"; };
@@ -199,16 +199,15 @@
       };
       home.packages = with pkgs; [
         # cli apps
-        krabby cowsay emote
+        krabby cowsay when emote
         fd xclip wl-clipboard
-        youtube-dl spotdl feh vlc yt-dlp android-tools adb-sync unzip
+        youtube-dl spotdl feh vlc yt-dlp
         haskellPackages.patat graph-easy python311Packages.grip
-        android-tools 
         # coding
-        shellcheck inotify-tools exercism  pandoc poppler_utils
+        shellcheck 
         # gui apps
-        firefox texliveFull zoom-us libreoffice slack spotify
-        cmus gotop flameshot xournalpp shutter
+        firefox texliveFull zoom-us libreoffice
+        cmus gotop flameshot xournalpp
         gnome.gnome-session
         libsForQt5.kpeople # HACK: Get kde sms working properly
         libsForQt5.kpeoplevcard # HACK: Get kde sms working properly
@@ -248,13 +247,13 @@
         zsh = {
           enable = true;
           enableCompletion = true;
-          autosuggestion.enable = true;
+          enableAutosuggestions = true;
           shellAliases = {
             prod = "cd ~/Productivity && sudo -E hx ~/Productivity/planning/todo.md ~/Productivity/notes/index.md";
           };
           initExtra = ''
             krabby random 1-4
-            # when --calendar_today_style=bold,fgred --future=3 ci
+            when --calendar_today_style=bold,fgred --future=3 ci
             erick=4436788948
             anthony=4434162576
             me=4435377181
@@ -262,6 +261,7 @@
 
             export GIT_ASKPASS=""
             eval "$(direnv hook zsh)"
+            exercism configure --token=4ba248cd-b97d-499f-bd0e-41178bc8825a
           '';
         };
         starship = {
@@ -376,8 +376,5 @@
      };
     };
  };
-  environment.sessionVariables = rec {
-      ANDROID_PRODUCT_OUT = "/home/daniel/Downloads/unzipped/crosshatch-sp1a.210812.016.c2";
-  };
   
 }

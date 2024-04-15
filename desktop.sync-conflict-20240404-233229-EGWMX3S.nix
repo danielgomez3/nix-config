@@ -53,6 +53,11 @@
           #   # devices = [ "device1" "device2" ];      # Which devices to share the folder with
           #   devices = [ "laptop" ];      # Which devices to share the folder with
           # };
+          "Documents" = {         # Name of folder in Syncthing, also the folder ID
+            path = "~/Documents";    # Which folder to add to Syncthing
+            # devices = [ "device1" "device2" ];      # Which devices to share the folder with
+            devices = [ "laptop" ];      # Which devices to share the folder with
+          };
           "Documents/pdfs" = {         # Name of folder in Syncthing, also the folder ID
             path = "~/Documents/pdfs";    # Which folder to add to Syncthing
             # devices = [ "device1" "device2" ];      # Which devices to share the folder with
