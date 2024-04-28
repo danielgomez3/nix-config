@@ -199,7 +199,7 @@
       };
       home.packages = with pkgs; [
         # cli apps
-        krabby cowsay emote
+        krabby cowsay screen
         fd xclip wl-clipboard
         youtube-dl spotdl feh vlc yt-dlp android-tools adb-sync unzip
         haskellPackages.patat graph-easy python311Packages.grip
@@ -262,6 +262,7 @@
 
             export GIT_ASKPASS=""
             eval "$(direnv hook zsh)"
+            export CDPATH=$CDPATH:$HOME
           '';
         };
         starship = {
@@ -339,13 +340,14 @@
             vscode-langservers-extracted
             gopls gotools
             typescript typescript-language-server
-            marksman ltex-ls
+            marksman ltex-ls  # Writing
             nil nixpkgs-fmt
-            clang-tools
+            clang-tools  # C
             lua-language-server
             rust-analyzer
             bash-language-server
             haskell-language-server
+            omnisharp-roslyn netcoredbg  # C-sharp
           ];
           settings = {
               theme = "catppuccin_frappe";
