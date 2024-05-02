@@ -38,6 +38,13 @@
   home-manager = { 
     extraSpecialArgs = { inherit inputs; };
     users.${username} = {
+      programs = with pkgs; {
+        kitty = {
+          font = {
+            size = 14;
+          };
+        };
+      };
     };
   };
 

@@ -121,7 +121,7 @@
     bluez bluez-alsa bluez-tools
     syncthing 
     google-chrome
-    helix zed-editor
+    helix zed-editor zellij
   #   (vscode-with-extensions.override {
   #   vscode = vscodium;
   #   vscodeExtensions = with vscode-extensions; [
@@ -251,6 +251,7 @@
           autosuggestion.enable = true;
           shellAliases = {
             prod = "cd ~/Productivity && sudo -E hx ~/Productivity/planning/todo.md ~/Productivity/notes/index.md";
+            zrf = "zellij run floating";
           };
           initExtra = ''
             krabby random 1-4
@@ -288,10 +289,10 @@
         };
         kitty = {
           enable = true;
-          theme = "Dracula";
+          # theme = "nord_light";
           font = {
             package = pkgs.victor-mono;
-            size = 10;
+            # size = 10;
             name = "VictorMono";
           };
           settings = { 
@@ -300,7 +301,54 @@
           };
           extraConfig = ''
           italic_font   Victor Mono Italic
+          bold_font  Victor Mono Bold
           map ctrl+shift+enter new_window_with_cwd
+          hide_window_decorations yes
+
+          # Nord Colorscheme for Kitty
+          # Based on:
+          # - https://gist.github.com/marcusramberg/64010234c95a93d953e8c79fdaf94192
+          # - https://github.com/arcticicestudio/nord-hyper
+
+          foreground            #D8DEE9
+          background            #2E3440
+          selection_foreground  #000000
+          selection_background  #FFFACD
+          url_color             #0087BD
+          cursor                #81A1C1
+
+          # black
+          color0   #3B4252
+          color8   #4C566A
+
+          # red
+          color1   #BF616A
+          color9   #BF616A
+
+          # green
+          color2   #A3BE8C
+          color10  #A3BE8C
+
+          # yellow
+          color3   #EBCB8B
+          color11  #EBCB8B
+
+          # blue
+          color4  #81A1C1
+          color12 #81A1C1
+
+          # magenta
+          color5   #B48EAD
+          color13  #B48EAD
+
+          # cyan
+          color6   #88C0D0
+          color14  #8FBCBB
+
+          # white
+          color7   #E5E9F0
+          color15  #ECEFF4
+
           '';
         };
       
@@ -350,7 +398,7 @@
             omnisharp-roslyn netcoredbg  # C-sharp
           ];
           settings = {
-              theme = "catppuccin_frappe";
+              theme = "everforest_light";
               editor = {
                 mouse = true;
                 bufferline = "multiple";

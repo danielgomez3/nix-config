@@ -108,11 +108,15 @@
   # NOTE: Unique home-manager config for desktop:
   home-manager = { 
     extraSpecialArgs = { inherit inputs; };
-    # users.daniel = {
-    #   obs-studio = {
-    #     enable = true;
-    #   };
-    # };
+    users.${username} = {
+      programs = with pkgs; {
+        kitty = {
+          font = {
+            size = 11;
+          };
+        };
+      };
+    };
   };
 
   # NOTE: Unique hardware-configuration.nix content for laptop:
