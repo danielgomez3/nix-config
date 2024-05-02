@@ -120,7 +120,7 @@
     lm_sensors ntfs3g
     bluez bluez-alsa bluez-tools
     syncthing 
-    google-chrome
+    google-chrome audacity
     helix zed-editor zellij
   #   (vscode-with-extensions.override {
   #   vscode = vscodium;
@@ -398,7 +398,7 @@
             omnisharp-roslyn netcoredbg  # C-sharp
           ];
           settings = {
-              theme = "everforest_light";
+              theme = "everforest_dark";
               editor = {
                 mouse = true;
                 bufferline = "multiple";
