@@ -120,8 +120,8 @@
     lm_sensors ntfs3g
     bluez bluez-alsa bluez-tools
     syncthing 
-    google-chrome audacity
-    helix zed-editor zellij
+    google-chrome audacity ardour
+    helix zed-editor zellij 
   #   (vscode-with-extensions.override {
   #   vscode = vscodium;
   #   vscodeExtensions = with vscode-extensions; [
@@ -290,6 +290,7 @@
         kitty = {
           enable = true;
           # theme = "nord_light";
+          theme = "Dracula";
           font = {
             package = pkgs.victor-mono;
             # size = 10;
@@ -305,49 +306,57 @@
           map ctrl+shift+enter new_window_with_cwd
           hide_window_decorations yes
 
-          # Nord Colorscheme for Kitty
-          # Based on:
-          # - https://gist.github.com/marcusramberg/64010234c95a93d953e8c79fdaf94192
-          # - https://github.com/arcticicestudio/nord-hyper
 
-          foreground            #D8DEE9
-          background            #2E3440
-          selection_foreground  #000000
-          selection_background  #FFFACD
-          url_color             #0087BD
-          cursor                #81A1C1
 
-          # black
-          color0   #3B4252
-          color8   #4C566A
+          # A port of forest night by sainnhe
+          # https://github.com/sainnhe/forest-night
+
+          background  #323d43
+          foreground  #d8caac
+
+          cursor                #d8caac
+
+          selection_foreground  #d8caac
+          selection_background  #505a60
+
+          color0  #3c474d
+          color8  #868d80
 
           # red
-          color1   #BF616A
-          color9   #BF616A
+          color1                #e68183
+          # light red
+          color9                #e68183
 
           # green
-          color2   #A3BE8C
-          color10  #A3BE8C
+          color2                #a7c080
+          # light green
+          color10               #a7c080
 
           # yellow
-          color3   #EBCB8B
-          color11  #EBCB8B
+          color3                #d9bb80
+          # light yellow
+          color11               #d9bb80
 
           # blue
-          color4  #81A1C1
-          color12 #81A1C1
+          color4                #83b6af
+          # light blue
+          color12               #83b6af
 
           # magenta
-          color5   #B48EAD
-          color13  #B48EAD
+          color5                #d39bb6
+          # light magenta
+          color13               #d39bb6
 
           # cyan
-          color6   #88C0D0
-          color14  #8FBCBB
+          color6                #87c095
+          # light cyan
+          color14               #87c095
 
-          # white
-          color7   #E5E9F0
-          color15  #ECEFF4
+          # light gray
+          color7                #868d80
+          # dark gray
+          color15               #868d80
+
 
           '';
         };
