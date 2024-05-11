@@ -115,13 +115,14 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    git wget curl pigz tree bat
+    git wget curl pigz tree bat colordiff
     victor-mono
-    lm_sensors ntfs3g
+    lm_sensors 
     bluez bluez-alsa bluez-tools
     syncthing 
     google-chrome audacity ardour
-    helix zed-editor zellij 
+    helix zed-editor zellij neomutt
+    woeusb ntfs3g
   #   (vscode-with-extensions.override {
   #   vscode = vscodium;
   #   vscodeExtensions = with vscode-extensions; [
@@ -170,22 +171,22 @@
   security.sudo.wheelNeedsPassword = false;
   services = {
     gnome.gnome-online-accounts.enable = true;
-    syncthing = {
-      enable = true;
-      user = username;
-      overrideDevices = true;     # overrides any devices added or deleted through the WebUI
-      overrideFolders = true;     # overrides any folders added or deleted through the WebUI
-      dataDir = "/home/${username}/";
-      settings = {
-        options.urAccepted = -1;
-        devices = {
-          "laptop" = { id = "COP4ZK5-M65LTJE-ALF2JGJ-7Z7ZSLS-7F5LJQK-34HIRK2-6JX722F-VAZT6AY"; autoAcceptFolders = true; };
-          "phone" = { id = "HT5SYAA-6OGDLUU-T4PBNX5-OGLRVOI-EQK6ZHW-4VTTPQB-FVNFAQX-TTD42AQ"; autoAcceptFolders = true;};
-          "vps" = { id = ""; autoAcceptFolders = true;};
-          # "device2" = { id = "DEVICE-ID-GOES-HERE"; };
-        };
-      };
-    };
+    # syncthing = {
+    #   enable = true;
+    #   user = username;
+    #   overrideDevices = true;     # overrides any devices added or deleted through the WebUI
+    #   overrideFolders = true;     # overrides any folders added or deleted through the WebUI
+    #   dataDir = "/home/${username}/";
+    #   settings = {
+    #     options.urAccepted = -1;
+    #     devices = {
+    #       # "laptop" = { id = "COP4ZK5-M65LTJE-ALF2JGJ-7Z7ZSLS-7F5LJQK-34HIRK2-6JX722F-VAZT6AY"; autoAcceptFolders = true; };
+    #       # "phone" = { id = "HT5SYAA-6OGDLUU-T4PBNX5-OGLRVOI-EQK6ZHW-4VTTPQB-FVNFAQX-TTD42AQ"; autoAcceptFolders = true;};
+    #       # "vps" = { id = ""; autoAcceptFolders = true;};
+    #       # "device2" = { id = "DEVICE-ID-GOES-HERE"; };
+    #     };
+    #   };
+    # };
   };
 
 
@@ -235,7 +236,7 @@
         # bash = {
         #   enable = true;
         #   enableCompletion = true;
-        #   # shellAliases = {
+        #   # shelles = {
         #   #   notes = "hx ~/Productivity";
         #   #   # huya = "hx file2.txt";
         #   # };
@@ -250,8 +251,10 @@
           enableCompletion = true;
           autosuggestion.enable = true;
           shellAliases = {
-            prod = "cd ~/Productivity && sudo -E hx ~/Productivity/planning/todo.md ~/Productivity/notes/index.md";
+            prod = "cd ~/Productivity/planning && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
             zrf = "zellij run floating";
+            conf = "cd ~/flake/ && hx configuration.nix laptop.nix desktop.nix";
+            notes = "cd ~/Productivity/notes && hx index.md";
           };
           initExtra = ''
             krabby random 1-4
@@ -290,7 +293,7 @@
         kitty = {
           enable = true;
           # theme = "nord_light";
-          theme = "Dracula";
+          # theme = "Dracula";
           font = {
             package = pkgs.victor-mono;
             # size = 10;
@@ -424,10 +427,12 @@
           
           };
           languages = { 
-            language-server.typescript-language-server = with pkgs.nodePackages; {
-                command = "${typescript-language-server}/bin/typescript-language-server";
-                args = [ "--stdio" "--tsserver-path=${typescript}/lib/node_modules/typescript/lib" ];  
-            };  
+            language-server = {
+              typescript-language-server = with pkgs.nodePackages; {
+                  command = "${typescript-language-server}/bin/typescript-language-server";
+                  args = [ "--stdio" "--tsserver-path=${typescript}/lib/node_modules/typescript/lib" ];  
+              };  
+            };
           language = [{    name = "markdown";    language-servers = ["marksman" "ltex-ls"];  }];
           };
        
