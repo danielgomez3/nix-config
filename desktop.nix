@@ -35,19 +35,19 @@
       extraConfig = ''
       '';
     };
-    # syncthing = {
-    #   guiAddress = "127.0.0.1:8385";
+    syncthing = {
+      guiAddress = "127.0.0.1:8385";
     #   settings = {
     #     devices = {
     #       "laptop" = { id = "7M2Z4CZ-I6GVKRP-LJSSMQZ-V2TB666-6Q7L4Y2-EF2CKAN-S52ZQNE-SBMILQM"; 
     #       autoAcceptFolders = true; 
     #       };
     #     };
-    #     folders = {
-    #       "Documents/crimson-vista" = {         # Name of folder in Syncthing, also the folder ID
-    #         path = "~/Documents/crimson-vista";    # Which folder to add to Syncthing
-    #         devices = [ "laptop" ];      # Which devices to share the folder with
-    #     };
+        folders = {
+          "Documents/" = {         # Name of folder in Syncthing, also the folder ID
+            path = "~/Documents/";    # Which folder to add to Syncthing
+            devices = [ "laptop" ];      # Which devices to share the folder with
+        };
         # folders = {
         #   "Documents/crimsonvista" = {         # Name of folder in Syncthing, also the folder ID
         #     path = "~/Documents/crimsonl-vista";    # Which folder to add to Syncthing
@@ -58,10 +58,10 @@
         #     path = "~/Productivity";    # Which folder to add to Syncthing
         #     devices = [ "laptop" ];      # Which devices to share the folder with
         #   };
-        };
+        # };
     #   };
-    # };
-  # };
+    };
+  };
 
 
 

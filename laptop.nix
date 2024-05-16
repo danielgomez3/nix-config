@@ -14,17 +14,14 @@
  # NOTE: Unique configuration.nix content for desktop:
   networking.hostName = host; # Define your hostname.
   services = {
-  #   syncthing = {
-  #     guiAddress = "127.0.0.1:8383";
-  # #     user = username;
-  #     # dataDir = "/home/${username}/";
-  # #     # configDir = "/home/daniel/.config/syncthing";
+    syncthing = {
+      guiAddress = "127.0.0.1:8383";
   #     settings = {
   #       devices = {
   #         "desktop" = { id = "SVUBZNU-A4HDWGG-AC7MPHA-GFHE5HD-XUJ6VIK-63SO7RQ-DTR3ECT-ATGF3QI"; autoAcceptFolders = true;};
   #       };
   #     };
-  #   };
+    };
   };
 
   services.xserver = {

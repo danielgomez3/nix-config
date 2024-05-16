@@ -9,6 +9,19 @@
 {
 
   # NOTE: Unique configuration.nix content:
+#   services.nextcloud = {                
+#   enable = true;                   
+#   package = pkgs.nextcloud28;
+#   hostName = "localhost";
+#   config.adminpassFile = "/home/${username}/flake/nextcloud-admin-pass";
+#   # Instead of using pkgs.nextcloud28Packages.apps,
+#   # we'll reference the package version specified above
+#   extraAppsEnable = true;
+# };
+  # services.rsyncd = {
+  #   enable = true;
+  # };
+
   services.openssh = {
     enable = true;
     # require public key authentication for better security
@@ -171,16 +184,16 @@
   security.sudo.wheelNeedsPassword = false;
   services = {
     gnome.gnome-online-accounts.enable = true;
-    # syncthing = {
-    #   enable = true;
-    #   user = username;
+    syncthing = {
+      enable = true;
+      user = username;
     #   overrideDevices = true;     # overrides any devices added or deleted through the WebUI
     #   overrideFolders = true;     # overrides any folders added or deleted through the WebUI
-      # dataDir = "/home/${username}/";
-    #   settings = {
-    #     options.urAccepted = -1;
-      # };
-    # };
+      dataDir = "/home/${username}/.config/syncthing";
+    # #   settings = {
+    # #     options.urAccepted = -1;
+    #   # };
+    };
   };
 
 
