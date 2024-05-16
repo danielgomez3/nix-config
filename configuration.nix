@@ -175,7 +175,7 @@
       enable = true;
     #   user = username;
     #   overrideDevices = true;     # overrides any devices added or deleted through the WebUI
-    #   overrideFolders = true;     # overrides any folders added or deleted through the WebUI
+      overrideFolders = true;     # overrides any folders added or deleted through the WebUI
     #   # dataDir = "/home/${username}/";
     #   settings = {
     #     options.urAccepted = -1;

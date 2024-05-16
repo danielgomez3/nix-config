@@ -44,8 +44,8 @@
           };
         };
         folders = {
-          "crimsonvista" = {         # Name of folder in Syncthing, also the folder ID
-            path = "~/Documents/crimsonvista";    # Which folder to add to Syncthing
+          "Documents/crimson-vista" = {         # Name of folder in Syncthing, also the folder ID
+            path = "~/Documents/crimson-vista";    # Which folder to add to Syncthing
             devices = [ "laptop" ];      # Which devices to share the folder with
         };
         # folders = {
