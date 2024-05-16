@@ -39,57 +39,29 @@
       guiAddress = "127.0.0.1:8385";
       settings = {
         devices = {
-          "laptop" = { id = "7M2Z4CZ-I6GVKRP-LJSSMQZ-V2TB666-6Q7L4Y2-EF2CKAN-S52ZQNE-SBMILQM"; autoAcceptFolders = true; };
-          # "phone" = { id = "HT5SYAA-6OGDLUU-T4PBNX5-OGLRVOI-EQK6ZHW-4VTTPQB-FVNFAQX-TTD42AQ"; autoAcceptFolders = true;};
-    #       # "vps" = { id = ""; autoAcceptFolders = true;};
-    #       # "device2" = { id = "DEVICE-ID-GOES-HERE"; };
-    #     };
-    #     folders = {
-    #       # "nixos" = {
-    #       #   path = "/etc/nixos/";
-    #       #   devices = [ "laptop" ];
-    #       #   ignorePerms = true;  # By default, Syncthing doesn't sync file permissions. This line enables it for this folder.
-    #       # };
-    #       # ".when" = {
-    #       #   path = "~/.when/";
-    #       #   devices = [ "laptop" ];
-    #       # };
-    #       "Documents/crimsonvista" = {         # Name of folder in Syncthing, also the folder ID
-    #         path = "~/Documents/crimsonl-vista";    # Which folder to add to Syncthing
-    #         # devices = [ "device1" "device2" ];      # Which devices to share the folder with
-    #         devices = [ "laptop" ];      # Which devices to share the folder with
-    #       };
-    #       # "Documents/pdfs" = {         # Name of folder in Syncthing, also the folder ID
-    #       #   path = "~/Documents/pdfs";    # Which folder to add to Syncthing
-    #       #   # devices = [ "device1" "device2" ];      # Which devices to share the folder with
-    #       #   devices = [ "laptop" ];      # Which devices to share the folder with
-    #       # };
-    #       # "Documents/misc" = {         # Name of folder in Syncthing, also the folder ID
-    #       #   path = "~/Documents/misc";    # Which folder to add to Syncthing
-    #       #   # devices = [ "device1" "device2" ];      # Which devices to share the folder with
-    #       #   devices = [ "laptop" ];      # Which devices to share the folder with
-    #       # };
-    #       "Documents/personal-info" = {         # Name of folder in Syncthing, also the folder ID
-    #         path = "~/Documents/personal-info";    # Which folder to add to Syncthing
-    #         # devices = [ "device1" "device2" ];      # Which devices to share the folder with
-    #         devices = [ "laptop" ];      # Which devices to share the folder with
-    #       };
-    #       "Productivity" = {         # Name of folder in Syncthing, also the folder ID
-    #         path = "~/Productivity";    # Which folder to add to Syncthing
-    #         devices = [ "laptop" "phone" ];      # Which devices to share the folder with
-    #       };
-    #       # "Projects/repos/repos-learning/learning-haskell" = {         # Name of folder in Syncthing, also the folder ID
-    #       #   path = "~/Projects/repos/repos-learning/learning-haskell/";    # Which folder to add to Syncthing
-    #       #   devices = [ "laptop" ];      # Which devices to share the folder with
-    #       # };
-    #       # "Projects/repos-learning/learning-haskell" = {         # Name of folder in Syncthing, also the folder ID
-    #       #   path = "~/Projects/repos/repos-learning/learning-haskell/";    # Which folder to add to Syncthing
-    #       #   devices = [ "laptop" ];      # Which devices to share the folder with
-    #       # };
+          "laptop" = { id = "7M2Z4CZ-I6GVKRP-LJSSMQZ-V2TB666-6Q7L4Y2-EF2CKAN-S52ZQNE-SBMILQM"; 
+          autoAcceptFolders = true; 
+          };
+        };
+        folders = {
+          "crimsonvista" = {         # Name of folder in Syncthing, also the folder ID
+            path = "~/Documents/crimsonvista";    # Which folder to add to Syncthing
+            devices = [ "laptop" ];      # Which devices to share the folder with
+        };
+        # folders = {
+        #   "Documents/crimsonvista" = {         # Name of folder in Syncthing, also the folder ID
+        #     path = "~/Documents/crimsonl-vista";    # Which folder to add to Syncthing
+        #     # devices = [ "device1" "device2" ];      # Which devices to share the folder with
+        #     devices = [ "laptop" ];      # Which devices to share the folder with
+        #   };
+        #   "Productivity" = {         # Name of folder in Syncthing, also the folder ID
+        #     path = "~/Productivity";    # Which folder to add to Syncthing
+        #     devices = [ "laptop" ];      # Which devices to share the folder with
+        #   };
         };
       };
     };
-};
+  };
 
 
 

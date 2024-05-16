@@ -19,11 +19,11 @@
   #     user = username;
   #     # dataDir = "/home/daniel/";
   #     # configDir = "/home/daniel/.config/syncthing";
-  #     settings = {
+      settings = {
         devices = {
           "desktop" = { id = "SVUBZNU-A4HDWGG-AC7MPHA-GFHE5HD-XUJ6VIK-63SO7RQ-DTR3ECT-ATGF3QI"; autoAcceptFolders = true;};
         };
-  #     };
+      };
     };
   };
 
