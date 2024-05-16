@@ -38,31 +38,37 @@
     syncthing = {
       guiAddress = "127.0.0.1:8385";
       settings = {
+        devices = {
+          "laptop" = { id = "COP4ZK5-M65LTJE-ALF2JGJ-7Z7ZSLS-7F5LJQK-34HIRK2-6JX722F-VAZT6AY"; autoAcceptFolders = true; };
+          # "phone" = { id = "HT5SYAA-6OGDLUU-T4PBNX5-OGLRVOI-EQK6ZHW-4VTTPQB-FVNFAQX-TTD42AQ"; autoAcceptFolders = true;};
+          # "vps" = { id = ""; autoAcceptFolders = true;};
+          # "device2" = { id = "DEVICE-ID-GOES-HERE"; };
+        };
         folders = {
-          "nixos" = {
-            path = "/etc/nixos/";
-            devices = [ "laptop" ];
-            ignorePerms = true;  # By default, Syncthing doesn't sync file permissions. This line enables it for this folder.
+          # "nixos" = {
+          #   path = "/etc/nixos/";
+          #   devices = [ "laptop" ];
+          #   ignorePerms = true;  # By default, Syncthing doesn't sync file permissions. This line enables it for this folder.
+          # };
+          # ".when" = {
+          #   path = "~/.when/";
+          #   devices = [ "laptop" ];
+          # };
+          "Documents/crimsonvista" = {         # Name of folder in Syncthing, also the folder ID
+            path = "~/Documents/crimsonl-vista";    # Which folder to add to Syncthing
+            # devices = [ "device1" "device2" ];      # Which devices to share the folder with
+            devices = [ "laptop" ];      # Which devices to share the folder with
           };
-          ".when" = {
-            path = "~/.when/";
-            devices = [ "laptop" ];
-          };
-          # "Documents" = {         # Name of folder in Syncthing, also the folder ID
-          #   path = "~/Documents";    # Which folder to add to Syncthing
+          # "Documents/pdfs" = {         # Name of folder in Syncthing, also the folder ID
+          #   path = "~/Documents/pdfs";    # Which folder to add to Syncthing
           #   # devices = [ "device1" "device2" ];      # Which devices to share the folder with
           #   devices = [ "laptop" ];      # Which devices to share the folder with
           # };
-          "Documents/pdfs" = {         # Name of folder in Syncthing, also the folder ID
-            path = "~/Documents/pdfs";    # Which folder to add to Syncthing
-            # devices = [ "device1" "device2" ];      # Which devices to share the folder with
-            devices = [ "laptop" ];      # Which devices to share the folder with
-          };
-          "Documents/misc" = {         # Name of folder in Syncthing, also the folder ID
-            path = "~/Documents/misc";    # Which folder to add to Syncthing
-            # devices = [ "device1" "device2" ];      # Which devices to share the folder with
-            devices = [ "laptop" ];      # Which devices to share the folder with
-          };
+          # "Documents/misc" = {         # Name of folder in Syncthing, also the folder ID
+          #   path = "~/Documents/misc";    # Which folder to add to Syncthing
+          #   # devices = [ "device1" "device2" ];      # Which devices to share the folder with
+          #   devices = [ "laptop" ];      # Which devices to share the folder with
+          # };
           "Documents/personal-info" = {         # Name of folder in Syncthing, also the folder ID
             path = "~/Documents/personal-info";    # Which folder to add to Syncthing
             # devices = [ "device1" "device2" ];      # Which devices to share the folder with
@@ -76,10 +82,10 @@
           #   path = "~/Projects/repos/repos-learning/learning-haskell/";    # Which folder to add to Syncthing
           #   devices = [ "laptop" ];      # Which devices to share the folder with
           # };
-          "Projects/repos-learning/learning-haskell" = {         # Name of folder in Syncthing, also the folder ID
-            path = "~/Projects/repos/repos-learning/learning-haskell/";    # Which folder to add to Syncthing
-            devices = [ "laptop" ];      # Which devices to share the folder with
-          };
+          # "Projects/repos-learning/learning-haskell" = {         # Name of folder in Syncthing, also the folder ID
+          #   path = "~/Projects/repos/repos-learning/learning-haskell/";    # Which folder to add to Syncthing
+          #   devices = [ "laptop" ];      # Which devices to share the folder with
+          # };
         };
       };
     };
@@ -126,13 +132,14 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/4f78ca2d-fe56-401e-88b4-50b0b8920dd8";
+    { device = "/dev/disk/by-uuid/82be1713-5e51-42de-842b-bca7912f9218";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/36D8-403D";
+    { device = "/dev/disk/by-uuid/7C20-2361";
       fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
     };
 
   swapDevices = [ ];
@@ -143,7 +150,6 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp4s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

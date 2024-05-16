@@ -171,22 +171,16 @@
   security.sudo.wheelNeedsPassword = false;
   services = {
     gnome.gnome-online-accounts.enable = true;
-    # syncthing = {
-    #   enable = true;
-    #   user = username;
-    #   overrideDevices = true;     # overrides any devices added or deleted through the WebUI
-    #   overrideFolders = true;     # overrides any folders added or deleted through the WebUI
-    #   dataDir = "/home/${username}/";
-    #   settings = {
-    #     options.urAccepted = -1;
-    #     devices = {
-    #       # "laptop" = { id = "COP4ZK5-M65LTJE-ALF2JGJ-7Z7ZSLS-7F5LJQK-34HIRK2-6JX722F-VAZT6AY"; autoAcceptFolders = true; };
-    #       # "phone" = { id = "HT5SYAA-6OGDLUU-T4PBNX5-OGLRVOI-EQK6ZHW-4VTTPQB-FVNFAQX-TTD42AQ"; autoAcceptFolders = true;};
-    #       # "vps" = { id = ""; autoAcceptFolders = true;};
-    #       # "device2" = { id = "DEVICE-ID-GOES-HERE"; };
-    #     };
-    #   };
-    # };
+    syncthing = {
+      enable = true;
+      user = username;
+      overrideDevices = true;     # overrides any devices added or deleted through the WebUI
+      overrideFolders = true;     # overrides any folders added or deleted through the WebUI
+      # dataDir = "/home/${username}/";
+      settings = {
+        options.urAccepted = -1;
+      };
+    };
   };
 
 
