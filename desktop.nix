@@ -39,7 +39,7 @@
       guiAddress = "127.0.0.1:8385";
       settings = {
         devices = {
-    #       "laptop" = { id = "COP4ZK5-M65LTJE-ALF2JGJ-7Z7ZSLS-7F5LJQK-34HIRK2-6JX722F-VAZT6AY"; autoAcceptFolders = true; };
+          "laptop" = { id = "7M2Z4CZ-I6GVKRP-LJSSMQZ-V2TB666-6Q7L4Y2-EF2CKAN-S52ZQNE-SBMILQM"; autoAcceptFolders = true; };
           # "phone" = { id = "HT5SYAA-6OGDLUU-T4PBNX5-OGLRVOI-EQK6ZHW-4VTTPQB-FVNFAQX-TTD42AQ"; autoAcceptFolders = true;};
     #       # "vps" = { id = ""; autoAcceptFolders = true;};
     #       # "device2" = { id = "DEVICE-ID-GOES-HERE"; };
