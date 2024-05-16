@@ -39,7 +39,7 @@
       guiAddress = "127.0.0.1:8385";
     #   settings = {
         devices = {
-          "laptop" = { id = "7M2Z4CZ-I6GVKRP-LJSSMQZ-V2TB666-6Q7L4Y2-EF2CKAN-S52ZQNE-SBMILQM"; 
+          "laptop" = { id = "R7A34TT-T662VVH-H2CXF7L-ULKAWWZ-WIGA7LR-3JKLYTL-LSVBHAA-3I245AH"; 
           autoAcceptFolders = true; 
           };
         };
