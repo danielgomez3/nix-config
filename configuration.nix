@@ -171,16 +171,16 @@
   security.sudo.wheelNeedsPassword = false;
   services = {
     gnome.gnome-online-accounts.enable = true;
-    syncthing = {
-      enable = true;
+    # syncthing = {
+    #   enable = true;
     #   user = username;
     #   overrideDevices = true;     # overrides any devices added or deleted through the WebUI
-      overrideFolders = true;     # overrides any folders added or deleted through the WebUI
-    #   # dataDir = "/home/${username}/";
+    #   overrideFolders = true;     # overrides any folders added or deleted through the WebUI
+      # dataDir = "/home/${username}/";
     #   settings = {
     #     options.urAccepted = -1;
       # };
-    };
+    # };
   };
 
 
