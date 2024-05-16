@@ -119,7 +119,7 @@
     victor-mono
     lm_sensors 
     bluez bluez-alsa bluez-tools
-    syncthing 
+    # syncthing 
     google-chrome audacity ardour
     helix zed-editor zellij neomutt
     woeusb ntfs3g
@@ -173,13 +173,13 @@
     gnome.gnome-online-accounts.enable = true;
     syncthing = {
       enable = true;
-      user = username;
-      overrideDevices = true;     # overrides any devices added or deleted through the WebUI
-      overrideFolders = true;     # overrides any folders added or deleted through the WebUI
-      # dataDir = "/home/${username}/";
-      settings = {
-        options.urAccepted = -1;
-      };
+    #   user = username;
+    #   overrideDevices = true;     # overrides any devices added or deleted through the WebUI
+    #   overrideFolders = true;     # overrides any folders added or deleted through the WebUI
+    #   # dataDir = "/home/${username}/";
+    #   settings = {
+    #     options.urAccepted = -1;
+      # };
     };
   };
 
