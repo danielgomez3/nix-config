@@ -187,8 +187,8 @@
     syncthing = {
       enable = true;
       user = username;
-    #   overrideDevices = true;     # overrides any devices added or deleted through the WebUI
-    #   overrideFolders = true;     # overrides any folders added or deleted through the WebUI
+      overrideDevices = true;     # overrides any devices added or deleted through the WebUI
+      overrideFolders = true;     # overrides any folders added or deleted through the WebUI
       dataDir = "/home/${username}/.config/syncthing";
     # #   settings = {
     # #     options.urAccepted = -1;

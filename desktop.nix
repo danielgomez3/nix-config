@@ -37,7 +37,7 @@
     };
     syncthing = {
       guiAddress = "127.0.0.1:8385";
-    #   settings = {
+      settings = {
         devices = {
           "laptop" = { id = "R7A34TT-T662VVH-H2CXF7L-ULKAWWZ-WIGA7LR-3JKLYTL-LSVBHAA-3I245AH"; 
           autoAcceptFolders = true; 
@@ -58,8 +58,8 @@
         #     path = "~/Productivity";    # Which folder to add to Syncthing
         #     devices = [ "laptop" ];      # Which devices to share the folder with
         #   };
-        # };
-    #   };
+        };
+      };
     };
   };
 
