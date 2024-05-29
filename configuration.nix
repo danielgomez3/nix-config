@@ -129,7 +129,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     git wget curl pigz tree bat colordiff
-    victor-mono
     lm_sensors 
     bluez bluez-alsa bluez-tools
     # syncthing 
@@ -207,7 +206,7 @@
       };
       home.packages = with pkgs; [
         # cli apps
-        krabby cowsay screen
+        krabby cowsay screen eza fira-code-nerdfont
         fd xclip wl-clipboard
         youtube-dl spotdl feh vlc yt-dlp android-tools adb-sync unzip
         haskellPackages.patat graph-easy python311Packages.grip
@@ -261,7 +260,8 @@
             prod = "cd ~/Productivity/planning && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
             zrf = "zellij run floating";
             conf = "cd ~/flake/ && hx configuration.nix laptop.nix desktop.nix";
-            notes = "cd ~/Productivity/notes && hx index.md";
+            notes = "cd ~/Productivity/notes && hx .";
+            l = "ls -p";
           };
           initExtra = ''
             krabby random 1-4
@@ -302,15 +302,28 @@
           # theme = "nord_light";
           # theme = "Dracula";
           font = {
+            # package = pkgs.victor-mono;
             package = pkgs.victor-mono;
             # size = 10;
-            name = "VictorMono";
+            name = "Victor Mono";
           };
           settings = { 
             enable_audio_bell = false;
             confirm_os_window_close = -1;
           };
+        # extraConfig = ''
+        # tab_bar_style hidden
+        # italic_font   Victor Mono Italic
+        # bold_font  Victor Mono Bold
+        # map ctrl+shift+enter new_window_with_cwd
+        # hide_window_decorations yes
+
+        # symbol_map U+23FB-U+23FE,U+2B58,U+2B59 Nerd
+        # font_family VictorMono
+        # '';
           extraConfig = ''
+          tab_bar_style hidden
+          font_family VictorMono
           italic_font   Victor Mono Italic
           bold_font  Victor Mono Bold
           map ctrl+shift+enter new_window_with_cwd
@@ -424,7 +437,12 @@
                 soft-wrap = {
                   enable = true;
                 };
-                line-number = "relative";
+                # line-number = "relative";
+                gutters = [
+                "diagnostics"
+                 "spacer"
+                 "diff"
+                ];
                 cursor-shape = {
                   insert = "bar";
                   normal = "block";
