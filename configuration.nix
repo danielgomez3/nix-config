@@ -322,7 +322,7 @@
         # font_family VictorMono
         # '';
           extraConfig = ''
-          tab_bar_style hidden
+          #tab_bar_style hidden
           font_family VictorMono
           italic_font   Victor Mono Italic
           bold_font  Victor Mono Bold
