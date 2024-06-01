@@ -6,6 +6,9 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, lib, inputs, username, ... }:
+let 
+  nvChad = import ./nvchad.nix { inherit pkgs; };
+in
 {
 
   # NOTE: Unique configuration.nix content:
@@ -223,6 +226,10 @@
         # (import ./my-awesome-script.nix { inherit pkgs;})
 
       ];
+      home.file.".config/nvim" = {
+        source = "${nvChad}/nvchad";
+        recursive = true;  # copy files recursively
+      };
 
       services = {
         kdeconnect.enable = true;
@@ -322,7 +329,6 @@
         # font_family VictorMono
         # '';
           extraConfig = ''
-          #tab_bar_style hidden
           font_family VictorMono
           italic_font   Victor Mono Italic
           bold_font  Victor Mono Bold
@@ -412,6 +418,25 @@
           enable = true;
           # enableBashIntegration = true;
           enableZshIntegration = true;
+        };
+        neovim = {
+          enable = true;
+          extraConfig = ''
+            set cursorline path+=** ignorecase smartcase
+          '';
+          plugins = with pkgs.vimPlugins; [
+            nvchad
+            nvchad-ui
+          ];
+        };
+        vim = {
+          enable = true;
+          # plugins = with pkgs.vimPlugins; [ vim-airline ];
+          settings = { ignorecase = true; };
+          extraConfig = ''
+            set cursorline path+=** ignorecase smartcase
+            set nocompatible wildmenu
+          '';
         };
         helix = {
           enable = true;
