@@ -8,7 +8,7 @@
 { config, pkgs, lib, inputs, username, ... }:
 let 
   nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
-  # cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
+  cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
 in
 {
 
@@ -213,8 +213,7 @@ in
       };
       home.packages = with pkgs; [
         # cli apps
-        # cutefetch
-        krabby cowsay screen eza 
+        krabby cowsay screen eza cutefetch
         fd xclip wl-clipboard
         youtube-dl spotdl feh vlc yt-dlp android-tools adb-sync unzip
         haskellPackages.patat graph-easy python311Packages.grip
