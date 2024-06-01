@@ -7,7 +7,8 @@
 
 { config, pkgs, lib, inputs, username, ... }:
 let 
-  nvChad = import ./nvchad.nix { inherit pkgs; };
+  nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
+  # cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
 in
 {
 
@@ -155,6 +156,9 @@ in
   #   ];
   # })
   ];
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -209,7 +213,8 @@ in
       };
       home.packages = with pkgs; [
         # cli apps
-        krabby cowsay screen eza fira-code-nerdfont
+        # cutefetch
+        krabby cowsay screen eza 
         fd xclip wl-clipboard
         youtube-dl spotdl feh vlc yt-dlp android-tools adb-sync unzip
         haskellPackages.patat graph-easy python311Packages.grip
@@ -249,16 +254,23 @@ in
         # bash = {
         #   enable = true;
         #   enableCompletion = true;
-        #   # shelles = {
-        #   #   notes = "hx ~/Productivity";
-        #   #   # huya = "hx file2.txt";
-        #   # };
+        #   shellAliases = {
+        #     prod = "cd ~/Productivity/planning && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
+        #     zrf = "zellij run floating";
+        #     conf = "cd ~/flake/ && hx configuration.nix laptop.nix desktop.nix";
+        #     notes = "cd ~/Productivity/notes && hx .";
+        #     l = "eza --icons --color=always";
+        #     lt = "eza --icons --color=always --tree --level 2";
+        #   };
         #   bashrcExtra = ''
-        #   krabby random 1-4
+        #   krabby random 1,2
+        #   shopt -s autocd cdspell globstar extglob nocaseglob
 
-        #   export GIT_ASKPASS=""
         #   '';
         # };
+
+
+        
         zsh = {
           enable = true;
           enableCompletion = true;
@@ -268,10 +280,11 @@ in
             zrf = "zellij run floating";
             conf = "cd ~/flake/ && hx configuration.nix laptop.nix desktop.nix";
             notes = "cd ~/Productivity/notes && hx .";
-            l = "ls -p";
+            l = "eza --icons --color=always";
+            lt = "eza --icons --color=always --tree --level 2";
           };
           initExtra = ''
-            krabby random 1-4
+            krabby random 1,2
             # when --calendar_today_style=bold,fgred --future=3 ci
             erick=4436788948
             anthony=4434162576
@@ -285,8 +298,8 @@ in
         };
         starship = {
           enable = true;
-          # enableBashIntegration = true;
           enableZshIntegration = true;
+          enableBashIntegration = true;
           settings = {
             add_newline = false;
           };
@@ -301,94 +314,102 @@ in
         };
         direnv = {
           enable = true;
-          # enableBashIntegration = true;
           enableZshIntegration = true;
+          enableBashIntegration = true;
         };
         kitty = {
           enable = true;
-          # theme = "nord_light";
-          # theme = "Dracula";
+          theme = "One Dark";
           font = {
-            # package = pkgs.victor-mono;
-            package = pkgs.victor-mono;
+            package = pkgs.fira-code-nerdfont;
             # size = 10;
-            name = "Victor Mono";
+            name = "FiraCode Nerd Font";
           };
           settings = { 
             enable_audio_bell = false;
             confirm_os_window_close = -1;
           };
-        # extraConfig = ''
-        # tab_bar_style hidden
-        # italic_font   Victor Mono Italic
-        # bold_font  Victor Mono Bold
-        # map ctrl+shift+enter new_window_with_cwd
-        # hide_window_decorations yes
-
-        # symbol_map U+23FB-U+23FE,U+2B58,U+2B59 Nerd
-        # font_family VictorMono
-        # '';
-          extraConfig = ''
-          font_family VictorMono
-          italic_font   Victor Mono Italic
-          bold_font  Victor Mono Bold
-          map ctrl+shift+enter new_window_with_cwd
+        extraConfig = ''
           hide_window_decorations yes
-
-
-
-          # A port of forest night by sainnhe
-          # https://github.com/sainnhe/forest-night
-
-          background  #323d43
-          foreground  #d8caac
-
-          cursor                #d8caac
-
-          selection_foreground  #d8caac
-          selection_background  #505a60
-
-          color0  #3c474d
-          color8  #868d80
-
-          # red
-          color1                #e68183
-          # light red
-          color9                #e68183
-
-          # green
-          color2                #a7c080
-          # light green
-          color10               #a7c080
-
-          # yellow
-          color3                #d9bb80
-          # light yellow
-          color11               #d9bb80
-
-          # blue
-          color4                #83b6af
-          # light blue
-          color12               #83b6af
-
-          # magenta
-          color5                #d39bb6
-          # light magenta
-          color13               #d39bb6
-
-          # cyan
-          color6                #87c095
-          # light cyan
-          color14               #87c095
-
-          # light gray
-          color7                #868d80
-          # dark gray
-          color15               #868d80
-
-
-          '';
+          map ctrl+shift+enter new_window_with_cwd
+          map ctrl+shift+t new_tab_with_cwd
+        '';
         };
+        # kitty = {
+        #   enable = true;
+        #   # theme = "nord_light";
+        #   # theme = "Dracula";
+        #   font = {
+        #     # package = pkgs.victor-mono;
+        #     package = pkgs.victor-mono;
+        #     # size = 10;
+        #     name = "Victor Mono";
+        #   };
+        #   settings = { 
+        #     enable_audio_bell = false;
+        #     confirm_os_window_close = -1;
+        #   };
+        #   extraConfig = ''
+        #   font_family VictorMono
+        #   italic_font   Victor Mono Italic
+        #   bold_font  Victor Mono Bold
+        #   map ctrl+shift+enter new_window_with_cwd
+        #   hide_window_decorations yes
+
+
+
+        #   # A port of forest night by sainnhe
+        #   # https://github.com/sainnhe/forest-night
+
+        #   background  #323d43
+        #   foreground  #d8caac
+
+        #   cursor                #d8caac
+
+        #   selection_foreground  #d8caac
+        #   selection_background  #505a60
+
+        #   color0  #3c474d
+        #   color8  #868d80
+
+        #   # red
+        #   color1                #e68183
+        #   # light red
+        #   color9                #e68183
+
+        #   # green
+        #   color2                #a7c080
+        #   # light green
+        #   color10               #a7c080
+
+        #   # yellow
+        #   color3                #d9bb80
+        #   # light yellow
+        #   color11               #d9bb80
+
+        #   # blue
+        #   color4                #83b6af
+        #   # light blue
+        #   color12               #83b6af
+
+        #   # magenta
+        #   color5                #d39bb6
+        #   # light magenta
+        #   color13               #d39bb6
+
+        #   # cyan
+        #   color6                #87c095
+        #   # light cyan
+        #   color14               #87c095
+
+        #   # light gray
+        #   color7                #868d80
+        #   # dark gray
+        #   color15               #868d80
+
+
+        #   '';
+        # };
       
       zathura = {
         enable = true;
@@ -405,7 +426,7 @@ in
       };
         fzf = { 
           enable = true;
-          # enableBashIntegration = true;
+          enableBashIntegration = true;
           enableZshIntegration = true;
           # historyWidgetOptions = [
           # "--preview 'echo {}' --preview-window up:3:hidden:wrap"
@@ -416,7 +437,7 @@ in
         };
         zoxide = {
           enable = true;
-          # enableBashIntegration = true;
+          enableBashIntegration = true;
           enableZshIntegration = true;
         };
         neovim = {
@@ -424,10 +445,10 @@ in
           extraConfig = ''
             set cursorline path+=** ignorecase smartcase
           '';
-          plugins = with pkgs.vimPlugins; [
-            nvchad
-            nvchad-ui
-          ];
+          # plugins = with pkgs.vimPlugins; [
+          #   nvchad
+          #   nvchad-ui
+          # ];
         };
         vim = {
           enable = true;
@@ -455,7 +476,10 @@ in
             omnisharp-roslyn netcoredbg  # C-sharp
           ];
           settings = {
-              theme = "everforest_dark";
+              # theme = "everforest_dark";
+              # theme = "snazzy";  # Kind of better than dracula! More color!
+              # theme = "rose_pine_moon";  # serious mode..
+              theme = "zed_onedark";
               editor = {
                 mouse = true;
                 bufferline = "multiple";
@@ -490,8 +514,5 @@ in
      };
     };
  };
-  environment.sessionVariables = rec {
-      ANDROID_PRODUCT_OUT = "/home/daniel/Downloads/unzipped/crosshatch-sp1a.210812.016.c2";
-  };
   
 }
