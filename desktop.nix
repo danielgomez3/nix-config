@@ -48,16 +48,15 @@
             path = "~/Documents/";    # Which folder to add to Syncthing
             devices = [ "laptop" ];      # Which devices to share the folder with
         };
-        # folders = {
-        #   "Documents/crimsonvista" = {         # Name of folder in Syncthing, also the folder ID
-        #     path = "~/Documents/crimsonl-vista";    # Which folder to add to Syncthing
-        #     # devices = [ "device1" "device2" ];      # Which devices to share the folder with
-        #     devices = [ "laptop" ];      # Which devices to share the folder with
-        #   };
-        #   "Productivity" = {         # Name of folder in Syncthing, also the folder ID
-        #     path = "~/Productivity";    # Which folder to add to Syncthing
-        #     devices = [ "laptop" ];      # Which devices to share the folder with
-        #   };
+          # "Documents/crimsonvista" = {         # Name of folder in Syncthing, also the folder ID
+          #   path = "~/Documents/crimson-vista";    # Which folder to add to Syncthing
+          #   # devices = [ "device1" "device2" ];      # Which devices to share the folder with
+          #   devices = [ "laptop" ];      # Which devices to share the folder with
+          # };
+          "Productivity" = {         # Name of folder in Syncthing, also the folder ID
+            path = "~/Productivity";    # Which folder to add to Syncthing
+            devices = [ "laptop" ];      # Which devices to share the folder with
+          };
         };
       };
     };
