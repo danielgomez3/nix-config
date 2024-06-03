@@ -135,7 +135,6 @@ in
     git wget curl pigz tree bat colordiff
     lm_sensors 
     bluez bluez-alsa bluez-tools
-    # syncthing 
     google-chrome audacity ardour
     helix zed-editor zellij neomutt
     woeusb ntfs3g
@@ -280,6 +279,7 @@ in
             conf = "cd ~/flake/ && hx configuration.nix laptop.nix desktop.nix";
             notes = "cd ~/Productivity/notes && hx .";
             l = "eza --icons --color=always";
+            la = "eza -a --icons --color=always";
             lt = "eza --icons --color=always --tree --level 2";
           };
           initExtra = ''
