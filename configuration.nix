@@ -191,7 +191,7 @@ in
   services = {
     gnome.gnome-online-accounts.enable = true;
     syncthing = {
-      enable = true;
+      enable = false;
       user = username;
       overrideDevices = true;     # overrides any devices added or deleted through the WebUI
       overrideFolders = true;     # overrides any folders added or deleted through the WebUI
@@ -283,7 +283,8 @@ in
             lt = "eza --icons --color=always --tree --level 2";
           };
           initExtra = ''
-            krabby random 1,2
+            #cutefetch -k $(shuf -i 1-13 -n 1)
+            cutefetch $(printf '-k\n-b' | shuf -n 1) $(shuf -i 1-13 -n 1)
             # when --calendar_today_style=bold,fgred --future=3 ci
             erick=4436788948
             anthony=4434162576
