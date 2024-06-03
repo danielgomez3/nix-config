@@ -278,9 +278,11 @@ in
             zrf = "zellij run floating";
             conf = "cd ~/flake/ && hx configuration.nix laptop.nix desktop.nix";
             notes = "cd ~/Productivity/notes && hx .";
+            # c =''z "$@"; eza --icons --color=always;'';
             l = "eza --icons --color=always";
             la = "eza -a --icons --color=always";
             lt = "eza --icons --color=always --tree --level 2";
+            lta = "eza -a --icons --color=always --tree --level 2";
           };
           initExtra = ''
             #cutefetch -k $(shuf -i 1-13 -n 1)
@@ -294,6 +296,8 @@ in
             export GIT_ASKPASS=""
             eval "$(direnv hook zsh)"
             export CDPATH=$CDPATH:$HOME
+            c () { z "$@" && eza --icons --color=always; }
+
           '';
         };
         starship = {
