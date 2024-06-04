@@ -6,7 +6,8 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      # ./configuration.nix
+      ./configuration.nix
+      # /etc/nixos/hardware-configuration.nix
       inputs.home-manager.nixosModules.default
       (modulesPath + "/installer/scan/not-detected.nix")
     ];

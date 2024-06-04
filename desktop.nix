@@ -6,7 +6,8 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      # ./configuration.nix
+      ./configuration.nix
+      # /etc/nixos/hardware-configuration.nix
       inputs.home-manager.nixosModules.default
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
@@ -55,6 +56,10 @@
           # };
           "Productivity" = {         # Name of folder in Syncthing, also the folder ID
             path = "~/Productivity";    # Which folder to add to Syncthing
+            devices = [ "laptop" ];      # Which devices to share the folder with
+          };
+          "flake" = {         # Name of folder in Syncthing, also the folder ID
+            path = "~/flake";    # Which folder to add to Syncthing
             devices = [ "laptop" ];      # Which devices to share the folder with
           };
         };

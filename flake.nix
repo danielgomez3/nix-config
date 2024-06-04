@@ -18,7 +18,7 @@
           host = "desktop";
           };
         modules = [
-          ./configuration.nix
+          # ./configuration.nix
           ./desktop.nix
           inputs.home-manager.nixosModules.default
         ];
@@ -31,7 +31,7 @@
           host = "laptop";
           };
         modules = [
-          ./configuration.nix
+          # ./configuration.nix
           ./laptop.nix
           inputs.home-manager.nixosModules.default
         ];
