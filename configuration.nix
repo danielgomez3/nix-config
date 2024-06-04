@@ -491,10 +491,12 @@ in
                   enable = true;
                 };
                 # line-number = "relative";
+                # gutters = [
+                # "diagnostics"
+                #  "spacer"
+                #  "diff"
+                # ];
                 gutters = [
-                "diagnostics"
-                 "spacer"
-                 "diff"
                 ];
                 cursor-shape = {
                   insert = "bar";
