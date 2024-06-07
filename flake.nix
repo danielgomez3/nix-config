@@ -6,9 +6,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    doom-emacs.url = "github:nix-community/nix-doom-emacs";
   };
 
-  outputs = inputs@{ self, nixpkgs, ... }: {
+  outputs = inputs@{ self, nixpkgs, nix-doom-emacs, ... }: {
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -34,6 +35,16 @@
           # ./configuration.nix
           ./laptop.nix
           inputs.home-manager.nixosModules.default
+          {
+                      environment.systemPackages = 
+            let
+              doom-emacs = nix-doom-emacs.packages."x86_64-linux".default.override {
+                doomPrivateDir = ./doom.d;
+              };
+            in [
+              doom-emacs
+            ];
+          }
         ];
       };
       # REVIEW: This is how you would add more!
