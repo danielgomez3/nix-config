@@ -16,11 +16,9 @@
   # environment.systemPackages = with pkgs; [
   #   libsForQt5.kdenlive
   # ];
-  hardware.keyboard.zsa.enable = true;
   environment.systemPackages = with pkgs; with libsForQt5; [
   vscode
   node2nix
-  wally-cli
   (kdenlive.overrideAttrs (prevAttrs: {
     nativeBuildInputs = (prevAttrs.nativeBuildInputs or [ ]) ++ [ makeBinaryWrapper ];
     postInstall = (prevAttrs.postInstall or "") + ''
@@ -45,7 +43,7 @@
           "laptop" = { id = "R7A34TT-T662VVH-H2CXF7L-ULKAWWZ-WIGA7LR-3JKLYTL-LSVBHAA-3I245AH"; 
           autoAcceptFolders = true; 
           };
-          "phone" = {id = "L4PI6U7-VTRHUSU-WLSC3GV-EHWG4QX-DMSNSEL-DVACMSN-7D2EOIT-AIREAAZ";
+          "phone" = { id = "L4PI6U7-VTRHUSU-WLSC3GV-EHWG4QX-DMSNSEL-DVACMSN-7D2EOIT-AIREAAZ"; 
           autoAcceptFolders = true; 
           };
         };
@@ -61,11 +59,7 @@
           # };
           "Productivity" = {         # Name of folder in Syncthing, also the folder ID
             path = "~/Productivity";    # Which folder to add to Syncthing
-            devices = [ "laptop" ];      # Which devices to share the folder with
-          };
-          "Projects" = {         # Name of folder in Syncthing, also the folder ID
-            path = "~/Projects";    # Which folder to add to Syncthing
-            devices = [ "laptop" ];      # Which devices to share the folder with
+            devices = [ "laptop" "phone" ];      # Which devices to share the folder with
           };
           "flake" = {         # Name of folder in Syncthing, also the folder ID
             path = "~/flake";    # Which folder to add to Syncthing

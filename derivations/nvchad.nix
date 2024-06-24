@@ -13,7 +13,7 @@ pkgs.stdenv.mkDerivation {
 
   # Specify the installation directory
   installPhase = ''
-    mkdir -p $out/nvchad
-    cp -r * $out/nvchad
+    mkdir $out
+    cp -aR $src/* $out/
   '';
 }

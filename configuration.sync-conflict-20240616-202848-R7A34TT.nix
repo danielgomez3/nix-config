@@ -7,7 +7,7 @@
 
 { config, pkgs, lib, inputs, username, ... }:
 let 
-  # nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
+  nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
   cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
 in
 {
@@ -25,6 +25,7 @@ in
   # services.rsyncd = {
   #   enable = true;
   # };
+
   services.openssh = {
     enable = true;
     # require public key authentication for better security
@@ -108,7 +109,7 @@ in
     isNormalUser = true;
     description = "desktop";
     extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
     # packages = with pkgs; [
     #   firefox
     # ];
@@ -123,41 +124,7 @@ in
       
     };
   };
-  programs.zsh.enable = false;
-  programs.fish = {
-    enable = true;
-    shellAliases = {
-      plan = "cd ~/Productivity/planning && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
-      zrf = "zellij run floating";
-      conf = "cd ~/flake/ && hx configuration.nix laptop.nix desktop.nix";
-      notes = "cd ~/Productivity/notes && hx .";
-      # c =''z "$@"; eza --icons --color=always;'';
-      l = "eza --icons --color=always --group-directories-first";
-      la = "eza -a --icons --color=always --group-directories-first";
-      lt = "eza --icons --color=always --tree --level 2 --group-directories-first";
-      lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
-      grep = "grep --color=always -IrnE --exclude-dir='.*'";
-      less = "less -FR";
-    };
-    shellInit = ''
-    function fish_prompt
-        starship init fish | source
-    end
-    set fish_greeting
-    function c
-      z $argv; and eza --icons --color=always --group-directories-first
-    end
-
-    '';  
-  };
-  programs.starship = {
-      enable = true;
-      # enableZshIntegration = true;
-      # enableBashIntegration = true;
-      settings = {
-        add_newline = false;
-      };
-  };
+  programs.zsh.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -245,16 +212,16 @@ in
       };
       home.packages = with pkgs; [
         # cli apps
-        krabby cowsay eza cutefetch entr tldr fish 
-        dmidecode 
-        fd xclip wl-clipboard pandoc poppler_utils
+        krabby cowsay screen eza cutefetch entr
+        fd xclip wl-clipboard
         youtube-dl spotdl feh vlc yt-dlp android-tools adb-sync unzip
+        haskellPackages.patat graph-easy python311Packages.grip
         android-tools 
         # coding
-        shellcheck exercism 
+        shellcheck inotify-tools exercism  pandoc poppler_utils
         # gui apps
         firefox texliveFull zoom-us libreoffice slack spotify
-        cmus gotop xournalpp 
+        cmus gotop flameshot xournalpp shutter
         gnome.gnome-session
         libsForQt5.kpeople # HACK: Get kde sms working properly
         libsForQt5.kpeoplevcard # HACK: Get kde sms working properly
@@ -262,17 +229,23 @@ in
         # (import ./my-awesome-script.nix { inherit pkgs;})
 
       ];
-      imports = [ inputs.nix-doom-emacs.hmModule ];
-      # home.file.".config/nvim" = {
-      #   source = "${nvChad}/nvchad";
-      #   recursive = true;  # copy files recursively
-      # };
+      home.file.".config/nvim" = {
+        source = "${nvChad}/nvchad";
+        recursive = true;  # copy files recursively
+      };
 
       services = {
         kdeconnect.enable = true;
       };
 
       programs = with pkgs; {
+        htop = {
+          enable = true;
+          # settings =
+          # {
+            
+          # };
+        };
         ssh = {
           enable = true;
           extraConfig = ''
@@ -302,54 +275,61 @@ in
         # };
 
 
-        fish = {
-          enable = true;
-
-        };
         
-        # zsh = {
-        #   enable = false;
-        #   enableCompletion = true;
-        #   autosuggestion.enable = true;
-        #   shellAliases = {
-        #     plan = "cd ~/Productivity/planning && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
-        #     zrf = "zellij run floating";
-        #     conf = "cd ~/flake/ && hx configuration.nix laptop.nix desktop.nix";
-        #     notes = "cd ~/Productivity/notes && hx .";
-        #     l = "eza --icons --color=always --group-directories-first";
-        #     la = "eza -a --icons --color=always --group-directories-first";
-        #     lt = "eza --icons --color=always --tree --level 2 --group-directories-first";
-        #     lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
-        #     grep = "grep --color=always -IrnE --exclude-dir='.*'";
-        #     less = "less -FR";
-        #   };
-        #   initExtra = ''
-        #     #cutefetch -k $(shuf -i 1-13 -n 1)
-        #     #cutefetch $(printf '-k\n-b' | shuf -n 1) $(shuf -i 1-13 -n 1)
+        zsh = {
+          enable = true;
+          enableCompletion = true;
+          autosuggestion.enable = true;
+          shellAliases = {
+            prod = "cd ~/Productivity/planning && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
+            zrf = "zellij run floating";
+            conf = "cd ~/flake/ && hx configuration.nix laptop.nix desktop.nix";
+            notes = "cd ~/Productivity/notes && hx .";
+            # c =''z "$@"; eza --icons --color=always;'';
+            l = "eza --icons --color=always";
+            la = "eza -a --icons --color=always";
+            lt = "eza --icons --color=always --tree --level 2";
+            lta = "eza -a --icons --color=always --tree --level 2";
+          };
+          initExtra = ''
+            #cutefetch -k $(shuf -i 1-13 -n 1)
+            #cutefetch $(printf '-k\n-b' | shuf -n 1) $(shuf -i 1-13 -n 1)
+            # when --calendar_today_style=bold,fgred --future=3 ci
+            cat << 'EOF'
 
-        #     # For ^x^e
-        #     autoload edit-command-line
-        #     zle -N edit-command-line
-        #     bindkey '^X^e' edit-command-line
+            \****__              ____                                              
+             |    *****\_      --/ *\-__                                          
+             /_          (_    ./ ,/----'                                         
+               \__         (_./  /                                                
+                  \__           \___----^__                                       
+                   _/   _                  \                                      
+            |    _/  __/ )\"\ _____         *\                                    
+            |\__/   /    ^ ^       \____      )                                   
+             \___--"                    \_____ )                                  
+                                              "
 
-        #     # Dir shortcuts
-        #     d="$HOME/Downloads/"
+            EOF
 
-        #     # Remove history duplicates
-        #     setopt HIST_EXPIRE_DUPS_FIRST
-        #     setopt HIST_IGNORE_DUPS
-        #     setopt HIST_IGNORE_ALL_DUPS
-        #     setopt HIST_IGNORE_SPACE
-        #     setopt HIST_FIND_NO_DUPS
-        #     setopt HIST_SAVE_NO_DUPS
+            erick=4436788948
+            anthony=4434162576
+            me=4435377181
+            mom=4434723947
 
-           
-        #     export GIT_ASKPASS=""
-        #     eval "$(direnv hook zsh)"
-        #     c () { z "$@" && eza --icons --color=always --group-directories-first; }
+            export GIT_ASKPASS=""
+            eval "$(direnv hook zsh)"
+            export CDPATH=$CDPATH:$HOME
+            c () { z "$@" && eza --icons --color=always; }
 
-        #   '';
-        # };
+          '';
+        };
+        starship = {
+          enable = true;
+          enableZshIntegration = true;
+          enableBashIntegration = true;
+          settings = {
+            add_newline = false;
+          };
+        };
         git = {
           enable = true;
           userName = "danielgomez3";
@@ -365,11 +345,11 @@ in
         };
         kitty = {
           enable = true;
-          theme = "One Dark";
+          theme = "Birds Of Paradise";
           font = {
             package = pkgs.fira-code-nerdfont;
             # size = 10;
-            name = "Fira Code Nerfont";
+            name = "FiraCode Nerd Font";
           };
           settings = { 
             enable_audio_bell = false;
@@ -377,57 +357,85 @@ in
           };
         extraConfig = ''
           hide_window_decorations yes
-          #map ctrl+shift+enter new_window_with_cwd
-          #map ctrl+shift+t new_tab_with_cwd
-
-
-
-#          # Nord Colorscheme for Kitty
-#          # Based on:
-#          # - https://gist.github.com/marcusramberg/64010234c95a93d953e8c79fdaf94192
-#          # - https://github.com/arcticicestudio/nord-hyper
-#
-#          foreground            #D8DEE9
-#          background            #2E3440
-#          selection_foreground  #000000
-#          selection_background  #FFFACD
-#          url_color             #0087BD
-#          cursor                #81A1C1
-#
-#          # black
-#          color0   #3B4252
-#          color8   #4C566A
-#
-#          # red
-#          color1   #BF616A
-#          color9   #BF616A
-#
-#          # green
-#          color2   #A3BE8C
-#          color10  #A3BE8C
-#
-#          # yellow
-#          color3   #EBCB8B
-#          color11  #EBCB8B
-#
-#          # blue
-#          color4  #81A1C1
-#          color12 #81A1C1
-#
-#          # magenta
-#          color5   #B48EAD
-#          color13  #B48EAD
-#
-#          # cyan
-#          color6   #88C0D0
-#          color14  #8FBCBB
-#
-#          # white
-#          color7   #E5E9F0
-#          color15  #ECEFF4
-#
+          map ctrl+shift+enter new_window_with_cwd
+          map ctrl+shift+t new_tab_with_cwd
         '';
         };
+        # kitty = {
+        #   enable = true;
+        #   # theme = "nord_light";
+        #   # theme = "Dracula";
+        #   font = {
+        #     # package = pkgs.victor-mono;
+        #     package = pkgs.victor-mono;
+        #     # size = 10;
+        #     name = "Victor Mono";
+        #   };
+        #   settings = { 
+        #     enable_audio_bell = false;
+        #     confirm_os_window_close = -1;
+        #   };
+        #   extraConfig = ''
+        #   font_family VictorMono
+        #   italic_font   Victor Mono Italic
+        #   bold_font  Victor Mono Bold
+        #   map ctrl+shift+enter new_window_with_cwd
+        #   hide_window_decorations yes
+
+
+
+        #   # A port of forest night by sainnhe
+        #   # https://github.com/sainnhe/forest-night
+
+        #   background  #323d43
+        #   foreground  #d8caac
+
+        #   cursor                #d8caac
+
+        #   selection_foreground  #d8caac
+        #   selection_background  #505a60
+
+        #   color0  #3c474d
+        #   color8  #868d80
+
+        #   # red
+        #   color1                #e68183
+        #   # light red
+        #   color9                #e68183
+
+        #   # green
+        #   color2                #a7c080
+        #   # light green
+        #   color10               #a7c080
+
+        #   # yellow
+        #   color3                #d9bb80
+        #   # light yellow
+        #   color11               #d9bb80
+
+        #   # blue
+        #   color4                #83b6af
+        #   # light blue
+        #   color12               #83b6af
+
+        #   # magenta
+        #   color5                #d39bb6
+        #   # light magenta
+        #   color13               #d39bb6
+
+        #   # cyan
+        #   color6                #87c095
+        #   # light cyan
+        #   color14               #87c095
+
+        #   # light gray
+        #   color7                #868d80
+        #   # dark gray
+        #   color15               #868d80
+
+
+        #   '';
+        # };
       
       zathura = {
         enable = true;
@@ -457,127 +465,24 @@ in
           enable = true;
           enableBashIntegration = true;
           enableZshIntegration = true;
-          enableFishIntegration = true;
-        };
-        # emacs = {
-        #   enable = true;
-        #   package = emacsPackages.doom;
-        # };
-        doom-emacs = {
-          enable = true;
-          doomPrivateDir = ./doom.d; # Directory containing your config.el, init.el
-                                     # and packages.el files
         };
         neovim = {
           enable = true;
           extraConfig = ''
-	  set path+=**/* nocompatible incsearch smartcase ignorecase termguicolors background=dark wildmenu wildignorecase
-	  colorscheme desert
-	  set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:
-	  set laststatus=0 shortmess+=I noshowmode
-	  "let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'haskell', 'cpp']
-
-          let mapleader=" "
-          nnoremap <leader>f :edit %:p:h/*<C-D>
-          nnoremap <leader>F :edit %:p:h/*<C-D>*/*
-	  nnoremap <leader>w :update<CR>
-          nnoremap <leader>q :xa<CR>
-          nnoremap <leader>x :close<CR>
-          nnoremap <leader>o :browse oldfiles<CR>
-          nnoremap <leader>n :set rnu! cursorline! list! noshowmode!<CR>
-          nnoremap <leader>N :set number! cursorline! list! noshowmode!<CR>
-          vnoremap <leader>y "+y
-          argadd ~/Productivity/notes ~/Productivity/planning/* ~/flake/configuration.nix            
-	  nnoremap <leader>b :buffer<Space><C-D>
-          " TODO save and reload vimrc from anywhere
+            set cursorline path+=** ignorecase smartcase
           '';
+          # plugins = with pkgs.vimPlugins; [
+          #   nvchad
+          #   nvchad-ui
+          # ];
         };
-        # TODO: Make a <leader>/ function that will search fuzzily. Every space will interpret '.*'
         vim = {
           enable = true;
+          # plugins = with pkgs.vimPlugins; [ vim-airline ];
           settings = { ignorecase = true; };
-          plugins = with pkgs.vimPlugins; [ 
-            vim-which-key 
-            nord-vim
-            #bullets-vim
-          ];
           extraConfig = ''
-            set path+=**/* nocompatible incsearch smartcase ignorecase termguicolors background=dark 
-            set wildmenu wildignorecase
-            
-
-            "" editing
-            filetype plugin indent on
-            set noswapfile confirm scrolloff=20
-            set autoindent expandtab tabstop=2 shiftwidth=2
-            argadd ~/Productivity/notes ~/Productivity/planning/* ~/flake/configuration.nix  " add this single dir and file to my buffer list
-
-
-            "" Netrw
-            let g:netrw_banner = 0
-            "autocmd FileType netrw call feedkeys("/\<c-u>", 'n')
-
-
-            "" Shortcuts
-            let mapleader=" "
-            nnoremap <leader>f :edit %:p:h/*<C-D>
-            nnoremap <leader>F :edit %:p:h/*<C-D>*/*
-            nnoremap <leader>g :grep -IrinE "" .<Left><Left><Left>
-            nnoremap <leader>G :vimgrep "//" %<Left><Left><Left><Left>
-            nnoremap <leader>w :update<CR>
-            nnoremap <leader>q :xa<CR>
-            nnoremap <leader>x :close<CR>
-            nnoremap <leader>o :browse oldfiles<CR>
-            " TODO save and reload vimrc from anywhere
-            vnoremap <leader>y "+y
-            "nnoremap <leader>b :ls<CR>:buffer<space>
-            nnoremap <leader>b :buffer<Space><C-D>
-            "nnoremap <leader>n :set rnu! cursorline! list! noshowmode!<CR>
-            nnoremap <leader>n :cn<CR>
-            nnoremap <leader>p :cp<CR>
-            nnoremap <leader>c :cw<CR>
-
-
-            function Term()
-              cd %:p:h | execute 'bo ter++rows=10' | tcd
-            endfunction
-            nnoremap <leader>t :call Term()<CR>
-
-
-            "" vanity
-            colorscheme nord
-            "colorscheme desert
-            syntax on
-            set termguicolors background=dark 
-            set laststatus=0 shortmess+=I noshowmode
-            set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:
-            "let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'haskell', 'cpp']
-            " Customize Markdown heading colors
-            hi! link markdownHeadingDelimiter Boolean
-            hi! link markdownH1 DiffAdd
-            hi! link markdownH2 DiffDelete
-            hi! link markdownH3 DiffChange
-            hi! link markdownH4 debugPC
-            hi! link markdownH6 Statement
-            hi! link markdownH5 Debug
-
-
-
-            " Highlight TODO in markdown doc comments:
-            "augroup markdown_todo
-            "  autocmd!
-            "  autocmd FileType markdown syntax match markdownTodo /\<TODO:.*\>/
-            "  autocmd FileType markdown highlight markdownTodo guifg=#FF4500 ctermfg=208
-            "augroup END
-            "syntax sync minlines=9999  " Put this at the end.
-            "syntax sync maxlines=9999
-            "syntax sync fromstart
-            "set synmaxcol=0
-            ""set synmincol=0
-            "set redrawtime=10000
-            "set maxmempattern=2000000
-
-
+            set cursorline path+=** ignorecase smartcase
+            set nocompatible wildmenu
           '';
         };
         helix = {
@@ -600,8 +505,7 @@ in
               # theme = "everforest_dark";
               # theme = "snazzy";  # Kind of better than dracula! More color!
               # theme = "rose_pine_moon";  # serious mode..
-              # theme = "zed_onedark";
-              theme = "varua";
+              theme = "pop-dark";
               editor = {
                 mouse = true;
                 bufferline = "multiple";
