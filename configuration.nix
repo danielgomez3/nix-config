@@ -464,7 +464,7 @@ in
         #   package = emacsPackages.doom;
         # };
         doom-emacs = {
-          enable = true;
+          enable = false;
           doomPrivateDir = ./doom.d; # Directory containing your config.el, init.el
                                      # and packages.el files
         };
