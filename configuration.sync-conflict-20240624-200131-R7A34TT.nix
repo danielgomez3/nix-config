@@ -262,7 +262,6 @@ in
         # (import ./my-awesome-script.nix { inherit pkgs;})
 
       ];
-      imports = [ inputs.nix-doom-emacs.hmModule ];
       # home.file.".config/nvim" = {
       #   source = "${nvChad}/nvchad";
       #   recursive = true;  # copy files recursively
@@ -459,15 +458,6 @@ in
           enableZshIntegration = true;
           enableFishIntegration = true;
         };
-        # emacs = {
-        #   enable = true;
-        #   package = emacsPackages.doom;
-        # };
-        doom-emacs = {
-          enable = true;
-          doomPrivateDir = ./doom.d; # Directory containing your config.el, init.el
-                                     # and packages.el files
-        };
         neovim = {
           enable = true;
           extraConfig = ''
@@ -498,8 +488,7 @@ in
           settings = { ignorecase = true; };
           plugins = with pkgs.vimPlugins; [ 
             vim-which-key 
-            nord-vim
-            vim-markdown
+            #nord-vim
             #bullets-vim
           ];
           extraConfig = ''
@@ -534,9 +523,9 @@ in
             "nnoremap <leader>b :ls<CR>:buffer<space>
             nnoremap <leader>b :buffer<Space><C-D>
             "nnoremap <leader>n :set rnu! cursorline! list! noshowmode!<CR>
-            nnoremap <leader>n :cn<CR>
-            nnoremap <leader>p :cp<CR>
-            nnoremap <leader>c :cope<CR>
+            nnoremap <leader>c :cw
+            nnoremap <leader>n :cn
+            nnoremap <leader>p :cp
 
 
             function Term()
@@ -546,8 +535,8 @@ in
 
 
             "" vanity
-            colorscheme nord
-            "colorscheme desert
+            "colorscheme nord
+            colorscheme desert
             syntax on
             set termguicolors background=dark 
             set laststatus=0 shortmess+=I noshowmode
