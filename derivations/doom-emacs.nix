@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-doom-emacs.url = "github:librephoenix/nix-doom-emacs?ref=pgtk-patch";
+    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
   };
 
   outputs = { self, nixpkgs, nix-doom-emacs, ... }:

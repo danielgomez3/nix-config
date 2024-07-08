@@ -12,19 +12,19 @@ let
 in
 {
 
-  # NOTE: Unique configuration.nix content:
-#   services.nextcloud = {                
-#   enable = true;                   
-#   package = pkgs.nextcloud28;
-#   hostName = "localhost";
-#   config.adminpassFile = "/home/${username}/flake/nextcloud-admin-pass";
-#   # Instead of using pkgs.nextcloud28Packages.apps,
-#   # we'll reference the package version specified above
-#   extraAppsEnable = true;
-# };
-  # services.rsyncd = {
-  #   enable = true;
-  # };
+  # kanshi systemd service
+  systemd.user.services.kanshi = {
+    description = "kanshi daemon";
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = ''${pkgs.kanshi}/bin/kanshi -c kanshi_config_file'';
+    };
+  };
+
+  security.polkit.enable = true;
+  
+  programs.light.enable = true;
+
   services.openssh = {
     enable = true;
     # require public key authentication for better security
@@ -39,14 +39,31 @@ in
     systemd-boot.configurationLimit = 5;
   };
 
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.wireless.iwd = {
+    enable = true;
+    settings = {
+      IPv6 = {
+        Enabled = true;
+      };
+      Settings = {
+        AutoConnect = true;
+      };
+    };
+  };
+
+  networking.dhcpcd = {
+    enable = true;
+    persistent = true;
+  };
+  # networking.networkmanager.wifi.backend = "iwd";
+  # networking.useDHCP = lib.mkDefault true;
+
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -68,25 +85,28 @@ in
 
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.displayManager.gdm.enable = false;
+  services.xserver.desktopManager.gnome.enable = false;
+
 
   # Configure keymap in X11
-  services.xserver = {
-    enable = true;
-    xkb.layout = "us";
+  # services.xserver = {
+  #   enable = true;
+  #   xkb.layout = "us";
   #   xkb.variant = "";
-  };
+  # };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
+  hardware.graphics.enable = true;
   hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   security.rtkit.enable = true;
+  security.pam.services.swaylock = {};
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -107,8 +127,8 @@ in
   users.users.${username} = {
     isNormalUser = true;
     description = "desktop";
-    extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.fish;
+    extraGroups = [ "wheel" "video" ];
+    # shell = pkgs.fish;
     # packages = with pkgs; [
     #   firefox
     # ];
@@ -125,7 +145,7 @@ in
   };
   programs.zsh.enable = false;
   programs.fish = {
-    enable = true;
+    enable = false;
     shellAliases = {
       plan = "cd ~/Productivity/planning && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
       zrf = "zellij run floating";
@@ -171,26 +191,25 @@ in
     google-chrome audacity ardour
     helix zed-editor zellij neomutt
     woeusb ntfs3g
-  #   (vscode-with-extensions.override {
-  #   vscode = vscodium;
-  #   vscodeExtensions = with vscode-extensions; [
-  #     bbenoist.nix
-  #     ms-python.python
-  #     ms-azuretools.vscode-docker
-  #     ms-vscode-remote.remote-ssh
-  #   ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-  #     {
-  #       name = "remote-ssh-edit";
-  #       publisher = "ms-vscode-remote";
-  #       version = "0.47.2";
-  #       sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
-  #     }
-  #   ];
-  # })
   ];
-  fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
-  ];
+
+  fonts = {
+    packages = with pkgs; [
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      font-awesome
+      source-han-sans
+      source-han-sans-japanese
+      source-han-serif-japanese
+      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    ];
+    fontconfig.defaultFonts = {
+      serif = [ "Noto Serif" "Source Han Serif" ];
+      sansSerif = [ "Noto Sans" "Source Han Sans" ];
+    };
+  };
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -222,6 +241,7 @@ in
   security.sudo.wheelNeedsPassword = false;
   services = {
     gnome.gnome-online-accounts.enable = true;
+    gnome.gnome-keyring.enable = true;
     syncthing = {
       enable = true;
       user = username;
@@ -258,15 +278,68 @@ in
         gnome.gnome-session
         libsForQt5.kpeople # HACK: Get kde sms working properly
         libsForQt5.kpeoplevcard # HACK: Get kde sms working properly
+        # Wayland
+        grim slurp wl-clipboard xorg.xrandr swayidle swaylock flashfocus autotiling flameshot
+        # Emacs
+        ispell
         # My personal scripts:
         # (import ./my-awesome-script.nix { inherit pkgs;})
 
       ];
-      imports = [ inputs.nix-doom-emacs.hmModule ];
-      # home.file.".config/nvim" = {
-      #   source = "${nvChad}/nvchad";
-      #   recursive = true;  # copy files recursively
-      # };
+
+      wayland.windowManager.sway = {
+        enable = true;
+        extraConfig = ''
+          exec sleep 5; systemctl --user start kanshi.service
+          bindsym XF86MonBrightnessDown exec light -U 10
+          bindsym XF86MonBrightnessUp exec light -A 10
+          bindsym XF86AudioRaiseVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'
+          bindsym XF86AudioLowerVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'
+          bindsym XF86AudioMute exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
+          #bindsym $mod+n exec 'flashfocus --flash'
+          for_window [class="^.*"] border pixel 0
+          titlebar_border_thickness 0
+          titlebar_padding 0
+	  
+          input * {
+            xkb_options caps:escape
+          }
+
+          # Sleep
+          exec swayidle -w \
+        	timeout 500 'swaylock -f' \
+        	timeout 600 'swaymsg "output * power off"' \
+        	resume 'swaymsg "output * power on"'
+
+
+          # Vanity
+	        exec_always --no-startup-id flashfocus
+          exec_always autotiling
+        '';
+        config = rec {
+          modifier = "Mod4";
+          terminal = "kitty";
+          startup = [
+            { command = "firefox"; }
+          ];
+          bars = [
+            {
+              extraConfig = ''
+                bar {
+                  position top
+                  mode hide 
+                  status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+                  colors {
+                    statusline #ffffff
+                    background #323232
+                    inactive_workspace #32323200 #32323200 #5c5c5c
+                  }
+                }
+              '';
+            }
+          ];
+        };
+      };
 
       services = {
         kdeconnect.enable = true;
@@ -283,73 +356,28 @@ in
 
           '';
         };
-        # bash = {
-        #   enable = true;
-        #   enableCompletion = true;
-        #   shellAliases = {
-        #     prod = "cd ~/Productivity/planning && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
-        #     zrf = "zellij run floating";
-        #     conf = "cd ~/flake/ && hx configuration.nix laptop.nix desktop.nix";
-        #     notes = "cd ~/Productivity/notes && hx .";
-        #     l = "eza --icons --color=always";
-        #     lt = "eza --icons --color=always --tree --level 2";
-        #   };
-        #   bashrcExtra = ''
-        #   krabby random 1,2
-        #   shopt -s autocd cdspell globstar extglob nocaseglob
-
-        #   '';
-        # };
-
-
-        fish = {
+        bash = {
           enable = true;
+          enableCompletion = true;
+          bashrcExtra = ''
+          shopt -s autocd cdspell globstar extglob nocaseglob
 
+          c () { z "$@" && eza --icons --color=always --group-directories-first; }
+          '';
+          shellAliases = {
+             plan = "cd ~/Productivity/planning && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
+             zrf = "zellij run floating";
+             conf = "cd ~/flake/ && hx configuration.nix laptop.nix desktop.nix";
+             notes = "cd ~/Productivity/notes && hx .";
+             l = "eza --icons --color=always --group-directories-first";
+             la = "eza -a --icons --color=always --group-directories-first";
+             lt = "eza --icons --color=always --tree --level 2 --group-directories-first";
+             lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
+             grep = "grep --color=always -IrnE --exclude-dir='.*'";
+             less = "less -FR";
+           };
         };
-        
-        # zsh = {
-        #   enable = false;
-        #   enableCompletion = true;
-        #   autosuggestion.enable = true;
-        #   shellAliases = {
-        #     plan = "cd ~/Productivity/planning && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
-        #     zrf = "zellij run floating";
-        #     conf = "cd ~/flake/ && hx configuration.nix laptop.nix desktop.nix";
-        #     notes = "cd ~/Productivity/notes && hx .";
-        #     l = "eza --icons --color=always --group-directories-first";
-        #     la = "eza -a --icons --color=always --group-directories-first";
-        #     lt = "eza --icons --color=always --tree --level 2 --group-directories-first";
-        #     lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
-        #     grep = "grep --color=always -IrnE --exclude-dir='.*'";
-        #     less = "less -FR";
-        #   };
-        #   initExtra = ''
-        #     #cutefetch -k $(shuf -i 1-13 -n 1)
-        #     #cutefetch $(printf '-k\n-b' | shuf -n 1) $(shuf -i 1-13 -n 1)
 
-        #     # For ^x^e
-        #     autoload edit-command-line
-        #     zle -N edit-command-line
-        #     bindkey '^X^e' edit-command-line
-
-        #     # Dir shortcuts
-        #     d="$HOME/Downloads/"
-
-        #     # Remove history duplicates
-        #     setopt HIST_EXPIRE_DUPS_FIRST
-        #     setopt HIST_IGNORE_DUPS
-        #     setopt HIST_IGNORE_ALL_DUPS
-        #     setopt HIST_IGNORE_SPACE
-        #     setopt HIST_FIND_NO_DUPS
-        #     setopt HIST_SAVE_NO_DUPS
-
-           
-        #     export GIT_ASKPASS=""
-        #     eval "$(direnv hook zsh)"
-        #     c () { z "$@" && eza --icons --color=always --group-directories-first; }
-
-        #   '';
-        # };
         git = {
           enable = true;
           userName = "danielgomez3";
@@ -382,50 +410,6 @@ in
 
 
 
-#          # Nord Colorscheme for Kitty
-#          # Based on:
-#          # - https://gist.github.com/marcusramberg/64010234c95a93d953e8c79fdaf94192
-#          # - https://github.com/arcticicestudio/nord-hyper
-#
-#          foreground            #D8DEE9
-#          background            #2E3440
-#          selection_foreground  #000000
-#          selection_background  #FFFACD
-#          url_color             #0087BD
-#          cursor                #81A1C1
-#
-#          # black
-#          color0   #3B4252
-#          color8   #4C566A
-#
-#          # red
-#          color1   #BF616A
-#          color9   #BF616A
-#
-#          # green
-#          color2   #A3BE8C
-#          color10  #A3BE8C
-#
-#          # yellow
-#          color3   #EBCB8B
-#          color11  #EBCB8B
-#
-#          # blue
-#          color4  #81A1C1
-#          color12 #81A1C1
-#
-#          # magenta
-#          color5   #B48EAD
-#          color13  #B48EAD
-#
-#          # cyan
-#          color6   #88C0D0
-#          color14  #8FBCBB
-#
-#          # white
-#          color7   #E5E9F0
-#          color15  #ECEFF4
-#
         '';
         };
       
@@ -443,15 +427,9 @@ in
         # '';
       };
         fzf = { 
-          enable = true;
+          enable = false;
           enableBashIntegration = true;
           enableZshIntegration = true;
-          # historyWidgetOptions = [
-          # "--preview 'echo {}' --preview-window up:3:hidden:wrap"
-          # "--bind 'ctrl-/:toggle-preview'"
-          # "--color header:italic"
-          # "--header 'Press CTRL-/ to view whole command'"
-          # ];
         };
         zoxide = {
           enable = true;
@@ -459,38 +437,40 @@ in
           enableZshIntegration = true;
           enableFishIntegration = true;
         };
-        # emacs = {
-        #   enable = true;
-        #   package = emacsPackages.doom;
-        # };
-        doom-emacs = {
+        emacs = {
           enable = true;
-          doomPrivateDir = ./doom.d; # Directory containing your config.el, init.el
-                                     # and packages.el files
-        };
-        neovim = {
-          enable = true;
-          extraConfig = ''
-	  set path+=**/* nocompatible incsearch smartcase ignorecase termguicolors background=dark wildmenu wildignorecase
-	  colorscheme desert
-	  set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:
-	  set laststatus=0 shortmess+=I noshowmode
-	  "let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'haskell', 'cpp']
+          # package = emacsPackages.doom;
+	        extraConfig = ''
+				  (pdf-tools-install) ; Standard activation command
+				  (recentf-mode 1)
+				  (setq recentf-max-menu-items 25)
+				  (setq recentf-max-saved-items 25)
+				  (global-set-key "\C-x\ \C-r" 'recentf-open-files)
+				  ;; No sound
+				  (setq visible-bell t) 
+				  (setq ring-bell-function 'ignore)
+				  ;;(set-face-attribute 'default nil :font "DejaVu Sans Mono-12")
+			
+			    ;; Undo
+				  ;;(global-undo-tree-mode)
+			
+				  ;; Vanity
+				  (load-theme 'dracula t)
+				  (menu-bar-mode -1)
+				  (scroll-bar-mode -1)
+				  (tool-bar-mode -1)
+			
 
-          let mapleader=" "
-          nnoremap <leader>f :edit %:p:h/*<C-D>
-          nnoremap <leader>F :edit %:p:h/*<C-D>*/*
-	  nnoremap <leader>w :update<CR>
-          nnoremap <leader>q :xa<CR>
-          nnoremap <leader>x :close<CR>
-          nnoremap <leader>o :browse oldfiles<CR>
-          nnoremap <leader>n :set rnu! cursorline! list! noshowmode!<CR>
-          nnoremap <leader>N :set number! cursorline! list! noshowmode!<CR>
-          vnoremap <leader>y "+y
-          argadd ~/Productivity/notes ~/Productivity/planning/* ~/flake/configuration.nix            
-	  nnoremap <leader>b :buffer<Space><C-D>
-          " TODO save and reload vimrc from anywhere
           '';
+	  
+          extraPackages = epkgs: [
+      	      epkgs.dracula-theme
+	            epkgs.pdf-tools
+	            #epkgs.undo-tree
+	            epkgs.markdown-mode
+	            epkgs.nix-mode
+              epkgs.chatgpt-shell
+ 	        ];
         };
         # TODO: Make a <leader>/ function that will search fuzzily. Every space will interpret '.*'
         vim = {
