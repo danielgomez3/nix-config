@@ -39,7 +39,7 @@
       '';
     };
     syncthing = {
-      # guiAddress = "127.0.0.1:8385";
+      guiAddress = "127.0.0.1:8385";
       settings = {
         devices = {
           "laptop" = { id = "N4J2FSZ-DDQTYR2-RT6FC3Q-GKVPV66-MCMP2FD-6JDYI4P-JZYQR2L-OEOKHQW"; 
@@ -49,7 +49,7 @@
           autoAcceptFolders = true; 
           };
         };
-        # folders = {
+        folders = {
         #   "Documents/" = {         # Name of folder in Syncthing, also the folder ID
         #     path = "~/Documents/";    # Which folder to add to Syncthing
         #     devices = [ "laptop" ];      # Which devices to share the folder with
@@ -69,6 +69,7 @@
         };
       };
     };
+  };
 
 
 # syncthing = {

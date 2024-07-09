@@ -227,6 +227,8 @@ in
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
+  networking.firewall.allowedTCPPorts = [ 8384 22000 ];
+  networking.firewall.allowedUDPPorts = [ 22000 21027 ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -245,9 +247,10 @@ in
     syncthing = {
       enable = true;
       user = username;
+      # dataDir = "/home/${username}/Documents/";
+      configDir = "/home/${username}/.config/syncthing";   # Folder for Syncthing's settings and keys
       overrideDevices = true;     # overrides any devices added or deleted through the WebUI
       overrideFolders = true;     # overrides any folders added or deleted through the WebUI
-      configDir = "/home/${username}/.config/syncthing";
     # #   settings = {
     # #     options.urAccepted = -1;
     #   # };
@@ -256,7 +259,7 @@ in
 
 
   # NOTE: Ubiquitous home-manager config for every system:
- home-manager = { 
+  home-manager = { 
     extraSpecialArgs = { inherit inputs; };
     users.${username} = {
       home.stateVersion = "23.11";
