@@ -39,10 +39,10 @@
       '';
     };
     syncthing = {
-      guiAddress = "127.0.0.1:8385";
+      # guiAddress = "127.0.0.1:8385";
       settings = {
         devices = {
-          "laptop" = { id = "OG6KSGS-MCYER7T-H3ZK4UP-OYYW7QX-YWUL4OO-D7KDMLM-SSJ6FIZ-XM7POAQ"; 
+          "laptop" = { id = "N4J2FSZ-DDQTYR2-RT6FC3Q-GKVPV66-MCMP2FD-6JDYI4P-JZYQR2L-OEOKHQW"; 
           autoAcceptFolders = true; 
           };
           "phone" = {id = "L4PI6U7-VTRHUSU-WLSC3GV-EHWG4QX-DMSNSEL-DVACMSN-7D2EOIT-AIREAAZ";
