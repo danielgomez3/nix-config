@@ -19,7 +19,10 @@
       guiAddress = "127.0.0.1:8383";
       settings = {
         devices = {
-          "desktop" = { id = "23GQV6A-ROUBBEV-N2S53WL-R6WJXFT-G2UKAXW-7D7C44A-USAGYXV-GW6WAQ2"; autoAcceptFolders = true;};
+          "desktop" = { 
+          id = "23GQV6A-ROUBBEV-N2S53WL-R6WJXFT-G2UKAXW-7D7C44A-USAGYXV-GW6WAQ2";
+          autoAcceptFolders = true;
+          };
         };
       };
     };

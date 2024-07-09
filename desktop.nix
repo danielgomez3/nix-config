@@ -42,11 +42,13 @@
       guiAddress = "127.0.0.1:8385";
       settings = {
         devices = {
-          "laptop" = { id = "N4J2FSZ-DDQTYR2-RT6FC3Q-GKVPV66-MCMP2FD-6JDYI4P-JZYQR2L-OEOKHQW"; 
-          autoAcceptFolders = true; 
+          "laptop" = { 
+            id = "N4J2FSZ-DDQTYR2-RT6FC3Q-GKVPV66-MCMP2FD-6JDYI4P-JZYQR2L-OEOKHQW"; 
+            autoAcceptFolders = true; 
           };
-          "phone" = {id = "L4PI6U7-VTRHUSU-WLSC3GV-EHWG4QX-DMSNSEL-DVACMSN-7D2EOIT-AIREAAZ";
-          autoAcceptFolders = true; 
+          "phone" = {
+            id = "L4PI6U7-VTRHUSU-WLSC3GV-EHWG4QX-DMSNSEL-DVACMSN-7D2EOIT-AIREAAZ";
+            autoAcceptFolders = true; 
           };
         };
         folders = {
