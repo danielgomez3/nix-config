@@ -46,26 +46,26 @@
   };
 
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "sdhci_pci" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "uas" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/1a48a33e-17b5-4a52-b5c6-819cc2d0ccd5";
+    { device = "/dev/disk/by-uuid/f1faf40b-755e-4d2c-80fe-1f3b45c4643b";
       fsType = "ext4";
     };
 
-  boot.initrd.luks.devices."luks-2dade71e-8c5e-4bfd-b16e-a72861e74693".device = "/dev/disk/by-uuid/2dade71e-8c5e-4bfd-b16e-a72861e74693";
+  boot.initrd.luks.devices."luks-1bbabfb2-7b1e-4753-9058-e31c5dc3253e".device = "/dev/disk/by-uuid/1bbabfb2-7b1e-4753-9058-e31c5dc3253e";
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/4F44-CF68";
+    { device = "/dev/disk/by-uuid/55AB-2836";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/ff70bf2f-9b69-494d-aca4-eeda40f56bba"; }
+    [ { device = "/dev/disk/by-uuid/2cae7e3b-9657-4ee2-a029-181ba12d0b87"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -78,5 +78,7 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  
+
+
+
   }
