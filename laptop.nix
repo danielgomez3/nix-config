@@ -17,11 +17,11 @@
   services = {
     syncthing = {
       guiAddress = "127.0.0.1:8383";
-  #     settings = {
-  #       devices = {
-  #         "desktop" = { id = "SVUBZNU-A4HDWGG-AC7MPHA-GFHE5HD-XUJ6VIK-63SO7RQ-DTR3ECT-ATGF3QI"; autoAcceptFolders = true;};
-  #       };
-  #     };
+      settings = {
+        devices = {
+          "desktop" = { id = "ODWVE3R-34PMXU7-NDHUMK2-2YY4CK3-J7DPNMX-MDL3X3F-EOEYSJI-W2XADQT"; autoAcceptFolders = true;};
+        };
+      };
     };
   };
 

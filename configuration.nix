@@ -147,10 +147,10 @@ in
   programs.fish = {
     enable = false;
     shellAliases = {
-      plan = "cd ~/Productivity/planning && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
+      plan = "cd ~/Documents/productivity/planning && hx ~/Documents/productivity/planning/todo.md ~/Documents/productivity/planning/credentials.md";
       zrf = "zellij run floating";
       conf = "cd ~/flake/ && hx configuration.nix laptop.nix desktop.nix";
-      notes = "cd ~/Productivity/notes && hx .";
+      notes = "cd ~/Documents/productivity/notes && hx .";
       # c =''z "$@"; eza --icons --color=always;'';
       l = "eza --icons --color=always --group-directories-first";
       la = "eza -a --icons --color=always --group-directories-first";
@@ -265,21 +265,21 @@ in
       };
       home.packages = with pkgs; [
         # cli apps
-        krabby cowsay eza cutefetch entr tldr fish 
+        krabby cowsay eza entr tldr bc
         dmidecode 
         fd xclip wl-clipboard pandoc poppler_utils
         youtube-dl spotdl feh vlc yt-dlp android-tools adb-sync unzip
         android-tools 
         # coding
-        shellcheck exercism 
+        shellcheck exercism texliveFull 
         # gui apps
-        firefox texliveFull zoom-us libreoffice slack spotify
+        firefox zoom-us libreoffice slack spotify okular
         cmus gotop xournalpp 
         gnome.gnome-session
         libsForQt5.kpeople # HACK: Get kde sms working properly
         libsForQt5.kpeoplevcard # HACK: Get kde sms working properly
         # Wayland
-        grim slurp wl-clipboard xorg.xrandr swayidle swaylock flashfocus autotiling flameshot
+        grim slurp wl-clipboard xorg.xrandr swayidle swaylock flashfocus autotiling sway-contrib.grimshot
         # Emacs
         ispell
         # My personal scripts:
@@ -365,10 +365,10 @@ in
           c () { z "$@" && eza --icons --color=always --group-directories-first; }
           '';
           shellAliases = {
-             plan = "cd ~/Productivity/planning && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
+             plan = "cd ~/Documents/productivity/planning && hx ~/Documents/productivity/planning/todo.md ~/Documents/productivity/planning/credentials.md";
              zrf = "zellij run floating";
              conf = "cd ~/flake/ && hx configuration.nix laptop.nix desktop.nix";
-             notes = "cd ~/Productivity/notes && hx .";
+             notes = "cd ~/Documents/productivity/notes && hx .";
              l = "eza --icons --color=always --group-directories-first";
              la = "eza -a --icons --color=always --group-directories-first";
              lt = "eza --icons --color=always --tree --level 2 --group-directories-first";
@@ -395,9 +395,9 @@ in
           enable = true;
           theme = "One Dark";
           font = {
-            package = pkgs.fira-code-nerdfont;
+            package = pkgs.jetbrains-mono;
             # size = 10;
-            name = "Fira Code Nerfont";
+            name = "JetBrains Mono";
           };
           settings = { 
             enable_audio_bell = false;
@@ -407,6 +407,10 @@ in
           hide_window_decorations yes
           #map ctrl+shift+enter new_window_with_cwd
           #map ctrl+shift+t new_tab_with_cwd
+          font_family JetBrains Mono
+          bold_font     JetBrains Mono Bold
+          italic_font   JetBrains Mono Italic
+          bold_italic_font JetBrains Mono Bold Italic
 
 
 
@@ -582,7 +586,7 @@ in
               # theme = "snazzy";  # Kind of better than dracula! More color!
               # theme = "rose_pine_moon";  # serious mode..
               # theme = "zed_onedark";
-              theme = "varua";
+              theme = "sonokai";
               editor = {
                 mouse = true;
                 bufferline = "multiple";
