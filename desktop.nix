@@ -38,88 +38,87 @@
       extraConfig = ''
       '';
     };
-    # syncthing = {
-    #   guiAddress = "127.0.0.1:8385";
-    #   settings = {
-    #     devices = {
-    #       "laptop" = { id = "OG6KSGS-MCYER7T-H3ZK4UP-OYYW7QX-YWUL4OO-D7KDMLM-SSJ6FIZ-XM7POAQ"; 
-    #       autoAcceptFolders = true; 
-    #       };
-    #       "phone" = {id = "L4PI6U7-VTRHUSU-WLSC3GV-EHWG4QX-DMSNSEL-DVACMSN-7D2EOIT-AIREAAZ";
-    #       autoAcceptFolders = true; 
-    #       };
-    #     };
-    #     folders = {
-    #       "Documents/" = {         # Name of folder in Syncthing, also the folder ID
-    #         path = "~/Documents/";    # Which folder to add to Syncthing
-    #         devices = [ "laptop" ];      # Which devices to share the folder with
-    #     };
-    #       "Productivity" = {         # Name of folder in Syncthing, also the folder ID
-    #         path = "~/Documents/productivity";    # Which folder to add to Syncthing
-    #         devices = [ "laptop" "phone" ];      # Which devices to share the folder with
-    #       };
-    #       "Projects" = {         # Name of folder in Syncthing, also the folder ID
-    #         path = "~/Projects";    # Which folder to add to Syncthing
-    #         devices = [ "laptop" ];      # Which devices to share the folder with
-    #       };
-    #       "flake" = {         # Name of folder in Syncthing, also the folder ID
-    #         path = "~/flake";    # Which folder to add to Syncthing
-    #         devices = [ "laptop" ];      # Which devices to share the folder with
-    #       };
-    #     };
-    #   };
-    # };
-
-
-syncthing = {
-    enable = true;
-    guiAddress = "127.0.0.1:8385";
-    settings = {
-      devices = {
-        "laptop" = {
-          id = "OG6KSGS-MCYER7T-H3ZK4UP-OYYW7QX-YWUL4OO-D7KDMLM-SSJ6FIZ-XM7POAQ";
-          autoAcceptFolders = true;
+    syncthing = {
+      guiAddress = "127.0.0.1:8385";
+      settings = {
+        devices = {
+          "laptop" = { id = "OG6KSGS-MCYER7T-H3ZK4UP-OYYW7QX-YWUL4OO-D7KDMLM-SSJ6FIZ-XM7POAQ"; 
+          autoAcceptFolders = true; 
+          };
+          "phone" = {id = "L4PI6U7-VTRHUSU-WLSC3GV-EHWG4QX-DMSNSEL-DVACMSN-7D2EOIT-AIREAAZ";
+          autoAcceptFolders = true; 
+          };
         };
-        "phone" = {
-          id = "L4PI6U7-VTRHUSU-WLSC3GV-EHWG4QX-DMSNSEL-DVACMSN-7D2EOIT-AIREAAZ";
-          autoAcceptFolders = true;
-        };
-      };
-      folders = {
-        "Documents" = {
-          path = "/home/${username}/Documents/";
-          # label = "Documents";  # This will appear as the folder label in Syncthing
-          id = "Documents";
-          devices = [ "laptop" ];
-          enable = true;
-        };
-        "Productivity" = {
-          path = "/home/${username}/Documents/productivity";
-          # label = "Productivity";
-          id = "Productivity";
-          devices = [ "laptop" "phone" ];
-          enable = true;
-        };
-        "Projects" = {
-          path = "/home/${username}/Projects";
-          # label = "Projects";
-          id = "Projects";
-          devices = [ "laptop" ];
-          enable = true;
-        };
-        "flake" = {
-          path = "/home/${username}/flake";
-          # label = "flake";
-          id = "flake";
-          devices = [ "laptop" ];
-          enable = true;
+        # folders = {
+        #   "Documents/" = {         # Name of folder in Syncthing, also the folder ID
+        #     path = "~/Documents/";    # Which folder to add to Syncthing
+        #     devices = [ "laptop" ];      # Which devices to share the folder with
+        # };
+          "Productivity" = {         # Name of folder in Syncthing, also the folder ID
+            path = "~/Documents/productivity";    # Which folder to add to Syncthing
+            devices = [ "laptop" "phone" ];      # Which devices to share the folder with
+          };
+          "Projects" = {         # Name of folder in Syncthing, also the folder ID
+            path = "~/Projects";    # Which folder to add to Syncthing
+            devices = [ "laptop" ];      # Which devices to share the folder with
+          };
+          "flake" = {         # Name of folder in Syncthing, also the folder ID
+            path = "~/flake";    # Which folder to add to Syncthing
+            devices = [ "laptop" ];      # Which devices to share the folder with
+          };
         };
       };
     };
-  };
 
-    
-  };
+
+# syncthing = {
+#     enable = true;
+#     guiAddress = "127.0.0.1:8385";
+#     settings = {
+#       devices = {
+#         "laptop" = {
+#           id = "OG6KSGS-MCYER7T-H3ZK4UP-OYYW7QX-YWUL4OO-D7KDMLM-SSJ6FIZ-XM7POAQ";
+#           autoAcceptFolders = true;
+#         };
+#         "phone" = {
+#           id = "L4PI6U7-VTRHUSU-WLSC3GV-EHWG4QX-DMSNSEL-DVACMSN-7D2EOIT-AIREAAZ";
+#           autoAcceptFolders = true;
+#         };
+#       };
+#       folders = {
+#         "Documents" = {
+#           path = "/home/${username}/Documents/";
+#           # label = "Documents";  # This will appear as the folder label in Syncthing
+#           id = "Documents";
+#           devices = [ "laptop" ];
+#           enable = true;
+#         };
+#         "Productivity" = {
+#           path = "/home/${username}/Documents/productivity";
+#           # label = "Productivity";
+#           id = "Productivity";
+#           devices = [ "laptop" "phone" ];
+#           enable = true;
+#         };
+#         "Projects" = {
+#           path = "/home/${username}/Projects";
+#           # label = "Projects";
+#           id = "Projects";
+#           devices = [ "laptop" ];
+#           enable = true;
+#         };
+#         "flake" = {
+#           path = "/home/${username}/flake";
+#           # label = "flake";
+#           id = "flake";
+#           devices = [ "laptop" ];
+#           enable = true;
+#         };
+#       };
+#     };
+#   };
+  
+  # };
 
 
 
