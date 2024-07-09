@@ -52,12 +52,12 @@
           };
         };
         folders = {
-        #   "Documents/" = {         # Name of folder in Syncthing, also the folder ID
-        #     path = "~/Documents/";    # Which folder to add to Syncthing
-        #     devices = [ "laptop" ];      # Which devices to share the folder with
-        # };
+          "Documents" = {         # Name of folder in Syncthing, also the folder ID
+            path = "~/Documents";    # Which folder to add to Syncthing
+            devices = [ "laptop" ];      # Which devices to share the folder with
+          };
           "Productivity" = {         # Name of folder in Syncthing, also the folder ID
-            path = "~/Documents/productivity";    # Which folder to add to Syncthing
+            path = "~/Productivity";    # Which folder to add to Syncthing
             devices = [ "laptop" "phone" ];      # Which devices to share the folder with
           };
           "Projects" = {         # Name of folder in Syncthing, also the folder ID
