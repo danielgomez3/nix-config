@@ -86,31 +86,31 @@ syncthing = {
         };
       };
       folders = {
-        "Documents" = {
+        "documents" = {
           path = "/home/${username}/Documents/";
-          # label = "Documents";  # This will appear as the folder label in Syncthing
+          label = "Documents";  # This will appear as the folder label in Syncthing
           id = "Documents";
           devices = [ "laptop" ];
           enable = true;
         };
-        "Productivity" = {
+        "productivity" = {
           path = "/home/${username}/Documents/productivity";
-          # label = "Productivity";
+          label = "Productivity";
           id = "Productivity";
           devices = [ "laptop" "phone" ];
           enable = true;
         };
-        "Projects" = {
+        "projects" = {
           path = "/home/${username}/Projects";
-          # label = "Projects";
+          label = "Projects";
           id = "Projects";
           devices = [ "laptop" ];
           enable = true;
         };
         "flake" = {
           path = "/home/${username}/flake";
-          # label = "flake";
-          id = "flake";
+          label = "Flake";
+          id = "Flake";
           devices = [ "laptop" ];
           enable = true;
         };
