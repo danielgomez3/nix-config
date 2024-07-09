@@ -147,10 +147,10 @@ in
   programs.fish = {
     enable = false;
     shellAliases = {
-      plan = "cd ~/Documents/productivity/planning && hx ~/Documents/productivity/planning/todo.md ~/Documents/productivity/planning/credentials.md";
+      plan = "cd ~/Productivity/planning && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
       zrf = "zellij run floating";
       conf = "cd ~/flake/ && hx configuration.nix laptop.nix desktop.nix";
-      notes = "cd ~/Documents/productivity/notes && hx .";
+      notes = "cd ~/Productivity/notes && hx .";
       # c =''z "$@"; eza --icons --color=always;'';
       l = "eza --icons --color=always --group-directories-first";
       la = "eza -a --icons --color=always --group-directories-first";
