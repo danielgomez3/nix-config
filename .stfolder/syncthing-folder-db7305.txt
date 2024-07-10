@@ -1,5 +1,0 @@
-# This directory is a Syncthing folder marker.
-# Do not delete.
-
-folderID: flake
-created: 2024-07-09T10:08:01-04:00

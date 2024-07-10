@@ -251,10 +251,6 @@ in
       configDir = "/home/${username}/.config/syncthing";   # Folder for Syncthing's settings and keys
       overrideDevices = true;     # overrides any devices added or deleted through the WebUI
       overrideFolders = true;     # overrides any folders added or deleted through the WebUI
-    # #   settings = {
-    # #     options.urAccepted = -1;
-    #   # };
-    };
   };
 
 
@@ -270,7 +266,7 @@ in
         # cli apps
         krabby cowsay eza entr tldr bc
         dmidecode 
-        fd xclip wl-clipboard pandoc poppler_utils
+        fd xclip wl-clipboard pandoc pandoc-include poppler_utils
         youtube-dl spotdl feh vlc yt-dlp android-tools adb-sync unzip
         android-tools 
         # coding
