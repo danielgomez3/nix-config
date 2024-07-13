@@ -57,12 +57,10 @@ in
     };
   };
 
+
   networking.dhcpcd = {
     enable = true;
-    persistent = true;
   };
-  # networking.networkmanager.wifi.backend = "iwd";
-  # networking.useDHCP = lib.mkDefault true;
 
 
   # Set your time zone.
@@ -245,12 +243,13 @@ in
     gnome.gnome-online-accounts.enable = true;
     gnome.gnome-keyring.enable = true;
     syncthing = {
-      enable = true;
+      enable = false;
       user = username;
       # dataDir = "/home/${username}/Documents/";
       configDir = "/home/${username}/.config/syncthing";   # Folder for Syncthing's settings and keys
       overrideDevices = true;     # overrides any devices added or deleted through the WebUI
       overrideFolders = true;     # overrides any folders added or deleted through the WebUI
+    };
   };
 
 
@@ -264,8 +263,9 @@ in
       };
       home.packages = with pkgs; [
         # cli apps
-        krabby cowsay eza entr tldr bc
+        krabby cowsay eza entr tldr bc wezterm
         dmidecode 
+        pciutils usbutils
         fd xclip wl-clipboard pandoc pandoc-include poppler_utils
         youtube-dl spotdl feh vlc yt-dlp android-tools adb-sync unzip
         android-tools 
@@ -273,7 +273,7 @@ in
         shellcheck exercism texliveFull 
         # gui apps
         firefox zoom-us libreoffice slack spotify okular
-        cmus gotop xournalpp 
+        cmus xournalpp pavucontrol
         gnome.gnome-session
         libsForQt5.kpeople # HACK: Get kde sms working properly
         libsForQt5.kpeoplevcard # HACK: Get kde sms working properly
@@ -281,6 +281,8 @@ in
         grim slurp wl-clipboard xorg.xrandr swayidle swaylock flashfocus autotiling sway-contrib.grimshot
         # Emacs
         ispell
+        # Haskell
+        cabal-install stack ghc
         # My personal scripts:
         # (import ./my-awesome-script.nix { inherit pkgs;})
 
@@ -390,31 +392,31 @@ in
           enableZshIntegration = true;
           enableBashIntegration = true;
         };
-        kitty = {
-          enable = true;
-          theme = "One Dark";
-          font = {
-            package = pkgs.jetbrains-mono;
-            # size = 10;
-            name = "JetBrains Mono";
-          };
-          settings = { 
-            enable_audio_bell = false;
-            confirm_os_window_close = -1;
-          };
-        extraConfig = ''
-          hide_window_decorations yes
-          #map ctrl+shift+enter new_window_with_cwd
-          #map ctrl+shift+t new_tab_with_cwd
-          font_family JetBrains Mono
-          bold_font     JetBrains Mono Bold
-          italic_font   JetBrains Mono Italic
-          bold_italic_font JetBrains Mono Bold Italic
+        # kitty = {
+        #   enable = true;
+        #   theme = "One Dark";
+        #   font = {
+        #     package = pkgs.jetbrains-mono;
+        #     # size = 10;
+        #     name = "JetBrains Mono";
+        #   };
+        #   settings = { 
+        #     enable_audio_bell = false;
+        #     confirm_os_window_close = -1;
+        #   };
+        # extraConfig = ''
+        #   hide_window_decorations yes
+        #   #map ctrl+shift+enter new_window_with_cwd
+        #   #map ctrl+shift+t new_tab_with_cwd
+        #   font_family JetBrains Mono
+        #   bold_font     JetBrains Mono Bold
+        #   italic_font   JetBrains Mono Italic
+        #   bold_italic_font JetBrains Mono Bold Italic
 
 
 
-        '';
-        };
+        # '';
+        # };
       
       zathura = {
         enable = true;
@@ -584,8 +586,8 @@ in
               # theme = "everforest_dark";
               # theme = "snazzy";  # Kind of better than dracula! More color!
               # theme = "rose_pine_moon";  # serious mode..
-              # theme = "zed_onedark";
-              theme = "sonokai";
+              theme = "zed_onedark";
+              # theme = "sonokai";
               editor = {
                 mouse = true;
                 bufferline = "multiple";
