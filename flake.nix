@@ -18,7 +18,7 @@
           host = "desktop";
           };
         modules = [
-          ./desktop.nix
+          ./flakes/desktop.nix
           inputs.home-manager.nixosModules.default
         ];
       };
@@ -30,35 +30,22 @@
           host = "laptop";
           };
         modules = [
-          ./laptop.nix
-          inputs.home-manager.nixosModules.default
-        ];
-      };
-      # REVIEW: This is how you would add more!
-      vps = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
-          username = "gandi";
-          host = "vps";
-          };
-        modules = [
-          ./vps.nix
+          ./flakes/laptop.nix
           inputs.home-manager.nixosModules.default
         ];
       };
       ## REVIEW: This is how you would add more!
-      # raspberry-pi = nixpkgs.lib.nixosSystem {
-      #   system = "x86_64-linux";
-      #   specialArgs = {
-      # inherit inputs;
-      #   username = "";
-      # };
-      #   modules = [
-      #     ./raspberry-pi.nix
-      #     inputs.home-manager.nixosModules.default
-      #   ];
-      # };
+      server = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+      inherit inputs;
+        username = "";
+      };
+        modules = [
+          ./flakes/server.nix
+          inputs.home-manager.nixosModules.default
+        ];
+      };
     };
   };
 }

@@ -98,7 +98,7 @@ in
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  # sound.enable = true;
   hardware.graphics.enable = true;
   hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
@@ -267,7 +267,7 @@ in
         dmidecode 
         pciutils usbutils
         fd xclip wl-clipboard pandoc pandoc-include poppler_utils
-        youtube-dl spotdl feh vlc yt-dlp android-tools adb-sync unzip
+        yt-dlp spotdl feh vlc yt-dlp android-tools adb-sync unzip
         android-tools 
         # coding
         shellcheck exercism texliveFull 
@@ -319,7 +319,7 @@ in
         '';
         config = rec {
           modifier = "Mod4";
-          terminal = "kitty";
+          terminal = "wezterm";
           startup = [
             { command = "firefox"; }
           ];
@@ -366,10 +366,10 @@ in
           c () { z "$@" && eza --icons --color=always --group-directories-first; }
           '';
           shellAliases = {
-             plan = "cd ~/Documents/productivity/planning && hx ~/Documents/productivity/planning/todo.md ~/Documents/productivity/planning/credentials.md";
+             plan = "cd ~/Documents/Productivity/planning && hx ~/Documents/Productivity/planning/todo.md ~/Documents/Productivity/planning/credentials.md";
              zrf = "zellij run floating";
              conf = "cd ~/flake/ && hx configuration.nix laptop.nix desktop.nix";
-             notes = "cd ~/Documents/productivity/notes && hx .";
+             notes = "cd ~/Documents/Productivity/notes && hx .";
              l = "eza --icons --color=always --group-directories-first";
              la = "eza -a --icons --color=always --group-directories-first";
              lt = "eza --icons --color=always --tree --level 2 --group-directories-first";
