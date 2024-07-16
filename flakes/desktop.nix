@@ -7,6 +7,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./configuration.nix
+      ./workspace.nix
       # /etc/nixos/hardware-configuration.nix
       inputs.home-manager.nixosModules.default
       (modulesPath + "/installer/scan/not-detected.nix")
@@ -16,6 +17,9 @@
   # environment.systemPackages = with pkgs; [
   #   libsForQt5.kdenlive
   # ];
+  users.users.${username} = {
+    description = "desktop";
+  };
   hardware.keyboard.zsa.enable = true;
   environment.systemPackages = with pkgs; with libsForQt5; [
   vscode
@@ -30,13 +34,11 @@
   ];
 
   networking.hostName = host; # Define your hostname.
-  services.xserver = {
-    xkb.options = "";
-  };
   services = {
-    openssh = {
-      extraConfig = ''
-      '';
+    # openssh = {
+    # };
+    xserver = {
+      xkb.options = "";
     };
     syncthing = {
       guiAddress = "127.0.0.1:8385";
@@ -101,22 +103,13 @@
   home-manager = { 
     extraSpecialArgs = { inherit inputs; };
     users.${username} = {
-      home.pointerCursor = {
-        name = "Adwaita";
-        package = pkgs.gnome.adwaita-icon-theme;
-        size = 24;
-        x11 = {
-          enable = true;
-          defaultCursor = "Adwaita";
-        };
-      };
-      programs = with pkgs; {
-        kitty = {
-          font = {
-            size = 11;
-          };
-        };
-      };
+      # programs = with pkgs; {
+      #   kitty = {
+      #     font = {
+      #       size = 11;
+      #     };
+      #   };
+      # };
       wayland.windowManager.sway = {
         extraConfig = ''
         output HDMI-A-1 scale 2

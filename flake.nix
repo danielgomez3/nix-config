@@ -10,6 +10,7 @@
 
   outputs = inputs@{ self, nixpkgs, ... }: {
     nixosConfigurations = {
+
       desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
@@ -22,6 +23,7 @@
           inputs.home-manager.nixosModules.default
         ];
       };
+
       laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
@@ -34,6 +36,7 @@
           inputs.home-manager.nixosModules.default
         ];
       };
+
       ## REVIEW: This is how you would add more!
       server = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
