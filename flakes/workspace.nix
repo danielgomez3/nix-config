@@ -83,12 +83,9 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    git wget curl pigz 
-    lm_sensors 
     bluez bluez-alsa bluez-tools
     audacity ardour
     helix zed-editor
-    woeusb ntfs3g
   ];
 
 
@@ -205,10 +202,10 @@ in
           c () { z "$@" && eza --icons --color=always --group-directories-first; }
           '';
           shellAliases = {
-             plan = "cd ~/Documents/Productivity/planning && hx ~/Documents/Productivity/planning/todo.md ~/Documents/Productivity/planning/credentials.md";
+             plan = "cd ~/Productivity/planning && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
              zrf = "zellij run floating";
-             conf = "cd ~/flake/ && hx configuration.nix laptop.nix desktop.nix";
-             notes = "cd ~/Documents/Productivity/notes && hx .";
+             conf = "cd ~/flake/flakes && hx configuration.nix laptop.nix desktop.nix";
+             notes = "cd ~/Productivity/notes && hx .";
              l = "eza --icons --color=always --group-directories-first";
              la = "eza -a --icons --color=always --group-directories-first";
              lt = "eza --icons --color=always --tree --level 2 --group-directories-first";

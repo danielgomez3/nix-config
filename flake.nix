@@ -30,25 +30,34 @@
           inherit inputs;
           username = "daniel";
           host = "laptop";
-          };
+        };
         modules = [
           ./flakes/laptop.nix
           inputs.home-manager.nixosModules.default
         ];
       };
 
-      ## REVIEW: This is how you would add more!
       server = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
-      inherit inputs;
-        username = "";
-      };
+          inherit inputs;
+          username = "danielgomez3";
+          host = "";
+        };
         modules = [
           ./flakes/server.nix
           inputs.home-manager.nixosModules.default
         ];
       };
+
+      customIso = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./scripts/installer/installer.nix
+        ];
+      };
+
+
     };
   };
 }

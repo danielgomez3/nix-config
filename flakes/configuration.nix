@@ -27,22 +27,31 @@ in
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.wireless.iwd = {
-    enable = true;
-    settings = {
-      IPv6 = {
-        Enabled = true;
-      };
-      Settings = {
-        AutoConnect = true;
+  networking = {
+      wireless.iwd = {
+      enable = true;
+      settings = {
+        IPv6 = {
+          Enabled = true;
+        };
+        Settings = {
+          AutoConnect = true;
+        };
       };
     };
+    dhcpcd = {
+      enable = true;
+    };
+    # Open ports in the firewall.
+    # firewall.allowedTCPPorts = [ 80 5000 ];
+    # firewall.allowedUDPPorts = [ ... ];
+    # Or disable the firewall altogether.
+    firewall.enable = false;
+    firewall.allowedTCPPorts = [ 8384 22000 ];
+    firewall.allowedUDPPorts = [ 22000 21027 ];
   };
 
 
-  networking.dhcpcd = {
-    enable = true;
-  };
 
 
   # Set your time zone.
@@ -67,13 +76,6 @@ in
   services = { 
     openssh = {
       enable = true;
-      hostKeys = [ 
-          {
-            bits = 4096;
-            path = "/home/${username}/.ssh/ssh_host_rsa_key";
-            type = "rsa";
-          }
-      ];
     };
 
 
@@ -94,6 +96,10 @@ in
   users.users.${username} = {
     isNormalUser = true;
     extraGroups = [ "wheel" "video" ];
+    openssh.authorizedKeys.keys = [ 
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCgWGU+UPFoiKMoLp7EYQacLPLT33vBdOo6O4PcCyvhb+ZxMVFBsI9nA6gJ5PxlCym1scoQe7QgYhhRxqhximKxLUQCvz0kkCkh0Q4veCVzXGuUgzQIYQkKyRQyj99RaEtb/awH9YXXJIrWnzW+WY9xdkZLnuLN4M1TA/5oVEqWvgPdjoDZVvOEHNbhxrjwnshxkRWFFNZ2HxL6ZAt27e1CFfyFmY+GyJ1YyRqqhNCD4K48oYBHsRT3B63xCvW5QfN2QLVibPGagcG0BfS8AZ4iKbJfpMw1IBw4AZFAypj0wSlGf+4nwX7NuZ10SJNXWgnGdZd07Q/PbzHKrS3l6TblfKO++M1cpGI9k77RAkpysawenVxqfM0rFXmF7GHomPndiokYUDV2xPL6cHZUYAeYM//P7GR5ZSlVbtJnvf9gyMOeEH72i2MuAp2mIrrRxjic2Yffq48C2pFB4KEyvdOwSxDGDriLy/2IwclxnVNC1CL9/DHMQMpop9bBCBfpWtFwV4N8nfFRe/B1PmQWp2hoMR2bwaGSsjw7X21J9pABBPHGTRKduX1V3g4kCurZe2TwPO7CemPvWnBn2rYXhubocFjMzZRYX9e+96Zhf4w7kY9Bqui/wrnaLWVeNfmcFgppe3rCxVra5c0kXnguxy+MyZrsPyNpG/3EuKihbdTQmw== daniel@desktop"
+
+    ];
   };
 
   # Allow unfree packages
@@ -104,9 +110,6 @@ in
   environment.systemPackages = with pkgs; [
     git wget curl pigz 
     lm_sensors 
-    bluez bluez-alsa bluez-tools
-    audacity ardour
-    helix zed-editor
     woeusb ntfs3g
   ];
 
@@ -128,13 +131,6 @@ in
   };
 
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ 80 5000 ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = false;
-  networking.firewall.allowedTCPPorts = [ 8384 22000 ];
-  networking.firewall.allowedUDPPorts = [ 22000 21027 ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
