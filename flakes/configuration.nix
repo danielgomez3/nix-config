@@ -113,23 +113,6 @@ in
     woeusb ntfs3g
   ];
 
-  fonts = {
-    packages = with pkgs; [
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      font-awesome
-      source-han-sans
-      source-han-sans-japanese
-      source-han-serif-japanese
-      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
-    ];
-    fontconfig.defaultFonts = {
-      serif = [ "Noto Serif" "Source Han Serif" ];
-      sansSerif = [ "Noto Sans" "Source Han Sans" ];
-    };
-  };
-
 
 
   # This value determines the NixOS release from which the default

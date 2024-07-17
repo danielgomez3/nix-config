@@ -39,6 +39,23 @@ in
 
 
 
+  fonts = {
+    packages = with pkgs; [
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      font-awesome
+      source-han-sans
+      source-han-sans-japanese
+      source-han-serif-japanese
+      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    ];
+    fontconfig.defaultFonts = {
+      serif = [ "Noto Serif" "Source Han Serif" ];
+      sansSerif = [ "Noto Sans" "Source Han Sans" ];
+    };
+  };
+
 
 
   services = { 
@@ -86,7 +103,9 @@ in
     bluez bluez-alsa bluez-tools
     audacity ardour
     helix zed-editor
-  ];
+    # NOTE: For Sway Wayland
+    adwaita-icon-theme adwaita-qt   
+    ];
 
 
 
@@ -97,12 +116,21 @@ in
     extraSpecialArgs = { inherit inputs; };
     users.${username} = {
       home.stateVersion = "23.11";
+      home.pointerCursor = {
+        name = "Adwaita";
+        package = pkgs.adwaita-icon-theme;
+        size = 24;
+        x11 = {
+          enable = true;
+          defaultCursor = "Adwaita";
+        };
+      };
       home.sessionVariables = {
         TERMINAL = "kitty";
       };
       home.packages = with pkgs; [
         # cli apps
-        krabby cowsay eza entr tldr bc wezterm tree
+        krabby cowsay eza entr tldr bc tree
         dmidecode 
         pciutils usbutils
         fd xclip wl-clipboard pandoc pandoc-include poppler_utils
@@ -117,7 +145,7 @@ in
         libsForQt5.kpeople # HACK: Get kde sms working properly
         libsForQt5.kpeoplevcard # HACK: Get kde sms working properly
         # Wayland
-        grim slurp wl-clipboard xorg.xrandr swayidle swaylock flashfocus autotiling sway-contrib.grimshot
+        grim slurp wl-clipboard xorg.xrandr swayidle swaylock-fancy flashfocus autotiling sway-contrib.grimshot
         # Emacs
         ispell
         # Haskell
@@ -146,10 +174,12 @@ in
           }
 
           # Sleep
-          exec swayidle -w \
-        	timeout 500 'swaylock -f' \
-        	timeout 600 'swaymsg "output * power off"' \
-        	resume 'swaymsg "output * power on"'
+         exec swayidle -w \
+              timeout 300 'swaylock-fancy' \
+              timeout 600 'swaymsg "output * dpms off"' \
+                  resume 'swaymsg "output * dpms on"' \
+              before-sleep 'swaylock-fancy'
+
 
 
           # Vanity
@@ -204,7 +234,7 @@ in
           shellAliases = {
              plan = "cd ~/Productivity/planning && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
              zrf = "zellij run floating";
-             conf = "cd ~/flake/flakes && hx configuration.nix laptop.nix desktop.nix";
+             conf = "cd ~/flake/flakes && hx workspace.nix configuration.nix";
              notes = "cd ~/Productivity/notes && hx .";
              l = "eza --icons --color=always --group-directories-first";
              la = "eza -a --icons --color=always --group-directories-first";
@@ -228,32 +258,45 @@ in
           enableZshIntegration = true;
           enableBashIntegration = true;
         };
-        # kitty = {
-        #   enable = true;
-        #   theme = "One Dark";
-        #   font = {
-        #     package = pkgs.jetbrains-mono;
-        #     # size = 10;
-        #     name = "JetBrains Mono";
-        #   };
-        #   settings = { 
-        #     enable_audio_bell = false;
-        #     confirm_os_window_close = -1;
-        #   };
-        # extraConfig = ''
-        #   hide_window_decorations yes
-        #   #map ctrl+shift+enter new_window_with_cwd
-        #   #map ctrl+shift+t new_tab_with_cwd
-        #   font_family JetBrains Mono
-        #   bold_font     JetBrains Mono Bold
-        #   italic_font   JetBrains Mono Italic
-        #   bold_italic_font JetBrains Mono Bold Italic
+        kitty = {
+          enable = true;
+          #theme = "One Dark";
+          font = {
+            package = pkgs.jetbrains-mono;
+            # size = 10;
+            name = "JetBrains Mono";
+          };
+          settings = { 
+            enable_audio_bell = false;
+            confirm_os_window_close = -1;
+          };
+        extraConfig = ''
+          hide_window_decorations yes
+          #map ctrl+shift+enter new_window_with_cwd
+          #map ctrl+shift+t new_tab_with_cwd
+          font_family JetBrains Mono
+          bold_font     JetBrains Mono Bold
+          italic_font   JetBrains Mono Italic
+          bold_italic_font JetBrains Mono Bold Italic
+        '';
+        };
 
-
-
-        # '';
-        # };
-      
+      wezterm = {
+        enable = true;
+        extraConfig = ''
+        local wezterm = require 'wezterm'
+        local act = wezterm.action
+        return {
+          hide_tab_bar_if_only_one_tab = true,
+          color_scheme = "rose-pine",
+          keys = {
+            { key = '1', mods = 'CTRL', action = act.ActivatePaneByIndex(0) },
+            { key = '2', mods = 'CTRL', action = act.ActivatePaneByIndex(1) },
+            { key = '3', mods = 'CTRL', action = act.ActivatePaneByIndex(2) },
+          }
+        }
+        '';
+      };
       zathura = {
         enable = true;
         options = {
@@ -419,11 +462,7 @@ in
             omnisharp-roslyn netcoredbg  # C-sharp
           ];
           settings = {
-              # theme = "everforest_dark";
-              # theme = "snazzy";  # Kind of better than dracula! More color!
-              # theme = "rose_pine_moon";  # serious mode..
-              theme = "zed_onedark";
-              # theme = "sonokai";
+              theme = "rose_pine";  # serious mode..
               editor = {
                 mouse = true;
                 bufferline = "multiple";
