@@ -19,7 +19,7 @@
           host = "desktop";
           };
         modules = [
-          ./flakes/desktop.nix
+          ./configurations/desktop.nix
           inputs.home-manager.nixosModules.default
         ];
       };
@@ -32,7 +32,7 @@
           host = "laptop";
         };
         modules = [
-          ./flakes/laptop.nix
+          ./configurations/laptop.nix
           inputs.home-manager.nixosModules.default
         ];
       };
@@ -45,7 +45,7 @@
           host = "";
         };
         modules = [
-          ./flakes/server.nix
+          ./configurations/server.nix
           inputs.home-manager.nixosModules.default
         ];
       };
