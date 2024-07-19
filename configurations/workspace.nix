@@ -176,8 +176,8 @@ in
 
           # Sleep
           exec swayidle -w \
-          	timeout 220 'swaylock -c 000000 -f' \
-          	timeout 250 'swaymsg "output * power off"' \
+          	timeout 320 'swaylock -c 000000 -f' \
+          	timeout 350 'swaymsg "output * power off"' \
           	resume 'swaymsg "output * power on"'
 
           # Vanity

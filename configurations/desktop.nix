@@ -8,6 +8,7 @@
     [ # Include the results of the hardware scan.
       ./common.nix
       ./workspace.nix
+      ../expressions/pxie-image.nix
       # /etc/nixos/hardware-configuration.nix
       inputs.home-manager.nixosModules.default
       (modulesPath + "/installer/scan/not-detected.nix")
@@ -18,6 +19,31 @@
   #   libsForQt5.kdenlive
   # ];
   # Allow unfree packages
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+    grub = {
+      enable = true;
+      efiSupport = true;
+      device = "nodev";
+
+      extraFiles = { "ipxe.efi" = "${pkgs.ipxe}/ipxe.efi"; };
+      extraEntries = ''
+        menuentry "Reinstall via iPXE" {
+          chainloader /ipxe.efi
+        }
+      '';
+      extraConfig = ''
+        if [ "''${entry}" = "ipxe" ]; then
+          set entry=""
+          save_env --file /grub/grubenv entry
+          menuentry "Reinstall via iPXE" {
+            chainloader /ipxe.efi
+          }
+        fi
+      '';
+
+    };
+  };
   nixpkgs.config.allowUnfree = true;
 
   users.users.${username} = {
@@ -29,6 +55,12 @@
   services = {
     # openssh = {
     # };
+    pixiecore = {
+      enable = true;
+      openFirewall = true;
+      dhcpNoBind = true;
+      kernel = "https://boot.netboot.xyz";
+    };
     xserver = {
       xkb.options = "";
     };

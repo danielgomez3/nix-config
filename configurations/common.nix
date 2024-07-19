@@ -76,7 +76,12 @@ in
   services = { 
     openssh = {
       enable = true;
-      passwordAuthentication = true;
+      settings = {
+        PasswordAuthentication = false;
+        UsePAM = false;
+        KbdInteractiveAuthentication = false;
+        PermitRootLogin = "yes";        # Allow root login with password
+      };
     };
     syncthing = {
       enable = true;
