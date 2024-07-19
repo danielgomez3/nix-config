@@ -121,6 +121,59 @@ in
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   security.sudo.wheelNeedsPassword = false;
+  home-manager = { 
+    extraSpecialArgs = { inherit inputs; };
+    users.${username} = {
+      home.stateVersion = "23.11";
+      home.sessionVariables = {
+        TERMINAL = "kitty";
+      };
+
+
+
+
+      programs = with pkgs; {
+        bash = {
+          enable = true;
+          enableCompletion = true;
+          bashrcExtra = ''
+            export HISTCONTROL=ignoreboth:erasedups
+            shopt -s autocd cdspell globstar extglob nocaseglob
+            # 1 tab autocomplete:
+            bind 'set show-all-if-ambiguous on'
+            bind 'set completion-ignore-case on'
+
+            c() { z "$@" && eza --icons --color=always --group-directories-first; }
+            #e() { [ $# -eq 0 ] && hx . || hx "$@"; }
+            e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
+          '';
+          shellAliases = {
+             l = "eza --icons --color=always --group-directories-first";
+             la = "eza -a --icons --color=always --group-directories-first";
+             lt = "eza --icons --color=always --tree --level 2 --group-directories-first";
+             lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
+             grep = "grep --color=always -IrnE --exclude-dir='.*'";
+             less = "less -FR";
+             rm = "trash-put";
+           };
+        };
+
+        direnv = {
+          enable = true;
+          enableZshIntegration = true;
+          enableBashIntegration = true;
+        };
+
+          zoxide = {
+            enable = true;
+            enableBashIntegration = true;
+            enableZshIntegration = true;
+            enableFishIntegration = true;
+          };
+          # TODO: Make a <leader>/ function that will search fuzzily. Every space will interpret '.*'
+      };
+    };
+ };
 
 
   

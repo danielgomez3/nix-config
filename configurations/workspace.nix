@@ -159,7 +159,6 @@ in
 
       ];
 
-
       wayland.windowManager.sway = {
         enable = true;
         extraConfig = ''
@@ -180,8 +179,8 @@ in
 
           # Sleep
           exec swayidle -w \
-          	timeout 120 'swaylock -c 000000 -f' \
-          	timeout 150 'swaymsg "output * power off"' \
+          	timeout 220 'swaylock -c 000000 -f' \
+          	timeout 250 'swaymsg "output * power off"' \
           	resume 'swaymsg "output * power on"'
 
           # Vanity
@@ -216,6 +215,14 @@ in
 
 
       programs = with pkgs; {
+        git = {
+          enable = true;
+          userName = "danielgomez3";
+          userEmail = "danielgomez3@verizon.net";
+          extraConfig = {
+            credential.helper = "store";
+          };
+        };
         ssh = {
           enable = true;
           extraConfig = ''
@@ -229,41 +236,14 @@ in
         bash = {
           enable = true;
           enableCompletion = true;
-          bashrcExtra = ''
-          export HISTCONTROL=ignoreboth:erasedups
-          shopt -s autocd cdspell globstar extglob nocaseglob
-          # 1 tab autocomplete:
-          bind 'set show-all-if-ambiguous on'
-          bind 'set completion-ignore-case on'
-
-          c() { z "$@" && eza --icons --color=always --group-directories-first; }
-          #e() { [ $# -eq 0 ] && hx . || hx "$@"; }
-          e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
-
-          '';
           shellAliases = {
              plan = "cd ~/Productivity/ && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
              zrf = "zellij run floating";
-             conf = "cd ~/flake/flakes && hx workspace.nix configuration.nix";
+             conf = "cd ~/flake/configurations && hx workspace.nix common.nix";
              notes = "cd ~/Productivity/notes && hx .";
-             l = "eza --icons --color=always --group-directories-first";
-             la = "eza -a --icons --color=always --group-directories-first";
-             lt = "eza --icons --color=always --tree --level 2 --group-directories-first";
-             lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
-             grep = "grep --color=always -IrnE --exclude-dir='.*'";
-             less = "less -FR";
-             rm = "trash-put";
            };
         };
 
-        git = {
-          enable = true;
-          userName = "danielgomez3";
-          userEmail = "danielgomez3@verizon.net";
-          extraConfig = {
-            credential.helper = "store";
-          };
-        };
         direnv = {
           enable = true;
           enableZshIntegration = true;
