@@ -76,6 +76,7 @@ in
   services = { 
     openssh = {
       enable = true;
+      passwordAuthentication = true;
     };
     syncthing = {
       enable = true;
@@ -129,6 +130,10 @@ in
         TERMINAL = "kitty";
       };
 
+      home.packages = with pkgs; [
+        iptables dmidecode 
+        eza entr tldr bc tree trash-cli 
+      ];
 
 
 
@@ -171,10 +176,7 @@ in
             enableFishIntegration = true;
           };
           # TODO: Make a <leader>/ function that will search fuzzily. Every space will interpret '.*'
+        };
       };
-    };
- };
-
-
-  
-}
+     };
+    }

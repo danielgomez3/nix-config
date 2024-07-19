@@ -131,25 +131,22 @@ in
       };
       home.packages = with pkgs; [
         # cli apps
-        eza entr tldr bc tree trash-cli
-        dmidecode 
         pciutils usbutils
-        fd xclip wl-clipboard pandoc pandoc-include poppler_utils
-        yt-dlp spotdl feh vlc yt-dlp android-tools adb-sync unzip
-        android-tools 
+        yt-dlp spotdl vlc yt-dlp android-tools adb-sync unzip android-tools 
         # coding/dev
-        shellcheck exercism texliveFull csvkit
-        sshx
+        shellcheck exercism texliveFull csvkit sshx
+        pandoc pandoc-include poppler_utils
         # Fun
         toilet fortune lolcat krabby cowsay figlet
         # gui apps
         firefox zoom-us libreoffice slack spotify okular
         cmus xournalpp pavucontrol
+        feh 
         gnome.gnome-session
         libsForQt5.kpeople # HACK: Get kde sms working properly
         libsForQt5.kpeoplevcard # HACK: Get kde sms working properly
         # Wayland
-        grim slurp wl-clipboard xorg.xrandr swayidle swaylock flashfocus autotiling sway-contrib.grimshot
+        grim slurp wl-clipboard xorg.xrandr swayidle swaylock flashfocus autotiling sway-contrib.grimshot wl-clipboard 
         # Emacs
         ispell
         # Haskell
@@ -221,11 +218,11 @@ in
           userEmail = "danielgomez3@verizon.net";
           extraConfig = {
             credential.helper = "store";
-            url = {
-              "https://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@github.com/" = {
-                insteadOf = "https://github.com/";
-              };
-            };
+            # url = {
+            #   "https://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@github.com/" = {
+            #     insteadOf = "https://github.com/";
+            #   };
+            # };
           };
         };
         ssh = {
