@@ -17,21 +17,13 @@
   # environment.systemPackages = with pkgs; [
   #   libsForQt5.kdenlive
   # ];
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   users.users.${username} = {
     description = "desktop";
   };
   hardware.keyboard.zsa.enable = true;
-  environment.systemPackages = with pkgs; with libsForQt5; [
-  vscode
-  node2nix
-  wally-cli
-  (kdenlive.overrideAttrs (prevAttrs: {
-    nativeBuildInputs = (prevAttrs.nativeBuildInputs or [ ]) ++ [ makeBinaryWrapper ];
-    postInstall = (prevAttrs.postInstall or "") + ''
-      wrapProgram $out/bin/kdenlive --prefix LADSPA_PATH : ${rnnoise-plugin}/lib/ladspa
-    '';
-  }))
-  ];
 
   networking.hostName = host; # Define your hostname.
   services = {

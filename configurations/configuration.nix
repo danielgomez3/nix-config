@@ -18,7 +18,7 @@ in
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
-    systemd-boot.configurationLimit = 5;
+    systemd-boot.configurationLimit = 3;
   };
 
 
@@ -77,10 +77,8 @@ in
     openssh = {
       enable = true;
     };
-
-
     syncthing = {
-      enable = false;
+      enable = true;
       user = username;
       # dataDir = "/home/${username}/Documents/";
       configDir = "/home/${username}/.config/syncthing";   # Folder for Syncthing's settings and keys
@@ -101,9 +99,6 @@ in
 
     ];
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
