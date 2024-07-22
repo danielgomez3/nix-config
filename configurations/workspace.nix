@@ -9,6 +9,16 @@
 let 
   # nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
   cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
+  modKey = "Mod4";
+  # swayConfig = pkgs.writeText "greetd-sway-config" ''
+  #   # `-l` activates layer-shell mode. Notice that `swaymsg exit` will run after gtkgreet.
+  #   exec "${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; swaymsg exit"
+  #   bindsym Mod4+shift+e exec swaynag \
+  #     -t warning \
+  #     -m 'What do you want to do?' \
+  #     -b 'Poweroff' 'systemctl poweroff' \
+  #     -b 'Reboot' 'systemctl reboot'
+  # '';
 in
 {
 
@@ -56,9 +66,16 @@ in
     };
   };
 
-
-
+  security.rtkit.enable = true;  # Necessary for Pipewire
   services = { 
+    # greetd = {
+    #   enable = true;
+    #   settings = {
+    #     default_session = {
+    #       command = "${pkgs.sway}/bin/sway --config ${swayConfig}";
+    #     };
+    #   };
+    # };
     # Enable the GNOME Desktop Environment.
     xserver.displayManager.gdm.enable = false;
     xserver.desktopManager.gnome.enable = false;
@@ -90,7 +107,6 @@ in
   hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
-  security.rtkit.enable = true;
   security.pam.services.swaylock = {};
   security.pam.loginLimits = [
     { domain = "@users"; item = "rtprio"; type = "-"; value = 1; }
@@ -106,7 +122,11 @@ in
     # NOTE: For Sway Wayland
     adwaita-icon-theme adwaita-qt   
     ];
-
+  # environment.etc."greetd/environments".text = ''
+  #   sway
+  #   bash
+  #   startxfce4
+  # '';
 
 
 
@@ -146,7 +166,7 @@ in
         libsForQt5.kpeople # HACK: Get kde sms working properly
         libsForQt5.kpeoplevcard # HACK: Get kde sms working properly
         # Wayland
-        grim slurp wl-clipboard xorg.xrandr swayidle swaylock flashfocus autotiling sway-contrib.grimshot wl-clipboard 
+        grim slurp wl-clipboard xorg.xrandr swayidle swaylock flashfocus autotiling sway-contrib.grimshot wlprop pw-volume
         # Emacs
         ispell
         # Haskell
@@ -159,12 +179,17 @@ in
       wayland.windowManager.sway = {
         enable = true;
         extraConfig = ''
+          workspace number 1
           exec sleep 5; systemctl --user start kanshi.service
           bindsym XF86MonBrightnessDown exec light -U 10
           bindsym XF86MonBrightnessUp exec light -A 10
-          bindsym XF86AudioRaiseVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'
-          bindsym XF86AudioLowerVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'
-          bindsym XF86AudioMute exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
+          #bindsym XF86AudioRaiseVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'
+          #bindsym XF86AudioLowerVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'
+          #bindsym XF86AudioMute exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
+
+          bindsym XF86AudioRaiseVolume exec "pw-volume change +2.5%; pkill -RTMIN+8 waybar"
+          bindsym XF86AudioLowerVolume exec "pw-volume change -2.5%; pkill -RTMIN+8 waybar"
+          bindsym XF86AudioMute exec "pw-volume mute toggle; pkill -RTMIN+8 waybar"
           #bindsym $mod+n exec 'flashfocus --flash'
           for_window [class="^.*"] border pixel 0
           titlebar_border_thickness 0
@@ -184,13 +209,23 @@ in
 	        exec_always --no-startup-id flashfocus
           exec_always autotiling
 
+          # Functionality
+          no_focus [all]
+          focus_on_window_activation none
+          assign [class="[Ss]lack"] workspace 2
+          assign [class="[Ss]potify" title="[Ss]potify"] workspace 2
+          bindsym ${modKey}+Semicolon exec --no-startup-id flash_window
+
+
+
         '';
         config = rec {
-          modifier = "Mod4";
+          modifier = "${modKey}";
           terminal = "wezterm";
-          startup = [
-            { command = "firefox"; }
-          ];
+          # startup = [
+          #   { command = "firefox"; }
+          # ];
+          # keybindings
           bars = [
             {
               extraConfig = ''
@@ -259,40 +294,43 @@ in
           enable = true;
           extraConfig = ''
           local wezterm = require 'wezterm'
-
-          -- Workspaces
           local mux = wezterm.mux
+
           wezterm.on('gui-startup', function()
             -- Tab 1: Plan
             local tab, first_pane, window = mux.spawn_window {}
-            first_pane:send_text "plan\n"
-            tab:set_title("plan")
-
-            -- Tab 2: Notes
-            local tab2, second_pane, _ = window:spawn_tab {}
-            second_pane:send_text "notes\n"
-            tab2:set_title("notes")
-
-            -- Tab 3: Etc.
-            local tab3, third_pane, _ = window:spawn_tab {}
+            first_pane:send_text "zellij -l welcome\n"
           end)
-          -- For ActivatePaneByIndex
-          local act = wezterm.action
-
 
           return {
+            -- default_prog = { 'zellij', '-l', 'welcome' },
             hide_tab_bar_if_only_one_tab = true,
             color_scheme = "rose-pine",
-            keys = {
-              { key = 'j', mods = 'ALT', action = act.ActivatePaneDirection 'Next',},
-              { key = 'k', mods = 'ALT', action = act.ActivatePaneDirection 'Prev',},
-              { key = 'h', mods = 'ALT', action = wezterm.action.ShowTabNavigator },
-            }
           }
           '';
         };
         zellij = {
           enable = true;
+          settings = {
+            default_mode = "locked";
+            pane_frames = false;
+            theme = "default";
+            themes = {
+              default = {
+                bg = "#403d52";
+                fg = "#e0def4";
+                red = "#eb6f92";
+                green = "#31748f";
+                blue = "#9ccfd8";
+                yellow = "#f6c177";
+                magenta = "#c4a7e7";
+                orange = "#fe640b";
+                cyan = "#ebbcba";
+                black = "#26233a";
+                white = "#e0def4";
+              };
+            };
+          };
         };
         zathura = {
           enable = true;

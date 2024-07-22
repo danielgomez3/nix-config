@@ -78,9 +78,8 @@ in
       enable = true;
       settings = {
         PasswordAuthentication = false;
-        UsePAM = false;
         KbdInteractiveAuthentication = false;
-        PermitRootLogin = "yes";        # Allow root login with password
+        # PermitRootLogin = "yes";        # Allow root login with password
       };
     };
     syncthing = {
@@ -101,7 +100,7 @@ in
     isNormalUser = true;
     extraGroups = [ "wheel" "video" ];
     openssh.authorizedKeys.keys = [ 
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCgWGU+UPFoiKMoLp7EYQacLPLT33vBdOo6O4PcCyvhb+ZxMVFBsI9nA6gJ5PxlCym1scoQe7QgYhhRxqhximKxLUQCvz0kkCkh0Q4veCVzXGuUgzQIYQkKyRQyj99RaEtb/awH9YXXJIrWnzW+WY9xdkZLnuLN4M1TA/5oVEqWvgPdjoDZVvOEHNbhxrjwnshxkRWFFNZ2HxL6ZAt27e1CFfyFmY+GyJ1YyRqqhNCD4K48oYBHsRT3B63xCvW5QfN2QLVibPGagcG0BfS8AZ4iKbJfpMw1IBw4AZFAypj0wSlGf+4nwX7NuZ10SJNXWgnGdZd07Q/PbzHKrS3l6TblfKO++M1cpGI9k77RAkpysawenVxqfM0rFXmF7GHomPndiokYUDV2xPL6cHZUYAeYM//P7GR5ZSlVbtJnvf9gyMOeEH72i2MuAp2mIrrRxjic2Yffq48C2pFB4KEyvdOwSxDGDriLy/2IwclxnVNC1CL9/DHMQMpop9bBCBfpWtFwV4N8nfFRe/B1PmQWp2hoMR2bwaGSsjw7X21J9pABBPHGTRKduX1V3g4kCurZe2TwPO7CemPvWnBn2rYXhubocFjMzZRYX9e+96Zhf4w7kY9Bqui/wrnaLWVeNfmcFgppe3rCxVra5c0kXnguxy+MyZrsPyNpG/3EuKihbdTQmw== daniel@desktop"
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCmbQTmXq4zFi8xxkHVGcWg63Vbs3RwsUMaXZCyB4+s4fkxkCkz2py3LrK2x0JcVvqUKpaIRuxt36TCA+jxVtIJJWowHR/0yCj/KH5htyvKvY+IxkYniOcSRVZ6oYkTKVQR+ExGeziCptsRSRTKlb7cAD1a8VdFR49/3VR5o0Mbo9brzaEpW+aAnX8cSV9sVxLSIBZe7VLCaiTToN1bhYKebHQcBVKYOvptIFDl3r8qW/A8Ej7JvV9/CjrqKz5Ntc527H6f98V3UrtfY/kRDnpngdZIXGwVC2vlShquzB7OJLsiuRhs/XY6BvuZuGlSwsMD8nRSXyFDnLNec8suWf8d2ijcj4uXhKRmVhsSJ1hrTMByyC6LEImzC4QO7gXHNJ4XSBdnIXmGNDCggrAniyzhlVP85MiOh9Yi7x5fAqwZCE0N+Nl+Sf3yGEinzN3qDUIUUMJmgvxljPejSlTRbNSkZZMUQGajSGykautcK4kup+NTGbmju9Nx3BqyZIY14fMbKjIFRdQzzRMQ2rnrXkkNIidW5UozUKoPZG79RVZBdbCbZhEHcFSwK0fuvmTxngL7Y+A7NGilqupFDrXWknS6Fn/XPPBaPHjwyJDsZMPq9OZd4M77JVlJm8KeBRxY5cQDLzSylgkjgGiyEBwvAqJRItxsy4g3C70LKttmrAYatw== daniel@desktop"
 
     ];
   };
@@ -158,14 +157,15 @@ in
             e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
           '';
           shellAliases = {
-             l = "eza --icons --color=always --group-directories-first";
-             la = "eza -a --icons --color=always --group-directories-first";
-             lt = "eza --icons --color=always --tree --level 2 --group-directories-first";
-             lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
-             grep = "grep --color=always -IrnE --exclude-dir='.*'";
-             less = "less -FR";
-             rm = "trash-put";
-           };
+            f = "fg";
+            l = "eza --icons --color=always --group-directories-first";
+            la = "eza -a --icons --color=always --group-directories-first";
+            lt = "eza --icons --color=always --tree --level 2 --group-directories-first";
+            lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
+            grep = "grep --color=always -IrnE --exclude-dir='.*'";
+            less = "less -FR";
+            rm = "trash-put";
+          };
         };
 
         direnv = {
