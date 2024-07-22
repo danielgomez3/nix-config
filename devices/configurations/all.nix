@@ -98,7 +98,7 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" ];
+    extraGroups = [ "wheel" ];
     openssh.authorizedKeys.keys = [ 
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCmbQTmXq4zFi8xxkHVGcWg63Vbs3RwsUMaXZCyB4+s4fkxkCkz2py3LrK2x0JcVvqUKpaIRuxt36TCA+jxVtIJJWowHR/0yCj/KH5htyvKvY+IxkYniOcSRVZ6oYkTKVQR+ExGeziCptsRSRTKlb7cAD1a8VdFR49/3VR5o0Mbo9brzaEpW+aAnX8cSV9sVxLSIBZe7VLCaiTToN1bhYKebHQcBVKYOvptIFDl3r8qW/A8Ej7JvV9/CjrqKz5Ntc527H6f98V3UrtfY/kRDnpngdZIXGwVC2vlShquzB7OJLsiuRhs/XY6BvuZuGlSwsMD8nRSXyFDnLNec8suWf8d2ijcj4uXhKRmVhsSJ1hrTMByyC6LEImzC4QO7gXHNJ4XSBdnIXmGNDCggrAniyzhlVP85MiOh9Yi7x5fAqwZCE0N+Nl+Sf3yGEinzN3qDUIUUMJmgvxljPejSlTRbNSkZZMUQGajSGykautcK4kup+NTGbmju9Nx3BqyZIY14fMbKjIFRdQzzRMQ2rnrXkkNIidW5UozUKoPZG79RVZBdbCbZhEHcFSwK0fuvmTxngL7Y+A7NGilqupFDrXWknS6Fn/XPPBaPHjwyJDsZMPq9OZd4M77JVlJm8KeBRxY5cQDLzSylgkjgGiyEBwvAqJRItxsy4g3C70LKttmrAYatw== daniel@desktop"
 
@@ -141,47 +141,60 @@ in
 
 
 
-      programs = with pkgs; {
-        bash = {
-          enable = true;
-          enableCompletion = true;
-          bashrcExtra = ''
-            export HISTCONTROL=ignoreboth:erasedups
-            shopt -s autocd cdspell globstar extglob nocaseglob
-            # 1 tab autocomplete:
-            bind 'set show-all-if-ambiguous on'
-            bind 'set completion-ignore-case on'
+    programs = {
+      bash = {
+        enable = true;
+        enableCompletion = true;
+        bashrcExtra = ''
+          export HISTCONTROL=ignoreboth:erasedups
+          shopt -s autocd cdspell globstar extglob nocaseglob
+          # 1 tab autocomplete:
+          bind 'set show-all-if-ambiguous on'
+          bind 'set completion-ignore-case on'
 
-            c() { z "$@" && eza --icons --color=always --group-directories-first; }
-            #e() { [ $# -eq 0 ] && hx . || hx "$@"; }
-            e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
-          '';
-          shellAliases = {
-            f = "fg";
-            l = "eza --icons --color=always --group-directories-first";
-            la = "eza -a --icons --color=always --group-directories-first";
-            lt = "eza --icons --color=always --tree --level 2 --group-directories-first";
-            lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
-            grep = "grep --color=always -IrnE --exclude-dir='.*'";
-            less = "less -FR";
-            rm = "trash-put";
-          };
-        };
-
-        direnv = {
-          enable = true;
-          enableZshIntegration = true;
-          enableBashIntegration = true;
-        };
-
-          zoxide = {
-            enable = true;
-            enableBashIntegration = true;
-            enableZshIntegration = true;
-            enableFishIntegration = true;
-          };
-          # TODO: Make a <leader>/ function that will search fuzzily. Every space will interpret '.*'
+          c() { z "$@" && eza --icons --color=always --group-directories-first; }
+          #e() { [ $# -eq 0 ] && hx . || hx "$@"; }
+          e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
+        '';
+        shellAliases = {
+          f = "fg";
+          l = "eza --icons --color=always --group-directories-first";
+          la = "eza -a --icons --color=always --group-directories-first";
+          lt = "eza --icons --color=always --tree --level 2 --group-directories-first";
+          lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
+          grep = "grep --color=always -IrnE --exclude-dir='.*'";
+          less = "less -FR";
+          rm = "trash-put";
         };
       };
-     };
-    }
+
+      git = {
+        enable = true;
+        userName = "danielgomez3";
+        userEmail = "danielgomez3@verizon.net";
+        extraConfig = {
+          credential.helper = "store";
+          # url = {
+          #   "https://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@github.com/" = {
+          #     insteadOf = "https://github.com/";
+          #   };
+          # };
+        };
+      };
+
+
+        # TODO: Make a <leader>/ function that will search fuzzily. Every space will interpret '.*'
+    ssh = {
+      enable = true;
+      extraConfig = ''
+        Host vps
+           HostName 46.226.105.34
+           User root
+           IdentityFile ~/.ssh/id_ed25519
+
+      '';
+    };
+  };
+    };
+  };
+}

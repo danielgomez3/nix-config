@@ -6,8 +6,9 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./common.nix
-      ./workspace.nix
+      ./configurations/all.nix
+      ./configurations/gui.nix
+      ./configurations/coding.nix
       # /etc/nixos/hardware-configuration.nix
       inputs.home-manager.nixosModules.default
       (modulesPath + "/installer/scan/not-detected.nix")
@@ -101,13 +102,15 @@
   home-manager = { 
     extraSpecialArgs = { inherit inputs; };
     users.${username} = {
-      # programs = with pkgs; {
-      #   kitty = {
-      #     font = {
-      #       size = 11;
-      #     };
-      #   };
-      # };
+      home.pointerCursor = {
+        name = "Adwaita";
+        package = pkgs.gnome.adwaita-icon-theme;
+        size = 24;
+        x11 = {
+          enable = true;
+          defaultCursor = "Adwaita";
+        };
+      };
       wayland.windowManager.sway = {
         extraConfig = ''
         output HDMI-A-1 scale 2
