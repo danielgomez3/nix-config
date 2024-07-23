@@ -129,17 +129,13 @@ in
   home-manager = { 
     extraSpecialArgs = { inherit inputs; };
     users.${username} = {
-      home.stateVersion = "23.11";
-      home.sessionVariables = {
-        TERMINAL = "kitty";
+      home = {
+        stateVersion = "24.05";
+        packages = with pkgs; [
+          iptables dmidecode 
+          eza entr tldr bc tree trash-cli 
+        ];
       };
-
-      home.packages = with pkgs; [
-        iptables dmidecode 
-        eza entr tldr bc tree trash-cli 
-      ];
-
-
 
     programs = {
       bash = {
@@ -158,6 +154,7 @@ in
         '';
         shellAliases = {
           f = "fg";
+          j = "jobs";
           l = "eza --icons --color=always --group-directories-first";
           la = "eza -a --icons --color=always --group-directories-first";
           lt = "eza --icons --color=always --tree --level 2 --group-directories-first";

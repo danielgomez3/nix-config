@@ -52,18 +52,18 @@
 
 
   # NOTE: Unique home-manager config for laptop:
-  home-manager = { 
-    extraSpecialArgs = { inherit inputs; };
-    users.${username} = {
-      programs = with pkgs; {
-        kitty = {
-          font = {
-            size = 14;
-          };
-        };
-      };
-    };
-  };
+  # home-manager = { 
+  #   extraSpecialArgs = { inherit inputs; };
+  #   users.${username} = {
+  #     programs = with pkgs; {
+  #       kitty = {
+  #         font = {
+  #           size = 14;
+  #         };
+  #       };
+  #     };
+  #   };
+  # };
 
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "uas" "sd_mod" "sdhci_pci" ];

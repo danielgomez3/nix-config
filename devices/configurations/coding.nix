@@ -1,57 +1,118 @@
 
 { config, pkgs, lib, inputs, username, ... }:
-# let 
+let 
 #   cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
-
-# in
+  myPythonEnv = pkgs.python3.withPackages (ps: with ps; [
+    matplotlib
+  ]);
+in
 {
+  #virtualisation.docker.enable = true;
   
   home-manager = { 
     useGlobalPkgs = true;
-    home.packages = with pkgs; [
-    # coding/dev
-    shellcheck exercism texliveFull csvkit sshx
-    pandoc pandoc-include poppler_utils
-    # cli apps
-    pciutils usbutils
-    yt-dlp spotdl vlc yt-dlp android-tools adb-sync unzip android-tools 
-    # Fun
-    toilet fortune lolcat krabby cowsay figlet
-    # Haskell
-    cabal-install stack ghc
-    # My personal scripts:
-    # (import ./my-awesome-script.nix { inherit pkgs;})
+    users.${username} = {
+      home.packages = with pkgs; [
+      # coding/dev
+      shellcheck exercism texliveFull csvkit sshx
+      pandoc pandoc-include poppler_utils haskellPackages.pandoc-plot 
+      myPythonEnv
+      # cli apps
+      pciutils usbutils
+      yt-dlp spotdl vlc yt-dlp android-tools adb-sync unzip android-tools 
+      # Fun
+      toilet fortune lolcat krabby cowsay figlet
+      # Haskell
+      cabal-install stack ghc
+      # My personal scripts:
+      # (import ./my-awesome-script.nix { inherit pkgs;})
 
-    ];
-    programs = {
+      ];
+      programs = {
 
-      bash = {
-        shellAliases = {
-           plan = "cd ~/Productivity/ && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
-           zrf = "zellij run floating";
-           conf = "cd ~/flake/configurations && hx workspace.nix common.nix";
-           notes = "cd ~/Productivity/notes && hx .";
-         };
-      };
+        bash = {
+          shellAliases = {
+             plan = "cd ~/Productivity/ && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
+             zrf = "zellij run floating";
+             conf = "cd ~/flake/devices/configurations/ && hx coding.nix all.nix";
+             notes = "cd ~/Productivity/notes && hx .";
+           };
+        };
 
-      direnv = {
-        enable = true;
-        enableZshIntegration = true;
-        enableBashIntegration = true;
-      };
+        direnv = {
+          enable = true;
+          enableZshIntegration = true;
+          enableBashIntegration = true;
+        };
 
-      fzf = { 
-        enable = false;
-        enableBashIntegration = true;
-        enableZshIntegration = true;
-      };
-      zoxide = {
-        enable = true;
-        enableBashIntegration = true;
-        enableZshIntegration = true;
-        enableFishIntegration = true;
-      };
+        zoxide = {
+          enable = true;
+          enableBashIntegration = true;
+          enableZshIntegration = true;
+          enableFishIntegration = true;
+        };
       
+        helix = {
+          enable = true;
+          defaultEditor = true;
+          extraPackages = with pkgs; with nodePackages; [
+            vscode-langservers-extracted
+            gopls gotools
+            typescript typescript-language-server
+            marksman ltex-ls  # Writing
+            nil nixpkgs-fmt
+            clang-tools  # C
+            lua-language-server
+            rust-analyzer
+            bash-language-server
+            haskell-language-server
+            omnisharp-roslyn netcoredbg  # C-sharp
+          ];
+          settings = {
+              theme = "rose_pine";  # serious mode..
+              editor = {
+                mouse = true;
+                bufferline = "multiple";
+                # whitespace.characters = {
+                #   newline = "⏎";
+                # };
+                soft-wrap = {
+                  enable = true;
+                };
+                # line-number = "relative";
+                # gutters = [
+                # "diagnostics"
+                #  "spacer"
+                #  "diff"
+                # ];
+                gutters = [
+                ];
+                cursor-shape = {
+                  insert = "bar";
+                  normal = "block";
+                  select = "underline";
+                };
+              };
+  
+          };
+          languages = { 
+            language-server = {
+              typescript-language-server = with pkgs.nodePackages; {
+                  command = "${typescript-language-server}/bin/typescript-language-server";
+                  args = [ "--stdio" "--tsserver-path=${typescript}/lib/node_modules/typescript/lib" ];  
+              };  
+            };
+            language = [{    name = "markdown";    language-servers = ["marksman" "ltex-ls"];  }];
+          };
+        };
+
+        fzf = { 
+          enable = false;
+          enableBashIntegration = true;
+          enableZshIntegration = true;
+        };
+
+      };
     };
   };
 }
