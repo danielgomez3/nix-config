@@ -269,14 +269,14 @@ in
       };
 
 
-      vscode = {
-        enable = true;
-        extensions = with pkgs.vscode-extensions; [
-          dracula-theme.theme-dracula
-          vscodevim.vim
-          yzhang.markdown-all-in-one
-        ];
-      };
+      # vscode = {
+      #   enable = true;
+      #   extensions = with pkgs.vscode-extensions; [
+      #     dracula-theme.theme-dracula
+      #     vscodevim.vim
+      #     yzhang.markdown-all-in-one
+      #   ];
+      # };
       emacs = {
         enable = true;
         # package = emacsPackages.doom;

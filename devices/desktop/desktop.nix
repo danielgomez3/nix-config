@@ -20,8 +20,6 @@ in
   # environment.systemPackages = with pkgs; [
   #   libsForQt5.kdenlive
   # ];
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   users.users.${username} = {
     description = "desktop";

@@ -21,6 +21,7 @@ in
     systemd-boot.configurationLimit = 3;
   };
 
+  nixpkgs.config.allowUnfree = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
