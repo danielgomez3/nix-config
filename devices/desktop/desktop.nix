@@ -4,14 +4,14 @@
 { pkgs, inputs, username, host, ... }:
 
 let 
-  confs_d = "../configurations/";
+  c_d = "configurations";
 in
 {
   imports =
-    [ # Include the results of the hardware scan.
-      "${confs_d}/all.nix"
-      "${confs_d}/gui.nix"
-      "${confs_d}/coding.nix"
+    [ 
+      ../${c_d}/all.nix
+      ../${c_d}/gui.nix
+      ../${c_d}/coding.nix
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
     ];
