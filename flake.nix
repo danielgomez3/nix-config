@@ -30,7 +30,7 @@
             host = "desktop";
             };
           modules = [
-            ./devices/desktop.nix
+            ./devices/desktop/desktop.nix
             inputs.home-manager.nixosModules.default
           ];
         };
@@ -43,7 +43,7 @@
             host = "laptop";
           };
           modules = [
-            ./devices/laptop.nix
+            ./devices/laptop/laptop.nix
             inputs.home-manager.nixosModules.default
           ];
         };
@@ -56,7 +56,7 @@
             host = "server";
           };
           modules = [
-            ./devices/server.nix
+            ./devices/server/server.nix
             inputs.home-manager.nixosModules.default
           ];
         };
