@@ -28,17 +28,18 @@ in
 
   # Enable networking
   networking = {
-      wireless.iwd = {
-      enable = true;
-      settings = {
-        IPv6 = {
-          Enabled = true;
-        };
-        Settings = {
-          AutoConnect = true;
-        };
+    domain = "home";
+    wireless.iwd = {
+    enable = true;
+    settings = {
+      IPv6 = {
+        Enabled = true;
+      };
+      Settings = {
+        AutoConnect = true;
       };
     };
+  };
     dhcpcd = {
       enable = true;
     };

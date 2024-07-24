@@ -18,12 +18,22 @@
   # environment.systemPackages = with pkgs; [
   #   libsForQt5.kdenlive
   # ];
+  networking = {
+    hostName = host;  # Define your hostname.
+    dhcpcd.enable = false;
+    interfaces.enp0s3.ipv4.addresses = [{
+      address = "192.168.12.0";
+      prefixLength = 24;  # Specifies subnet mask. Default value!
+    }];
+    defaultGateway = "192.168.1.1";
+    nameservers = [ "1.1.1.1" "8.8.8.8" ];
+  };
+
   users.users.${username} = {
     description = "server";
   };
   hardware.keyboard.zsa.enable = true;
 
-  networking.hostName = host; # Define your hostname.
   services = {
     openssh = {
       hostKeys = [ 
@@ -34,6 +44,7 @@
         }
       ];
     };
+  };
 
 
 

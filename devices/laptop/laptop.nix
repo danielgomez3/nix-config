@@ -20,7 +20,6 @@ in
   users.users.${username} = {
     description = "laptop";
   };
-  networking.hostName = host; # Define your hostname.
   services = {
     tlp = {
       enable = true;

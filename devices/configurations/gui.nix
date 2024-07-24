@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, username, ... }:
+{ config, host, pkgs, lib, inputs, username, ... }:
 let
   modKey = "Mod4";
 in
@@ -6,6 +6,12 @@ in
 {
 
   # kanshi systemd service <https://nixos.wiki/wiki/Sway>
+  networking = {
+    hostName = host;  # Define your hostname.
+    dhcpcd.enable = true;
+  };
+
+
   systemd.user.services.kanshi = {
     description = "kanshi daemon";
     serviceConfig = {

@@ -28,7 +28,6 @@ in
   };
   hardware.keyboard.zsa.enable = true;
 
-  networking.hostName = host; # Define your hostname.
   services = {
     # openssh = {
     # };
