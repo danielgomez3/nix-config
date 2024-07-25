@@ -30,6 +30,7 @@ in
   # Enable networking
   networking = {
     hostName = host;  # Define your hostname.
+    dhcpcd.enable = true;
     domain = "home";
     wireless.iwd = {
     enable = true;
@@ -42,9 +43,6 @@ in
       };
     };
   };
-    dhcpcd = {
-      enable = true;
-    };
     # Open ports in the firewall.
     # firewall.allowedTCPPorts = [ 80 5000 ];
     # firewall.allowedUDPPorts = [ ... ];
@@ -104,13 +102,14 @@ in
     extraGroups = [ "wheel" ];
     openssh.authorizedKeys.keys = [ 
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9OcZ6CO1lDXOMQQawee8Fh6iydI8I+SXMdD9GESq8v daniel@desktop"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHdnOQw9c23oUEIBdZFrKb/r4lHIKLZ9Dz11Un0erVsj danielgomez3@server"
     ];
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    git wget curl pigz 
+    git wget curl pigz helix
     lm_sensors 
     woeusb ntfs3g
   ];
