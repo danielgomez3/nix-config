@@ -185,10 +185,14 @@ in
     ssh = {
       enable = true;
       extraConfig = ''
-        Host vps
-           HostName 46.226.105.34
-           User root
-           IdentityFile ~/.ssh/id_ed25519
+        Host server
+           HostName 192.168.12.149 
+           User danielgomez3
+
+        Host desktop
+           HostName 192.168.12.169
+           User daniel
+        
 
       '';
     };
