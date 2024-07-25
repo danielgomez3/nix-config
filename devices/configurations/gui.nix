@@ -7,7 +7,6 @@ in
 
   # kanshi systemd service <https://nixos.wiki/wiki/Sway>
   networking = {
-    hostName = host;  # Define your hostname.
     dhcpcd.enable = true;
   };
 

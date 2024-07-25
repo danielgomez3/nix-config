@@ -6,21 +6,13 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    deploy-flake = {
-      url = "github:boinkor-net/deploy-flake";
-      # The following are optional, but probably a good idea if you have these inputs:
-      inputs.nixpkgs.follows = "nixpkgs";
-      # inputs.rust-overlay.follows = "rust-overlay";
-    };
   };
 
-  outputs = inputs@{ self, nixpkgs, deploy-flake, ... }: 
+  outputs = inputs@{ self, nixpkgs, ... }: 
     let 
       system = "x86_64-linux";
     in {
       nixosConfigurations = {
-
-        apps.deploy-flake = deploy-flake.apps.deploy-flake.${system};
 
         desktop = nixpkgs.lib.nixosSystem {
           inherit system;

@@ -5,7 +5,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, username, ... }:
+{ config, pkgs, lib, inputs, host, username, ... }:
 let 
   # nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
   cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
@@ -29,6 +29,7 @@ in
 
   # Enable networking
   networking = {
+    hostName = host;  # Define your hostname.
     domain = "home";
     wireless.iwd = {
     enable = true;
@@ -102,7 +103,7 @@ in
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     openssh.authorizedKeys.keys = [ 
-"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCmbQTmXq4zFi8xxkHVGcWg63Vbs3RwsUMaXZCyB4+s4fkxkCkz2py3LrK2x0JcVvqUKpaIRuxt36TCA+jxVtIJJWowHR/0yCj/KH5htyvKvY+IxkYniOcSRVZ6oYkTKVQR+ExGeziCptsRSRTKlb7cAD1a8VdFR49/3VR5o0Mbo9brzaEpW+aAnX8cSV9sVxLSIBZe7VLCaiTToN1bhYKebHQcBVKYOvptIFDl3r8qW/A8Ej7JvV9/CjrqKz5Ntc527H6f98V3UrtfY/kRDnpngdZIXGwVC2vlShquzB7OJLsiuRhs/XY6BvuZuGlSwsMD8nRSXyFDnLNec8suWf8d2ijcj4uXhKRmVhsSJ1hrTMByyC6LEImzC4QO7gXHNJ4XSBdnIXmGNDCggrAniyzhlVP85MiOh9Yi7x5fAqwZCE0N+Nl+Sf3yGEinzN3qDUIUUMJmgvxljPejSlTRbNSkZZMUQGajSGykautcK4kup+NTGbmju9Nx3BqyZIY14fMbKjIFRdQzzRMQ2rnrXkkNIidW5UozUKoPZG79RVZBdbCbZhEHcFSwK0fuvmTxngL7Y+A7NGilqupFDrXWknS6Fn/XPPBaPHjwyJDsZMPq9OZd4M77JVlJm8KeBRxY5cQDLzSylgkjgGiyEBwvAqJRItxsy4g3C70LKttmrAYatw== daniel@desktop"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9OcZ6CO1lDXOMQQawee8Fh6iydI8I+SXMdD9GESq8v daniel@desktop"
     ];
   };
 
