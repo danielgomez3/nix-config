@@ -9,9 +9,8 @@
     [ # Include the results of the hardware scan.
       ./configurations/all.nix
       ./configurations/coding.nix
+      ./hardware-configuration.nix
       # /etc/nixos/hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   # NOTE: Unique configuration.nix content for desktop:
