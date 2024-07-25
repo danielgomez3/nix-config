@@ -30,6 +30,7 @@ in
   # Enable networking
   networking = {
     hostName = host;  # Define your hostname.
+    dhcpcd.enable = true;
     domain = "home";
     wireless.iwd = {
     enable = true;
@@ -42,9 +43,6 @@ in
       };
     };
   };
-    dhcpcd = {
-      enable = true;
-    };
     # Open ports in the firewall.
     # firewall.allowedTCPPorts = [ 80 5000 ];
     # firewall.allowedUDPPorts = [ ... ];

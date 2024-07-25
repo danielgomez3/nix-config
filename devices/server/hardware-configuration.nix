@@ -12,7 +12,6 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  boot.loader.grub.device = "nodev";
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/52a772cc-18b8-4861-9f15-7425c7f93ea6";
@@ -24,6 +23,7 @@
       fsType = "vfat";
     };
 
+  boot.loader.grub.device = "nodev"; 
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

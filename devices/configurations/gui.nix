@@ -6,9 +6,6 @@ in
 {
 
   # kanshi systemd service <https://nixos.wiki/wiki/Sway>
-  networking = {
-    dhcpcd.enable = true;
-  };
 
 
   systemd.user.services.kanshi = {
