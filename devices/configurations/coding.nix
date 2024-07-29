@@ -30,7 +30,17 @@ in
       ];
       programs = {
 
+        starship = {
+          enable = true;
+          enableBashIntegration = true;
+        };
+
         bash = {
+        bashrcExtra = ''
+          screenshot() {
+            read -p "Enter filename: " filename && grim -g "$(slurp)" ./''${filename}.png
+          }
+        '';
           shellAliases = {
              plan = "cd ~/Productivity/ && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
              zrf = "zellij run floating";
@@ -111,6 +121,30 @@ in
           enableBashIntegration = true;
           enableZshIntegration = true;
         };
+
+      zellij = {
+        enable = true;
+        settings = {
+          default_mode = "locked";
+          pane_frames = false;
+          theme = "default";
+          themes = {
+            default = {
+              bg = "#403d52";
+              fg = "#e0def4";
+              red = "#eb6f92";
+              green = "#31748f";
+              blue = "#9ccfd8";
+              yellow = "#f6c177";
+              magenta = "#c4a7e7";
+              orange = "#fe640b";
+              cyan = "#ebbcba";
+              black = "#26233a";
+              white = "#e0def4";
+            };
+          };
+        };
+      };
 
       };
     };

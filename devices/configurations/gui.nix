@@ -24,6 +24,23 @@ in
 
   security.rtkit.enable = true;  # Necessary for Pipewire
 
+  # For Wayland/Sway screen-sharing:
+  xdg.portal = {
+    config.common.default = "*";
+    enable = true;
+    wlr = {
+      enable = true;
+      settings = {
+        screencast = {
+          max_fps = 15;
+          chooser_type = "dmenu";
+          chooser_cmd = "${pkgs.wofi}/bin/wofi --show dmenu";
+        };
+      };
+    };
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+  };
+
   services = { 
     # greetd = {
     #   enable = true;
@@ -96,7 +113,7 @@ in
   home-manager.users.${username} = {
       home.packages = with pkgs; [
           # Sway/Wayland
-          grim slurp wl-clipboard xorg.xrandr swayidle swaylock flashfocus autotiling sway-contrib.grimshot wlprop pw-volume adwaita-icon-theme adwaita-qt sway-audio-idle-inhibit brightnessctl
+          grim slurp wl-clipboard xorg.xrandr swayidle swaylock flashfocus autotiling sway-contrib.grimshot wlprop pw-volume adwaita-icon-theme adwaita-qt sway-audio-idle-inhibit brightnessctl swappy
           # gui apps
           firefox zoom-us libreoffice slack spotify okular
           cmus xournalpp pavucontrol
@@ -196,55 +213,29 @@ in
 
     programs = {
 
-      starship = {
-        enable = true;
-        enableBashIntegration = true;
-      };
-
       wezterm = {
         enable = true;
         extraConfig = ''
-        local wezterm = require 'wezterm'
-        local mux = wezterm.mux
+          -- local wezterm = require 'wezterm'
+          -- local mux = wezterm.mux
 
-        wezterm.on('gui-startup', function()
-          -- Tab 1: Plan
-          local tab, first_pane, window = mux.spawn_window {}
-          first_pane:send_text "zellij -l welcome\n"
-        end)
+          -- wezterm.on('gui-startup', function()
+          --   -- Tab 1: Plan
+          --   local tab, first_pane, window = mux.spawn_window {}
+          --   first_pane:send_text "zellij -l welcome\n"
+          -- end)
 
-        return {
-          -- default_prog = { 'zellij', '-l', 'welcome' },
+          return {
+          --   -- default_prog = { 'zellij', '-l', 'welcome' },
           hide_tab_bar_if_only_one_tab = true,
           color_scheme = "rose-pine",
-        }
+          }
         '';
       };
 
-      zellij = {
+      obs-studio = {
         enable = true;
-        settings = {
-          default_mode = "locked";
-          pane_frames = false;
-          theme = "default";
-          themes = {
-            default = {
-              bg = "#403d52";
-              fg = "#e0def4";
-              red = "#eb6f92";
-              green = "#31748f";
-              blue = "#9ccfd8";
-              yellow = "#f6c177";
-              magenta = "#c4a7e7";
-              orange = "#fe640b";
-              cyan = "#ebbcba";
-              black = "#26233a";
-              white = "#e0def4";
-            };
-          };
-        };
       };
-
 
       zathura = {
         enable = true;

@@ -48,8 +48,6 @@ in
     # firewall.allowedUDPPorts = [ ... ];
     # Or disable the firewall altogether.
     firewall.enable = false;
-    firewall.allowedTCPPorts = [ 8384 22000 ];
-    firewall.allowedUDPPorts = [ 22000 21027 ];
   };
 
 
@@ -86,10 +84,59 @@ in
     syncthing = {
       enable = true;
       user = username;
-      # dataDir = "/home/${username}/Documents/";
-      configDir = "/home/${username}/.config/syncthing";   # Folder for Syncthing's settings and keys
+      dataDir = "/home/${username}/.config/data";
+      configDir = "/home/${username}/.config/syncthing";  # Folder for Syncthing's settings and keys
       overrideDevices = true;     # overrides any devices added or deleted through the WebUI
       overrideFolders = true;     # overrides any folders added or deleted through the WebUI
+      settings = {
+        options.urAccepted = -1;
+      };
+      settings = {
+        devices = {
+          "desktop" = { 
+            id = "S6AZSHX-D52JRH4-BZAWTPS-7LZH4MT-KTHEJK3-GXJ47AY-6ZPU2GU-PEKOXQ2"; 
+            autoAcceptFolders = true;
+          };
+          "phone" = { 
+            id = "L4PI6U7-VTRHUSU-WLSC3GV-EHWG4QX-DMSNSEL-DVACMSN-7D2EOIT-AIREAAZ"; 
+            autoAcceptFolders = true;
+          };
+          "server" = { 
+            id = "2Q5KLG2-JH7EGJS-6SSYWIL-7K43Y56-YEN524B-BX2APWC-FRJ6TRQ-2ZTSOAJ"; 
+            autoAcceptFolders = true;
+          };
+          "laptop" = { 
+            id = "N4J2FSZ-DDQTYR2-RT6FC3Q-GKVPV66-MCMP2FD-6JDYI4P-JZYQR2L-OEOKHQW"; 
+            autoAcceptFolders = true;
+          };
+        };
+        folders = {
+          "Documents" = {         # Name of folder in Syncthing, also the folder ID
+            path = "/home/${username}/Documents";    # Which folder to add to Syncthing
+            devices = [ "desktop" "server" "laptop" ];      # Which devices to share the folder with
+            autoAccept = true;
+            id = "Documents";
+          };
+          "Projects" = {
+            path = "/home/${username}/Projects";
+            devices = [ "desktop" "server" "laptop" ];
+            autoAccept = true;
+            id = "Projects";
+          };
+          "flake" = {
+            path = "/home/${username}/flake";
+            devices = [ "desktop" "server" "laptop" ];
+            autoAccept = true;
+            id = "flake";
+          };
+          "Productivity" = {
+            path = "/home/${username}/Productivity";
+            devices = [ "desktop" "server" "laptop" "phone" ];
+            autoAccept = true;
+            id = "Productivity";
+          };
+        };
+      };
     };
   };
 
@@ -103,6 +150,7 @@ in
     openssh.authorizedKeys.keys = [ 
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9OcZ6CO1lDXOMQQawee8Fh6iydI8I+SXMdD9GESq8v daniel@desktop"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHdnOQw9c23oUEIBdZFrKb/r4lHIKLZ9Dz11Un0erVsj danielgomez3@server"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGQ4W1AIoMxiKJQXOwJlkJkwZ0pMOe/akO86duVI/NWG daniel@laptop"
     ];
   };
 

@@ -21,6 +21,9 @@ in
     description = "laptop";
   };
   services = {
+    syncthing = {
+      guiAddress = "127.0.0.1:8383";
+    };
     tlp = {
       enable = true;
       settings = {
@@ -40,9 +43,6 @@ in
        STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
       };
 
-    };
-    syncthing = {
-      guiAddress = "127.0.0.1:8383";
     };
   };
 
