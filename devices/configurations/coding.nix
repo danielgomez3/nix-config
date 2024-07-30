@@ -8,13 +8,26 @@ let
 in
 {
   #virtualisation.docker.enable = true;
+  services.mysql = {
+    enable = true;
+    package = pkgs.mariadb;
+    dataDir = "/var/lib/mysql";
+    ensureUsers = [
+      {
+        name = "root";
+        ensurePermissions = {
+          "*.*" = "ALL PRIVILEGES";
+        };
+      }
+    ];
+  };
   
   home-manager = { 
     useGlobalPkgs = true;
     users.${username} = {
       home.packages = with pkgs; [
       # coding/dev
-      shellcheck exercism texliveFull csvkit sshx
+      shellcheck exercism texliveFull csvkit sshx fzf
       pandoc pandoc-include poppler_utils haskellPackages.pandoc-plot 
       myPythonEnv
       # cli apps
@@ -24,6 +37,8 @@ in
       toilet fortune lolcat krabby cowsay figlet
       # Haskell
       cabal-install stack ghc
+      # SQL
+      sqlint
       # My personal scripts:
       # (import ./my-awesome-script.nix { inherit pkgs;})
 
@@ -81,6 +96,7 @@ in
           settings = {
               theme = "rose_pine";  # serious mode..
               editor = {
+                true-color = true;
                 mouse = true;
                 bufferline = "multiple";
                 # whitespace.characters = {

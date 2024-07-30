@@ -183,6 +183,7 @@ in
         packages = with pkgs; [
           iptables dmidecode 
           eza entr tldr bc tree trash-cli 
+          plexamp
         ];
       };
 
