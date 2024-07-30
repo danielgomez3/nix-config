@@ -6,6 +6,12 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # myPrivateFlakeRepo = {
+    #   url = "github:danielgomez3/flake";
+    #   # type = "github";
+    #   # owner = "danielgomez3";
+    #   # repo = "flake";
+    # };
   };
 
   outputs = inputs@{ self, nixpkgs, ... }: 
@@ -49,6 +55,19 @@
           };
           modules = [
             ./devices/server/server.nix
+            inputs.home-manager.nixosModules.default
+          ];
+        };
+
+        rescueDevice = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            username = "danielgomez3";
+            host = "rescueDevice";
+          };
+          modules = [
+            ./devices/rescueDevice/rescueDevice.nix
             inputs.home-manager.nixosModules.default
           ];
         };
