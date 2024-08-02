@@ -82,8 +82,13 @@ in
         extraConfig = ''
         output HDMI-A-1 scale 2
         '';
+        config = rec {
+          startup = [
+            { command = "kdesms"; }
+            { command = "spotify"; }
+          ];
+        };
       };
     };
   };
-
 }

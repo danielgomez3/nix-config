@@ -5,6 +5,7 @@
 
 let 
   c_d = "configurations";
+  modKey = "Mod4";
 in
 {
   imports =
@@ -51,6 +52,19 @@ in
    xkb.options = "caps:swapescape";
   };
 
+  # home-manager.users.${username} = {
+  #     wayland.windowManager.sway = {
+  #       extraConfig = ''
+  #       '';
+  #       config = rec {
+  #         startup = [
+  #           { command = "slack"; }
+  #           { command = "kdesms"; }
+  #           { command = "pavucontrol"; }
+  #         ];
+  #       };
+  #     };
+  # };
 
   # NOTE: Unique home-manager config for laptop:
   # home-manager = { 

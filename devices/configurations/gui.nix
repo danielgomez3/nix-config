@@ -113,7 +113,7 @@ in
   home-manager.users.${username} = {
       home.packages = with pkgs; [
           # Sway/Wayland
-          grim slurp wl-clipboard xorg.xrandr swayidle swaylock flashfocus autotiling sway-contrib.grimshot wlprop pw-volume adwaita-icon-theme adwaita-qt sway-audio-idle-inhibit brightnessctl swappy
+          grim slurp wl-clipboard xorg.xrandr swayidle swaylock flashfocus autotiling sway-contrib.grimshot wlprop pw-volume adwaita-icon-theme adwaita-qt sway-audio-idle-inhibit brightnessctl swappy 
           # gui apps
           firefox zoom-us libreoffice slack spotify okular
           cmus xournalpp pavucontrol
@@ -125,8 +125,16 @@ in
           bluez bluez-alsa bluez-tools
       ];
 
+
+      services.mako = {
+        enable = true;
+        defaultTimeout = 5;
+        maxVisible = 3;
+      };
+
       wayland.windowManager.sway = {
         enable = true;
+        wrapperFeatures.gtk = true;
         extraConfig = ''
           workspace number 1
           exec sleep 5; systemctl --user start kanshi.service
@@ -136,9 +144,6 @@ in
           #bindsym XF86AudioLowerVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'
           #bindsym XF86AudioMute exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
 
-          bindsym XF86AudioRaiseVolume exec "pw-volume change +2.5%; pkill -RTMIN+8 waybar"
-          bindsym XF86AudioLowerVolume exec "pw-volume change -2.5%; pkill -RTMIN+8 waybar"
-          bindsym XF86AudioMute exec "pw-volume mute toggle; pkill -RTMIN+8 waybar"
           #bindsym $mod+n exec 'flashfocus --flash'
           for_window [class="^.*"] border pixel 0
           titlebar_border_thickness 0
@@ -150,19 +155,11 @@ in
 
           ## Sleep
 
-          #exec swayidle -w \
-          #	timeout 320 'swaylock -c 000000 -f' \
-          #	timeout 350 'swaymsg "output * power off"' \
-          #	resume 'swaymsg "output * power on"'
-
           exec swayidle -w \
-            timeout 280 'brightnessctl set 10% -s' resume 'brightnessctl -r' \
           	timeout 320 'swaylock -c 000000 -f' \
           	timeout 350 'swaymsg "output * power off"' \
           	resume 'swaymsg "output * power on"'
 
-
-          
           #swayidle -w \
           #  timeout 320 'brightnessctl set 10% -s' resume 'brightnessctl -r' \
           #  timeout 350 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
@@ -179,7 +176,8 @@ in
           focus_on_window_activation none
           assign [class="[Ss]lack"] workspace 2
           assign [class="[Ss]potify" title="[Ss]potify"] workspace 2
-          assign [title="KDE Connect SMS"] workspace 2
+          assign [title="KDE Connect SMS"] workspace 10
+          assign [title="Volume Control"] workspace 10
           bindsym ${modKey}+Semicolon exec --no-startup-id flash_window
 
 
@@ -188,9 +186,10 @@ in
         config = rec {
           modifier = "${modKey}";
           terminal = "wezterm";
-          # startup = [
-          #   { command = "firefox"; }
-          # ];
+          startup = [
+            { command = "slack"; }
+            { command = "pavucontrol"; }
+          ];
           # keybindings
           bars = [
             {

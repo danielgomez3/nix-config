@@ -195,8 +195,8 @@ in
           export HISTCONTROL=ignoreboth:erasedups
           shopt -s autocd cdspell globstar extglob nocaseglob
           # 1 tab autocomplete:
-          bind 'set show-all-if-ambiguous on'
-          bind 'set completion-ignore-case on'
+          #bind 'set show-all-if-ambiguous on'
+          #bind 'set completion-ignore-case on'
 
           c() { z "$@" && eza --icons --color=always --group-directories-first; }
           #e() { [ $# -eq 0 ] && hx . || hx "$@"; }

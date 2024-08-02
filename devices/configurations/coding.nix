@@ -141,7 +141,7 @@ in
       zellij = {
         enable = true;
         settings = {
-          default_mode = "locked";
+          # default_mode = "locked";
           pane_frames = false;
           theme = "default";
           themes = {
