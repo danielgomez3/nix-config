@@ -36,10 +36,11 @@ in
     #   kernel = "https://boot.netboot.xyz";
     # };
     xserver = {
-      xkb.options = "";
+      xkb = {
+        options = "caps:swapescape";
+        extraLayouts.${username}.symbolsFile = ./custom_symbols;
+      };
     };
-  };
-  services = {
     syncthing = {
       guiAddress = "127.0.0.1:8385";
     };
@@ -84,7 +85,7 @@ in
         '';
         config = rec {
           startup = [
-            { command = "kdesms"; }
+            { command = "kdeconnect-sms"; }
             { command = "spotify"; }
           ];
         };

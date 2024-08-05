@@ -33,14 +33,14 @@ in
     dhcpcd.enable = true;
     domain = "home";
     wireless.iwd = {
-    enable = true;
-    settings = {
-      IPv6 = {
-        Enabled = true;
-      };
-      Settings = {
-        AutoConnect = true;
-      };
+      enable = true;
+      settings = {
+        IPv6 = {
+          Enabled = true;
+        };
+        Settings = {
+          AutoConnect = true;
+        };
     };
   };
     # Open ports in the firewall.

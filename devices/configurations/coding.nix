@@ -132,11 +132,11 @@ in
           };
         };
 
-        fzf = { 
-          enable = false;
-          enableBashIntegration = true;
-          enableZshIntegration = true;
-        };
+      fzf = { 
+        enable = false;
+        enableBashIntegration = true;
+        enableZshIntegration = true;
+      };
 
       zellij = {
         enable = true;

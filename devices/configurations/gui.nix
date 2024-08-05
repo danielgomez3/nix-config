@@ -176,7 +176,7 @@ in
           focus_on_window_activation none
           assign [class="[Ss]lack"] workspace 2
           assign [class="[Ss]potify" title="[Ss]potify"] workspace 2
-          assign [title="KDE Connect SMS"] workspace 10
+          assign [title="KDE Connect SMS"] workspace 2
           assign [title="Volume Control"] workspace 10
           bindsym ${modKey}+Semicolon exec --no-startup-id flash_window
 
