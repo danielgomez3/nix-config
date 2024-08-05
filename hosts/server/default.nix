@@ -28,7 +28,15 @@
   services = {
     coding = {
       enable = true;
-      greeter = "Daniel";
+      greeter = "${username}";
+    };
+    gui = {
+      enable = true;
+      greeter = "${username}";
+    };
+    all = {
+      enable = true;
+      greeter = "${username}";
     };
     plex = {
       enable = true;

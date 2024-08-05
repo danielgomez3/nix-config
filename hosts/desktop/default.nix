@@ -6,9 +6,6 @@
 {
   imports =
     [ 
-      ../../modules/all.nix
-      ../../modules/gui.nix
-      ../../modules/coding.nix
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
     ];
