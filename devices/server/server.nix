@@ -35,44 +35,7 @@
       openFirewall = true;
     };
     syncthing = {
-    #   enable = true;
-    #   user = username;
-    #   dataDir = "/home/${username}/.config/data";
-    #   configDir = "/home/${username}/.config/syncthing";  # Folder for Syncthing's settings and keys
-    #   overrideDevices = true;     # overrides any devices added or deleted through the WebUI
-    #   overrideFolders = true;     # overrides any folders added or deleted through the WebUI
       guiAddress = "0.0.0.0:8384";
-    #   settings = {
-    #     options.urAccepted = -1;
-    #   };
-    #   settings = {
-    #     folders = {
-    #       "Documents" = {         # Name of folder in Syncthing, also the folder ID
-    #         path = "/home/${username}/Documents";    # Which folder to add to Syncthing
-    #         devices = [ "desktop" "server" ];      # Which devices to share the folder with
-    #         autoAccept = true;
-    #         id = "Documents";
-    #       };
-    #       "Projects" = {
-    #         path = "/home/${username}/Projects";
-    #         devices = [ "desktop" "server" ];
-    #         autoAccept = true;
-    #         id = "Projects";
-    #       };
-    #       "flake" = {
-    #         path = "/home/${username}/flake";
-    #         devices = [ "desktop" "server" ];
-    #         autoAccept = true;
-    #         id = "flake";
-    #       };
-    #       "Productivity" = {
-    #         path = "/home/${username}/Productivity";
-    #         devices = [ "desktop" "server" "phone" ];
-    #         autoAccept = true;
-    #         id = "Productivity";
-    #       };
-    #     };
-    #   };
     };
   };
 

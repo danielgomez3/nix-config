@@ -9,9 +9,9 @@ in
 {
   imports =
     [ 
-      ../${c_d}/all.nix
-      ../${c_d}/gui.nix
-      ../${c_d}/coding.nix
+      ../configurations/all.nix
+      ../configurations/gui.nix
+      ../configurations/coding.nix
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
     ];
@@ -34,7 +34,11 @@ in
   services = {
     coding = {
       enable = true;
-      greeter = "Daniel";
+      greeter = "${username}";
+    };
+    gui = {
+      enable = true;
+      greeter = "${username}";
     };
     # openssh = {
     # };
