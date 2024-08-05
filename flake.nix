@@ -17,11 +17,12 @@
   outputs = inputs@{ self, nixpkgs, ... }: 
     let 
       system = "x86_64-linux";
+      username = "daniel";
     in {
       nixosConfigurations = {
+        inherit system username inputs;
 
         desktop = nixpkgs.lib.nixosSystem {
-          inherit system;
           specialArgs = {
             inherit inputs;
             username = "daniel";
@@ -34,10 +35,7 @@
         };
 
         laptop = nixpkgs.lib.nixosSystem {
-          inherit system;
           specialArgs = {
-            inherit inputs;
-            username = "daniel";
             host = "laptop";
           };
           modules = [
@@ -47,9 +45,7 @@
         };
 
         server = nixpkgs.lib.nixosSystem {
-          inherit system;
           specialArgs = {
-            inherit inputs;
             username = "danielgomez3";
             host = "server";
           };
@@ -60,10 +56,9 @@
         };
 
         rescueDevice = nixpkgs.lib.nixosSystem {
-          inherit system;
           specialArgs = {
             inherit inputs;
-            username = "danielgomez3";
+            username = "rescue";
             host = "rescueDevice";
           };
           modules = [
@@ -73,7 +68,6 @@
         };
 
         customIso = nixpkgs.lib.nixosSystem {
-          inherit system;
           modules = [
             ./scripts/installer/installer.nix
           ];
