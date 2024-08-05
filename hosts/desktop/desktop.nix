@@ -3,15 +3,12 @@
 
 { pkgs, inputs, username, host, ... }:
 
-let 
-  c_d = "configurations";
-in
 {
   imports =
     [ 
-      ../configurations/all.nix
-      ../configurations/gui.nix
-      ../configurations/coding.nix
+      ../../modules/all.nix
+      ../../modules/gui.nix
+      ../../modules/coding.nix
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
     ];

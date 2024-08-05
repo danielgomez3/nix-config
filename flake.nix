@@ -28,7 +28,7 @@
             host = "desktop";
             };
           modules = [
-            ./devices/desktop/desktop.nix
+            ./hosts/desktop/desktop.nix
             inputs.home-manager.nixosModules.default
           ];
         };
