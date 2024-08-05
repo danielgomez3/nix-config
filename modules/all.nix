@@ -24,12 +24,15 @@ in
   };
 
   config = mkIf cfg.enable {
+
     # Bootloader.
     boot.loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
       systemd-boot.configurationLimit = 3;
     };
+
+    systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true";  # Don't create default ~/Sync folder
 
     nixpkgs.config.allowUnfree = true;
 
@@ -59,9 +62,6 @@ in
       # Or disable the firewall altogether.
       firewall.enable = false;
     };
-
-
-
 
     # Set your time zone.
     time.timeZone = "America/New_York";

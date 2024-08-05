@@ -5,14 +5,7 @@
 { config, pkgs, lib, inputs, modulesPath, username, host, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ../configurations/all.nix
-      ../configurations/coding.nix
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-      # /etc/nixos/hardware-configuration.nix
-    ];
+  imports = [ ./hardware-configuration.nix ];  
 
   # NOTE: Unique configuration.nix content for server:
   # environment.systemPackages = with pkgs; [
@@ -24,13 +17,8 @@
   };
   hardware.keyboard.zsa.enable = true;
 
-  systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true";  # Don't create default ~/Sync folder
   services = {
     coding = {
-      enable = true;
-      greeter = "${username}";
-    };
-    gui = {
       enable = true;
       greeter = "${username}";
     };

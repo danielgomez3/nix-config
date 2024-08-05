@@ -4,16 +4,7 @@
 { pkgs, inputs, username, host, ... }:
 
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-    ];
-
-  # NOTE: Unique configuration.nix content for desktop:
-  # environment.systemPackages = with pkgs; [
-  #   libsForQt5.kdenlive
-  # ];
+  imports = [ ./hardware-configuration.nix ];  
 
   users.users.${username} = {
     description = "desktop";
