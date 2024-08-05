@@ -32,6 +32,10 @@ in
   ];
 
   services = {
+    coding = {
+      enable = true;
+      greeter = "Daniel";
+    };
     # openssh = {
     # };
     # pixiecore = {
