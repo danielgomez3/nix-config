@@ -33,43 +33,22 @@
       nixosConfigurations = {
 
         desktop = mkNixosSystem {
-          specialArgs = commonSpecialArgs // {host = "desktop"; };
+          specialArgs = commonSpecialArgs // { host = "desktop"; };
           modules = commonModules ++ [ ./hosts/desktop ];
         };
-
-        laptop = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            host = "laptop";
-          };
-          modules = [
-            ./devices/laptop/laptop.nix
-            inputs.home-manager.nixosModules.default
-          ];
+        laptop = mkNixosSystem {
+          specialArgs = commonSpecialArgs // { host = "laptop"; };
+          modules = commonModules ++ [ ./hosts/laptop ];
         };
-
-        server = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            username = "danielgomez3";
-            host = "server";
-          };
-          modules = [
-            ./devices/server/server.nix
-            inputs.home-manager.nixosModules.default
-          ];
+        server = mkNixosSystem {
+          specialArgs = commonSpecialArgs // { username = "danielgomez3"; host = "server"; };
+          modules = commonModules ++ [ ./hosts/server ];
         };
-
-        rescueDevice = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            username = "rescue";
-            host = "rescueDevice";
-          };
-          modules = [
-            ./devices/rescueDevice/rescueDevice.nix
-            inputs.home-manager.nixosModules.default
-          ];
+        rescueDevice = mkNixosSystem {
+          specialArgs = commonSpecialArgs // {  username = "rescue"; host = "server"; };
+          modules = commonModules ++ [ ./hosts/rescueDevice ];
         };
-
-        customIso = nixpkgs.lib.nixosSystem {
+        customIso = mkNixosSystem {
           modules = [
             ./scripts/installer/installer.nix
           ];
