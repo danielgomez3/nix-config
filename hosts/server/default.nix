@@ -7,11 +7,6 @@
 {
   imports = [ ./hardware-configuration.nix ];  
 
-  # NOTE: Unique configuration.nix content for server:
-  # environment.systemPackages = with pkgs; [
-  #   libsForQt5.kdenlive
-  # ];
-
   users.users.${username} = {
     description = "server";
   };
