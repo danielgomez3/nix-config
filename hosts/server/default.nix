@@ -32,7 +32,6 @@
 
 
 
-  # NOTE: Unique home-manager config for server:
   # home-manager = { 
   #   extraSpecialArgs = { inherit inputs; };
     # users.${username} = {

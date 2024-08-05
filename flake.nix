@@ -48,10 +48,9 @@
           specialArgs = commonSpecialArgs // {  username = "rescue"; host = "server"; };
           modules = commonModules ++ [ ./hosts/rescueDevice ];
         };
+        # FIXME not really used or working..
         customIso = mkNixosSystem {
-          modules = [
-            ./scripts/installer/installer.nix
-          ];
+          modules = [ ./hosts/customIso ];
         };
       };
     };

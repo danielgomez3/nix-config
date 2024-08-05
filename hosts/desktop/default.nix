@@ -62,17 +62,7 @@
   #     enable = true;
   #   }; 
   # };
-  # console.font =
-  #   "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
-  # services.xserver.dpi = 230;
-  # environment.variables = {
-  #   GDK_SCALE = "2";
-  #   GDK_DPI_SCALE = "2";
-  #   _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
-  #   };
 
-
-  # NOTE: Unique home-manager config for desktop:
   home-manager = { 
     extraSpecialArgs = { inherit inputs; };
     users.${username} = {
