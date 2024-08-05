@@ -24,16 +24,17 @@
         inherit (args) specialArgs modules;
       };
       commonSpecialArgs = { inherit inputs system username; };
+      commonModules = [
+        inputs.home-manager.nixosModules.default
+        ./modules
+      ];
 
     in {
       nixosConfigurations = {
 
         desktop = mkNixosSystem {
           specialArgs = commonSpecialArgs // {host = "desktop"; };
-          modules = [
-            ./hosts/desktop
-            inputs.home-manager.nixosModules.default
-          ];
+          modules = commonModules ++ [ ./hosts/desktop ];
         };
 
         laptop = nixpkgs.lib.nixosSystem {
