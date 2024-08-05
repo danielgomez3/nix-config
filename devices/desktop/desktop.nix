@@ -40,6 +40,10 @@ in
       enable = true;
       greeter = "${username}";
     };
+    all = {
+      enable = true;
+      greeter = "${username}";
+    };
     # openssh = {
     # };
     # pixiecore = {
