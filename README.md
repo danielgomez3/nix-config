@@ -2,6 +2,9 @@
 
 > A learning framework for those new to Nix Flakes and Linux deployment.
 
+## TODO
+Completely refactor flake.nix
+
 ## Problem
   - I manage two systems, a laptop and a desktop. I want some similarity in their configuration, and some differences.
   - I want infrastructure as code --> 🤓 (you).
@@ -39,4 +42,4 @@
     + A `configuration.nix` that contains universal options for all your systems.
   - `hardware-configuration.nix` is to be merged with your unique flake config for simplicity!
   - This could also fit inside one singular `flake.nix` file, but you'll find that that breaks modularity!
-
+g
