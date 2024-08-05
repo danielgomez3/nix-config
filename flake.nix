@@ -18,16 +18,18 @@
     let 
       system = "x86_64-linux";
       username = "daniel";
+
+      # Helper function to build stuff
+      mkNixosSystem = args: nixpkgs.lib.nixosSystem {
+        inherit (args) specialArgs modules;
+      };
+      commonSpecialArgs = { inherit inputs system username; };
+
     in {
       nixosConfigurations = {
-        inherit system username inputs;
 
-        desktop = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-            username = "daniel";
-            host = "desktop";
-            };
+        desktop = mkNixosSystem {
+          specialArgs = commonSpecialArgs // {host = "desktop"; };
           modules = [
             ./hosts/desktop
             inputs.home-manager.nixosModules.default
@@ -57,7 +59,6 @@
 
         rescueDevice = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs;
             username = "rescue";
             host = "rescueDevice";
           };
