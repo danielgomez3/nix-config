@@ -26,6 +26,11 @@ in
   };
   hardware.keyboard.zsa.enable = true;
 
+  boot.blacklistedKernelModules = [
+    # "iwlwifi"
+    "rtw88_8821ce"
+  ];
+
   services = {
     # openssh = {
     # };
@@ -38,7 +43,11 @@ in
     xserver = {
       xkb = {
         options = "caps:swapescape";
-        extraLayouts.${username}.symbolsFile = ./custom_symbols;
+        # extraLayouts.${username} = {
+        #   description = "Daniel's remapped keys";
+        #   languages = ["eng"];
+        #   symbolsFile = ./custom_symbols;
+        # };
       };
     };
     syncthing = {
@@ -70,13 +79,18 @@ in
   home-manager = { 
     extraSpecialArgs = { inherit inputs; };
     users.${username} = {
-      home.pointerCursor = {
-        name = "Adwaita";
-        package = pkgs.adwaita-icon-theme;
-        size = 24;
-        x11 = {
-          enable = true;
-          defaultCursor = "Adwaita";
+      home = {
+        # packages = with pkgs; [
+        #   xorg.xmodmap
+        # ];
+        pointerCursor = {
+          name = "Adwaita";
+          package = pkgs.adwaita-icon-theme;
+          size = 24;
+          x11 = {
+            enable = true;
+            defaultCursor = "Adwaita";
+          };
         };
       };
       wayland.windowManager.sway = {
