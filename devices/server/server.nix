@@ -26,6 +26,10 @@
 
   systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true";  # Don't create default ~/Sync folder
   services = {
+    coding = {
+      enable = true;
+      greeter = "Daniel";
+    };
     plex = {
       enable = true;
       openFirewall = true;

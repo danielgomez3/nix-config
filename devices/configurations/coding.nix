@@ -17,10 +17,6 @@ in
     };
   };
   config = mkIf cfg.enable {
-    systemd.services.coding = {
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig.ExecStart = "Yo, coding, ${escapeShellArg cfg.greeter}!'";
-    };
     #virtualisation.docker.enable = true;
     services.mysql = {
       enable = true;
