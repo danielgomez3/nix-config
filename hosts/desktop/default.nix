@@ -1,7 +1,7 @@
 # desktop.nix
 # NOTE: This contains all common features I want only my desktop to have!
 
-{ pkgs, inputs, username, host, ... }:
+{ pkgs, inputs, username, ... }:
 
 {
   imports = [ ./hardware-configuration.nix ];  
@@ -94,7 +94,7 @@
         extraConfig = ''
         output HDMI-A-1 scale 2
         '';
-        config = rec {
+        config = {
           startup = [
             { command = "kdeconnect-sms"; }
             { command = "spotify"; }
