@@ -45,7 +45,7 @@
           modules = commonModules ++ [ ./hosts/server ];
         };
         rescueDevice = mkNixosSystem {
-          specialArgs = commonSpecialArgs // {  username = "rescue"; host = "server"; };
+          specialArgs = commonSpecialArgs // { username = "rescue"; host = "laptop"; };
           modules = commonModules ++ [ ./hosts/rescueDevice ];
         };
         # FIXME not really used or working..

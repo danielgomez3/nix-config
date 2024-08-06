@@ -69,7 +69,7 @@ in
             shellAliases = {
                plan = "cd ~/Productivity/ && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
                zrf = "zellij run floating";
-               conf = "cd ~/flake/devices/configurations/ && hx coding.nix all.nix";
+               conf = "cd ~/flake/ && hx modules/coding.nix modules/all.nix";
                notes = "cd ~/Productivity/notes && hx .";
              };
           };
