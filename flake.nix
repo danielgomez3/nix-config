@@ -19,7 +19,7 @@
       system = "x86_64-linux";
       username = "daniel";
 
-      # Helper function to build stuff
+      # Helper function to build nixosSystem
       mkNixosSystem = args: nixpkgs.lib.nixosSystem {
         inherit (args) specialArgs modules;
       };
@@ -28,25 +28,30 @@
         inputs.home-manager.nixosModules.default
         ./modules
       ];
+      # Helper function to get host-specific modules and respective hardware-configuration.nix
+      hostModules = hostDir: commonModules ++ [
+        "${hostDir}/hardware-configuration.nix"
+        hostDir
+      ];
 
     in {
       nixosConfigurations = {
 
         desktop = mkNixosSystem {
           specialArgs = commonSpecialArgs // { host = "desktop"; };
-          modules = commonModules ++ [ ./hosts/desktop ];
+          modules = hostModules ./hosts/desktop;
         };
         laptop = mkNixosSystem {
           specialArgs = commonSpecialArgs // { host = "laptop"; };
-          modules = commonModules ++ [ ./hosts/laptop ];
+          modules = hostModules ./hosts/laptop;
         };
         server = mkNixosSystem {
           specialArgs = commonSpecialArgs // { username = "danielgomez3"; host = "server"; };
-          modules = commonModules ++ [ ./hosts/server ];
+          modules = hostModules ./hosts/server;
         };
         rescueDevice = mkNixosSystem {
           specialArgs = commonSpecialArgs // { username = "rescue"; host = "laptop"; };
-          modules = commonModules ++ [ ./hosts/rescueDevice ];
+          modules = hostModules ./hosts/rescueDevice;
         };
         # FIXME not really used or working..
         customIso = mkNixosSystem {
