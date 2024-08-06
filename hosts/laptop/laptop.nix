@@ -4,20 +4,9 @@
 { pkgs, inputs, username, host, ... }:
 
 let 
-  c_d = "configurations";
   modKey = "Mod4";
 in
 {
-  imports =
-    [ 
-      ../${c_d}/all.nix
-      ../${c_d}/gui.nix
-      ../${c_d}/coding.nix
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-    ];
-
- # NOTE: Unique configuration.nix content for desktop:
   users.users.${username} = {
     description = "laptop";
   };

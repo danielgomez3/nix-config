@@ -5,8 +5,6 @@
 { username, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ];  
-
   users.users.${username} = {
     description = "server";
   };

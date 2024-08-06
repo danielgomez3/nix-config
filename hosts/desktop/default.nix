@@ -4,8 +4,6 @@
 { pkgs, inputs, username, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ];  
-
   users.users.${username} = {
     description = "desktop";
   };
