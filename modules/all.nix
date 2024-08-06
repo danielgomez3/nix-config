@@ -127,6 +127,12 @@ in
               autoAccept = true;
               id = "Documents";
             };
+            "Productivity" = {
+              path = "/home/${username}/Documents/productivity";
+              devices = [ "desktop" "server" "laptop" ];
+              autoAccept = true;
+              id = "Productivity";
+            };
             "Projects" = {
               path = "/home/${username}/Projects";
               devices = [ "desktop" "server" "laptop" ];
@@ -138,12 +144,6 @@ in
               devices = [ "desktop" "server" "laptop" ];
               autoAccept = true;
               id = "flake";
-            };
-            "Productivity" = {
-              path = "/home/${username}/Productivity";
-              devices = [ "desktop" "server" "laptop" "phone" ];
-              autoAccept = true;
-              id = "Productivity";
             };
           };
         };
@@ -249,7 +249,7 @@ in
                User danielgomez3
 
             Host desktop
-               HostName 192.168.12.169
+               HostName 192.168.12.182
                User daniel
         
 

@@ -67,10 +67,10 @@ in
             }
           '';
             shellAliases = {
-               plan = "cd ~/Productivity/ && hx ~/Productivity/planning/todo.md ~/Productivity/planning/credentials.md";
-               zrf = "zellij run floating";
+               plan = "cd ~/Documents/productivity/ && hx planning/todo.md planning/credentials.md";
                conf = "cd ~/flake/ && hx modules/coding.nix modules/all.nix";
-               notes = "cd ~/Productivity/notes && hx .";
+               notes = "cd ~/Documents/productivity/notes && hx .";
+               zrf = "zellij run floating";
              };
           };
 

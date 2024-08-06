@@ -136,8 +136,8 @@ in
 
         services.mako = {
           enable = true;
-          defaultTimeout = 8;
-          maxVisible = 8;
+          defaultTimeout = 16;
+          maxVisible = 16;
         };
 
         wayland.windowManager.sway = {

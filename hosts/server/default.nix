@@ -25,6 +25,11 @@
     };
     syncthing = {
       guiAddress = "0.0.0.0:8384";
+      settings.gui = {
+        user = "${username}";
+        # FIXME: This is bad. This is a unique password tho.
+        password = "naruto88";  
+      };
     };
   };
 
