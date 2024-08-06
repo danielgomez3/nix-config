@@ -36,7 +36,7 @@ in
       useGlobalPkgs = true;
       users.${username} = {
         home.packages = with pkgs; [
-        # coding/dev
+        # dev
         shellcheck exercism texliveFull csvkit sshx fzf
         pandoc pandoc-include poppler_utils haskellPackages.pandoc-plot 
         myPythonEnv
@@ -45,10 +45,10 @@ in
         yt-dlp spotdl vlc yt-dlp android-tools adb-sync unzip android-tools 
         # Fun
         toilet fortune lolcat krabby cowsay figlet
-        # Haskell
+        # coding
         cabal-install stack ghc
-        # SQL
         sqlint
+        nixpkgs-fmt
         # My personal scripts:
         # (import ./my-awesome-script.nix { inherit pkgs;})
 
