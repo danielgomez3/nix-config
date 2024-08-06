@@ -60,20 +60,6 @@ in
             enableBashIntegration = true;
           };
 
-          bash = {
-          bashrcExtra = ''
-            screenshot() {
-              read -p "Enter filename: " filename && grim -g "$(slurp)" ./''${filename}.png
-            }
-          '';
-            shellAliases = {
-               plan = "cd ~/Documents/productivity/ && hx planning/todo.md planning/credentials.md";
-               conf = "cd ~/flake/ && hx modules/coding.nix modules/all.nix";
-               notes = "cd ~/Documents/productivity/notes && hx .";
-               zrf = "zellij run floating";
-             };
-          };
-
           direnv = {
             enable = true;
             enableZshIntegration = true;

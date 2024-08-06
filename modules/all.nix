@@ -140,7 +140,7 @@ in
               id = "Projects";
             };
             "flake" = {
-              path = "/home/${username}/flake";
+              path = "/home/${username}/Projects/repos-personal/flake";
               devices = [ "desktop" "server" "laptop" ];
               autoAccept = true;
               id = "flake";
@@ -198,6 +198,7 @@ in
         };
 
       programs = {
+
         bash = {
           enable = true;
           enableCompletion = true;
@@ -211,6 +212,9 @@ in
             c() { z "$@" && eza --icons --color=always --group-directories-first; }
             #e() { [ $# -eq 0 ] && hx . || hx "$@"; }
             e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
+            screenshot() {
+              read -p "Enter filename: " filename && grim -g "$(slurp)" ./''${filename}.png
+            }
           '';
           shellAliases = {
             f = "fg";
@@ -221,7 +225,11 @@ in
             lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
             grep = "grep --color=always -IrnE --exclude-dir='.*'";
             less = "less -FR";
-            rm = "trash-put";
+            rm = "${pkgs.trash-cli}/bin/trash-put";
+            plan = "cd ~/Documents/productivity/ && hx planning/todo.md planning/credentials.md";
+            conf = "cd ~/Projects/repos-personal/flake/ && hx modules/coding.nix modules/all.nix";
+            notes = "cd ~/Documents/productivity/notes && hx .";
+            zrf = "zellij run floating";
           };
         };
 

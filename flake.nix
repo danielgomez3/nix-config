@@ -20,15 +20,17 @@
       username = "daniel";
 
       # Helper function to build nixosSystem
+      # FIXME: commonSpecialArgs OR inheriting anyting in mkNixosSystem might not be necessary.
       mkNixosSystem = args: nixpkgs.lib.nixosSystem {
         inherit (args) specialArgs modules;
       };
-      commonSpecialArgs = { inherit inputs system username; };
+      # NOTE: Default system and username here unless specified
+      commonSpecialArgs = { inherit inputs system username; };  
       commonModules = [
         inputs.home-manager.nixosModules.default
         ./modules
       ];
-      # Helper function to get host-specific modules and respective hardware-configuration.nix
+      # Helper function to get host-specific modules and their respective hardware-configuration.nix
       hostModules = hostDir: commonModules ++ [
         "${hostDir}/hardware-configuration.nix"
         hostDir
