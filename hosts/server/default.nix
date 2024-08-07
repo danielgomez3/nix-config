@@ -19,6 +19,9 @@
       enable = true;
       greeter = "${username}";
     };
+    virtualization = {
+      enable = true;
+    };
     plex = {
       enable = true;
       openFirewall = true;
@@ -32,7 +35,6 @@
       };
     };
   };
-
 
 
   # home-manager = { 

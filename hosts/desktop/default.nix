@@ -27,6 +27,9 @@
       enable = true;
       greeter = "${username}";
     };
+    virtualization = {
+      enable = true;
+    };
     # openssh = {
     # };
     # pixiecore = {
@@ -50,16 +53,6 @@
     };
   };
 
-
-
-  # virtualisation.virtualbox.host.enable = true;
-  # users.extraGroups.vboxusers.members = [ "daniel" ];
-  # virtualisation.virtualbox.host.enableExtensionPack = true;  
-  # virtualisation = {
-  #   docker = {
-  #     enable = true;
-  #   }; 
-  # };
 
   home-manager = { 
     extraSpecialArgs = { inherit inputs; };

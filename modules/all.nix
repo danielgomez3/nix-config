@@ -227,7 +227,7 @@ in
             less = "less -FR";
             rm = "${pkgs.trash-cli}/bin/trash-put";
             plan = "cd ~/Documents/productivity/ && hx planning/todo.md planning/credentials.md";
-            conf = "cd ~/Projects/repos-personal/flake/ && hx modules/coding.nix modules/all.nix";
+            conf = "cd ~/Projects/repos-personal/flakes/flake/ && hx modules/coding.nix modules/all.nix";
             notes = "cd ~/Documents/productivity/notes && hx .";
             zrf = "zellij run floating";
           };

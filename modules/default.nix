@@ -1,3 +1,3 @@
 {
-  imports = [ ./coding.nix ./gui.nix ./all.nix ];
+  imports = [ ./coding.nix ./gui.nix ./all.nix ./virtualization.nix ];
 }
