@@ -1,6 +1,5 @@
 
 { config, pkgs, lib, inputs, username, ... }:
-with lib;
 let 
 #   cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
   myPythonEnv = pkgs.python3.withPackages (ps: with ps; [
@@ -10,13 +9,13 @@ let
 in
 {
   options.services.coding = {
-    enable = mkEnableOption "coding service";
-    greeter = mkOption {
-      type = types.str;
+    enable = lib.mkEnableOption "coding service";
+    greeter = lib.mkOption {
+      type = lib.types.str;
       default = "world";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     #virtualisation.docker.enable = true;
     services.mysql = {
       enable = true;
@@ -37,28 +36,54 @@ in
       users.${username} = {
         home.packages = with pkgs; [
         # dev
+        zellij
         shellcheck exercism texliveFull csvkit sshx fzf
         pandoc pandoc-include poppler_utils haskellPackages.pandoc-plot 
-        myPythonEnv
-        # cli apps
-        pciutils usbutils
-        yt-dlp spotdl vlc yt-dlp android-tools adb-sync unzip android-tools 
+        git-filter-repo
         # Fun
         toilet fortune lolcat krabby cowsay figlet
         # coding
         cabal-install stack ghc
         sqlint
         nixpkgs-fmt
+        myPythonEnv poetry
         # My personal scripts:
         # (import ./my-awesome-script.nix { inherit pkgs;})
 
         ];
-        programs = {
 
-          starship = {
-            enable = true;
-            enableBashIntegration = true;
-          };
+        home.file.zellij = {
+          target = ".config/zellij/config.kdl";
+          text = ''
+            theme "rose-pine-moon"
+            default_mode "locked"
+            scrollback_editor "hx"
+            pane_frames false
+            keybinds {
+                locked {
+                    bind "Alt l" { GoToNextTab; }
+                    bind "Alt h" { GoToPreviousTab; }
+                }
+            }
+            themes {
+            	rose-pine-moon {
+            		bg "#44415a"
+            		fg "#e0def4"
+            		red "#eb6f92"
+            		green "#3e8fb0"
+            		blue "#9ccfd8"
+            		yellow "#f6c177"
+            		magenta "#c4a7e7"
+            		orange "#fe640b"
+            		cyan "#ea9a97"
+            		black "#393552"
+            		white "#e0def4"
+            	}
+            }
+          '';
+        };
+
+        programs = {
 
           direnv = {
             enable = true;
@@ -88,6 +113,7 @@ in
               bash-language-server
               haskell-language-server
               omnisharp-roslyn netcoredbg  # C-sharp
+              python312Packages.python-lsp-server
             ];
             settings = {
                 theme = "rose_pine";  # serious mode..
@@ -128,36 +154,11 @@ in
             };
           };
 
-        fzf = { 
-          enable = false;
-          enableBashIntegration = true;
-          enableZshIntegration = true;
-        };
-
-        zellij = {
-          enable = true;
-          settings = {
-            # default_mode = "locked";
-            pane_frames = false;
-            theme = "default";
-            themes = {
-              default = {
-                bg = "#403d52";
-                fg = "#e0def4";
-                red = "#eb6f92";
-                green = "#31748f";
-                blue = "#9ccfd8";
-                yellow = "#f6c177";
-                magenta = "#c4a7e7";
-                orange = "#fe640b";
-                cyan = "#ebbcba";
-                black = "#26233a";
-                white = "#e0def4";
-              };
-            };
+          fzf = { 
+            enable = false;
+            enableBashIntegration = true;
+            enableZshIntegration = true;
           };
-        };
-
         };
       };
     };

@@ -6,7 +6,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, lib, inputs, host, username, ... }:
-with lib;
 let 
   # nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
   cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
@@ -16,14 +15,14 @@ in
 
 
   options.services.all = {
-    enable = mkEnableOption "all service";
-    greeter = mkOption {
-      type = types.str;
+    enable = lib.mkEnableOption "all service";
+    greeter = lib.mkOption {
+      type = lib.types.str;
       default = "world";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
 
     # Bootloader.
     boot.loader = {
@@ -140,7 +139,7 @@ in
               id = "Projects";
             };
             "flake" = {
-              path = "/home/${username}/Projects/repos-personal/flake";
+              path = "/home/${username}/Projects/repos-personal/flakes/flake";
               devices = [ "desktop" "server" "laptop" ];
               autoAccept = true;
               id = "flake";
@@ -151,12 +150,12 @@ in
     };
 
 
-
-
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.${username} = {
       isNormalUser = true;
       extraGroups = [ "wheel" ];
+      shell = pkgs.zsh;
+      ignoreShellProgramCheck = true;
       openssh.authorizedKeys.keys = [ 
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9OcZ6CO1lDXOMQQawee8Fh6iydI8I+SXMdD9GESq8v daniel@desktop"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHdnOQw9c23oUEIBdZFrKb/r4lHIKLZ9Dz11Un0erVsj danielgomez3@server"
@@ -194,13 +193,60 @@ in
             iptables dmidecode 
             eza entr tldr bc tree trash-cli 
             plexamp
+            # cli apps
+            pciutils usbutils
+            yt-dlp spotdl vlc yt-dlp android-tools adb-sync unzip android-tools ffmpeg mpv
           ];
         };
 
       programs = {
 
-        bash = {
+        starship = {
           enable = true;
+          enableBashIntegration = true;
+          enableZshIntegration = true;
+        };
+
+        zsh = {
+          enable = true;
+          enableCompletion = true;
+          autosuggestion.enable = true;
+          syntaxHighlighting.enable = true;
+          history = {
+            size = 10000;
+          };
+          initExtra = ''
+            export HISTCONTROL=ignoreboth:erasedups
+            # 1 tab autocomplete:
+            #bind 'set show-all-if-ambiguous on'
+            #bind 'set completion-ignore-case on'
+
+            c() { z "$@" && eza --icons --color=always --group-directories-first; }
+            #e() { [ $# -eq 0 ] && hx . || hx "$@"; }
+            e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
+            screenshot() {
+              read -p "Enter filename: " filename && grim -g "$(slurp)" ./''${filename}.png
+            }
+          '';
+          shellAliases = {
+            f = "fg";
+            j = "jobs";
+            l = "eza --icons --color=always --group-directories-first";
+            la = "eza -a --icons --color=always --group-directories-first";
+            lt = "eza --icons --color=always --tree --level 2 --group-directories-first";
+            lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
+            grep = "grep --color=always -IrnE --exclude-dir='.*'";
+            less = "less -FR";
+            rm = "${pkgs.trash-cli}/bin/trash-put";
+            plan = "cd ~/Documents/productivity/ && hx planning/todo.md planning/credentials.md";
+            conf = "cd ~/Projects/repos-personal/flakes/flake/ && hx modules/coding.nix modules/all.nix";
+            notes = "cd ~/Documents/productivity/notes && hx .";
+            zrf = "zellij run floating";
+          };
+        };
+
+        bash = {
+          enable = false;
           enableCompletion = true;
           bashrcExtra = ''
             export HISTCONTROL=ignoreboth:erasedups

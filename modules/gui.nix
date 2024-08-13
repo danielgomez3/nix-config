@@ -1,5 +1,4 @@
-{ config, host, pkgs, lib, inputs, username, ... }:
-with lib;
+{ config, pkgs, lib, username, ... }:
 let
   modKey = "Mod4";
   cfg = config.services.gui;
@@ -7,14 +6,14 @@ in
  
 {
   options.services.gui = {
-    enable = mkEnableOption "gui service";
-    greeter = mkOption {
-      type = types.str;
+    enable = lib.mkEnableOption "gui service";
+    greeter = lib.mkOption {
+      type = lib.types.str;
       default = "world";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
   # kanshi systemd service <https://nixos.wiki/wiki/Sway>
     systemd.user.services.kanshi = {
       description = "kanshi daemon";
@@ -113,7 +112,6 @@ in
   
     programs = {
       kdeconnect.enable = true;
-      zsh.enable = false;
     };
 
 
@@ -121,7 +119,7 @@ in
     home-manager.users.${username} = {
         home.packages = with pkgs; [
             # Sway/Wayland
-            grim slurp wl-clipboard xorg.xrandr swayidle swaylock flashfocus autotiling sway-contrib.grimshot wlprop pw-volume adwaita-icon-theme adwaita-qt sway-audio-idle-inhibit brightnessctl swappy 
+            grim slurp wl-clipboard xorg.xrandr swayidle swaylock flashfocus autotiling sway-contrib.grimshot wlprop pw-volume adwaita-icon-theme adwaita-qt brightnessctl swappy 
             # gui apps
             firefox zoom-us libreoffice slack spotify okular
             cmus xournalpp pavucontrol
@@ -134,11 +132,11 @@ in
         ];
 
 
-        services.mako = {
-          enable = true;
-          defaultTimeout = 16;
-          maxVisible = 16;
-        };
+        # services.mako = {
+        #   enable = true;
+        #   defaultTimeout = 16;
+        #   maxVisible = 16;
+        # };
 
         wayland.windowManager.sway = {
           enable = true;
@@ -161,25 +159,13 @@ in
               xkb_options caps:escape
             }
 
-            ## Sleep
-
-            exec swayidle -w \
-            	timeout 320 'swaylock -c 000000 -f' \
-            	timeout 350 'swaymsg "output * power off"' \
-            	resume 'swaymsg "output * power on"'
-
-            #swayidle -w \
-            #  timeout 320 'brightnessctl set 10% -s' resume 'brightnessctl -r' \
-            #  timeout 350 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-            #  before-sleep 'swaylock --daemonize --show-failed-attempts\
-            #  idlehint 1800
 
             # Vanity
             exec_always --no-startup-id flashfocus
             exec_always autotiling
 
             # Functionality
-            exec sway-audio-idle-inhibit
+            # exec sway-audio-idle-inhibit
             no_focus [all]
             focus_on_window_activation none
             assign [class="[Ss]lack"] workspace 2
@@ -187,11 +173,8 @@ in
             assign [title="KDE Connect SMS"] workspace 2
             assign [title="Volume Control"] workspace 10
             bindsym ${modKey}+Semicolon exec --no-startup-id flash_window
-
-
-
           '';
-          config = rec {
+          config = {
             modifier = "${modKey}";
             terminal = "wezterm";
             startup = [

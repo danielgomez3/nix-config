@@ -1,13 +1,13 @@
-{ config, username, ...}:
+{ config, lib, username, ...}:
 let
   cfg = config.services.virtualization;
 in
   {
     options.services.virtualization = {
-      enable = mkEnableOption "virtualization service";  
+      enable = lib.mkEnableOption "virtualization service";  
     };
 
-    config = mkIf cfg.enable {
+    config = lib.mkIf cfg.enable {
 
       # users.extraGroups.vboxusers.members = [ "daniel" ];
       users.users.${username}.extraGroups = [ "docker" ];
@@ -15,7 +15,7 @@ in
       virtualisation = {
         docker = {
           enable = true;
-          rootles = {
+          rootless = {
             enable = true;
             setSocketVariable = true;
           };

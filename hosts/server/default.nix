@@ -25,6 +25,8 @@
     plex = {
       enable = true;
       openFirewall = true;
+      # user = "${username}";
+      # dataDir = "/home/${username}/plex";
     };
     syncthing = {
       guiAddress = "0.0.0.0:8384";

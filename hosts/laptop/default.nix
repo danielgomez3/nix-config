@@ -11,6 +11,18 @@ in
     description = "laptop";
   };
   services = {
+    all = {
+      enable = true;
+      greeter = "${username}";
+    };
+    coding = {
+      enable = true;
+      greeter = "${username}";
+    };
+    gui = {
+      enable = true;
+      greeter = "${username}";
+    };
     syncthing = {
       guiAddress = "127.0.0.1:8383";
     };
@@ -41,19 +53,17 @@ in
    xkb.options = "caps:swapescape";
   };
 
-  # home-manager.users.${username} = {
-  #     wayland.windowManager.sway = {
-  #       extraConfig = ''
-  #       '';
-  #       config = rec {
-  #         startup = [
-  #           { command = "slack"; }
-  #           { command = "kdesms"; }
-  #           { command = "pavucontrol"; }
-  #         ];
-  #       };
-  #     };
-  # };
+  home-manager.users.${username} = {
+      wayland.windowManager.sway = {
+        extraConfig = ''
+          ## Sleep
+          exec swayidle -w \
+          	timeout 320 'swaylock -c 000000 -f' \
+          	timeout 350 'swaymsg "output * power off"' \
+          	resume 'swaymsg "output * power on"'
+        '';
+      };
+  };
 
   # NOTE: Unique home-manager config for laptop:
   # home-manager = { 
