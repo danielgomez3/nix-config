@@ -25,7 +25,7 @@
     plex = {
       enable = true;
       openFirewall = true;
-      # user = "${username}";
+      user = "${username}";
       # dataDir = "/home/${username}/plex";
     };
     syncthing = {

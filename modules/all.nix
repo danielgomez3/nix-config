@@ -189,7 +189,7 @@ in
             plexamp
             # cli apps
             pciutils usbutils
-            yt-dlp spotdl vlc yt-dlp android-tools adb-sync unzip android-tools ffmpeg mpv
+            protonvpn-cli_2 yt-dlp spotdl vlc yt-dlp android-tools adb-sync unzip android-tools ffmpeg mpv
           ];
         };
 
