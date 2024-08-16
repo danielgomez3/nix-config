@@ -138,6 +138,12 @@ in
               autoAccept = true;
               id = "Projects";
             };
+            ".config/nix/" = {
+              path = "/home/${username}/.config/nix/";
+              devices = [ "desktop" "server" "laptop" ];
+              autoAccept = true;
+              id = ".config/nix/";
+            };
           };
         };
       };
