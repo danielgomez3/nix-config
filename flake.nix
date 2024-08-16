@@ -6,12 +6,9 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    # myPrivateFlakeRepo = {
-    #   url = "github:danielgomez3/flake";
-    #   # type = "github";
-    #   # owner = "danielgomez3";
-    #   # repo = "flake";
-    # };
+    myPrivateFlakeRepo = {
+      url = "github:danielgomez3/flake";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, ... }: 

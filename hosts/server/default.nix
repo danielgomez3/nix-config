@@ -39,21 +39,21 @@
   };
 
 
-  # home-manager = { 
-  #   extraSpecialArgs = { inherit inputs; };
-    # users.${username} = {
-    #   programs = with pkgs; {
-    #     kitty = {
-    #       font = {
-    #         size = 11;
-    #       };
-    #     };
-    #   };
-    # };
-    # packages = with pkgs; [
-    #   vim
-    # ];
+  home-manager = { 
+    extraSpecialArgs = { inherit inputs; };
+    users.${username} = {
+      programs = with pkgs; {
+        kitty = {
+          font = {
+            size = 11;
+          };
+        };
+      };
+    };
+    packages = with pkgs; [
+      hello
+    ];
 
-  # };
+  };
 
 }
