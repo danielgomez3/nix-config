@@ -138,12 +138,6 @@ in
               autoAccept = true;
               id = "Projects";
             };
-            "flake" = {
-              path = "/home/${username}/Projects/repos-personal/flakes/flake";
-              devices = [ "desktop" "server" "laptop" ];
-              autoAccept = true;
-              id = "flake";
-            };
           };
         };
       };
