@@ -181,7 +181,6 @@ in
     # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
     system.stateVersion = "unstable"; # Did you read the comment?
 
-asdflkjafdsk
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     security.sudo.wheelNeedsPassword = false;
     home-manager = { 
@@ -194,7 +193,7 @@ asdflkjafdsk
             eza entr tldr bc tree trash-cli 
             plexamp
             # cli apps
-            pciutils usbutils hello asdlf;kjfdaskjsdffldas
+            pciutils usbutils hello 
             protonvpn-cli_2 yt-dlp spotdl vlc yt-dlp android-tools adb-sync unzip android-tools ffmpeg mpv
           ];
         };
