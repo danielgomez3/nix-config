@@ -155,7 +155,7 @@ in
           };
 
           fzf = { 
-            enable = false;
+            enable = true;
             enableBashIntegration = true;
             enableZshIntegration = true;
           };
