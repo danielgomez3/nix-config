@@ -193,7 +193,7 @@ in
             eza entr tldr bc tree trash-cli 
             plexamp
             # cli apps
-            pciutils usbutils hello 
+            pciutils usbutils 
             protonvpn-cli_2 yt-dlp spotdl vlc yt-dlp android-tools adb-sync unzip android-tools ffmpeg mpv
           ];
         };
