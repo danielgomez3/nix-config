@@ -138,11 +138,11 @@ in
               autoAccept = true;
               id = "Projects";
             };
-            ".config/nix/" = {
+            "nix" = {
               path = "/home/${username}/.config/nix/";
               devices = [ "desktop" "server" "laptop" ];
               autoAccept = true;
-              id = ".config/nix/";
+              id = "nix";
             };
           };
         };
@@ -194,7 +194,7 @@ in
             eza entr tldr bc tree trash-cli 
             plexamp
             # cli apps
-            pciutils usbutils
+            pciutils usbutils hello
             protonvpn-cli_2 yt-dlp spotdl vlc yt-dlp android-tools adb-sync unzip android-tools ffmpeg mpv
           ];
         };
