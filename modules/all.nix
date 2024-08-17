@@ -160,6 +160,7 @@ in
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9OcZ6CO1lDXOMQQawee8Fh6iydI8I+SXMdD9GESq8v daniel@desktop"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHdnOQw9c23oUEIBdZFrKb/r4lHIKLZ9Dz11Un0erVsj danielgomez3@server"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGQ4W1AIoMxiKJQXOwJlkJkwZ0pMOe/akO86duVI/NWG daniel@laptop"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEA/kfm1TYsOaPnzbLYnWixnjHSYWgYcS82z/xQGKgwb deploy@server"
       ];
     };
 
@@ -300,6 +301,10 @@ in
             Host server
                HostName 192.168.12.149 
                User danielgomez3
+
+            Host deploy
+               HostName 192.168.12.149 
+               User deploy
 
             Host desktop
                HostName 192.168.12.182
