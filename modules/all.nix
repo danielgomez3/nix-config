@@ -302,7 +302,7 @@ in
                HostName 192.168.12.149 
                User danielgomez3
 
-            Host deploy
+            Host server-deploy
                HostName 192.168.12.149 
                User deploy
 
