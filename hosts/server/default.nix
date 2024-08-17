@@ -12,7 +12,6 @@
     description = "Dedicated, isolated, and privileged user with admin privileges to deploy configs";
     isNormalUser = true;
     extraGroups = [ "wheel" ];
-    group = [ "deploy" ];
     shell = pkgs.bash;
     ignoreShellProgramCheck = true;
   };
