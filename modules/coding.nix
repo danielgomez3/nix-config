@@ -10,10 +10,6 @@ in
 {
   options.services.coding = {
     enable = lib.mkEnableOption "coding service";
-    greeter = lib.mkOption {
-      type = lib.types.str;
-      default = "world";
-    };
   };
   config = lib.mkIf cfg.enable {
     #virtualisation.docker.enable = true;

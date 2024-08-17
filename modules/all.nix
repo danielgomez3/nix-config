@@ -16,10 +16,6 @@ in
 
   options.services.all = {
     enable = lib.mkEnableOption "all service";
-    greeter = lib.mkOption {
-      type = lib.types.str;
-      default = "world";
-    };
   };
 
   config = lib.mkIf cfg.enable {
