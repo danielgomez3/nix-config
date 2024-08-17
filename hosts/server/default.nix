@@ -10,7 +10,6 @@
   };
   users.users.deploy = {
     description = "Dedicated, isolated, and privileged user with admin privileges to deploy configs";
-    extraGroups = [ "wheel" ];  
   };
   # Make sure user 'deploy' has paswordless sudo permissions:
   security.sudo.extraConfig = ''
