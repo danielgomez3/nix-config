@@ -14,7 +14,6 @@
     extraGroups = [ "wheel" ];
     shell = pkgs.bash;
     ignoreShellProgramCheck = true;
-
   };
   # Make sure user 'deploy' has paswordless sudo permissions:
   security.sudo.extraConfig = ''
