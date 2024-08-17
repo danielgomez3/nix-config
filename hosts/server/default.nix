@@ -2,7 +2,7 @@
 # server.nix
 # NOTE: This contains all common features I want only my server to have!
 
-{ username, ... }:
+{ username, pkgs, ... }:
 
 {
   users.users.${username} = {
@@ -10,6 +10,11 @@
   };
   users.users.deploy = {
     description = "Dedicated, isolated, and privileged user with admin privileges to deploy configs";
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+    shell = pkgs.bash;
+    ignoreShellProgramCheck = true;
+
   };
   # Make sure user 'deploy' has paswordless sudo permissions:
   security.sudo.extraConfig = ''
