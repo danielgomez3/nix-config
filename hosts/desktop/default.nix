@@ -8,6 +8,7 @@
     description = "desktop";
   };
   hardware.keyboard.zsa.enable = true;
+  hardware.opengl.enable = true;  # NOTE: This might need to be added for laptop too.
 
   boot.blacklistedKernelModules = [
     # "iwlwifi"
