@@ -82,7 +82,7 @@ in
 
     };
 
-    hardware.graphics.enable = true;
+    # hardware.graphics.enable = true;  # NOTE: Enable this if you have problems with sway
     hardware.pulseaudio.enable = false;
     hardware.bluetooth.enable = true;
     hardware.bluetooth.powerOnBoot = true;
@@ -119,7 +119,7 @@ in
     home-manager.users.${username} = {
         home.packages = with pkgs; [
             # Sway/Wayland
-            grim slurp wl-clipboard xorg.xrandr swayidle swaylock flashfocus autotiling sway-contrib.grimshot wlprop pw-volume adwaita-icon-theme adwaita-qt brightnessctl swappy 
+            grim slurp wl-clipboard xorg.xrandr swayidle swaylock flashfocus autotiling sway-contrib.grimshot wlprop pw-volume gnome.adwaita-icon-theme adwaita-qt brightnessctl swappy 
             # gui apps
             firefox zoom-us libreoffice slack spotify okular
             cmus xournalpp pavucontrol
