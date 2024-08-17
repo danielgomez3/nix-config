@@ -293,8 +293,6 @@ in
           };
         };
 
-
-          # TODO: Make a <leader>/ function that will search fuzzily. Every space will interpret '.*'
         ssh = {
           enable = true;
           extraConfig = ''
