@@ -125,6 +125,7 @@ in
             libsForQt5.kpeoplevcard # HACK: Get kde sms working properly
             # Misc.
             bluez bluez-alsa bluez-tools
+            imagemagick
         ];
 
 
