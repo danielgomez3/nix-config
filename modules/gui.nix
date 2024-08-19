@@ -174,6 +174,7 @@ in
             assign [title="KDE Connect SMS"] workspace 2
             assign [title="Volume Control"] workspace 10
             bindsym ${modKey}+Semicolon exec --no-startup-id flash_window
+            bindsym ${modKey}+p exec grim -g "$(slurp)" - | wl-copy 
           '';
           config = {
             modifier = "${modKey}";
