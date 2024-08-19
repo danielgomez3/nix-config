@@ -18,15 +18,12 @@
   services = {
     coding = {
       enable = true;
-      greeter = "${username}";
     };
     gui = {
       enable = true;
-      greeter = "${username}";
     };
     all = {
       enable = true;
-      greeter = "${username}";
     };
     virtualization = {
       enable = true;

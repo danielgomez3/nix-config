@@ -13,15 +13,12 @@ in
   services = {
     all = {
       enable = true;
-      greeter = "${username}";
     };
     coding = {
       enable = true;
-      greeter = "${username}";
     };
     gui = {
       enable = true;
-      greeter = "${username}";
     };
     syncthing = {
       guiAddress = "127.0.0.1:8383";

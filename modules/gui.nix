@@ -7,10 +7,6 @@ in
 {
   options.services.gui = {
     enable = lib.mkEnableOption "gui service";
-    greeter = lib.mkOption {
-      type = lib.types.str;
-      default = "world";
-    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -170,11 +166,9 @@ in
             focus_on_window_activation none
             assign [class="[Ss]lack"] workspace 2
             assign [class="[Ss]potify" title="[Ss]potify"] workspace 2
-            assign [class="[Pp]lexamp" title="[Pp]lexamp"] workspace 2
             assign [title="KDE Connect SMS"] workspace 2
             assign [title="Volume Control"] workspace 10
             bindsym ${modKey}+Semicolon exec --no-startup-id flash_window
-            bindsym ${modKey}+p exec grim -g "$(slurp)" - | wl-copy 
           '';
           config = {
             modifier = "${modKey}";
