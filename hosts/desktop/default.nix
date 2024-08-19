@@ -78,7 +78,7 @@
         config = {
           startup = [
             { command = "kdeconnect-sms"; }
-            { command = "spotify"; }
+            { command = "plexamp"; }
           ];
         };
       };

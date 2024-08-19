@@ -48,6 +48,11 @@
           specialArgs = commonSpecialArgs // { username = "danielgomez3"; host = "server"; };
           modules = hostModules ./hosts/server;
         };
+        deploy = mkNixosSystem {
+          specialArgs = commonSpecialArgs // { username = "deploy"; host = "server"; };
+          modules = ./hosts/server ./hosts/deploy;
+        };
+
         # rescueDevice = mkNixosSystem {
         #   specialArgs = commonSpecialArgs // { username = "rescue"; host = "laptop"; };
         #   modules = hostModules ./hosts/rescueDevice;

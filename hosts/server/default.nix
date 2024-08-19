@@ -14,17 +14,15 @@
     extraGroups = [ "wheel" ];
     shell = pkgs.bash;
     ignoreShellProgramCheck = true;
+    security.sudo.wheelNeedsPassword = false;
     openssh.authorizedKeys.keys = [ 
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9OcZ6CO1lDXOMQQawee8Fh6iydI8I+SXMdD9GESq8v daniel@desktop"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHdnOQw9c23oUEIBdZFrKb/r4lHIKLZ9Dz11Un0erVsj danielgomez3@server"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGQ4W1AIoMxiKJQXOwJlkJkwZ0pMOe/akO86duVI/NWG daniel@laptop"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEA/kfm1TYsOaPnzbLYnWixnjHSYWgYcS82z/xQGKgwb deploy@server"
     ];
 
   };
-  # Make sure user 'deploy' has paswordless sudo permissions:
-  security.sudo.extraConfig = ''
-    deploy ALL=(ALL) NOPASSWD: ALL
-  '';
   hardware.keyboard.zsa.enable = true;
 
   services = {
