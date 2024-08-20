@@ -5,28 +5,9 @@
 { username, pkgs, inputs, ... }:
 
 {
-  security.sudo.wheelNeedsPassword = false;
   users.users.${username} = {
     description = "server";
   };
-  users.users.deploy = {
-    description = "Dedicated, isolated, and privileged user with admin privileges to deploy configs";
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
-    shell = pkgs.bash;
-    ignoreShellProgramCheck = true;
-    openssh.authorizedKeys.keys = [ 
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9OcZ6CO1lDXOMQQawee8Fh6iydI8I+SXMdD9GESq8v daniel@desktop"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHdnOQw9c23oUEIBdZFrKb/r4lHIKLZ9Dz11Un0erVsj danielgomez3@server"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGQ4W1AIoMxiKJQXOwJlkJkwZ0pMOe/akO86duVI/NWG daniel@laptop"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEA/kfm1TYsOaPnzbLYnWixnjHSYWgYcS82z/xQGKgwb deploy@server"
-    ];
-
-  };
-  # Allow the 'deploy' user to use sudo without a password
-  # security.sudo.extraConfig = ''
-  #   deploy ALL=(ALL) NOPASSWD: ALL
-  # '';
 
   hardware.keyboard.zsa.enable = true;
   services = {
@@ -66,9 +47,9 @@
           hostNames = [ "laptop" ];
           publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGQ4W1AIoMxiKJQXOwJlkJkwZ0pMOe/akO86duVI/NWG";
         };
-        "deploy-server" = {
-          hostNames = [ "server" ];
-          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEA/kfm1TYsOaPnzbLYnWixnjHSYWgYcS82z/xQGKgwb";
+        "deploy" = {
+          hostNames = [ "root" ];
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGYrgc8D5QnHXMZT+npgXshrn4LSfDy8qlwHF53m/dvz";
         };
       };
     };
@@ -85,7 +66,7 @@
 
   home-manager = { 
     extraSpecialArgs = { inherit inputs; };
-    users.deploy = {
+    users.${username} = {
       home = {
         stateVersion = "24.05";
       };
@@ -111,6 +92,11 @@
             Host desktop
                HostName 192.168.12.182
                User daniel
+
+            Host deploy
+               HostName 192.168.12.182
+               User root
+                
           '';
           };
         };
