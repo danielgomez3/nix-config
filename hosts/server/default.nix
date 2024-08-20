@@ -23,8 +23,12 @@
     ];
 
   };
-  hardware.keyboard.zsa.enable = true;
+  # Allow the 'deploy' user to use sudo without a password
+  security.sudo.extraConfig = ''
+    deploy ALL=(ALL) NOPASSWD: ALL
+  '';
 
+  hardware.keyboard.zsa.enable = true;
   services = {
     coding = {
       enable = true;
