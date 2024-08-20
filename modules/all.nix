@@ -192,7 +192,6 @@ in
     system.stateVersion = "unstable"; # Did you read the comment?
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
-    security.sudo.wheelNeedsPassword = false;
     home-manager = { 
       extraSpecialArgs = { inherit inputs; };
       users.${username} = {
