@@ -95,7 +95,7 @@
                User daniel
 
             Host deploy
-               HostName 192.168.12.182
+               HostName 192.168.12.149
                User root
                 
           '';
