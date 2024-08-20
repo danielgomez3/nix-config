@@ -5,7 +5,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, host, username, ... }:
+{ config, pkgs, lib, inputs, host, username, ssh-keys, ... }:
 let 
   # nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
   cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
@@ -170,12 +170,7 @@ in
       extraGroups = [ "wheel" ];
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
-      openssh.authorizedKeys.keys = [ 
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9OcZ6CO1lDXOMQQawee8Fh6iydI8I+SXMdD9GESq8v daniel@desktop"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHdnOQw9c23oUEIBdZFrKb/r4lHIKLZ9Dz11Un0erVsj danielgomez3@server"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGQ4W1AIoMxiKJQXOwJlkJkwZ0pMOe/akO86duVI/NWG daniel@laptop"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEA/kfm1TYsOaPnzbLYnWixnjHSYWgYcS82z/xQGKgwb deploy@server"
-      ];
+      openssh.authorizedKeys.keys = ssh-keys;
     };
 
     # List packages installed in system profile. To search, run:

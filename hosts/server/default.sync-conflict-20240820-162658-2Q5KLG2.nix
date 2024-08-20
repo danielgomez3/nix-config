@@ -2,10 +2,9 @@
 # server.nix
 # NOTE: This contains all common features I want only my server to have!
 
-{ username, pkgs, inputs, ssh-keys, ... }:
+{ username, pkgs, inputs, ... }:
 
 {
-  users.users.root.openssh.authorizedKeys.keys = ssh-keys;   
   users.users.${username} = {
     description = "server";
   };
