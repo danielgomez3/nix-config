@@ -50,7 +50,7 @@
         };
         # deploy = mkNixosSystem {
         #   specialArgs = commonSpecialArgs // { username = "deploy"; host = "server"; };
-        #   modules = ./hosts/server ./hosts/deploy;
+        #   modules = ./hosts/server/hardware-configuration.nix ./hosts/deploy;
         # };
         # rescueDevice = mkNixosSystem {
         #   specialArgs = commonSpecialArgs // { username = "rescue"; host = "laptop"; };

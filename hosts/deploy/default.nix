@@ -43,4 +43,37 @@
       };
     };
   };
+  home-manager = { 
+    extraSpecialArgs = { inherit inputs; };
+    users.deploy = {
+      home = {
+        stateVersion = "24.05";
+      };
+      programs = {
+
+        git = {
+          enable = true;
+          userName = "danielgomez3";
+          userEmail = "danielgomez3@verizon.net";
+          extraConfig = {
+            credential.helper = "store";
+          };
+        };
+
+        # FIXME: Add laptop. Also, this has to be changed with all.nix's version. Pretty stupid.
+        ssh = {
+          enable = true;
+          extraConfig = ''
+            Host server
+               HostName 192.168.12.149 
+               User danielgomez3
+
+            Host desktop
+               HostName 192.168.12.182
+               User daniel
+          '';
+          };
+        };
+      };
+    };
 }

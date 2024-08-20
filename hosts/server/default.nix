@@ -5,6 +5,7 @@
 { username, pkgs, inputs, ... }:
 
 {
+  security.sudo.wheelNeedsPassword = false;
   users.users.${username} = {
     description = "server";
   };
@@ -23,9 +24,9 @@
 
   };
   # Allow the 'deploy' user to use sudo without a password
-  security.sudo.extraConfig = ''
-    deploy ALL=(ALL) NOPASSWD: ALL
-  '';
+  # security.sudo.extraConfig = ''
+  #   deploy ALL=(ALL) NOPASSWD: ALL
+  # '';
 
   hardware.keyboard.zsa.enable = true;
   services = {
