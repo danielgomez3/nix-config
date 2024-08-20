@@ -6,6 +6,29 @@
 
 {
   users.users.root.openssh.authorizedKeys.keys = ssh-keys;   
+  home-manager = { 
+    extraSpecialArgs = { inherit inputs; };
+    users.root = {
+      home = {
+        stateVersion = "24.05";
+      };
+      programs = {
+        # FIXME: Add laptop. Also, this has to be changed with all.nix's version. Pretty stupid.
+        ssh = {
+          extraConfig = ''
+            Host server
+               HostName 192.168.12.149 
+               User danielgomez3
+
+            Host desktop
+               HostName 192.168.12.182
+               User daniel
+          '';
+          };
+        };
+      };
+    };
+
   users.users.${username} = {
     description = "server";
   };
@@ -65,44 +88,6 @@
     };
   };
 
-  home-manager = { 
-    extraSpecialArgs = { inherit inputs; };
-    users.${username} = {
-      home = {
-        stateVersion = "24.05";
-      };
-      programs = {
-
-        git = {
-          enable = true;
-          userName = "danielgomez3";
-          userEmail = "danielgomez3@verizon.net";
-          extraConfig = {
-            credential.helper = "store";
-          };
-        };
-
-        # FIXME: Add laptop. Also, this has to be changed with all.nix's version. Pretty stupid.
-        ssh = {
-          enable = true;
-          extraConfig = ''
-            Host server
-               HostName 192.168.12.149 
-               User danielgomez3
-
-            Host desktop
-               HostName 192.168.12.182
-               User daniel
-
-            Host deploy
-               HostName 192.168.12.149
-               User root
-                
-          '';
-          };
-        };
-      };
-    };
 
   # home-manager = { 
   #   extraSpecialArgs = { inherit inputs; };

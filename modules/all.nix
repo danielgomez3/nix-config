@@ -311,7 +311,7 @@ in
 
             Host deploy
                HostName 192.168.12.149 
-               User deploy
+               User root
 
             Host desktop
                HostName 192.168.12.182
