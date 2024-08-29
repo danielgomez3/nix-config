@@ -97,22 +97,22 @@ in
           helix = {
             enable = true;
             defaultEditor = true;
-            extraPackages = with pkgs; with nodePackages; [
+            extraPackages = with pkgs; [
               vscode-langservers-extracted
               gopls gotools
-              typescript typescript-language-server
+              #typescript typescript-language-server
               marksman ltex-ls  # Writing
-              nil nixpkgs-fmt
+              nil nixfmt-classic
               clang-tools  # C
               lua-language-server
               rust-analyzer
-              bash-language-server
+              # bash-language-server
               haskell-language-server
               omnisharp-roslyn netcoredbg  # C-sharp
-              python312Packages.python-lsp-server
+              python312Packages.python-lsp-server 
             ];
             settings = {
-                theme = "rose_pine";  # serious mode..
+                theme = "rose_pine";
                 editor = {
                   true-color = true;
                   mouse = true;
@@ -139,14 +139,41 @@ in
                 };
 
             };
-            languages = { 
-              language-server = {
-                typescript-language-server = with pkgs.nodePackages; {
-                    command = "${typescript-language-server}/bin/typescript-language-server";
-                    args = [ "--stdio" "--tsserver-path=${typescript}/lib/node_modules/typescript/lib" ];  
-                };  
+            languages = {
+              language-server.pyright = {
+                command = "${pkgs.pyright}/bin/pyright-langserver";
+                args = [
+                  "--stdio"
+                ];
               };
-              language = [{    name = "markdown";    language-servers = ["marksman" "ltex-ls"];  }];
+              language = [
+                {
+                  name = "nix";
+                  auto-format = true;
+                  formatter.command = "${pkgs.nixfmt-classic}/bin/nixfmt-classic";
+                }
+                {
+                  name = "markdown";
+                  language-servers = ["marksman" "ltex-ls"];
+                }
+                {
+                  name = "python";
+                  auto-format = true;
+                  formatter = {
+                    command = "${pkgs.ruff}/bin/ruff";
+                    args = [
+                      "format"
+                      "--silent"
+                      "-"
+                    ];
+                  };
+                  language-servers = [
+                    {
+                      name = "pyright";
+                    }
+                  ];
+                }
+              ];
             };
           };
 

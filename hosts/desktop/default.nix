@@ -8,7 +8,6 @@
     description = "desktop";
   };
   hardware.keyboard.zsa.enable = true;
-  hardware.opengl.enable = true;  # NOTE: This might need to be added for laptop too.
 
   boot.blacklistedKernelModules = [
     # "iwlwifi"
@@ -48,9 +47,9 @@
     extraSpecialArgs = { inherit inputs; };
     users.${username} = {
       home = {
-        # packages = with pkgs; [
-        #   xorg.xmodmap
-        # ];
+        packages = with pkgs; [
+          minecraft
+        ];
         pointerCursor = {
           name = "Adwaita";
           package = pkgs.gnome.adwaita-icon-theme;

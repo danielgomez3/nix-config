@@ -10,6 +10,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    hardware.opengl.enable = true;  # NOTE: This might need to be added for laptop too.
   # kanshi systemd service <https://nixos.wiki/wiki/Sway>
     systemd.user.services.kanshi = {
       description = "kanshi daemon";
