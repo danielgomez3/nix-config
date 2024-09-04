@@ -204,7 +204,7 @@ in
             # cli apps
             pciutils usbutils 
             protonvpn-cli_2 yt-dlp spotdl vlc yt-dlp android-tools adb-sync unzip android-tools ffmpeg mpv
-            tesseract
+            tesseract ocrmypdf
           ];
         };
 
