@@ -47,9 +47,9 @@
     extraSpecialArgs = { inherit inputs; };
     users.${username} = {
       home = {
-        packages = with pkgs; [
-          minecraft
-        ];
+        # packages = with pkgs; [
+        #   minecraft
+        # ];
         pointerCursor = {
           name = "Adwaita";
           package = pkgs.gnome.adwaita-icon-theme;
