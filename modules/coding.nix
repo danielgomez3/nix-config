@@ -2,9 +2,9 @@
 { config, pkgs, lib, inputs, username, ... }:
 let 
 #   cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
-  myPythonEnv = pkgs.python3.withPackages (ps: with ps; [
-    matplotlib
-  ]);
+  # myPythonEnv = pkgs.python3.withPackages (ps: with ps; [
+  #   matplotlib
+  # ]);
   cfg = config.services.coding;
 in
 {
@@ -34,7 +34,7 @@ in
         # dev
         zellij
         shellcheck exercism texliveFull csvkit sshx fzf
-        pandoc pandoc-include poppler_utils haskellPackages.pandoc-plot 
+        pandoc pandoc-include poppler_utils 
         git-filter-repo
         # Fun
         toilet fortune lolcat krabby cowsay figlet
@@ -42,7 +42,6 @@ in
         cabal-install stack ghc
         sqlint
         nixpkgs-fmt
-        myPythonEnv poetry
         # My personal scripts:
         # (import ./my-awesome-script.nix { inherit pkgs;})
 
