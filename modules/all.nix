@@ -200,10 +200,9 @@ in
           packages = with pkgs; [
             iptables dmidecode 
             eza entr tldr bc tree trash-cli 
-            plexamp
             # cli apps
             pciutils usbutils 
-            protonvpn-cli_2 yt-dlp spotdl vlc yt-dlp android-tools adb-sync unzip android-tools ffmpeg mpv
+            protonvpn-cli_2 yt-dlp yt-dlp spotdl android-tools adb-sync unzip android-tools ffmpeg mpv sops
             tesseract ocrmypdf
           ];
         };

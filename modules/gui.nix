@@ -118,9 +118,9 @@ in
             # Sway/Wayland
             grim slurp wl-clipboard xorg.xrandr swayidle swaylock flashfocus autotiling sway-contrib.grimshot wlprop pw-volume gnome.adwaita-icon-theme adwaita-qt brightnessctl swappy 
             # gui apps
-            firefox zoom-us libreoffice slack spotify okular
+            firefox zoom-us libreoffice slack spotify okular plexamp
             cmus xournalpp pavucontrol
-            feh ardour audacity
+            feh ardour audacity vlc 
             gnome.gnome-session
             libsForQt5.kpeople # HACK: Get kde sms working properly
             libsForQt5.kpeoplevcard # HACK: Get kde sms working properly
