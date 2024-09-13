@@ -21,10 +21,27 @@ in
 
     sops.defaultSopsFile = ../secrets/secrets.yaml;
     sops.defaultSopsFormat = "yaml";
-    sops.age.keyFile = "./hosts/${host}/keys.txt";
+    sops.age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
 
     sops.secrets.example-key = { };  # NOTE: these are empty because they are values filled by the secrets.yaml file!
-    sops.secrets."myservice/my_subdir/my_secret" = { };
+    sops.secrets."myservice/my_subdir/my_secret" = {
+      owner = config.users.users.${username}.name;
+    };
+
+    systemd.services."sometestservice" = {
+      script = ''
+      echo "
+        Hey I'm a service. This is the secure password:
+        $(cat ${config.sops.secrets."myservice/my_subdir/my_secret".path})
+        located in:
+        ${config.sops.secrets."myservice/my_subdir/my_secret".path}
+        " > /var/lib/sometestservice/testfile
+      '';
+      serviceConfig = {
+        User = "sometestservice";
+        WorkingDirectory = "/var/lib/sometestservice";
+      };
+    };
 
     # Bootloader.
     boot.loader = {
