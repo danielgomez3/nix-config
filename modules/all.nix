@@ -21,7 +21,7 @@ in
 
     sops.defaultSopsFile = ../secrets/secrets.yaml;
     sops.defaultSopsFormat = "yaml";
-    sops.age.keyFile = "../hosts/${host}/keys.txt";
+    sops.age.keyFile = "./hosts/${host}/keys.txt";
 
     sops.secrets.example-key = { };  # NOTE: these are empty because they are values filled by the secrets.yaml file!
     sops.secrets."myservice/my_subdir/my_secret" = { };
