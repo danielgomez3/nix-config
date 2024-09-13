@@ -30,18 +30,26 @@ in
 
     systemd.services."sometestservice" = {
       script = ''
-      echo "
-        Hey I'm a service. This is the secure password:
-        $(cat ${config.sops.secrets."myservice/my_subdir/my_secret".path})
-        located in:
-        ${config.sops.secrets."myservice/my_subdir/my_secret".path}
-        " > /var/lib/sometestservice/testfile
-      '';
+        echo "
+          Hey I'm a service. This is the secure password:
+          $(cat ${config.sops.secrets."myservice/my_subdir/my_secret".path})
+          located in:
+          ${config.sops.secrets."myservice/my_subdir/my_secret".path}
+          to database and hack the mainframe
+          " > /var/lib/sometestservice/testfile
+        '';
       serviceConfig = {
         User = "sometestservice";
         WorkingDirectory = "/var/lib/sometestservice";
       };
     };
+    users.users.sometestservice = {
+      home = "/var/lib/sometestservice";
+      createHome = true;
+      isSystemUser = true;
+      group = "sometestservice";
+    };
+    users.groups.sometestservice = { };
 
     # Bootloader.
     boot.loader = {
