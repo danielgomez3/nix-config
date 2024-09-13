@@ -8,17 +8,23 @@
 { config, pkgs, lib, inputs, host, username, ssh-keys, ... }:
 let 
   # nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
-  cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
+  # cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
   cfg = config.services.all;
 in
 {
-
 
   options.services.all = {
     enable = lib.mkEnableOption "all service";
   };
 
   config = lib.mkIf cfg.enable {
+
+    sops.defaultSopsFile = ../secrets/secrets.yaml;
+    sops.defaultSopsFormat = "yaml";
+    sops.age.keyFile = "../hosts/${host}/keys.txt";
+
+    sops.secrets.example-key = { };  # NOTE: these are empty because they are values filled by the secrets.yaml file!
+    sops.secrets."myservice/my_subdir/my_secret" = { };
 
     # Bootloader.
     boot.loader = {
@@ -207,118 +213,118 @@ in
           ];
         };
 
-      programs = {
+        programs = {
 
-        starship = {
-          enable = true;
-          enableBashIntegration = true;
-          enableZshIntegration = true;
-        };
-
-        zsh = {
-          enable = true;
-          enableCompletion = true;
-          autosuggestion.enable = true;
-          syntaxHighlighting.enable = true;
-          history = {
-            size = 10000;
+          starship = {
+            enable = true;
+            enableBashIntegration = true;
+            enableZshIntegration = true;
           };
-          initExtra = ''
-            export HISTCONTROL=ignoreboth:erasedups
-            # 1 tab autocomplete:
-            #bind 'set show-all-if-ambiguous on'
-            #bind 'set completion-ignore-case on'
 
-            c() { z "$@" && eza --icons --color=always --group-directories-first; }
-            #e() { [ $# -eq 0 ] && hx . || hx "$@"; }
-            e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
-            screenshot() {
-              read -p "Enter filename: " filename && grim -g "$(slurp)" ./''${filename}.png
-            }
-          '';
-          shellAliases = {
-            f = "fg";
-            j = "jobs";
-            l = "eza --icons --color=always --group-directories-first";
-            la = "eza -a --icons --color=always --group-directories-first";
-            lt = "eza --icons --color=always --tree --level 2 --group-directories-first";
-            lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
-            grep = "grep --color=always -IrnE --exclude-dir='.*'";
-            less = "less -FR";
-            rm = "${pkgs.trash-cli}/bin/trash-put";
-            plan = "cd ~/Documents/productivity/ && hx planning/todo.md planning/credentials.md";
-            conf = "cd ~/Projects/repos-personal/flakes/flake/ && hx modules/coding.nix modules/all.nix";
-            notes = "cd ~/Documents/productivity/notes && hx .";
-            zrf = "zellij run floating";
+          zsh = {
+            enable = true;
+            enableCompletion = true;
+            autosuggestion.enable = true;
+            syntaxHighlighting.enable = true;
+            history = {
+              size = 10000;
+            };
+            initExtra = ''
+              export HISTCONTROL=ignoreboth:erasedups
+              # 1 tab autocomplete:
+              #bind 'set show-all-if-ambiguous on'
+              #bind 'set completion-ignore-case on'
+
+              c() { z "$@" && eza --icons --color=always --group-directories-first; }
+              #e() { [ $# -eq 0 ] && hx . || hx "$@"; }
+              e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
+              screenshot() {
+                read -p "Enter filename: " filename && grim -g "$(slurp)" ./''${filename}.png
+              }
+            '';
+            shellAliases = {
+              f = "fg";
+              j = "jobs";
+              l = "eza --icons --color=always --group-directories-first";
+              la = "eza -a --icons --color=always --group-directories-first";
+              lt = "eza --icons --color=always --tree --level 2 --group-directories-first";
+              lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
+              grep = "grep --color=always -IrnE --exclude-dir='.*'";
+              less = "less -FR";
+              rm = "${pkgs.trash-cli}/bin/trash-put";
+              plan = "cd ~/Documents/productivity/ && hx planning/todo.md planning/credentials.md";
+              conf = "cd ~/Projects/repos-personal/flakes/flake/ && hx modules/coding.nix modules/all.nix";
+              notes = "cd ~/Documents/productivity/notes && hx .";
+              zrf = "zellij run floating";
+            };
           };
-        };
 
-        bash = {
-          enable = false;
-          enableCompletion = true;
-          bashrcExtra = ''
-            export HISTCONTROL=ignoreboth:erasedups
-            shopt -s autocd cdspell globstar extglob nocaseglob
-            # 1 tab autocomplete:
-            #bind 'set show-all-if-ambiguous on'
-            #bind 'set completion-ignore-case on'
+          bash = {
+            enable = false;
+            enableCompletion = true;
+            bashrcExtra = ''
+              export HISTCONTROL=ignoreboth:erasedups
+              shopt -s autocd cdspell globstar extglob nocaseglob
+              # 1 tab autocomplete:
+              #bind 'set show-all-if-ambiguous on'
+              #bind 'set completion-ignore-case on'
 
-            c() { z "$@" && eza --icons --color=always --group-directories-first; }
-            #e() { [ $# -eq 0 ] && hx . || hx "$@"; }
-            e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
-            screenshot() {
-              read -p "Enter filename: " filename && grim -g "$(slurp)" ./''${filename}.png
-            }
-          '';
-          shellAliases = {
-            f = "fg";
-            j = "jobs";
-            l = "eza --icons --color=always --group-directories-first";
-            la = "eza -a --icons --color=always --group-directories-first";
-            lt = "eza --icons --color=always --tree --level 2 --group-directories-first";
-            lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
-            grep = "grep --color=always -IrnE --exclude-dir='.*'";
-            less = "less -FR";
-            rm = "${pkgs.trash-cli}/bin/trash-put";
-            plan = "cd ~/Documents/productivity/ && hx planning/todo.md planning/credentials.md";
-            conf = "cd ~/Projects/repos-personal/flakes/flake/ && hx modules/coding.nix modules/all.nix";
-            notes = "cd ~/Documents/productivity/notes && hx .";
-            zrf = "zellij run floating";
+              c() { z "$@" && eza --icons --color=always --group-directories-first; }
+              #e() { [ $# -eq 0 ] && hx . || hx "$@"; }
+              e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
+              screenshot() {
+                read -p "Enter filename: " filename && grim -g "$(slurp)" ./''${filename}.png
+              }
+            '';
+            shellAliases = {
+              f = "fg";
+              j = "jobs";
+              l = "eza --icons --color=always --group-directories-first";
+              la = "eza -a --icons --color=always --group-directories-first";
+              lt = "eza --icons --color=always --tree --level 2 --group-directories-first";
+              lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
+              grep = "grep --color=always -IrnE --exclude-dir='.*'";
+              less = "less -FR";
+              rm = "${pkgs.trash-cli}/bin/trash-put";
+              plan = "cd ~/Documents/productivity/ && hx planning/todo.md planning/credentials.md";
+              conf = "cd ~/Projects/repos-personal/flakes/flake/ && hx modules/coding.nix modules/all.nix";
+              notes = "cd ~/Documents/productivity/notes && hx .";
+              zrf = "zellij run floating";
+            };
           };
-        };
 
-        git = {
-          enable = true;
-          userName = "danielgomez3";
-          userEmail = "danielgomez3@verizon.net";
-          extraConfig = {
-            credential.helper = "store";
-            # url = {
-            #   "https://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@github.com/" = {
-            #     insteadOf = "https://github.com/";
-            #   };
-            # };
+          git = {
+            enable = true;
+            userName = "danielgomez3";
+            userEmail = "danielgomez3@verizon.net";
+            extraConfig = {
+              credential.helper = "store";
+              # url = {
+              #   "https://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@github.com/" = {
+              #     insteadOf = "https://github.com/";
+              #   };
+              # };
+            };
           };
-        };
 
-        ssh = {
-          enable = true;
-          extraConfig = ''
-            Host server
-               HostName 192.168.12.149 
-               User danielgomez3
+          ssh = {
+            enable = true;
+            extraConfig = ''
+              Host server
+                 HostName 192.168.12.149 
+                 User danielgomez3
 
-            Host deploy
-               HostName 192.168.12.149 
-               User root
+              Host deploy
+                 HostName 192.168.12.149 
+                 User root
 
-            Host desktop
-               HostName 192.168.12.182
-               User daniel     
-          '';
+              Host desktop
+                 HostName 192.168.12.182
+                 User daniel     
+            '';
+            };
           };
         };
       };
     };
-  };
 }

@@ -1,14 +1,13 @@
 # flake.nix
 {
-  description = "NixOS configuration";
+  description = "danielgomez3's NixOS configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    # myPrivateFlakeRepo = {
-    #   url = "github:danielgomez3/flake";
-    # };
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, nixpkgs, ... }: 
@@ -31,6 +30,7 @@
       commonSpecialArgs = { inherit inputs system username ssh-keys; };  
       commonModules = [
         inputs.home-manager.nixosModules.default
+        inputs.sops-nix.nixosModules.sops
         ./modules
       ];
       # Helper function to get host-specific modules and their respective hardware-configuration.nix
