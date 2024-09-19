@@ -6,9 +6,6 @@
   home-manager = { 
     extraSpecialArgs = { inherit inputs; };
     users.root = {
-      home = {
-        stateVersion = "24.05";
-      };
       programs = {
         # FIXME: Add laptop. Also, this has to be changed with all.nix's version. Pretty stupid.
         ssh = {
