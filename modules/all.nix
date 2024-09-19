@@ -17,8 +17,10 @@ in
     enable = lib.mkEnableOption "all service";
   };
 
+  # A custom 'service' called 'all'. If a system has this enabled, it will inherit the following settings!:
   config = lib.mkIf cfg.enable {
 
+    nixpkgs.config.allowUnfree = true;
     sops = {
       defaultSopsFile = ../secrets/secrets.yaml;
       defaultSopsFormat = "yaml";
@@ -47,33 +49,30 @@ in
       };
     };
 
-    systemd.services."sometestservice" = {
-      script = ''
-          echo "
-          Hey bro! I'm a service, and imma send this secure password:
-          $(cat ${config.sops.secrets."myservice/my_subdir/my_secret".path})
-          located in:
-          ${config.sops.secrets."myservice/my_subdir/my_secret".path}
-          to database and hack the mainframe
-          " > /var/lib/sometestservice/testfile
-        '';
-      serviceConfig = {
-        User = "sometestservice";
-        WorkingDirectory = "/var/lib/sometestservice";
+    systemd.services = {
+      syncthing.environment.STNODEFAULTFOLDER = "true";  # Don't create default ~/Sync folder
+      "sometestservice" = {
+        script = ''
+            echo "
+            Hey bro! I'm a service, and imma send this secure password:
+            $(cat ${config.sops.secrets."myservice/my_subdir/my_secret".path})
+            located in:
+            ${config.sops.secrets."myservice/my_subdir/my_secret".path}
+            to database and hack the mainframe
+            " > /var/lib/sometestservice/testfile
+          '';
+        serviceConfig = {
+          User = "sometestservice";
+          WorkingDirectory = "/var/lib/sometestservice";
+        };
       };
     };
 
-
-    # Bootloader.
     boot.loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
       systemd-boot.configurationLimit = 3;
     };
-
-    systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true";  # Don't create default ~/Sync folder
-
-    nixpkgs.config.allowUnfree = true;
 
     networking = {
       hostName = host;  # Define your hostname.
@@ -88,12 +87,8 @@ in
           Settings = {
             AutoConnect = true;
           };
+        };
       };
-    };
-      # Open ports in the firewall.
-      # firewall.allowedTCPPorts = [ 80 5000 ];
-      # firewall.allowedUDPPorts = [ ... ];
-      # Or disable the firewall altogether.
       firewall.enable = false;
     };
 
