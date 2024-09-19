@@ -19,19 +19,21 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    sops.defaultSopsFile = ../secrets/secrets.yaml;
-    sops.defaultSopsFormat = "yaml";
-    sops.age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
-
-    sops.secrets.example-key = { };  # NOTE: these are empty because they are values filled by the secrets.yaml file!
-    sops.secrets."myservice/my_subdir/my_secret" = {
-      owner = config.users.users.${username}.name;
+    sops = {
+      defaultSopsFile = ../secrets/secrets.yaml;
+      defaultSopsFormat = "yaml";
+      age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
+      secrets.example-key = { };
+      secrets."myservice/my_subdir/my_secret" = {
+        owner = config.users.users.${username}.name; # Make the token accessible to this user
+        group = config.users.users.${username}.group; # Make the token accessible to this group
+      };    
     };
 
     systemd.services."sometestservice" = {
       script = ''
-        echo "
-          Hey I'm a service. This is the secure password:
+          echo "
+          Hey bro! I'm a service, and imma send this secure password:
           $(cat ${config.sops.secrets."myservice/my_subdir/my_secret".path})
           located in:
           ${config.sops.secrets."myservice/my_subdir/my_secret".path}
@@ -43,6 +45,7 @@ in
         WorkingDirectory = "/var/lib/sometestservice";
       };
     };
+
     users.users.sometestservice = {
       home = "/var/lib/sometestservice";
       createHome = true;
@@ -62,11 +65,6 @@ in
 
     nixpkgs.config.allowUnfree = true;
 
-    # Configure network proxy if necessary
-    # networking.proxy.default = "http://user:password@proxy:port/";
-    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-    # Enable networking
     networking = {
       hostName = host;  # Define your hostname.
       dhcpcd.enable = true;
@@ -230,7 +228,7 @@ in
           stateVersion = "24.05";
           packages = with pkgs; [
             iptables dmidecode 
-            eza entr tldr bc tree trash-cli 
+            eza entr tldr bc tree 
             # cli apps
             pciutils usbutils 
             protonvpn-cli_2 yt-dlp yt-dlp spotdl android-tools adb-sync unzip android-tools ffmpeg mpv sops
@@ -255,13 +253,15 @@ in
               size = 10000;
             };
             initExtra = ''
+              if [[ -o interactive ]]; then
+                  export GITHUB_TOKEN=$(cat /run/secrets/github_token)
+              fi
               export HISTCONTROL=ignoreboth:erasedups
               # 1 tab autocomplete:
               #bind 'set show-all-if-ambiguous on'
               #bind 'set completion-ignore-case on'
 
               c() { z "$@" && eza --icons --color=always --group-directories-first; }
-              #e() { [ $# -eq 0 ] && hx . || hx "$@"; }
               e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
               screenshot() {
                 read -p "Enter filename: " filename && grim -g "$(slurp)" ./''${filename}.png
@@ -276,7 +276,6 @@ in
               lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
               grep = "grep --color=always -IrnE --exclude-dir='.*'";
               less = "less -FR";
-              rm = "${pkgs.trash-cli}/bin/trash-put";
               plan = "cd ~/Documents/productivity/ && hx planning/todo.md planning/credentials.md";
               conf = "cd ~/Projects/repos-personal/flakes/flake/ && hx modules/coding.nix modules/all.nix";
               notes = "cd ~/Documents/productivity/notes && hx .";
@@ -290,9 +289,6 @@ in
             bashrcExtra = ''
               export HISTCONTROL=ignoreboth:erasedups
               shopt -s autocd cdspell globstar extglob nocaseglob
-              # 1 tab autocomplete:
-              #bind 'set show-all-if-ambiguous on'
-              #bind 'set completion-ignore-case on'
 
               c() { z "$@" && eza --icons --color=always --group-directories-first; }
               #e() { [ $# -eq 0 ] && hx . || hx "$@"; }
@@ -310,7 +306,7 @@ in
               lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
               grep = "grep --color=always -IrnE --exclude-dir='.*'";
               less = "less -FR";
-              rm = "${pkgs.trash-cli}/bin/trash-put";
+              # rm = "${pkgs.trash-cli}/bin/trash-put";
               plan = "cd ~/Documents/productivity/ && hx planning/todo.md planning/credentials.md";
               conf = "cd ~/Projects/repos-personal/flakes/flake/ && hx modules/coding.nix modules/all.nix";
               notes = "cd ~/Documents/productivity/notes && hx .";
