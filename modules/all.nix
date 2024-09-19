@@ -19,7 +19,6 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    users.mutableUsers = false;  # Required for a password 'passwd' to be set via sops during system activation (over anything done imperatively)!
     sops = {
       defaultSopsFile = ../secrets/secrets.yaml;
       defaultSopsFormat = "yaml";
@@ -64,13 +63,6 @@ in
       };
     };
 
-    users.users.sometestservice = {
-      home = "/var/lib/sometestservice";
-      createHome = true;
-      isSystemUser = true;
-      group = "sometestservice";
-    };
-    users.groups.sometestservice = { };
 
     # Bootloader.
     boot.loader = {
@@ -211,16 +203,25 @@ in
     };
 
 
-    # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.users.${username} = {
-      isNormalUser = true;
-      hashedPasswordFile = config.sops.secrets.user_password.path;  # Shoutout to sops baby.
-      extraGroups = [ "wheel" ];
-      shell = pkgs.zsh;
-      ignoreShellProgramCheck = true;
-      openssh.authorizedKeys.keys = ssh-keys;
+    users = {
+      # Define a user account. Don't forget to set a password with ‘passwd’.
+      mutableUsers = false;  # Required for a password 'passwd' to be set via sops during system activation (over anything done imperatively)!
+      groups.sometestservice = { };
+      users.sometestservice = {
+        home = "/var/lib/sometestservice";
+        createHome = true;
+        isSystemUser = true;
+        group = "sometestservice";
+      };
+      users.${username} = {
+        isNormalUser = true;
+        hashedPasswordFile = config.sops.secrets.user_password.path;  # Shoutout to sops baby.
+        extraGroups = [ "wheel" ];
+        shell = pkgs.zsh;
+        ignoreShellProgramCheck = true;
+        openssh.authorizedKeys.keys = ssh-keys;
+      };
     };
-
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     environment.systemPackages = with pkgs; [
