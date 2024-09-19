@@ -20,6 +20,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGQ4W1AIoMxiKJQXOwJlkJkwZ0pMOe/akO86duVI/NWG daniel@laptop"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGYrgc8D5QnHXMZT+npgXshrn4LSfDy8qlwHF53m/dvz root@server"
       ];
+      publicKeys = import ./default.nix { inherit (nixpkgs) stdenv; };
 
       # Helper function to build nixosSystem
       # FIXME: commonSpecialArgs OR inheriting anyting in mkNixosSystem might not be necessary.

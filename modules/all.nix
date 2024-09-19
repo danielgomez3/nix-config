@@ -10,6 +10,7 @@ let
   # nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
   # cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
   cfg = config.services.all;
+  publicKeys = import ../secrets/default.nix;
 in
 {
 
@@ -19,15 +20,36 @@ in
 
   config = lib.mkIf cfg.enable {
 
+    users.mutableUsers = false;  # Required for a password 'passwd' to be set via sops during system activation (over anything done imperatively)!
     sops = {
       defaultSopsFile = ../secrets/secrets.yaml;
       defaultSopsFormat = "yaml";
-      age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
-      secrets.example-key = { };
-      secrets."myservice/my_subdir/my_secret" = {
-        owner = config.users.users.${username}.name; # Make the token accessible to this user
-        group = config.users.users.${username}.group; # Make the token accessible to this group
-      };    
+      age = {
+        # Automatically import host SSH keys as age keys
+        sshKeyPaths = [ "/home/${username}/.ssh/id_ed25519" ];
+        # Specify where it will be stored. Or this will use an age key that's expected to already be in the filesystem
+        keyFile = "/home/${username}/.config/sops/age/keys.txt";
+        # Generate a new key if the key specified doesn't exist in the first place:
+        generateKey = true;
+      };
+      secrets = {
+        user_password = {
+          # Decrypt 'user-password' to /run/secrets-for-users/ so it can be used to create the user and assign their password without having to run 'passwd <user>' imperatively:
+          neededForUsers = true;
+        };
+        "private_keys/${username}" = {
+          path = "/home/${username}/.ssh/id_ed25519";
+        };
+        github_token = {
+          owner = config.users.users.${username}.name;
+          group = config.users.users.${username}.group;
+        };
+        example_key = { };
+        "myservice/my_subdir/my_secret" = {
+          owner = config.users.users.${username}.name; # Make the token accessible to this user
+          group = config.users.users.${username}.group; # Make the token accessible to this group
+        };    
+      };
     };
 
     systemd.services."sometestservice" = {
@@ -196,10 +218,12 @@ in
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.${username} = {
       isNormalUser = true;
+      hashedPasswordFile = config.sops.secrets.user-password.path;  # Shoutout to sops baby.
       extraGroups = [ "wheel" ];
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
-      openssh.authorizedKeys.keys = ssh-keys;
+      # openssh.authorizedKeys.keys = ssh-keys;
+      openssh.authorizedKeys.keys = builtins.readDir publicKeys + "../secrets/*.pub";
     };
 
     # List packages installed in system profile. To search, run:
@@ -254,7 +278,7 @@ in
             };
             initExtra = ''
               if [[ -o interactive ]]; then
-                  export GITHUB_TOKEN=$(cat /run/secrets/github_token)
+                  export GITHUB_TOKEN=$(cat /run/secrets/github-token)
               fi
               export HISTCONTROL=ignoreboth:erasedups
               # 1 tab autocomplete:
