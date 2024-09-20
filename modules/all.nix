@@ -32,10 +32,16 @@ in
         # Generate a new key if the key specified doesn't exist in the first place:
         generateKey = true;
       };
+      # Default is true. When true, it checks whether SOPS-encrypted files are valid and can be decrypted at build-time. This ensures that the encrypted files you are using can actually be decrypted by the system and are not corrupted or otherwise unreadable. Toggled off for automatic ssh key pair creation:
+      validateSopsFiles = false;
       secrets = {
         user_password = {
           # Decrypt 'user-password' to /run/secrets-for-users/ so it can be used to create the user and assign their password without having to run 'passwd <user>' imperatively:
           neededForUsers = true;
+        };
+        "private_keys/${host}" = {  # This way, it could be server, desktop, whatever!
+          # Automatically generate this private key at this location if it's there or not:
+          path = "/home/${username}/.ssh/id_ed25519";
         };
         github_token = {
           owner = config.users.users.${username}.name;
@@ -214,7 +220,10 @@ in
         extraGroups = [ "wheel" ];
         shell = pkgs.zsh;
         ignoreShellProgramCheck = true;
-        openssh.authorizedKeys.keys = ssh-keys;
+        openssh.authorizedKeys.keys = [
+          (builtins.readFile ../secrets/desktop.pub)
+          (builtins.readFile ../secrets/server.pub)
+        ];
       };
     };
     # List packages installed in system profile. To search, run:
