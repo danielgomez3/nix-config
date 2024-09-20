@@ -13,13 +13,6 @@ Completely refactor flake.nix
 ## Solution
   - A declarative Operating System (or file) with reproduceability baked-in :)
 
-## Instructions
-  - To switch configurations, at any time, after this is cloned:
-  ```nix
-  sudo nixos-rebuild switch --flake /etc/nixos#laptop
-  # OR whatever you decide! Make sure it points to the nix.flake:
-  sudo nixos-rebuild switch --flake /home/jake/system/#raspberry-pi
-  ```
 
 #### Opinions
   - Docker is not as reproducible as you think. It comes with some big drawbacks, and It doesn't ever fix the underlying issue of non-determinism when using non-declaritive Operating Systems.

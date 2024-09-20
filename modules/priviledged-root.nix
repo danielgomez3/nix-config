@@ -1,8 +1,6 @@
-{ username, pkgs, inputs, ssh-keys, ... }:
+{ username, pkgs, inputs, ... }:
 
 {
-  users.users.root.openssh.authorizedKeys.keys = ssh-keys;   
-
   home-manager = { 
     extraSpecialArgs = { inherit inputs; };
     users.root = {

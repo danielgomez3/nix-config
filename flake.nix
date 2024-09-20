@@ -14,20 +14,13 @@
     let 
       system = "x86_64-linux";
       username = "daniel";
-      ssh-keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9OcZ6CO1lDXOMQQawee8Fh6iydI8I+SXMdD9GESq8v daniel@desktop"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHdnOQw9c23oUEIBdZFrKb/r4lHIKLZ9Dz11Un0erVsj danielgomez3@server"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGQ4W1AIoMxiKJQXOwJlkJkwZ0pMOe/akO86duVI/NWG daniel@laptop"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGYrgc8D5QnHXMZT+npgXshrn4LSfDy8qlwHF53m/dvz root@server"
-      ];
-
       # Helper function to build nixosSystem
-      # FIXME: commonSpecialArgs OR inheriting anyting in mkNixosSystem might not be necessary.
+      # FIXME: commonSpecialArgs OR inheriting anything in mkNixosSystem might not be necessary.
       mkNixosSystem = args: nixpkgs.lib.nixosSystem {
         inherit (args) specialArgs modules;
       };
       # NOTE: Default system and username here unless specified
-      commonSpecialArgs = { inherit inputs system username ssh-keys; };  
+      commonSpecialArgs = { inherit inputs system username; };  
       commonModules = [
         inputs.home-manager.nixosModules.default
         inputs.sops-nix.nixosModules.sops
