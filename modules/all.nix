@@ -9,12 +9,13 @@
 let 
   # nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
   # cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
-  cfg = config.services.all;
+  cfg = config.services.all;  # My custom service called 'all'
+  secretspath = builtins.toString inputs.mysecrets;
 in
 {
 
   options.services.all = {
-    enable = lib.mkEnableOption "all service";
+    enable = lib.mkEnableOption "My 'all' service!";
   };
 
   # A custom 'service' called 'all'. If a system has this enabled, it will inherit the following settings!:
@@ -22,7 +23,8 @@ in
 
     nixpkgs.config.allowUnfree = true;
     sops = {
-      defaultSopsFile = ../secrets/secrets.yaml;
+      # used to be ../secrets/secrets.yaml, now we're doing it remote. Now, we're pointing to wherever the git repo was cloned on the system on nixos-rebuild!
+      defaultSopsFile = "${secretspath}"/secrets.yaml;
       defaultSopsFormat = "yaml";
       age = {
         # Automatically import host SSH keys as age keys

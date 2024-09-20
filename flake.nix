@@ -8,6 +8,10 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    mysecrets = {
+      url = "git+ssh://git@github.com:danielgomez3/nix-secrets.git";
+      flake = false;
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, ... }: 
