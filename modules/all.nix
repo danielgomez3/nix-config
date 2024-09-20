@@ -290,6 +290,9 @@ in
               screenshot() {
                 read -p "Enter filename: " filename && grim -g "$(slurp)" ./''${filename}.png
               }
+              _tar(){
+                tar -czhvf ~/Backups/"$(basename "$1")-$(date -I)".tar.gz -C $(dirname "$1") $(basename "$1")
+              }
             '';
             shellAliases = {
               f = "fg";
@@ -298,7 +301,7 @@ in
               la = "eza -a --icons --color=always --group-directories-first";
               lt = "eza --icons --color=always --tree --level 2 --group-directories-first";
               lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
-              grep = "grep --color=always -IrnE --exclude-dir='.*'";
+              # grep = "grep --color=always -IrnE --exclude-dir='.*'";
               less = "less -FR";
               plan = "cd ~/Documents/productivity/ && hx planning/todo.md planning/credentials.md";
               conf = "cd ~/Projects/repos-personal/flakes/flake/ && hx modules/coding.nix modules/all.nix";
@@ -353,22 +356,41 @@ in
 
           ssh = {
             enable = true;
-            extraConfig = ''
-              Host server
-                 HostName 192.168.12.149 
-                 User danielgomez3
-
-              Host deploy
-                 HostName 192.168.12.149 
-                 User root
-
-              Host desktop
-                 HostName 192.168.12.182
-                 User daniel     
-            '';
+            matchBlocks = {
+              "github" = {
+                host = "github.com";
+                identitiesOnly = true;
+                identityFile = [
+                  "~/.ssh/id_ed25519"
+                ];
+              };
+              "server" = {
+                host = "server";
+                hostname = "192.168.12.149";
+                user = "danielgomez3";
+              };
+              "desktop" = {
+                host = "desktop";
+                hostname = "192.168.12.182";
+                user = "daniel";
+              };
+              "deploy" = {
+                host = "deploy";
+                hostname = "192.168.12.149";
+                user = "root";
+              };
             };
           };
+
+
         };
       };
     };
+  };
+
+
+
+
+
+  
 }
