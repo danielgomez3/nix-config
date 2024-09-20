@@ -10,7 +10,7 @@ let
   # nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
   # cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
   cfg = config.services.all;  # My custom service called 'all'
-  # secretspath = builtins.toString inputs.mysecrets;
+  secretspath = builtins.toString inputs.mysecrets;
 in
 {
 
@@ -45,7 +45,9 @@ in
         "private_keys/${host}" = {  # This way, it could be server, desktop, whatever!
           # Automatically generate this private key at this location if it's there or not:
           path = "/home/${username}/.ssh/id_ed25519";
-          mode = "0600";
+          # mode = "600";
+          # owner = config.users.users.${username}.name;
+
         };
         github_token = {
           owner = config.users.users.${username}.name;
@@ -195,12 +197,6 @@ in
               devices = [ "desktop" "server" "laptop" ];
               autoAccept = true;
               id = "Projects";
-            };
-            "nix" = {
-              path = "/home/${username}/.config/nix/";
-              devices = [ "desktop" "server" "laptop" ];
-              autoAccept = true;
-              id = "nix";
             };
           };
         };
@@ -362,10 +358,13 @@ in
             enable = true;
             matchBlocks = {
               "github" = {
-                host = "github.com";
+                host = "github.com gitlab.com";
                 identitiesOnly = true;
+                # identityFile = [
+                #   "~/.ssh/id_ed25519"
+                # ];
                 identityFile = [
-                  "~/.ssh/id_ed25519"
+                  "${config.sops.secrets."private_keys/${host}".path}"
                 ];
               };
               "server" = {

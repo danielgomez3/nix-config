@@ -9,7 +9,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     # mysecrets = {
-    #   url = "git+ssh://git@github.com:danielgomez3/nix-secrets.git?ref=main&shallow=1";
+    #   url = "git+ssh://git@github.com/danielgomez3/nix-secrets.git?ref=main&shallow=1";
     #   flake = false;
     # };
   };
