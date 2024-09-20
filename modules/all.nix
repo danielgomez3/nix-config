@@ -10,7 +10,7 @@ let
   # nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
   # cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
   cfg = config.services.all;  # My custom service called 'all'
-  secretspath = builtins.toString inputs.mysecrets;
+  # secretspath = builtins.toString inputs.mysecrets;
 in
 {
 
@@ -24,7 +24,8 @@ in
     nixpkgs.config.allowUnfree = true;
     sops = {
       # used to be ../secrets/secrets.yaml, now we're doing it remote. Now, we're pointing to wherever the git repo was cloned on the system on nixos-rebuild!
-      defaultSopsFile = "${secretspath}"/secrets.yaml;
+      defaultSopsFile = ../secrets/secrets.yaml;
+      # defaultSopsFile = "${secretspath}"/secrets.yaml;
       defaultSopsFormat = "yaml";
       age = {
         # Automatically import host SSH keys as age keys
@@ -44,6 +45,7 @@ in
         "private_keys/${host}" = {  # This way, it could be server, desktop, whatever!
           # Automatically generate this private key at this location if it's there or not:
           path = "/home/${username}/.ssh/id_ed25519";
+          mode = "0600";
         };
         github_token = {
           owner = config.users.users.${username}.name;
