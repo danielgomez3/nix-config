@@ -10,7 +10,7 @@ let
   # nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
   # cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
   cfg = config.services.all;  # My custom service called 'all'
-  secretspath = builtins.toString inputs.mysecrets;
+  # secretspath = builtins.toString inputs.mysecrets;
 in
 {
 
@@ -255,8 +255,10 @@ in
             eza entr tldr bc tree 
             # cli apps
             pciutils usbutils 
-            protonvpn-cli_2 yt-dlp yt-dlp spotdl android-tools adb-sync unzip android-tools ffmpeg mpv sops
+            sops
+            yt-dlp beets spotdl protonvpn-cli_2
             tesseract ocrmypdf
+            android-tools adb-sync unzip android-tools ffmpeg mpv
           ];
         };
 
@@ -358,13 +360,11 @@ in
             enable = true;
             matchBlocks = {
               "github" = {
-                host = "github.com gitlab.com";
+                host = "github.com";
                 identitiesOnly = true;
-                # identityFile = [
-                #   "~/.ssh/id_ed25519"
-                # ];
                 identityFile = [
-                  "${config.sops.secrets."private_keys/${host}".path}"
+                  # "${config.sops.secrets."private_keys/${host}".path}"
+                  "~/.ssh/id_ed25519"
                 ];
               };
               "server" = {

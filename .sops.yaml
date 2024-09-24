@@ -1,7 +1,10 @@
 keys:
-  - &server age1ux290fkfrruj0rrqnknd7dc50cpcstglch7jchas5zd7ahwkxflsureggk
+  - &users:
+    - &daniel_gomez: age1rap29phjl09tdmcnuwmwgjv09xj9ju5a50rn7phtzyzfvz6dkawsl2vnf7
+  - &hosts:
+    - &server age1ux290fkfrruj0rrqnknd7dc50cpcstglch7jchas5zd7ahwkxflsureggk
 creation_rules:
   - path_regex: secrets/secrets.yaml$
     key_groups:
     - age:
-        - *server
+        - *daniel_gomez
