@@ -23,6 +23,8 @@ in
 
     nixpkgs.config.allowUnfree = true;
     sops = {
+      # HACK: sops nix Cannot read ssh key '/etc/ssh/ssh_host_rsa_key':
+      gnupg.sshKeyPaths = [];
       # used to be ../secrets/secrets.yaml, now we're doing it remote. Now, we're pointing to wherever the git repo was cloned on the system on nixos-rebuild!
       defaultSopsFile = ../secrets.yaml;
       # defaultSopsFile = "${secretspath}"/secrets.yaml;
@@ -42,7 +44,7 @@ in
           # Decrypt 'user-password' to /run/secrets-for-users/ so it can be used to create the user and assign their password without having to run 'passwd <user>' imperatively:
           neededForUsers = true;
         };
-        "private_keys/${host}" = {  # This way, it could be server, desktop, whatever!
+        "private_keys/${username}" = {  # This way, it could be server, desktop, whatever!
           # Automatically generate this private key at this location if it's there or not:
           path = "/home/${username}/.ssh/id_ed25519";
           # mode = "600";
@@ -53,31 +55,31 @@ in
           owner = config.users.users.${username}.name;
           group = config.users.users.${username}.group;
         };
-        example_key = { };
-        "myservice/my_subdir/my_secret" = {
-          owner = config.users.users.${username}.name; # Make the token accessible to this user
-          group = config.users.users.${username}.group; # Make the token accessible to this group
-        };    
+        # example_key = { };
+        # "myservice/my_subdir/my_secret" = {
+        #   owner = config.users.users.${username}.name; # Make the token accessible to this user
+        #   group = config.users.users.${username}.group; # Make the token accessible to this group
+        # };    
       };
     };
 
     systemd.services = {
       syncthing.environment.STNODEFAULTFOLDER = "true";  # Don't create default ~/Sync folder
-      "sometestservice" = {
-        script = ''
-            echo "
-            Hey bro! I'm a service, and imma send this secure password:
-            $(cat ${config.sops.secrets."myservice/my_subdir/my_secret".path})
-            located in:
-            ${config.sops.secrets."myservice/my_subdir/my_secret".path}
-            to database and hack the mainframe
-            " > /var/lib/sometestservice/testfile
-          '';
-        serviceConfig = {
-          User = "sometestservice";
-          WorkingDirectory = "/var/lib/sometestservice";
-        };
-      };
+      # "sometestservice" = {
+      #   script = ''
+      #       echo "
+      #       Hey bro! I'm a service, and imma send this secure password:
+      #       $(cat ${config.sops.secrets."myservice/my_subdir/my_secret".path})
+      #       located in:
+      #       ${config.sops.secrets."myservice/my_subdir/my_secret".path}
+      #       to database and hack the mainframe
+      #       " > /var/lib/sometestservice/testfile
+      #     '';
+      #   serviceConfig = {
+      #     User = "sometestservice";
+      #     WorkingDirectory = "/var/lib/sometestservice";
+      #   };
+      # };
     };
 
     boot.loader = {

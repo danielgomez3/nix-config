@@ -1,11 +1,11 @@
 keys:
   - &users:
-  - &danielgomez3 age1qq5gu8vv8l7z3f7w82ahrt3cvzf2jvy8n84fy7v9rpvftdpmkc0suwm3xl
+    - &daniel_gomez_dev age1qq5gu8vv8l7z3f7w82ahrt3cvzf2jvy8n84fy7v9rpvftdpmkc0suwm3xl
   - &hosts:
     - &server age1jkuf865dxkl6ekc9clsw7kzdn8d9l9zv5ddrxst73zgsvagkrvhsm3vsvk
 creation_rules:
   - path_regex: secrets.yaml$
     key_groups:
       - age:
-        - *danielgomez3
+        - *daniel_gomez_dev
         - *server
