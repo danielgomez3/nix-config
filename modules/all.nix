@@ -332,14 +332,9 @@ in
             enable = true;
             userName = "danielgomez3";
             userEmail = "danielgomez3@verizon.net";
-            # extraConfig = {
-            #   credential.helper = "store";
-            #   # url = {
-            #   #   "https://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@github.com/" = {
-            #   #     insteadOf = "https://github.com/";
-            #   #   };
-            #   # };
-            # };
+            extraConfig = {
+              credential.helper = "store";
+            };
           };
 
           ssh = {
