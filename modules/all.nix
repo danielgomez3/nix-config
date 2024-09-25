@@ -24,7 +24,7 @@ in
     nixpkgs.config.allowUnfree = true;
     sops = {
       # used to be ../secrets/secrets.yaml, now we're doing it remote. Now, we're pointing to wherever the git repo was cloned on the system on nixos-rebuild!
-      defaultSopsFile = ../secrets/secrets.yaml;
+      defaultSopsFile = ../secrets.yaml;
       # defaultSopsFile = "${secretspath}"/secrets.yaml;
       defaultSopsFormat = "yaml";
       age = {
@@ -217,12 +217,14 @@ in
       users.${username} = {
         isNormalUser = true;
         hashedPasswordFile = config.sops.secrets.user_password.path;  # Shoutout to sops baby.
+        # password = "123";
         extraGroups = [ "wheel" ];
         shell = pkgs.zsh;
         ignoreShellProgramCheck = true;
         openssh.authorizedKeys.keys = [
-          (builtins.readFile ../secrets/desktop.pub)
-          (builtins.readFile ../secrets/server.pub)
+          # (builtins.readFile ../secrets/desktop.pub)
+          # (builtins.readFile ../secrets/server.pub)
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9OcZ6CO1lDXOMQQawee8Fh6iydI8I+SXMdD9GESq8v daniel@desktop"
         ];
       };
     };
@@ -255,7 +257,7 @@ in
             eza entr tldr bc tree 
             # cli apps
             pciutils usbutils 
-            sops
+            sops age
             yt-dlp beets spotdl protonvpn-cli_2
             tesseract ocrmypdf
             android-tools adb-sync unzip android-tools ffmpeg mpv
