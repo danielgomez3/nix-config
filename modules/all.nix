@@ -345,15 +345,15 @@ in
           ssh = {
             enable = true;
             matchBlocks = {
-              "server-hosts" = {
-                host = "github.com gitlab.com";
-                identitiesOnly = true;
-                identityFile = [
-                  # "${config.sops.secrets."private_keys/${host}".path}"
-                  # "/home/${username}/.ssh/id_ed25519"
-                  "~/.ssh/id_ed25519"
-                ];
-              };
+              # "server-hosts" = {
+              #   host = "github.com gitlab.com";
+              #   identitiesOnly = true;
+              #   identityFile = [
+              #     # "${config.sops.secrets."private_keys/${host}".path}"
+              #     # "/home/${username}/.ssh/id_ed25519"
+              #     "~/.ssh/id_ed25519"
+              #   ];
+              # };
               "server" = {
                 host = "server";
                 hostname = "192.168.12.149";
