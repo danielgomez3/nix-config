@@ -225,9 +225,8 @@ in
         shell = pkgs.zsh;
         ignoreShellProgramCheck = true;
         openssh.authorizedKeys.keys = [
-          # (builtins.readFile ../secrets/desktop.pub)
-          # (builtins.readFile ../secrets/server.pub)
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9OcZ6CO1lDXOMQQawee8Fh6iydI8I+SXMdD9GESq8v daniel@desktop"
+          (builtins.readFile ../secrets/desktop.pub)
+          (builtins.readFile ../secrets/server.pub)
         ];
       };
     };
