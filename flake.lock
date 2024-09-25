@@ -21,6 +21,24 @@
         "type": "github"
       }
     },
+    "mysecrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1727227971,
+        "narHash": "sha256-nDWtqVbFHq2yNoj7vyaspWvrNYpvNtBlq6gg3XAgxmw=",
+        "ref": "main",
+        "rev": "4e10e6f4b97a2657954a134af7c3bbd5997221e9",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/danielgomez3/nix-secrets.git"
+      },
+      "original": {
+        "ref": "main",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/danielgomez3/nix-secrets.git"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1726447378,
@@ -56,6 +74,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "mysecrets": "mysecrets",
         "nixpkgs": "nixpkgs",
         "sops-nix": "sops-nix"
       }

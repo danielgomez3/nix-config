@@ -10,7 +10,7 @@ let
   # nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
   # cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
   cfg = config.services.all;  # My custom service called 'all'
-  # secretspath = builtins.toString inputs.mysecrets;
+  secretspath = builtins.toString inputs.mysecrets;
 in
 {
 
@@ -26,8 +26,8 @@ in
       # HACK: sops nix Cannot read ssh key '/etc/ssh/ssh_host_rsa_key':
       gnupg.sshKeyPaths = [];
       # used to be ../secrets/secrets.yaml, now we're doing it remote. Now, we're pointing to wherever the git repo was cloned on the system on nixos-rebuild!
-      defaultSopsFile = ../secrets.yaml;
-      # defaultSopsFile = "${secretspath}"/secrets.yaml;
+      # defaultSopsFile = ../secrets.yaml;
+      defaultSopsFile = "${secretspath}/secrets.yaml";
       defaultSopsFormat = "yaml";
       age = {
         # Automatically import host SSH keys as age keys
@@ -49,7 +49,7 @@ in
           # Automatically generate this private key at this location if it's there or not:
           path = "/home/${username}/.ssh/id_ed25519";
           # mode = "600";
-          # owner = config.users.users.${username}.name;
+          owner = config.users.users.${username}.name;
 
         };
         github_token = {
