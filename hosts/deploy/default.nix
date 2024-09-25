@@ -48,9 +48,6 @@
           enable = true;
           userName = "danielgomez3";
           userEmail = "danielgomez3@verizon.net";
-          extraConfig = {
-            credential.helper = "store";
-          };
         };
 
         # FIXME: Add laptop. Also, this has to be changed with all.nix's version. Pretty stupid.
