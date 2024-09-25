@@ -241,7 +241,7 @@ in
             eza entr tldr bc tree 
             # cli apps
             pciutils usbutils 
-            sops age
+            sops age just
             yt-dlp beets spotdl protonvpn-cli_2
             tesseract ocrmypdf
             android-tools adb-sync unzip android-tools ffmpeg mpv
