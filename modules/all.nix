@@ -225,8 +225,8 @@ in
         shell = pkgs.zsh;
         ignoreShellProgramCheck = true;
         openssh.authorizedKeys.keys = [
-          (builtins.readFile ../secrets/desktop.pub)
-          (builtins.readFile ../secrets/server.pub)
+          (builtins.readFile ../keys/desktop.pub)
+          (builtins.readFile ../keys/server.pub)
         ];
       };
     };
