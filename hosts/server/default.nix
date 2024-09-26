@@ -54,11 +54,11 @@
       # The protocol for Duck DNS
       protocol = "duckdns";
       # Duck DNS domain name without the .duckdns.org part
-      domains = [ "danielgomezcoder" ];
-      username = "danielgomezcoder@gmail.com";
+      domains = [ config.sops.secrets.duck_dns.server.domain.path ];
+      username = config.sops.secrets.duck_dns.server.username.path;
       # interval = "5m";
       # Use your Duck DNS token as the password
-      passwordFile = config.sops.secrets.duck_dns_token.path;  # Shoutout to sops baby.
+      passwordFile = config.sops.secrets.duck_dns.server.token.path;  # Shoutout to sops baby.
       use = "web, web=https://ifconfig.me";
     };
   };

@@ -45,9 +45,24 @@ in
           # Decrypt 'user-password' to /run/secrets-for-users/ so it can be used to create the user and assign their password without having to run 'passwd <user>' imperatively:
           neededForUsers = true;
         };
-        duck_dns_token = {
-          owner = config.users.users.${username}.name;
-          group = config.users.users.${username}.group;
+        duck_dns = {
+          server = {
+            domain = {  # Duck DNS domain from the secret file
+              path = "/run/secrets/duck_dns_server_domain";  
+              owner = config.users.users.${username}.name;
+              group = config.users.users.${username}.group;
+            };
+            username = {  # Duck DNS username from the secret file
+              path = "/run/secrets/duck_dns_server_username";  
+              owner = config.users.users.${username}.name;
+              group = config.users.users.${username}.group;
+            };
+            token = {  # Duck DNS token from the secret file
+              path = "/run/secrets/duck_dns_server_token";  
+              owner = config.users.users.${username}.name;
+              group = config.users.users.${username}.group;
+            };
+          };
         };
         "private_keys/${username}" = {  # This way, it could be server, desktop, whatever!
           # Automatically generate this private key at this location if it's there or not:
@@ -336,7 +351,7 @@ in
           git = {
             enable = true;
             userName = "danielgomez3";
-            userEmail = "danielgomez3@verizon.net";
+            userEmail = "danielgomezcoder@gmail.com";
             extraConfig = {
               credential.helper = "store";
             };
@@ -356,7 +371,7 @@ in
               };
               "server" = {
                 host = "server";
-                hostname = "192.168.12.149";
+                hostname = "danielgomezcoder@duckdns.org";
                 user = "danielgomez3";
               };
               "desktop" = {
