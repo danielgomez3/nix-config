@@ -2,7 +2,7 @@
 # server.nix
 # NOTE: This contains all common features I want only my server to have!
 
-{ username, pkgs, inputs, ... }:
+{ username, pkgs, inputs, config, ... }:
 
 {
   home-manager = { 
@@ -45,6 +45,27 @@
         # FIXME: This is bad. This is a unique password tho.
         password = "naruto88";  
       };
+    };
+
+    ddclient = {
+      enable = true;
+      interval = "5m";
+      # The server (API) to update, which is Duck DNS
+      server = "www.duckdns.org"; 
+      # The protocol for Duck DNS
+      protocol = "duckdns";
+
+      # Duck DNS domain name without the .duckdns.org part
+      domains = [ "danielgomezcoder" ];
+
+      # Use your Duck DNS token as the password
+      passwordFile = config.sops.secrets.duck_dns_token.path;  # Shoutout to sops baby.
+
+      # Use 'web' for auto IP detection (ddclient will use your public IP)
+      use = "web";
+
+      # Enforce SSL for secure updates
+      ssl = true;
     };
   };
 
