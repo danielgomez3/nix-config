@@ -24,7 +24,7 @@ in
     nixpkgs.config.allowUnfree = true;
     sops = {
       # HACK: sops nix Cannot read ssh key '/etc/ssh/ssh_host_rsa_key':
-      gnupg.sshKeyPaths = [];
+      # gnupg.sshKeyPaths = [];
       # used to be ../secrets/secrets.yaml, now we're doing it remote. Now, we're pointing to wherever the git repo was cloned on the system on nixos-rebuild!
       # defaultSopsFile = ../secrets.yaml;
       defaultSopsFile = "${secretspath}/secrets.yaml";
@@ -208,7 +208,7 @@ in
         ignoreShellProgramCheck = true;
         openssh.authorizedKeys.keys = [
           (builtins.readFile ../keys/desktop.pub)
-          (builtins.readFile ../keys/server.pub)
+          (builtins.readFile ../keys/server_root.pub)
         ];
       };
     };
