@@ -95,14 +95,15 @@ in
 
     networking = {
       hostName = host;  # Define your hostname.
+      nameservers = [ "8.8.8.8" "8.8.4.4" ];
       dhcpcd.enable = true;
       domain = "home";
       wireless.iwd = {
         enable = true;
         settings = {
-          IPv6 = {
-            Enabled = true;
-          };
+          # IPv6 = {
+          #   Enabled = true;
+          # };
           Settings = {
             AutoConnect = true;
           };

@@ -54,17 +54,12 @@
       # The protocol for Duck DNS
       protocol = "duckdns";
       # Duck DNS domain name without the .duckdns.org part
-      domains = [ "danielgomezcoder.duckdns.org" ];
+      domains = [ "danielgomezcoder" ];
       username = "danielgomezcoder@gmail.com";
-      interval = "5m";
+      # interval = "5m";
       # Use your Duck DNS token as the password
       passwordFile = config.sops.secrets.duck_dns_token.path;  # Shoutout to sops baby.
-
-      # Use 'web' for auto IP detection (ddclient will use your public IP)
-      use = "web";
-
-      # Enforce SSL for secure updates
-      ssl = true;
+      use = "web, web=https://ifconfig.me";
     };
   };
 
