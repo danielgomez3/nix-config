@@ -49,13 +49,6 @@ in
         duck_dns_username = {};
         duck_dns_domain = {};
         duck_dns_token = {};
-        "private_keys/${username}" = {  # This way, it could be server, desktop, whatever!
-          # Automatically generate this private key at this location if it's there or not:
-          path = "/home/${username}/.ssh/id_ed25519";
-          # mode = "600";
-          owner = config.users.users.${username}.name;
-
-        };
         github_token = {
           owner = config.users.users.${username}.name;
           group = config.users.users.${username}.group;
