@@ -2,14 +2,10 @@
 # server.nix
 # NOTE: This contains all common features I want only my server to have!
 
-{ username, pkgs, inputs, config, ... }:
-
-let
-  my_domain = config.sops.secrets.duck_dns_domain.path;
-in
+{ username, inputs, config, ... }:
 
 {
-  sops.secrets."private_keys/server" = {  # This way, it could be server, desktop, whatever!
+  sops.secrets."private_keys/laptop" = {  # This way, it could be server, desktop, whatever!
     # Automatically generate this private key at this location if it's there or not:
     path = "/home/${username}/.ssh/id_ed25519";
     # mode = "600";
