@@ -6,12 +6,12 @@ update:
     sudo nix flake update
 
 rebuild:
-    just update
     sudo nix flake lock --update-input mysecrets
     sudo nixos-rebuild switch --flake .#server
 
 edit:
     $EDITOR . 
+    just update
     just rebuild
 
 deploy:
