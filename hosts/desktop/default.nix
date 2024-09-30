@@ -1,7 +1,7 @@
 # desktop.nix
 # NOTE: This contains all common features I want only my desktop to have!
 
-{ pkgs, inputs, username, ... }:
+{ pkgs, inputs, username, config, ... }:
 
 {
   users.users.${username} = {
