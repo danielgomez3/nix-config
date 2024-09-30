@@ -40,6 +40,23 @@
     syncthing = {
       guiAddress = "127.0.0.1:8385";
     };
+    ddclient = {
+      enable = true;
+      # The server (API) to update, which is Duck DNS
+      server = "www.duckdns.org"; 
+      # The protocol for Duck DNS
+      protocol = "duckdns";
+      # Duck DNS domain name without the .duckdns.org part
+      domains = [ 
+        "danielgomezcoder-d"
+      ];
+      username = config.sops.secrets.duck_dns_username.path;
+      interval = "5m";
+      # Use your Duck DNS token as the password
+      passwordFile = config.sops.secrets.duck_dns_token.path;  # Shoutout to sops baby.
+      use = "web, web=https://ifconfig.me";
+    };
+
   };
 
 

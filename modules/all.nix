@@ -45,22 +45,10 @@ in
           # Decrypt 'user-password' to /run/secrets-for-users/ so it can be used to create the user and assign their password without having to run 'passwd <user>' imperatively:
           neededForUsers = true;
         };
-        duck_dns_token = {
-          owner = config.users.users.${username}.name;
-          group = config.users.users.${username}.group;
-        };
-        duck_dns_username = {
-          owner = config.users.users.${username}.name;
-          group = config.users.users.${username}.group;
-        };
-        duck_dns_domain = {
-          owner = config.users.users.${username}.name;
-          group = config.users.users.${username}.group;
-        };
-        duck_dns_token = {
-          owner = config.users.users.${username}.name;
-          group = config.users.users.${username}.group;
-        };
+        duck_dns_token = {};
+        duck_dns_username = {};
+        duck_dns_domain = {};
+        duck_dns_token = {};
         "private_keys/${username}" = {  # This way, it could be server, desktop, whatever!
           # Automatically generate this private key at this location if it's there or not:
           path = "/home/${username}/.ssh/id_ed25519";
@@ -254,7 +242,7 @@ in
         home = {
           stateVersion = "24.05";
           packages = with pkgs; [
-            iptables dmidecode 
+            iptables dig dmidecode 
             eza entr tldr bc tree 
             # cli apps
             pciutils usbutils 
