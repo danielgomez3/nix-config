@@ -3,11 +3,12 @@ default:
 
 update:
     git add -A :/
-    sudo nix flake update
+    sudo -E nix flake update
 
-rebuild:
-    sudo nix flake lock --update-input mysecrets
-    sudo nixos-rebuild switch --flake .#server
+# TODO: Can't just do it for server, moron
+# rebuild:
+#     sudo -E nix flake lock --update-input mysecrets
+#     sudo nixos-rebuild switch --flake .#server
 
 edit:
     $EDITOR . 
