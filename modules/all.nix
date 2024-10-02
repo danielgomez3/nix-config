@@ -22,44 +22,44 @@ in
   config = lib.mkIf cfg.enable {
 
     nixpkgs.config.allowUnfree = true;
-    sops = {
-      # HACK: sops nix Cannot read ssh key '/etc/ssh/ssh_host_rsa_key':
-      gnupg.sshKeyPaths = [];
-      # used to be ../secrets/secrets.yaml, now we're doing it remote. Now, we're pointing to wherever the git repo was cloned on the system on nixos-rebuild!
-      # defaultSopsFile = ../secrets.yaml;
-      defaultSopsFile = "${secretspath}/secrets.yaml";
-      defaultSopsFormat = "yaml";
-      age = {
-        # Automatically import host SSH keys as age keys
-        sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-        # Specify where it will be stored. Or this will use an age key that's expected to already be in the filesystem
-        keyFile = "/home/${username}/.config/sops/age/keys.txt";
-        # keyFile = "/var/lib/sops-nix/keys.txt";
-        # Generate a new key if the key specified doesn't exist in the first place:
-        generateKey = true;
-      };
-      # Default is true. When true, it checks whether SOPS-encrypted files are valid and can be decrypted at build-time. This ensures that the encrypted files you are using can actually be decrypted by the system and are not corrupted or otherwise unreadable. Toggled off for automatic ssh key pair creation:
-      validateSopsFiles = false;
-      secrets = {
-        user_password = {
-          # Decrypt 'user-password' to /run/secrets-for-users/ so it can be used to create the user and assign their password without having to run 'passwd <user>' imperatively:
-          neededForUsers = true;
-        };
-        duck_dns_token = {};
-        duck_dns_username = {};
-        duck_dns_domain = {};
-        duck_dns_token = {};
-        github_token = {
-          owner = config.users.users.${username}.name;
-          group = config.users.users.${username}.group;
-        };
-        # example_key = { };
-        # "myservice/my_subdir/my_secret" = {
-        #   owner = config.users.users.${username}.name; # Make the token accessible to this user
-        #   group = config.users.users.${username}.group; # Make the token accessible to this group
-        # };    
-      };
-    };
+    # sops = {
+    #   # HACK: sops nix Cannot read ssh key '/etc/ssh/ssh_host_rsa_key':
+    #   gnupg.sshKeyPaths = [];
+    #   # used to be ../secrets/secrets.yaml, now we're doing it remote. Now, we're pointing to wherever the git repo was cloned on the system on nixos-rebuild!
+    #   # defaultSopsFile = ../secrets.yaml;
+    #   defaultSopsFile = "${secretspath}/secrets.yaml";
+    #   defaultSopsFormat = "yaml";
+    #   age = {
+    #     # Automatically import host SSH keys as age keys
+    #     sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    #     # Specify where it will be stored. Or this will use an age key that's expected to already be in the filesystem
+    #     keyFile = "/home/${username}/.config/sops/age/keys.txt";
+    #     # keyFile = "/var/lib/sops-nix/keys.txt";
+    #     # Generate a new key if the key specified doesn't exist in the first place:
+    #     generateKey = true;
+    #   };
+    #   # Default is true. When true, it checks whether SOPS-encrypted files are valid and can be decrypted at build-time. This ensures that the encrypted files you are using can actually be decrypted by the system and are not corrupted or otherwise unreadable. Toggled off for automatic ssh key pair creation:
+    #   validateSopsFiles = false;
+    #   secrets = {
+    #     user_password = {
+    #       # Decrypt 'user-password' to /run/secrets-for-users/ so it can be used to create the user and assign their password without having to run 'passwd <user>' imperatively:
+    #       neededForUsers = true;
+    #     };
+    #     duck_dns_token = {};
+    #     duck_dns_username = {};
+    #     duck_dns_domain = {};
+    #     duck_dns_token = {};
+    #     github_token = {
+    #       owner = config.users.users.${username}.name;
+    #       group = config.users.users.${username}.group;
+    #     };
+    #     # example_key = { };
+    #     # "myservice/my_subdir/my_secret" = {
+    #     #   owner = config.users.users.${username}.name; # Make the token accessible to this user
+    #     #   group = config.users.users.${username}.group; # Make the token accessible to this group
+    #     # };    
+    #   };
+    # };
 
     systemd.services = {
       syncthing.environment.STNODEFAULTFOLDER = "true";  # Don't create default ~/Sync folder
@@ -199,7 +199,7 @@ in
       };
       users.${username} = {
         isNormalUser = true;
-        hashedPasswordFile = config.sops.secrets.user_password.path;  # Shoutout to sops baby.
+        # hashedPasswordFile = config.sops.secrets.user_password.path;  # Shoutout to sops baby.
         # password = "123";
         extraGroups = [ "wheel" ];
         shell = pkgs.zsh;
