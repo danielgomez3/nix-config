@@ -4,12 +4,12 @@
 { pkgs, inputs, username, config, ... }:
 
 {
-  # sops.secrets."private_keys/desktop" = {  # This way, it could be server, desktop, whatever!
-  #   # Automatically generate this private key at this location if it's there or not:
-  #   path = "/home/${username}/.ssh/id_ed25519";
-  #   # mode = "600";
-  #   owner = config.users.users.${username}.name;
-  # };
+  sops.secrets."private_keys/user_desktop" = {  # This way, it could be server, desktop, whatever!
+    # Automatically generate this private key at this location if it's there or not:
+    path = "/home/${username}/.ssh/id_ed25519";
+    # mode = "600";
+    owner = config.users.users.${username}.name;
+  };
   users.users.${username} = {
     description = "desktop";
   };
