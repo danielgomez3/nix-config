@@ -127,6 +127,12 @@ in
     services = { 
       openssh = {
         enable = true;
+        hostKeys = [
+          {
+            path = "/etc/ssh/ssh_host_ed25519_key";
+            type = "ed25519";
+          }
+        ];
         settings = {
           PasswordAuthentication = false;
           KbdInteractiveAuthentication = false;
@@ -263,9 +269,9 @@ in
               size = 10000;
             };
             initExtra = ''
-              if [[ -o interactive ]]; then
-                  export GITHUB_TOKEN=$(cat /run/secrets/github_token)
-              fi
+              # if [[ -o interactive ]]; then
+              #     export GITHUB_TOKEN=$(cat /run/secrets/github_token)
+              # fi
               export HISTCONTROL=ignoreboth:erasedups
               # 1 tab autocomplete:
               #bind 'set show-all-if-ambiguous on'
