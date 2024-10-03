@@ -45,10 +45,10 @@ in
           # Decrypt 'user-password' to /run/secrets-for-users/ so it can be used to create the user and assign their password without having to run 'passwd <user>' imperatively:
           neededForUsers = true;
         };
-        duck_dns_token = {};
-        duck_dns_username = {};
-        duck_dns_domain = {};
-        duck_dns_token = {};
+        # duck_dns_token = {};
+        # duck_dns_username = {};
+        # duck_dns_domain = {};
+        # duck_dns_token = {};
         github_token = {
           owner = config.users.users.${username}.name;
           group = config.users.users.${username}.group;

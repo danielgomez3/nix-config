@@ -4,6 +4,7 @@ default:
 update:
     git add -A :/
     nix flake update
+    nix flake lock --update-input mysecrets
 
 # TODO: Can't just do it for server, moron
 # rebuild:
