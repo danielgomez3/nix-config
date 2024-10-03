@@ -3,7 +3,7 @@ default:
 
 update:
     git add -A :/
-    sudo nix flake update
+    nix flake update
 
 # TODO: Can't just do it for server, moron
 # rebuild:
