@@ -183,7 +183,7 @@ in
       mutableUsers = false;  # Required for a password 'passwd' to be set via sops during system activation (over anything done imperatively)!
       users.${username} = {
         isNormalUser = true;
-        # hashedPasswordFile = config.sops.secrets.user_password.path;  # Shoutout to sops baby.
+        hashedPasswordFile = config.sops.secrets.user_password.path;  # Shoutout to sops baby.
         # password = "123";
         extraGroups = [ "wheel" ];
         shell = pkgs.zsh;
