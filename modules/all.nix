@@ -31,7 +31,7 @@ in
       defaultSopsFormat = "yaml";
       age = {
         # Automatically import host SSH keys as age keys
-        sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+        sshKeyPaths = [ "/etc/ssh/id_ed25519" ];
         # Specify where it will be stored. Or this will use an age key that's expected to already be in the filesystem
         keyFile = "/home/${username}/.config/sops/age/keys.txt";
         # keyFile = "/var/lib/sops-nix/keys.txt";
@@ -326,7 +326,7 @@ in
                 host = "github.com gitlab.com";
                 identitiesOnly = true;
                 identityFile = [
-                  # "${config.sops.secrets."private_keys/${host}".path}"
+                  "${config.sops.secrets."private_keys/${host}".path}"
                   # "/home/${username}/.ssh/id_ed25519"
                   "~/.ssh/id_ed25519"
                 ];
