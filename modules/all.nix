@@ -328,7 +328,7 @@ in
                 identityFile = [
                   "${config.sops.secrets."private_keys/${host}".path}"
                   # "/home/${username}/.ssh/id_ed25519"
-                  "~/.ssh/id_ed25519"
+                  # "~/.ssh/id_ed25519"
                 ];
               };
               "server" = {
