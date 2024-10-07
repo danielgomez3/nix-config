@@ -23,12 +23,6 @@ in
 
     nixpkgs.config.allowUnfree = true;
     sops = {
-      secrets."private_keys/desktop" = {  # This way, it could be server, desktop, whatever!
-        # Automatically generate this private key at this location if it's there or not:
-        path = "/home/${username}/.ssh/id_ed25519";
-        # mode = "600";
-        owner = config.users.users.${username}.name;
-      };
       # HACK: sops nix Cannot read ssh key '/etc/ssh/ssh_host_rsa_key':
       gnupg.sshKeyPaths = [];
       # used to be ../secrets/secrets.yaml, now we're doing it remote. Now, we're pointing to wherever the git repo was cloned on the system on nixos-rebuild!
@@ -58,6 +52,12 @@ in
         github_token = {
           owner = config.users.users.${username}.name;
           group = config.users.users.${username}.group;
+        };
+        "private_keys/desktop" = {  # This way, it could be server, desktop, whatever!
+          # Automatically generate this private key at this location if it's there or not:
+          path = "/home/${username}/.ssh/id_ed25519";
+          # mode = "600";
+          owner = config.users.users.${username}.name;
         };
         # example_key = { };
         # "myservice/my_subdir/my_secret" = {
@@ -187,6 +187,9 @@ in
     users = {
       # Define a user account. Don't forget to set a password with ‘passwd’.
       mutableUsers = false;  # Required for a password 'passwd' to be set via sops during system activation (over anything done imperatively)!
+      users.root = {
+        hashedPasswordFile = config.sops.secrets.user_password.path;  
+      };
       users.${username} = {
         isNormalUser = true;
         hashedPasswordFile = config.sops.secrets.user_password.path;  # Shoutout to sops baby.
