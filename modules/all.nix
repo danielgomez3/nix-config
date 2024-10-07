@@ -23,6 +23,12 @@ in
 
     nixpkgs.config.allowUnfree = true;
     sops = {
+      secrets."private_keys/desktop" = {  # This way, it could be server, desktop, whatever!
+        # Automatically generate this private key at this location if it's there or not:
+        path = "/home/${username}/.ssh/id_ed25519";
+        # mode = "600";
+        owner = config.users.users.${username}.name;
+      };
       # HACK: sops nix Cannot read ssh key '/etc/ssh/ssh_host_rsa_key':
       gnupg.sshKeyPaths = [];
       # used to be ../secrets/secrets.yaml, now we're doing it remote. Now, we're pointing to wherever the git repo was cloned on the system on nixos-rebuild!
@@ -66,7 +72,7 @@ in
     };
 
     boot.loader = {
-      systemd-boot.enable = true;
+      # systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
       systemd-boot.configurationLimit = 3;
     };
@@ -326,9 +332,9 @@ in
                 host = "github.com gitlab.com";
                 identitiesOnly = true;
                 identityFile = [
-                  "${config.sops.secrets."private_keys/${host}".path}"
+                  # "${config.sops.secrets."private_keys/${host}".path}"
                   # "/home/${username}/.ssh/id_ed25519"
-                  # "~/.ssh/id_ed25519"
+                  "~/.ssh/id_ed25519"
                 ];
               };
               "server" = {
