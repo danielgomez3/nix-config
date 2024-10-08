@@ -2,7 +2,7 @@ default:
     @just --list
 
 update:
-    git add -A :/
+    git add -A :/; git commit -m "just update"
     nix flake update
     nix flake lock --update-input mysecrets
 
