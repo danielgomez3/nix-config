@@ -16,7 +16,10 @@ edit:
     just update
     just rebuild
 
+# TODO: deploy to all systems
 deploy:
     update
-    # TODO: deploy to all systems
 
+netboot:
+    nix build -f extra/nix-expressions/netboot/system.nix -o /tmp/run-pixiecore
+    sudo $(realpath /tmp/run-pixiecore)
