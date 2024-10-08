@@ -48,10 +48,12 @@ in
         # duck_dns_token = {};
         # duck_dns_username = {};
         # duck_dns_domain = {};  # XXX: Not working. I wish.
-        duck_dns = {
-          token = {};
-          username = {};
-        };
+        # duck_dns = {
+        #   token = {};
+        #   username = {};
+        # };
+        "duck_dns/token" = {};
+        "duck_dns/username" = {};
         github_token = {
           owner = config.users.users.${username}.name;
           group = config.users.users.${username}.group;
