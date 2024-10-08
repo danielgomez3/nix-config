@@ -57,10 +57,10 @@
       domains = [ 
         "danielgomezcoder-d"
       ];
-      username = config.sops.secrets.duck_dns.username.path;
+      username = config.sops.secrets."duck_dns/username".path;
       interval = "5m";
       # Use your Duck DNS token as the password
-      passwordFile = config.sops.secrets.duck_dns.token.path;  # Shoutout to sops baby.
+      passwordFile = config.sops.secrets."duck_dns/token".path;  # Shoutout to sops baby.
       use = "web, web=https://ifconfig.me";
     };
 
