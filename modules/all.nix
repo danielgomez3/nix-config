@@ -206,7 +206,10 @@ in
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     environment = {
-      variables.GITHUB_TOKEN = config.sops.secrets.github_token.path;  
+      sessionVariables = {
+        # GITHUB_TOKEN = config.sops.secrets.github_token.path;  
+        GITHUB_TOKEN = "$(cat ${config.sops.secrets.github_token.path})";
+      };
       systemPackages = with pkgs; [
         git wget curl pigz vim
         lm_sensors 
@@ -327,7 +330,7 @@ in
             userName = "danielgomez3";
             userEmail = "danielgomezcoder@gmail.com";
             extraConfig = {
-              credential.helper = "store";
+              # credential.helper = "store";
             };
           };
 

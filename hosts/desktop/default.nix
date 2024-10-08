@@ -13,6 +13,7 @@
   users.users.${username} = {
     description = "desktop";
   };
+  time.hardwareClockInLocalTime = true;
   hardware.keyboard.zsa.enable = true;
 
   boot.blacklistedKernelModules = [
