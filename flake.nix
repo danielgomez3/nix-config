@@ -33,6 +33,7 @@
       # Helper function to get host-specific modules and their respective hardware-configuration.nix
       hostModules = hostDir: commonModules ++ [
         "${hostDir}/hardware-configuration.nix"
+        "${hostDir}/disko-config.nix"
         hostDir
       ];
 
