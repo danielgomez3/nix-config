@@ -11,27 +11,12 @@ let
         ];
         config = {
           ## Some useful options for setting up a new system
-          users.users.root.openssh.authorizedKeys.keys = [ 
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9OcZ6CO1lDXOMQQawee8Fh6iydI8I+SXMdD9GESq8v daniel@desktop"
-          ];
+          # services.getty.autologinUser = lib.mkForce "root";
+          # users.users.root.openssh.authorizedKeys.keys = [ ... ];
           # console.keyMap = "de";
           # hardware.video.hidpi.enable = true;
 
           system.stateVersion = config.system.nixos.release;
-
-          services.openssh = {
-            enable = true;
-            passwordAuthentication = false;
-            # extraConfig = ''
-            #   PasswordAuthentication no
-            #   ChallengeResponseAuthentication no
-            #   PubkeyAuthentication no
-            #   AuthenticationMethods none
-            # '';
-          };
-          environment.systemPackages = with pkgs; [
-            helix vim git curl iptables dmidecode 
-          ];
         };
       })
     ];

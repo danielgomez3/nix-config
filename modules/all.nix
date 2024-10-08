@@ -84,21 +84,31 @@ in
 
     networking = {
       hostName = host;  # Define your hostname.
-      nameservers = [ "8.8.8.8" "8.8.4.4" ];
+      # nameservers = [ "8.8.8.8" "8.8.4.4" ];
       dhcpcd.enable = true;
-      domain = "home";
+      # domain = "home";
       wireless.iwd = {
         enable = true;
         settings = {
-          # IPv6 = {
-          #   Enabled = true;
-          # };
+          IPv6 = {
+            Enabled = true;
+          };
           Settings = {
             AutoConnect = true;
           };
         };
       };
-      firewall.enable = false;
+      firewall = {
+        enable = false;
+        # Open the necessary UDP ports for PXE boot
+        allowedUDPPorts = [ 67 69 4011 ];
+        # Open the necessary TCP port for Pixiecore
+        allowedTCPPorts = [ 64172 ];
+        allowPing = true;     # Optional: Allow ICMP (ping)
+        # Set default policies to 'accept' for both incoming and outgoing traffic
+      };
+      # firewall.allowedUDPPorts = [ 67 69 4011 ];
+      # firewall.allowedTCPPorts = [ 64172 ];
     };
 
     # Set your time zone.
@@ -189,6 +199,18 @@ in
           };
         };
       };
+      ddclient = {
+        enable = false;
+        # The server (API) to update, which is Duck DNS
+        server = "www.duckdns.org"; 
+        # The protocol for Duck DNS
+        protocol = "duckdns";
+        username = config.sops.secrets."duck_dns/username".path;
+        interval = "5m";
+        # Use your Duck DNS token as the password
+        passwordFile = config.sops.secrets."duck_dns/token".path;  # Shoutout to sops baby.
+        use = "web, web=https://ifconfig.me";
+      };
     };
 
 
@@ -221,7 +243,7 @@ in
       systemPackages = with pkgs; [
         git wget curl pigz vim
         lm_sensors 
-        woeusb ntfs3g
+        woeusb ntfs3g iptables nftables
       ];
     };
 
@@ -242,7 +264,7 @@ in
         home = {
           stateVersion = "24.05";
           packages = with pkgs; [
-            iptables dig dmidecode 
+            dig dmidecode 
             eza entr tldr bc tree 
             # cli apps
             pciutils usbutils 
