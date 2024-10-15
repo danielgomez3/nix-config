@@ -52,6 +52,15 @@
           specialArgs = commonSpecialArgs // { username = "danielgomez3"; host = "server"; };
           modules = hostModules ./hosts/server;
         };
+        # NOTE: This needs to be encrypted AF. Maybe the whole usb needs to be encrypted as a result..
+        live-iso = mkNixosSystem {
+          specialArgs = commonSpecialArgs // { host = "usb"; };
+          modules = ./hosts/server/hardware-configuration.nix ./hosts/live-iso;
+        };
+        installer = mkNixosSystem {
+          specialArgs = commonSpecialArgs // { username = "installer"; host = "usb"; };
+          modules = ./hosts/server/hardware-configuration.nix ./hosts/installer;
+        };
         # deploy = mkNixosSystem {
         #   specialArgs = commonSpecialArgs // { username = "deploy"; host = "server"; };
         #   modules = ./hosts/server/hardware-configuration.nix ./hosts/deploy;

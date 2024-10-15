@@ -118,7 +118,8 @@ in
             # Sway/Wayland
             grim slurp wl-clipboard xorg.xrandr swayidle swaylock flashfocus autotiling sway-contrib.grimshot wlprop pw-volume gnome.adwaita-icon-theme adwaita-qt brightnessctl swappy 
             # gui apps
-            firefox zoom-us libreoffice slack spotify okular plexamp
+            firefox zoom-us slack spotify okular plexamp
+            libreoffice hunspell hunspellDicts.uk_UA hunspellDicts.th_TH
             cmus xournalpp pavucontrol
             feh ardour audacity vlc 
             gnome.gnome-session
@@ -168,6 +169,7 @@ in
             focus_on_window_activation none
             assign [class="[Ss]lack"] workspace 2
             assign [class="[Ss]potify" title="[Ss]potify"] workspace 2
+            assign [class="[Pp]lexamp" title="[Pp]lexamp"] workspace 2
             assign [title="KDE Connect SMS"] workspace 2
             assign [title="Volume Control"] workspace 10
             bindsym ${modKey}+Semicolon exec --no-startup-id flash_window
