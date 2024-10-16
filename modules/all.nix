@@ -272,7 +272,7 @@ in
             sops age just
             yt-dlp beets spotdl protonvpn-cli_2
             tesseract ocrmypdf
-            android-tools adb-sync unzip android-tools ffmpeg mpv
+            android-tools adb-sync unzip android-tools ffmpeg mpv ventoy
           ];
         };
 
