@@ -327,7 +327,7 @@ in
               lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
               # grep = "grep --color=always -IrnE --exclude-dir='.*'";
               less = "less -FR";
-              plan = "cd ~/Documents/productivity/ && hx planning/todo.md planning/credentials.md";
+              productivity = "cd ~/Documents/productivity/ && hx todo.md credentials.md";
               conf = "cd ~/Projects/repos-personal/flakes/flake/ && hx modules/coding.nix modules/all.nix";
               notes = "cd ~/Documents/notes && hx .";
               zrf = "zellij run floating";
