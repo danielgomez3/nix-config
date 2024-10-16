@@ -243,7 +243,7 @@ in
       systemPackages = with pkgs; [
         git wget curl pigz vim
         lm_sensors 
-        woeusb ntfs3g iptables nftables
+        woeusb ntfs3g 
       ];
     };
 
@@ -266,6 +266,7 @@ in
           packages = with pkgs; [
             dig dmidecode 
             eza entr tldr bc tree 
+            iptables nftables file toybox
             # cli apps
             pciutils usbutils 
             sops age just
@@ -302,8 +303,16 @@ in
 
               c() { z "$@" && eza --icons --color=always --group-directories-first; }
               e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
+              # screenshot() {
+              #   read -p "Enter filename: " filename && grim -g "$(slurp)" ./''${filename}.png
+              # }
               screenshot() {
-                read -p "Enter filename: " filename && grim -g "$(slurp)" ./''${filename}.png
+                read "filename?Enter filename: "  
+                grim -g "$(slurp)" "./''${filename}.png" 
+              }
+
+              screenshot_clipboard() {
+                grim -g "$(slurp)" - | wl-copy
               }
               _tar(){
                 tar -czhvf ~/Backups/"$(basename "$1")-$(date -I)".tar.gz -C $(dirname "$1") $(basename "$1")
@@ -320,7 +329,7 @@ in
               less = "less -FR";
               plan = "cd ~/Documents/productivity/ && hx planning/todo.md planning/credentials.md";
               conf = "cd ~/Projects/repos-personal/flakes/flake/ && hx modules/coding.nix modules/all.nix";
-              notes = "cd ~/Documents/productivity/notes && hx .";
+              notes = "cd ~/Documents/notes && hx .";
               zrf = "zellij run floating";
             };
           };
@@ -348,7 +357,7 @@ in
               lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
               grep = "grep --color=always -IrnE --exclude-dir='.*'";
               less = "less -FR";
-              plan = "cd ~/Documents/productivity/ && hx planning/todo.md planning/credentials.md";
+              productivity = "cd ~/Documents/productivity/ && hx todo.md credentials.md";
               conf = "cd ~/Projects/repos-personal/flakes/flake/ && hx modules/coding.nix modules/all.nix";
               notes = "cd ~/Documents/productivity/notes && hx .";
               zrf = "zellij run floating";
