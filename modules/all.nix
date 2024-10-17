@@ -200,7 +200,7 @@ in
         };
       };
       ddclient = {
-        enable = false;
+        enable = true;
         # The server (API) to update, which is Duck DNS
         server = "www.duckdns.org"; 
         # The protocol for Duck DNS
