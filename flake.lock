@@ -24,10 +24,10 @@
     "mysecrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1728350783,
-        "narHash": "sha256-XvmacY4HQ72SEv8Fq/Ch8h2+S1PYEShedtbp2l8bwg4=",
+        "lastModified": 1729182900,
+        "narHash": "sha256-n7sa+2YyKQvDPZzjK47eS/wquZMdM3RlcjuB72tdLP8=",
         "ref": "main",
-        "rev": "c17ee8c1b27b20e9b872161e6ca1c0490dca4a6b",
+        "rev": "de75774f9b679a9f4097916d2341f400dd62d794",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/danielgomez3/nix-secrets.git"
@@ -41,11 +41,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1728193676,
-        "narHash": "sha256-PbDWAIjKJdlVg+qQRhzdSor04bAPApDqIv2DofTyynk=",
+        "lastModified": 1728909085,
+        "narHash": "sha256-WLxED18lodtQiayIPDE5zwAfkPJSjHJ35UhZ8h3cJUg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "ecbc1ca8ffd6aea8372ad16be9ebbb39889e55b6",
+        "rev": "c0b1da36f7c34a7146501f684e9ebdf15d2bebf8",
         "type": "github"
       },
       "original": {

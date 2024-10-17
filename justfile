@@ -3,8 +3,10 @@ default:
 
 update:
     git add -A :/; git commit -m "just update";
-    nix flake update
-    nix flake lock
+    # nix flake update
+    sudo nix --extra-experimental-features "nix-command flakes" flake update
+    # nix flake lock
+    # sudo nix flake lock
     # nix flake lock --update-input mysecrets
 
 # TODO: Can't just do it for server, moron
