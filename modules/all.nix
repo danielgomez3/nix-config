@@ -58,7 +58,7 @@ in
           owner = config.users.users.${username}.name;
           group = config.users.users.${username}.group;
         };
-        "private_keys/desktop" = {  # This way, it could be server, desktop, whatever!
+        "private_user_ssh_keys/desktop" = {  # This way, it could be server, desktop, whatever!
           # Automatically generate this private key at this location if it's there or not:
           path = "/home/${username}/.ssh/id_ed25519";
           # mode = "600";
