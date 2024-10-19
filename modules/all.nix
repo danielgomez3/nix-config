@@ -303,12 +303,10 @@ in
 
               c() { z "$@" && eza --icons --color=always --group-directories-first; }
               e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
-              # screenshot() {
-              #   read -p "Enter filename: " filename && grim -g "$(slurp)" ./''${filename}.png
-              # }
               screenshot() {
                 read "filename?Enter filename: "  
-                grim -g "$(slurp)" "./''${filename}.png" 
+                mkdir -p ~/.s/
+                grim -g "$(slurp)" "./.s/''${filename}.png" 
               }
 
               screenshot_clipboard() {

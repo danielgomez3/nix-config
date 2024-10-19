@@ -116,7 +116,7 @@ in
     home-manager.users.${username} = {
         home.packages = with pkgs; [
             # Sway/Wayland
-            grim slurp wl-clipboard xorg.xrandr swayidle swaylock flashfocus autotiling sway-contrib.grimshot wlprop pw-volume gnome.adwaita-icon-theme adwaita-qt brightnessctl swappy 
+            grim slurp wl-clipboard xorg.xrandr swayidle swaylock sway-audio-idle-inhibit flashfocus autotiling sway-contrib.grimshot wlprop pw-volume gnome.adwaita-icon-theme adwaita-qt brightnessctl swappy 
             # gui apps
             firefox zoom-us slack spotify okular plexamp
             libreoffice hunspell hunspellDicts.uk_UA hunspellDicts.th_TH
@@ -164,7 +164,7 @@ in
             exec_always autotiling
 
             # Functionality
-            # exec sway-audio-idle-inhibit
+            exec sway-audio-idle-inhibit
             no_focus [all]
             focus_on_window_activation none
             assign [class="[Ss]lack"] workspace 2

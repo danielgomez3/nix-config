@@ -34,7 +34,7 @@ in
         # dev
         zellij
         shellcheck exercism texliveFull csvkit sshx fzf
-        pandoc pandoc-include poppler_utils graphviz
+        pandoc pandoc-include poppler_utils graphviz librsvg
         git-filter-repo
         # Fun
         toilet fortune lolcat krabby cowsay figlet
