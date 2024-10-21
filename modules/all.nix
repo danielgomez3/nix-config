@@ -266,7 +266,7 @@ in
           packages = with pkgs; [
             dig dmidecode 
             eza entr tldr bc tree 
-            iptables nftables file toybox
+            iptables nftables file toybox openvpn
             # cli apps
             pciutils usbutils 
             sops age just
