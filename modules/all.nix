@@ -335,17 +335,17 @@ in
           bash = {
             enable = false;
             enableCompletion = true;
-            bashrcExtra = ''
-              export HISTCONTROL=ignoreboth:erasedups
-              shopt -s autocd cdspell globstar extglob nocaseglob
+            # bashrcExtra = ''
+            #   export HISTCONTROL=ignoreboth:erasedups
+            #   shopt -s autocd cdspell globstar extglob nocaseglob
 
-              c() { z "$@" && eza --icons --color=always --group-directories-first; }
-              #e() { [ $# -eq 0 ] && hx . || hx "$@"; }
-              e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
-              screenshot() {
-                read -p "Enter filename: " filename && grim -g "$(slurp)" ./''${filename}.png
-              }
-            '';
+            #   c() { z "$@" && eza --icons --color=always --group-directories-first; }
+            #   #e() { [ $# -eq 0 ] && hx . || hx "$@"; }
+            #   e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
+            #   screenshot() {
+            #     read -p "Enter filename: " filename && grim -g "$(slurp)" ./''${filename}.png
+            #   }
+            # '';
             shellAliases = {
               f = "fg";
               j = "jobs";
