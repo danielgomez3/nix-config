@@ -274,7 +274,7 @@ in
             tesseract ocrmypdf
             android-tools adb-sync unzip android-tools ffmpeg mpv ventoy
             # Hacking
-            openvpn nmap gobuster nikto thc-hydra
+            openvpn nmap gobuster nikto thc-hydra dirb
           ];
         };
 

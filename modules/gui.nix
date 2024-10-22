@@ -164,7 +164,7 @@ in
             exec_always autotiling
 
             # Functionality
-            exec sway-audio-idle-inhibit
+            # exec sway-audio-idle-inhibit
             no_focus [all]
             focus_on_window_activation none
             assign [class="[Ss]lack"] workspace 2
