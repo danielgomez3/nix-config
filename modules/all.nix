@@ -255,7 +255,7 @@ in
     # this value at the release version of the first install of this system.
     # Before changing this value read the documentation for this option
     # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-    system.stateVersion = "unstable"; # Did you read the comment?
+    system.stateVersion = "24.05"; # Did you read the comment?
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     home-manager = { 
@@ -305,10 +305,14 @@ in
 
               c() { z "$@" && eza --icons --color=always --group-directories-first; }
               e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
+              # screenshot() {
+              #   mkdir -p ~/.s/
+              #   grim -g "$1" "./.s/''$1.png" 
+              # }
               screenshot() {
-                read "filename?Enter filename: "  
-                mkdir -p ~/.s/
-                grim -g "$(slurp)" "./.s/''${filename}.png" 
+                # mkdir -p ./.s/
+                local filename="''${1:-screenshot}"  # Default to 'screenshot' if no argument is provided
+                grim -g "$(slurp)" ./.s/"$filename".png
               }
 
               screenshot_clipboard() {
