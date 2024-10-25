@@ -33,9 +33,11 @@ in
         home.packages = with pkgs; [
         # dev
         zellij
-        shellcheck exercism texliveFull csvkit sshx fzf
-        pandoc-include poppler_utils graphviz librsvg
-        git-filter-repo
+        shellcheck exercism csvkit sshx fzf
+        pandoc-include poppler_utils graphviz librsvg 
+        git-filter-repo 
+        # texliveTeTeX
+        texliveFull
         # Fun
         toilet fortune lolcat krabby cowsay figlet
         # coding
@@ -184,7 +186,9 @@ in
           pandoc = {
             enable = true;
             templates = {
-              "default.latex" = ../extra/pandoc-templates/eisvogel;
+              "default.latex" = ../extra/pandoc-templates/eisvogel/eisvogel.latex;
+              "default.markdown" = ../extra/pandoc-templates/eisvogel/eisvogel.latex;
+              "default.pdf" = ../extra/pandoc-templates/eisvogel/eisvogel.latex;
             };
           };
         };
