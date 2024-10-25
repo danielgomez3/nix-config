@@ -181,6 +181,12 @@ in
             enableBashIntegration = true;
             enableZshIntegration = true;
           };
+          pandoc = {
+            enable = true;
+            templates = {
+              "default.latex" = ../extra/pandoc-templates/eisvogel;
+            }
+          };
         };
       };
     };

@@ -265,7 +265,7 @@ in
           stateVersion = "24.05";
           packages = with pkgs; [
             dig dmidecode 
-            eza entr tldr bc tree 
+            eza entr tldr bc tree zip
             iptables nftables file toybox 
             # cli apps
             pciutils usbutils 
@@ -274,7 +274,7 @@ in
             tesseract ocrmypdf
             android-tools adb-sync unzip android-tools ffmpeg mpv ventoy
             # Hacking
-            openvpn nmap gobuster nikto thc-hydra dirb
+            openvpn nmap gobuster nikto thc-hydra dirb steghide wpscan chisel
           ];
         };
 
