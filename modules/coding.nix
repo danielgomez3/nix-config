@@ -115,6 +115,17 @@ in
             settings = {
                 theme = "rose_pine";
                 editor = {
+                  # shell = ["/usr/bin/env" "zsh"];
+                  shell = [
+                    "zsh"
+                    "-c"
+                  ];
+                  # shell = [
+                  #   "/usr/bin/env"
+                  #   "zsh"
+                  #   "-c"
+                  # ];
+                  # shell = ["zsh" "-c"];
                   true-color = true;
                   mouse = true;
                   bufferline = "multiple";

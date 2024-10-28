@@ -294,7 +294,7 @@ in
             history = {
               size = 10000;
             };
-            initExtra = ''
+            envExtra = ''
               if [[ -o interactive ]]; then
                   export GITHUB_TOKEN=$(cat /run/secrets/github_token)
               fi
@@ -305,14 +305,11 @@ in
 
               c() { z "$@" && eza --icons --color=always --group-directories-first; }
               e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
-              # screenshot() {
-              #   mkdir -p ~/.s/
-              #   grim -g "$1" "./.s/''$1.png" 
-              # }
+
               screenshot() {
-                # mkdir -p ./.s/
+                # mkdir -p ./.screenshot/
                 local filename="''${1:-screenshot}"  # Default to 'screenshot' if no argument is provided
-                grim -g "$(slurp)" ./.s/"$filename".png
+                grim -g "$(slurp)" ./.screenshot/"$filename".png
               }
 
               screenshot_clipboard() {
@@ -341,17 +338,17 @@ in
           bash = {
             enable = false;
             enableCompletion = true;
-            # bashrcExtra = ''
-            #   export HISTCONTROL=ignoreboth:erasedups
-            #   shopt -s autocd cdspell globstar extglob nocaseglob
+            bashrcExtra = ''
+              export HISTCONTROL=ignoreboth:erasedups
+              shopt -s autocd cdspell globstar extglob nocaseglob
 
-            #   c() { z "$@" && eza --icons --color=always --group-directories-first; }
-            #   #e() { [ $# -eq 0 ] && hx . || hx "$@"; }
-            #   e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
-            #   screenshot() {
-            #     read -p "Enter filename: " filename && grim -g "$(slurp)" ./''${filename}.png
-            #   }
-            # '';
+              c() { z "$@" && eza --icons --color=always --group-directories-first; }
+              #e() { [ $# -eq 0 ] && hx . || hx "$@"; }
+              e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
+              screenshot() {
+                read -p "Enter filename: " filename && grim -g "$(slurp)" ./''${filename}.png
+              }
+            '';
             shellAliases = {
               f = "fg";
               j = "jobs";
