@@ -6,6 +6,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     mysecrets = {
@@ -14,7 +16,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, ... }: 
+  outputs = inputs@{ self, nixpkgs, disko, ... }: 
     let 
       system = "x86_64-linux";
       username = "daniel";
@@ -32,7 +34,8 @@
       ];
       # Helper function to get host-specific modules and their respective hardware-configuration.nix
       hostModules = hostDir: commonModules ++ [
-        "${hostDir}/hardware-configuration.nix"
+        # "${hostDir}/hardware-configuration.nix"
+        disko.nixosModules.disko
         "${hostDir}/disko-config.nix"
         hostDir
       ];
