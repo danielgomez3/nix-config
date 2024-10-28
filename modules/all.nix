@@ -99,11 +99,17 @@ in
         };
       };
       firewall = {
-        enable = false;
+        enable = true;
         # Open the necessary UDP ports for PXE boot
-        allowedUDPPorts = [ 67 69 4011 ];
+        allowedUDPPorts = [ 
+          67 69 4011 
+        ];
         # Open the necessary TCP port for Pixiecore
-        allowedTCPPorts = [ 64172 ];
+        allowedTCPPorts = [ 
+          80
+          443
+          64172 
+        ];
         allowPing = true;     # Optional: Allow ICMP (ping)
         # Set default policies to 'accept' for both incoming and outgoing traffic
       };
@@ -244,6 +250,7 @@ in
         git wget curl pigz vim
         lm_sensors 
         woeusb ntfs3g 
+        iptables nftables file toybox 
       ];
     };
 
@@ -266,7 +273,6 @@ in
           packages = with pkgs; [
             dig dmidecode 
             eza entr tldr bc tree zip
-            iptables nftables file toybox 
             # cli apps
             pciutils usbutils 
             sops age just
@@ -306,11 +312,22 @@ in
               c() { z "$@" && eza --icons --color=always --group-directories-first; }
               e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
 
-              screenshot() {
-                # mkdir -p ./.screenshot/
-                local filename="''${1:-screenshot}"  # Default to 'screenshot' if no argument is provided
-                grim -g "$(slurp)" ./.screenshot/"$filename".png
+              # NOTE: screenshot
+              _s() {
+                mkdir -p ./.screenshots/
+                read input
+                # Generate filename and path
+                local filename="''${input}.png"
+                local filepath="./.screenshots/''${filename}"
+  
+                # Take screenshot using slurp and grim
+                grim -g "$(slurp)" "$filepath"
+  
+                # Print Markdown image link to stdout
+                echo "![''${input}]($filepath)"
               }
+
+              # NOTE: view markdown image link
 
               screenshot_clipboard() {
                 grim -g "$(slurp)" - | wl-copy
@@ -345,9 +362,6 @@ in
               c() { z "$@" && eza --icons --color=always --group-directories-first; }
               #e() { [ $# -eq 0 ] && hx . || hx "$@"; }
               e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
-              screenshot() {
-                read -p "Enter filename: " filename && grim -g "$(slurp)" ./''${filename}.png
-              }
             '';
             shellAliases = {
               f = "fg";

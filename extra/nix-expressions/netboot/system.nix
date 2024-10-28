@@ -15,6 +15,12 @@ let
           # users.users.root.openssh.authorizedKeys.keys = [ ... ];
           # console.keyMap = "de";
           # hardware.video.hidpi.enable = true;
+          users.users.root.openssh.authorizedKeys.keys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB3NGhc3OQv0AzhKVUO2uHFjtkTNjNCg0esJBFBisLlj daniel@nixos"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAtxyM5pgcT3jo7ylijtuoTUcJ0UxjAFjfAD1elMsdQb root@nixos"
+          ];
+
+
 
           system.stateVersion = config.system.nixos.release;
         };
