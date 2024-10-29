@@ -332,8 +332,14 @@ in
               screenshot_clipboard() {
                 grim -g "$(slurp)" - | wl-copy
               }
+              # NOTE: basically this is deprecated i guess
               _tar(){
                 tar -czhvf ~/Backups/"$(basename "$1")-$(date -I)".tar.gz -C $(dirname "$1") $(basename "$1")
+              }
+              _backup(){
+                mkdir -p ~/Backups/
+                output_name="backup-$(date -I).tar.gz"
+                tar -czhvf ~/Backups/"$output_name" "$@"
               }
             '';
             shellAliases = {
