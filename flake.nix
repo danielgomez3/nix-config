@@ -51,6 +51,10 @@
           specialArgs = commonSpecialArgs // { host = "laptop"; };
           modules = hostModules ./hosts/laptop;
         };
+        laptoptest = mkNixosSystem {
+          specialArgs = commonSpecialArgs // { host = "laptop"; };
+          modules = hostModules ./hosts/laptoptest;
+        };
         server = mkNixosSystem {
           specialArgs = commonSpecialArgs // { username = "danielgomez3"; host = "server"; };
           modules = hostModules ./hosts/server;

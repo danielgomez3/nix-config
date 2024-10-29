@@ -279,8 +279,6 @@ in
             yt-dlp beets spotdl protonvpn-cli_2
             tesseract ocrmypdf
             android-tools adb-sync unzip android-tools ffmpeg mpv ventoy
-            # Hacking
-            openvpn nmap gobuster nikto thc-hydra dirb steghide wpscan chisel
           ];
         };
 
