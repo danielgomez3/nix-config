@@ -31,12 +31,12 @@ in
       defaultSopsFormat = "yaml";
       age = {
         # Automatically import host SSH keys as age keys
-        sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+        # sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
         # Specify where it will be stored. Or this will use an age key that's expected to already be in the filesystem
-        keyFile = "/home/${username}/.config/sops/age/keys.txt";
-        # keyFile = "/var/lib/sops-nix/keys.txt";
+        # keyFile = "/home/${username}/.config/sops/age/keys.txt";
+        keyFile = "/keys.txt";
         # Generate a new key if the key specified doesn't exist in the first place:
-        generateKey = true;
+        generateKey = false;
       };
       # Default is true. When true, it checks whether SOPS-encrypted files are valid and can be decrypted at build-time. This ensures that the encrypted files you are using can actually be decrypted by the system and are not corrupted or otherwise unreadable. Toggled off for automatic ssh key pair creation:
       validateSopsFiles = false;
