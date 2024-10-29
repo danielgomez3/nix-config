@@ -31,7 +31,7 @@ in
       defaultSopsFormat = "yaml";
       age = {
         # Automatically import host SSH keys as age keys
-        sshKeyPaths = [ "/etc/ssh/id_ed25519" ];
+        sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
         # Specify where it will be stored. Or this will use an age key that's expected to already be in the filesystem
         keyFile = "/home/${username}/.config/sops/age/keys.txt";
         # keyFile = "/var/lib/sops-nix/keys.txt";
@@ -273,9 +273,9 @@ in
           packages = with pkgs; [
             dig dmidecode 
             eza entr tldr bc tree zip
-            # cli apps
             pciutils usbutils 
-            sops age just
+            # cli apps
+            sops age just nixos-anywhere ssh-to-age
             yt-dlp beets spotdl protonvpn-cli_2
             tesseract ocrmypdf
             android-tools adb-sync unzip android-tools ffmpeg mpv ventoy
