@@ -44,10 +44,10 @@
     "mysecrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1730761097,
-        "narHash": "sha256-6p1spNuep274nzsdG4JwRYC049SyCO2Hx5+H6g6AFDQ=",
+        "lastModified": 1730761552,
+        "narHash": "sha256-gV1gVFQUyCQpXGEF61OirSza6gQ+iLvlbLLy7B8uALk=",
         "ref": "main",
-        "rev": "53b813c1eeb673d0a6922da9412442a9888d341c",
+        "rev": "af01580c60d3258deeaa0d9b6dbe17def0b20e37",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/danielgomez3/nix-secrets.git"

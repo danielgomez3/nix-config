@@ -4,10 +4,6 @@ default:
 update:
     nix flake update
     echo -n "Enter commit message: "; read msg; git add -A :/; git commit -m "$msg"
-    # nix flake update
-    # nix flake lock
-    # sudo nix flake lock
-    # nix flake lock --update-input mysecrets
 
 # TODO: Can't just do it for server, moron
 # rebuild:
