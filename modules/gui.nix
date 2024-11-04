@@ -14,6 +14,10 @@ in
   # kanshi systemd service <https://nixos.wiki/wiki/Sway>
     systemd.user.services.kanshi = {
       description = "kanshi daemon";
+      environment = {
+        WAYLAND_DISPLAY="wayland-1";
+        DISPLAY = ":0";
+      }; 
       serviceConfig = {
         Type = "simple";
         ExecStart = ''${pkgs.kanshi}/bin/kanshi -c kanshi_config_file'';
@@ -46,14 +50,15 @@ in
     };
 
     services = { 
-      # greetd = {
-      #   enable = true;
-      #   settings = {
-      #     default_session = {
-      #       command = "${pkgs.sway}/bin/sway --config ${swayConfig}";
-      #     };
-      #   };
-      # };
+      greetd = {
+        enable = true;
+        settings = {
+          default_session = {
+            command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+            user = "greeter"; 
+          };
+        };
+      };
       # Enable the GNOME Desktop Environment.
       xserver.displayManager.gdm.enable = false;
       xserver.desktopManager.gnome.enable = false;
@@ -141,8 +146,8 @@ in
           enable = true;
           wrapperFeatures.gtk = true;
           extraConfig = ''
-            workspace number 1
             exec sleep 5; systemctl --user start kanshi.service
+            workspace number 1
             bindsym XF86MonBrightnessDown exec light -U 10
             bindsym XF86MonBrightnessUp exec light -A 10
             #bindsym XF86AudioRaiseVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'
