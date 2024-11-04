@@ -308,7 +308,7 @@ in
               #bind 'set show-all-if-ambiguous on'
               #bind 'set completion-ignore-case on'
 
-              # c() { z "$@" && eza --icons --color=always --group-directories-first; }
+              c() { z "$@" && eza --icons --color=always --group-directories-first; }
               e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
 
               # NOTE: screenshot
