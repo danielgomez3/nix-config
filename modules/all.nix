@@ -54,6 +54,8 @@ in
         # };
         "duck_dns/token" = {};
         "duck_dns/username" = {};
+        "syncthing/desktop/key_pem" = {};
+        "syncthing/desktop/cert_pem" = {};
         github_token = {
           owner = config.users.users.${username}.name;
           group = config.users.users.${username}.group;
@@ -404,7 +406,8 @@ in
                 identityFile = [
                   # "${config.sops.secrets."private_keys/${host}".path}"
                   # "/home/${username}/.ssh/id_ed25519"
-                  "~/.ssh/id_ed25519"
+                  # "~/.ssh/id_ed25519"
+                  "${config.sops.secrets."private_ssh_keys/common".path}"
                 ];
               };
               "server" = {
