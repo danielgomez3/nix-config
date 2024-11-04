@@ -3,8 +3,8 @@ let
   modKey = "Mod4";
   cfg = config.services.gui;
 in
- 
 {
+  imports = [ ./suspend-and-hibernate ];
   options.services.gui = {
     enable = lib.mkEnableOption "gui service";
   };
