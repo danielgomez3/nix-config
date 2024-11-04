@@ -3,7 +3,8 @@ default:
 
 update:
     nix flake update
-    echo -n "Enter commit message: "; read msg; git add -A :/; git commit -m "$msg"
+    git add -A :/
+    echo -n "Enter commit message: "; read msg; git commit -m "$msg"
 
 # TODO: Can't just do it for server, moron
 # rebuild:
