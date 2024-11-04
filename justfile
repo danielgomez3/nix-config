@@ -2,9 +2,9 @@ default:
     @just --list
 
 update:
+    sudo nix --extra-experimental-features "nix-command flakes" flake update
     echo -n "Enter commit message: "; read msg; git add -A :/; git commit -m "$msg"
     # nix flake update
-    sudo nix --extra-experimental-features "nix-command flakes" flake update
     # nix flake lock
     # sudo nix flake lock
     # nix flake lock --update-input mysecrets
