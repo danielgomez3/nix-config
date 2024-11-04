@@ -72,8 +72,10 @@ in
       };
     };
 
+    # https://wiki.nixos.org/wiki/Syncthing#tips
+    # Don't create default ~/Sync folder
     systemd.services = {
-      syncthing.environment.STNODEFAULTFOLDER = "true";  # Don't create default ~/Sync folder
+      syncthing.environment.STNODEFAULTFOLDER = "true";  
     };
 
     boot.loader = {
