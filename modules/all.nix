@@ -60,7 +60,7 @@ in
           owner = config.users.users.${username}.name;
           group = config.users.users.${username}.group;
         };
-        "private_user_ssh_keys/desktop" = {  # This way, it could be server, desktop, whatever!
+        "private_ssh_keys/common" = {  # This way, it could be server, desktop, whatever!
           # Automatically generate this private key at this location if it's there or not:
           path = "/home/${username}/.ssh/id_ed25519";
           # mode = "600";
@@ -161,6 +161,8 @@ in
       syncthing = {
         enable = true;
         user = username;
+        key = config.sops.secrets."syncthing/desktop/key_pem".path;
+        cert = config.sops.secrets."syncthing/desktop/cert_pem".path;
         dataDir = "/home/${username}/.config/data";
         configDir = "/home/${username}/.config/syncthing";  # Folder for Syncthing's settings and keys
         overrideDevices = true;     # overrides any devices added or deleted through the WebUI
@@ -171,7 +173,7 @@ in
         settings = {
           devices = {
             "desktop" = { 
-              id = "S6AZSHX-D52JRH4-BZAWTPS-7LZH4MT-KTHEJK3-GXJ47AY-6ZPU2GU-PEKOXQ2"; 
+              id = "SHWEKQZ-7SYUERP-XURVPWY-K6ZZRV2-LBEM765-KP4NBTA-SWLGUNW-7HFPMQ7"; 
               autoAcceptFolders = true;
             };
             "phone" = { 
@@ -404,10 +406,11 @@ in
                 host = "github.com gitlab.com";
                 identitiesOnly = true;
                 identityFile = [
-                  # "${config.sops.secrets."private_keys/${host}".path}"
                   # "/home/${username}/.ssh/id_ed25519"
                   # "~/.ssh/id_ed25519"
-                  "${config.sops.secrets."private_ssh_keys/common".path}"
+                  # config.sops.secrets."private_ssh_keys/${host}".path  # This is normal user key, not a root key.
+                  config.sops.secrets."private_ssh_keys/common".path  # This is normal user key, not a root key.
+                  # "${config.sops.secrets."private_ssh_keys/common".path}"
                 ];
               };
               "server" = {
