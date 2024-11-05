@@ -45,17 +45,10 @@ in
           # Decrypt 'user-password' to /run/secrets-for-users/ so it can be used to create the user and assign their password without having to run 'passwd <user>' imperatively:
           neededForUsers = true;
         };
-        # duck_dns_token = {};
-        # duck_dns_username = {};
-        # duck_dns_domain = {};  # XXX: Not working. I wish.
-        # duck_dns = {
-        #   token = {};
-        #   username = {};
-        # };
         "duck_dns/token" = {};
         "duck_dns/username" = {};
-        "syncthing/desktop/key_pem" = {};
-        "syncthing/desktop/cert_pem" = {};
+        "syncthing/${host}/key_pem" = {};
+        "syncthing/${host}/cert_pem" = {};
         github_token = {
           owner = config.users.users.${username}.name;
           group = config.users.users.${username}.group;
@@ -65,6 +58,10 @@ in
           path = "/home/${username}/.ssh/id_ed25519";
           # mode = "600";
           owner = config.users.users.${username}.name;
+        };
+        "private_ssh_keys/root" = {  
+          path = "/root/.ssh/id_ed25519";
+          owner = config.users.users.root.name;
         };
         # example_key = { };
         # "myservice/my_subdir/my_secret" = {

@@ -55,6 +55,19 @@
     ];
   };
 
+    sops.secrets = {
+      "private_ssh_keys/desktop" = {  # This way, it could be server, desktop, whatever!
+        # Automatically generate this private key at this location if it's there or not:
+        path = "/home/${username}/.ssh/id_ed25519";
+        # mode = "600";
+        owner = config.users.users.${username}.name;
+      };
+      "private_ssh_keys/desktop_root" = {  
+        path = "/root/.ssh/id_ed25519";
+        owner = config.users.users.root.name;
+      };
+    };
+
 
   home-manager = { 
     extraSpecialArgs = { inherit inputs; };
