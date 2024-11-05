@@ -101,11 +101,15 @@ in
       #     };
       #   };
       # };
+      # networkmanager = {
+      #   enable = true;
+      #   wifi.backend = "wpa_supplicant";
+      # };
       wireless = {
         enable = true;
         networks = {
-          config.sops.secrets."wifi_networks/home/ssid" = {
-            psk = config.sops.secrets."wifi_networks/home/psk";
+          "TMOBILE-F526" = {
+            psk = config.sops.secrets."wifi_networks/home/psk".path;
           };
         };
       };
