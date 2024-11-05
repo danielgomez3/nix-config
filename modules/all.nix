@@ -22,6 +22,7 @@ in
   config = lib.mkIf cfg.enable {
 
     nixpkgs.config.allowUnfree = true;
+    environment.variables.GITHUB_TOKEN = config.sops.secrets.github_token.path;
     sops = {
       # HACK: sops nix Cannot read ssh key '/etc/ssh/ssh_host_rsa_key':
       # gnupg.sshKeyPaths = [];
@@ -260,10 +261,10 @@ in
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     environment = {
-      sessionVariables = {
-        # GITHUB_TOKEN = config.sops.secrets.github_token.path;  
-        GITHUB_TOKEN = "$(cat ${config.sops.secrets.github_token.path})";
-      };
+      # sessionVariables = {
+      #   GITHUB_TOKEN = config.sops.secrets.github_token.path;  
+      #   GITHUB_TOKEN = "$(cat ${config.sops.secrets.github_token.path})";
+      # };
       systemPackages = with pkgs; [
         linux linux-firmware
         git wget curl pigz vim
@@ -407,7 +408,7 @@ in
             userName = "danielgomez3";
             userEmail = "danielgomezcoder@gmail.com";
             extraConfig = {
-              # credential.helper = "store";
+              credential.helper = "store";
             };
           };
 
