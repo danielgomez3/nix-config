@@ -170,7 +170,7 @@ in
         settings = {
           devices = {
             "desktop" = { 
-              id = "SHWEKQZ-7SYUERP-XURVPWY-K6ZZRV2-LBEM765-KP4NBTA-SWLGUNW-7HFPMQ7"; 
+              id = "WCI6FZO-QIWS4TH-IHIQIVM-O7QUE4O-DT2L4JM-BCCXKNM-FOSYHFB-BZSKNQW"; 
               autoAcceptFolders = true;
             };
             "phone" = { 
