@@ -49,6 +49,8 @@ in
         "duck_dns/username" = {};
         "syncthing/${host}/key_pem" = {};
         "syncthing/${host}/cert_pem" = {};
+        "wifi_networks/home/ssid" = {};
+        "wifi_networks/home/psk" = {};
         github_token = {
           owner = config.users.users.${username}.name;
           group = config.users.users.${username}.group;
@@ -88,14 +90,22 @@ in
       # nameservers = [ "8.8.8.8" "8.8.4.4" ];
       dhcpcd.enable = true;
       # domain = "home";
-      wireless.iwd = {
+      # wireless.iwd = {
+      #   enable = true;
+      #   settings = {
+      #     IPv6 = {
+      #       Enabled = true;
+      #     };
+      #     Settings = {
+      #       AutoConnect = true;
+      #     };
+      #   };
+      # };
+      wireless = {
         enable = true;
-        settings = {
-          IPv6 = {
-            Enabled = true;
-          };
-          Settings = {
-            AutoConnect = true;
+        networks = {
+          config.sops.secrets."wifi_networks/home/ssid" = {
+            psk = config.sops.secrets."wifi_networks/home/psk";
           };
         };
       };
@@ -303,9 +313,9 @@ in
               size = 10000;
             };
             envExtra = ''
-              if [[ -o interactive ]]; then
-                  export GITHUB_TOKEN=$(cat /run/secrets/github_token)
-              fi
+              #if [[ -o interactive ]]; then
+              #    export GITHUB_TOKEN=$(cat /run/secrets/github_token)
+              #fi
               export HISTCONTROL=ignoreboth:erasedups
               # 1 tab autocomplete:
               #bind 'set show-all-if-ambiguous on'
