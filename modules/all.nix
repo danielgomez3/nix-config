@@ -39,7 +39,7 @@ in
         generateKey = false;
       };
       # Default is true. When true, it checks whether SOPS-encrypted files are valid and can be decrypted at build-time. This ensures that the encrypted files you are using can actually be decrypted by the system and are not corrupted or otherwise unreadable. Toggled off for automatic ssh key pair creation:
-      validateSopsFiles = false;
+      validateSopsFiles = true;
       secrets = {
         user_password = {
           # Decrypt 'user-password' to /run/secrets-for-users/ so it can be used to create the user and assign their password without having to run 'passwd <user>' imperatively:
