@@ -86,6 +86,7 @@
           };
         };
       };
+
       wayland.windowManager.sway = {
         extraConfig = ''
         output HDMI-A-1 scale 2
@@ -102,6 +103,25 @@
             { command = "kdeconnect-sms"; }
             { command = "plexamp"; }
           ];
+        };
+      };
+
+      programs = {
+        ssh = {
+          enable = true;
+          matchBlocks = {
+            "server-hosts" = {
+              host = "github.com gitlab.com";
+              identitiesOnly = true;
+              identityFile = [
+                # "/home/${username}/.ssh/id_ed25519"
+                # "~/.ssh/id_ed25519"
+                # config.sops.secrets."private_ssh_keys/${host}".path  # This is normal user key, not a root key.
+                config.sops.secrets."private_ssh_keys/desktop".path  # This is normal user key, not a root key.
+                # "${config.sops.secrets."private_ssh_keys/common".path}"
+              ];
+            };
+          };
         };
       };
     };

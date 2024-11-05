@@ -53,16 +53,16 @@ in
           owner = config.users.users.${username}.name;
           group = config.users.users.${username}.group;
         };
-        "private_ssh_keys/common" = {  # This way, it could be server, desktop, whatever!
-          # Automatically generate this private key at this location if it's there or not:
-          path = "/home/${username}/.ssh/id_ed25519";
-          # mode = "600";
-          owner = config.users.users.${username}.name;
-        };
-        "private_ssh_keys/root" = {  
-          path = "/root/.ssh/id_ed25519";
-          owner = config.users.users.root.name;
-        };
+        # "private_ssh_keys/common" = {  # This way, it could be server, desktop, whatever!
+        #   # Automatically generate this private key at this location if it's there or not:
+        #   path = "/home/${username}/.ssh/id_ed25519";
+        #   # mode = "600";
+        #   owner = config.users.users.${username}.name;
+        # };
+        # "private_ssh_keys/root" = {  
+        #   path = "/root/.ssh/id_ed25519";
+        #   owner = config.users.users.root.name;
+        # };
         # example_key = { };
         # "myservice/my_subdir/my_secret" = {
         #   owner = config.users.users.${username}.name; # Make the token accessible to this user
@@ -399,17 +399,6 @@ in
           ssh = {
             enable = true;
             matchBlocks = {
-              "server-hosts" = {
-                host = "github.com gitlab.com";
-                identitiesOnly = true;
-                identityFile = [
-                  # "/home/${username}/.ssh/id_ed25519"
-                  # "~/.ssh/id_ed25519"
-                  # config.sops.secrets."private_ssh_keys/${host}".path  # This is normal user key, not a root key.
-                  config.sops.secrets."private_ssh_keys/common".path  # This is normal user key, not a root key.
-                  # "${config.sops.secrets."private_ssh_keys/common".path}"
-                ];
-              };
               "server" = {
                 host = "server";
                 hostname = "danielgomezcoder@duckdns.org";
