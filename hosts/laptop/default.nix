@@ -58,17 +58,6 @@ in
    xkb.options = "caps:swapescape";
   };
 
-  home-manager.users.${username} = {
-      wayland.windowManager.sway = {
-        extraConfig = ''
-          ## Sleep
-          exec swayidle -w \
-          	timeout 320 'swaylock -c 000000 -f' \
-          	timeout 350 'swaymsg "output * power off"' \
-          	resume 'swaymsg "output * power on"'
-        '';
-      };
-  };
   networking = {
     wireless.iwd = {
       enable = true;

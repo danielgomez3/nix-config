@@ -193,7 +193,7 @@ in
 
           fzf = { 
             enable = true;
-            enableBashIntegration = true;
+            enableBashIntegration = false;
             enableZshIntegration = true;
           };
           pandoc = {

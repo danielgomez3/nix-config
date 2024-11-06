@@ -282,7 +282,7 @@ in
 
           starship = {
             enable = true;
-            enableBashIntegration = true;
+            enableBashIntegration = false;
             enableZshIntegration = true;
           };
 
