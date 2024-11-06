@@ -215,16 +215,17 @@ in
     };
 
 
-    users.users.root.openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB+EV/ya8UNE7Q2TcHGuHebn874hDnsQBsCfd+tC/uYs root@desktop"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJW8ix2afb5YJQiWw2sDJVPV+gfcPo+WexSodqfUCUzu daniel@desktop"
-    ];
     users = {
       # Define a user account. Don't forget to set a password with ‘passwd’.
       mutableUsers = false;  # Required for a password 'passwd' to be set via sops during system activation (over anything done imperatively)!
       users.root = {
         hashedPasswordFile = config.sops.secrets.user_password.path;  
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB+EV/ya8UNE7Q2TcHGuHebn874hDnsQBsCfd+tC/uYs root@desktop"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJW8ix2afb5YJQiWw2sDJVPV+gfcPo+WexSodqfUCUzu daniel@desktop"
+        ];
       };
+
       users.${username} = {
         isNormalUser = true;
         hashedPasswordFile = config.sops.secrets.user_password.path;  # Shoutout to sops baby.
