@@ -4,7 +4,7 @@ let
   cfg = config.services.gui;
 in
 {
-  imports = [ ./additional/suspend-and-hibernate.nix ];
+  # imports = [ ./additional/suspend-and-hibernate.nix ];
   options.services.gui = {
     enable = lib.mkEnableOption "gui service";
   };
