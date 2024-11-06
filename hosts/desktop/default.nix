@@ -78,23 +78,6 @@
         };
       };
     };
-    firewall = {
-      enable = true;
-      # Open the necessary UDP ports for PXE boot
-      allowedUDPPorts = [ 
-        67 69 4011 
-      ];
-      # Open the necessary TCP port for Pixiecore
-      allowedTCPPorts = [ 
-        80
-        443
-        64172 
-      ];
-      allowPing = true;     # Optional: Allow ICMP (ping)
-      # Set default policies to 'accept' for both incoming and outgoing traffic
-    };
-    # firewall.allowedUDPPorts = [ 67 69 4011 ];
-    # firewall.allowedTCPPorts = [ 64172 ];
   };
 
   home-manager = { 
