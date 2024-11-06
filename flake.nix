@@ -31,14 +31,14 @@
       commonModules = [
         inputs.home-manager.nixosModules.default
         inputs.sops-nix.nixosModules.sops
+        disko.nixosModules.disko
         ./modules
       ];
       # Helper function to get host-specific modules and their respective hardware-configuration.nix
       hostModules = hostDir: commonModules ++ [
         "${hostDir}/hardware-configuration.nix"
-        disko.nixosModules.disko
         "${hostDir}/disko-config.nix"
-        hostDir
+        hostDir  # default.nix
       ];
 
     in {
