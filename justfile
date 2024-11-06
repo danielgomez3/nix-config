@@ -28,4 +28,4 @@ netboot:
     #sudo $(realpath /tmp/run-pixiecore)
 
 #deploy laptop:
-# nixos-anywhere --extra-files ~/.config/sops/age --generate-hardware-config nixos-generate-config ./hosts/laptop/hardware-configuration.nix --flake '.#laptop' root@192.168.12.118
+# nix run github:nix-community/nixos-anywhere -- --extra-files ~/.config/sops/age --generate-hardware-config nixos-generate-config ./hosts/laptop/hardware-configuration.nix root@192.168.12.122 --flake .#laptop
