@@ -16,7 +16,7 @@ let
           # console.keyMap = "de";
           # hardware.video.hidpi.enable = true;
           users.users.root.openssh.authorizedKeys.keys = [
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEcgBEJP6HLTNXKHaiTmWdCM/edgUhTZqIPsuITlbe9M root@nixos"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB+EV/ya8UNE7Q2TcHGuHebn874hDnsQBsCfd+tC/uYs root@desktop"
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJW8ix2afb5YJQiWw2sDJVPV+gfcPo+WexSodqfUCUzu daniel@desktop"
           ];
 
