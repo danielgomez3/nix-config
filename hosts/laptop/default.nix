@@ -13,6 +13,7 @@ in
   #   # mode = "600";
   #   owner = config.users.users.${username}.name;
   # };
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   users.users.${username} = {
     description = "laptop";

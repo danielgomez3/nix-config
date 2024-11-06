@@ -13,7 +13,6 @@ let
   secretspath = builtins.toString inputs.mysecrets;
 in
 {
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   options.services.all = {
     enable = lib.mkEnableOption "My 'all' service!";

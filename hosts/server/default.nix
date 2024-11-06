@@ -2,7 +2,7 @@
 # server.nix
 # NOTE: This contains all common features I want only my server to have!
 
-{ username, inputs, config, ... }:
+{ config, pkgs, lib, inputs, host, username, ... }:
 
 {
   # sops.secrets."private_keys/server" = {  # This way, it could be server, desktop, whatever!
@@ -11,6 +11,8 @@
   #   # mode = "600";
   #   owner = config.users.users.${username}.name;
   # };
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
   home-manager = { 
     extraSpecialArgs = { inherit inputs; };
     users.root = {
@@ -52,24 +54,6 @@
         password = "naruto88";  
       };
     };
-
-    ddclient = {
-      enable = true;
-      # The server (API) to update, which is Duck DNS
-      server = "www.duckdns.org"; 
-      # The protocol for Duck DNS
-      protocol = "duckdns";
-      # Duck DNS domain name without the .duckdns.org part
-      domains = [ 
-        "danielgomezcoder-s"
-      ];
-      username = config.sops.secrets.duck_dns_username.path;
-      interval = "5m";
-      # Use your Duck DNS token as the password
-      passwordFile = config.sops.secrets.duck_dns_token.path;  # Shoutout to sops baby.
-      use = "web, web=https://ifconfig.me";
-    };
-  };
 
 
   # home-manager = { 
