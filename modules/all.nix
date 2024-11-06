@@ -91,30 +91,6 @@ in
       # nameservers = [ "8.8.8.8" "8.8.4.4" ];
       dhcpcd.enable = true;
       # domain = "home";
-      # wireless.iwd = {
-      #   enable = true;
-      #   settings = {
-      #     IPv6 = {
-      #       Enabled = true;
-      #     };
-      #     Settings = {
-      #       AutoConnect = true;
-      #     };
-      #   };
-      # };
-      # networkmanager = {
-      #   enable = true;
-      #   wifi.backend = "wpa_supplicant";
-      # };
-      wireless = {
-        enable = true;
-        networks = {
-          "TMOBILE-F526" = {
-            # psk = config.sops.secrets."wifi_networks/home/psk".path;
-            psk = "reshuffle.think.wool.tug";
-          };
-        };
-      };
       firewall = {
         enable = true;
         # Open the necessary UDP ports for PXE boot

@@ -1,7 +1,7 @@
 # desktop.nix
 # NOTE: This contains all common features I want only my desktop to have!
 
-{ pkgs, inputs, username, config, ... }:
+{ pkgs, inputs, username, config, host, ... }:
 
 {
   imports =
@@ -68,6 +68,34 @@
     #   };
     # };
 
+  networking = {
+    wireless = {
+      enable = true;
+      networks = {
+        "TMOBILE-F526" = {
+          # psk = config.sops.secrets."wifi_networks/home/psk".path;
+          psk = "reshuffle.think.wool.tug";
+        };
+      };
+    };
+    firewall = {
+      enable = true;
+      # Open the necessary UDP ports for PXE boot
+      allowedUDPPorts = [ 
+        67 69 4011 
+      ];
+      # Open the necessary TCP port for Pixiecore
+      allowedTCPPorts = [ 
+        80
+        443
+        64172 
+      ];
+      allowPing = true;     # Optional: Allow ICMP (ping)
+      # Set default policies to 'accept' for both incoming and outgoing traffic
+    };
+    # firewall.allowedUDPPorts = [ 67 69 4011 ];
+    # firewall.allowedTCPPorts = [ 64172 ];
+  };
 
   home-manager = { 
     extraSpecialArgs = { inherit inputs; };
