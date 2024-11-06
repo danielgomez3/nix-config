@@ -20,17 +20,10 @@ edit:
 deploy:
 
 netboot:
-    # Build pixiecore runner
     nix build -f ./extra/nix-expressions/netboot/system.nix -o /tmp/run-pixiecore
-
-    # Open required firewall ports
     sudo iptables -w -I nixos-fw -p udp -m multiport --dports 67,69,4011 -j ACCEPT
     sudo iptables -w -I nixos-fw -p tcp -m tcp --dport 64172 -j ACCEPT
 
-    # Run pixiecore
-    sudo $(realpath /tmp/run-pixiecore)
-
-    # Close ports
-    sudo iptables -w -D nixos-fw -p udp -m multiport --dports 67,69,4011 -j ACCEPT
-    sudo iptables -w -D nixos-fw -p tcp -m tcp --dport 64172 -j ACCEPT
+    # Now run this command in your terminal to start pixiecore:
+    #sudo $(realpath /tmp/run-pixiecore)
 
