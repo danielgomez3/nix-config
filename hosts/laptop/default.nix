@@ -81,10 +81,6 @@ in
         };
       };
     };
-    allowPing = true;     # Optional: Allow ICMP (ping)
-    # Set default policies to 'accept' for both incoming and outgoing traffic
-    # firewall.allowedUDPPorts = [ 67 69 4011 ];
-    # firewall.allowedTCPPorts = [ 64172 ];
   };
 
   # NOTE: Unique home-manager config for laptop:

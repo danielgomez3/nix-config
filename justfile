@@ -27,3 +27,5 @@ netboot:
     # Now run this command in your terminal to start pixiecore:
     #sudo $(realpath /tmp/run-pixiecore)
 
+#deploy laptop:
+# nixos-anywhere --extra-files ~/.config/sops/age --generate-hardware-config nixos-generate-config ./hosts/laptop/hardware-configuration.nix --flake '.#laptop' root@192.168.12.118
