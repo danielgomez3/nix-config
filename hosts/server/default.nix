@@ -5,12 +5,12 @@
 { username, inputs, config, ... }:
 
 {
-  sops.secrets."private_keys/server" = {  # This way, it could be server, desktop, whatever!
-    # Automatically generate this private key at this location if it's there or not:
-    path = "/home/${username}/.ssh/id_ed25519";
-    # mode = "600";
-    owner = config.users.users.${username}.name;
-  };
+  # sops.secrets."private_keys/server" = {  # This way, it could be server, desktop, whatever!
+  #   # Automatically generate this private key at this location if it's there or not:
+  #   path = "/home/${username}/.ssh/id_ed25519";
+  #   # mode = "600";
+  #   owner = config.users.users.${username}.name;
+  # };
   home-manager = { 
     extraSpecialArgs = { inherit inputs; };
     users.root = {

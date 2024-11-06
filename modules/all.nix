@@ -25,7 +25,7 @@ in
     environment.variables.GITHUB_TOKEN = config.sops.secrets.github_token.path;
     sops = {
       # HACK: sops nix Cannot read ssh key '/etc/ssh/ssh_host_rsa_key':
-      # gnupg.sshKeyPaths = [];
+      gnupg.sshKeyPaths = [];
       # used to be ../secrets/secrets.yaml, now we're doing it remote. Now, we're pointing to wherever the git repo was cloned on the system on nixos-rebuild!
       # defaultSopsFile = ../secrets.yaml;
       defaultSopsFile = "${secretspath}/secrets.yaml";
@@ -40,7 +40,7 @@ in
         generateKey = false;
       };
       # Default is true. When true, it checks whether SOPS-encrypted files are valid and can be decrypted at build-time. This ensures that the encrypted files you are using can actually be decrypted by the system and are not corrupted or otherwise unreadable. Toggled off for automatic ssh key pair creation:
-      validateSopsFiles = true;
+      validateSopsFiles = false;
       secrets = {
         user_password = {
           # Decrypt 'user-password' to /run/secrets-for-users/ so it can be used to create the user and assign their password without having to run 'passwd <user>' imperatively:
