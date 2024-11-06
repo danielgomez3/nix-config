@@ -50,15 +50,15 @@ in
     };
 
     services = { 
-      greetd = {
-        enable = true;
-        settings = {
-          default_session = {
-            command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
-            user = "greeter"; 
-          };
-        };
-      };
+      # greetd = {
+      #   enable = true;
+      #   settings = {
+      #     default_session = {
+      #       command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+      #       user = "greeter"; 
+      #     };
+      #   };
+      # };
       # Enable the GNOME Desktop Environment.
       xserver.displayManager.gdm.enable = false;
       xserver.desktopManager.gnome.enable = false;
