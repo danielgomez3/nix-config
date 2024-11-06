@@ -230,6 +230,7 @@ in
         ignoreShellProgramCheck = true;
         openssh.authorizedKeys.keys = [
           (builtins.readFile ../hosts/desktop/key.pub)
+          (builtins.readFile ../hosts/desktop/root-key.pub)
           (builtins.readFile ../hosts/server/key.pub)
         ];
       };
