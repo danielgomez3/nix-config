@@ -18,6 +18,7 @@
 
   outputs = inputs@{ self, nixpkgs, disko, ... }: 
     let 
+      flakeRoot = ./.;
       system = "x86_64-linux";
       username = "daniel";
       # Helper function to build nixosSystem
@@ -26,7 +27,7 @@
         inherit (args) specialArgs modules;
       };
       # NOTE: Default system and username here unless specified
-      commonSpecialArgs = { inherit inputs system username; };  
+      commonSpecialArgs = { inherit inputs system username flakeRoot; };  
       commonModules = [
         inputs.home-manager.nixosModules.default
         inputs.sops-nix.nixosModules.sops

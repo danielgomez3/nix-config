@@ -174,8 +174,8 @@ in
       syncthing = {
         enable = true;
         user = username;
-        key = config.sops.secrets."syncthing/desktop/key_pem".path;
-        cert = config.sops.secrets."syncthing/desktop/cert_pem".path;
+        key = config.sops.secrets."syncthing/${host}/key_pem".path;
+        cert = config.sops.secrets."syncthing/${host}/cert_pem".path;
         dataDir = "/home/${username}/.config/data";
         configDir = "/home/${username}/.config/syncthing";  # Folder for Syncthing's settings and keys
         overrideDevices = true;     # overrides any devices added or deleted through the WebUI
@@ -194,11 +194,11 @@ in
               autoAcceptFolders = true;
             };
             "server" = { 
-              id = "2Q5KLG2-JH7EGJS-6SSYWIL-7K43Y56-YEN524B-BX2APWC-FRJ6TRQ-2ZTSOAJ"; 
+              id = "WDBCNRM-YJOKGOJ-FMABWTI-4UNDU2P-SKR3VP7-TEWBA3M-NKCT65Y-JHMVKQ3"; 
               autoAcceptFolders = true;
             };
             "laptop" = { 
-              id = "N4J2FSZ-DDQTYR2-RT6FC3Q-GKVPV66-MCMP2FD-6JDYI4P-JZYQR2L-OEOKHQW"; 
+              id = "KENW57K-IHEFCFB-36STV55-62K3EMI-AX5HGSV-IKHWLX3-MULG6CZ-6DIEZAS"; 
               autoAcceptFolders = true;
             };
           };
