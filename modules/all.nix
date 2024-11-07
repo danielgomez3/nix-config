@@ -51,12 +51,12 @@ in
         "syncthing/${host}/key_pem" = {
           owner = config.users.users.${username}.name;
           group = config.users.users.${username}.group;
-          permissions = "0600"; # Restrict read and write access to user only
+          mode = "0600"; # Restrict read and write access to user only
         };
         "syncthing/${host}/cert_pem" = {
           owner = config.users.users.${username}.name;
           group = config.users.users.${username}.group;
-          permissions = "0600"; # Restrict read and write access to user only
+          mode = "0600"; # Restrict read and write access to user only
         };
         "wifi_networks/home/ssid" = {};
         "wifi_networks/home/psk" = {};
