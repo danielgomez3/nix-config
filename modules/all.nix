@@ -160,8 +160,8 @@ in
         user = username;
         key = config.sops.secrets."syncthing/${host}/key_pem".path;
         cert = config.sops.secrets."syncthing/${host}/cert_pem".path;
-        dataDir = "/home/${username}/.config/data";
-        configDir = "/home/${username}/.config/syncthing";  # Folder for Syncthing's settings and keys
+        # dataDir = "/home/${username}/.config/data";
+        # configDir = "/home/${username}/.config/syncthing";  # Folder for Syncthing's settings and keys
         overrideDevices = true;     # overrides any devices added or deleted through the WebUI
         overrideFolders = true;     # overrides any folders added or deleted through the WebUI
         settings = {
@@ -407,17 +407,17 @@ in
             matchBlocks = {
               "server" = {
                 host = "server";
-                hostname = "danielgomezcoder@duckdns.org";
+                hostname = "danielgomez3@danielgomezcoder-s.duckdns.org";
                 user = "danielgomez3";
               };
               "desktop" = {
                 host = "desktop";
-                hostname = "192.168.12.182";
+                hostname = "daniel@danielgomezcoder-d.duckdns.org";
                 user = "daniel";
               };
-              "deploy" = {
+              "laptop" = {
                 host = "deploy";
-                hostname = "192.168.12.149";
+                hostname = "daniel@danielgomezcoder-l.duckdns.org";
                 user = "root";
               };
             };
