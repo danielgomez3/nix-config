@@ -50,12 +50,12 @@ in
         "duck_dns/username" = {};
         "syncthing/${host}/key_pem" = {
           owner = config.users.users.${username}.name;
-          group = config.users.users.${username}.group;
+          # group = config.users.users.${username}.group;
           mode = "0700"; # Restrict read and write access to user only
         };
         "syncthing/${host}/cert_pem" = {
           owner = config.users.users.${username}.name;
-          group = config.users.users.${username}.group;
+          # group = config.users.users.${username}.group;
           mode = "0700"; # Restrict read and write access to user only
         };
         "wifi_networks/home/ssid" = {};
