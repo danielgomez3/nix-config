@@ -407,18 +407,18 @@ in
             matchBlocks = {
               "server" = {
                 host = "server";
-                hostname = "danielgomez3@danielgomezcoder-s.duckdns.org";
-                user = "danielgomez3";
+                hostname = "danielgomezcoder-s.duckdns.org";
+                user = "danielgomez3";  # FIXME: use sops nix
               };
               "desktop" = {
                 host = "desktop";
-                hostname = "daniel@danielgomezcoder-d.duckdns.org";
-                user = "daniel";
+                hostname = "danielgomezcoder-d.duckdns.org";
+                user = "daniel";  # FIXME: use sops nix
               };
               "laptop" = {
                 host = "deploy";
-                hostname = "daniel@danielgomezcoder-l.duckdns.org";
-                user = "root";
+                hostname = "danielgomezcoder-l.duckdns.org";
+                user = "root";  # FIXME: use sops nix
               };
             };
           };

@@ -5,6 +5,7 @@ update:
     nix --experimental-features 'nix-command flakes' flake update
     git add -A :/
     echo -n "Enter commit message: "; read msg; git commit -m "$msg"
+    git push
 
 # TODO: Can't just do it for server, moron
 # rebuild:
