@@ -31,9 +31,12 @@ in
     syncthing = {
       guiAddress = "127.0.0.1:8383";
     };
-    ddclient.domains = [ 
-        "danielgomezcoder-l"
-    ];
+    ddclient = {
+      domains = [ 
+          "danielgomezcoder-l"
+      ];
+      interval = "1m";
+    };
     tlp = {
       enable = true;
       settings = {

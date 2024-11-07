@@ -50,9 +50,12 @@
       };
     };
     syncthing.guiAddress = "127.0.0.1:8385";
-    ddclient.domains = [ 
-        "danielgomezcoder-d"
-    ];
+    ddclient = {
+      domains = [ 
+          "danielgomezcoder-d"
+      ];
+      interval = "5m";
+    };
   };
 
     # sops.secrets = {

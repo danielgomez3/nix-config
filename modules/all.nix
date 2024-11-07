@@ -215,7 +215,6 @@ in
         # The protocol for Duck DNS
         protocol = "duckdns";
         username = config.sops.secrets."duck_dns/username".path;
-        interval = "5m";
         # Use your Duck DNS token as the password
         passwordFile = config.sops.secrets."duck_dns/token".path;  # Shoutout to sops baby.
         use = "web, web=https://ifconfig.me";
@@ -406,20 +405,27 @@ in
             enable = true;
             matchBlocks = {
               "server" = {
-                host = "server";
                 hostname = "danielgomezcoder-s.duckdns.org";
                 user = "danielgomez3";  # FIXME: use sops nix
+                # identityFile = ["/home/${username}/.ssh/id_ed25519"];
+                # addressFamily = "inet6";
               };
               "desktop" = {
-                host = "desktop";
                 hostname = "danielgomezcoder-d.duckdns.org";
                 user = "daniel";  # FIXME: use sops nix
+                # host = "desktop";
               };
               "laptop" = {
-                host = "deploy";
                 hostname = "danielgomezcoder-l.duckdns.org";
-                user = "root";  # FIXME: use sops nix
+                user = "daniel";  # FIXME: use sops nix
+                # addressFamily = "inet6";
+                # host = "root";
               };
+              # "laptop" = {
+              #   host = "deploy";
+              #   hostname = "danielgomezcoder-l.duckdns.org";
+              #   user = "root";  # FIXME: use sops nix
+              # };
             };
           };
 
