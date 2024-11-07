@@ -48,8 +48,16 @@ in
         };
         "duck_dns/token" = {};
         "duck_dns/username" = {};
-        "syncthing/${host}/key_pem" = {};
-        "syncthing/${host}/cert_pem" = {};
+        "syncthing/${host}/key_pem" = {
+          owner = config.users.users.${username}.name;
+          group = config.users.users.${username}.group;
+          permissions = "0600"; # Restrict read and write access to user only
+        };
+        "syncthing/${host}/cert_pem" = {
+          owner = config.users.users.${username}.name;
+          group = config.users.users.${username}.group;
+          permissions = "0600"; # Restrict read and write access to user only
+        };
         "wifi_networks/home/ssid" = {};
         "wifi_networks/home/psk" = {};
         github_token = {
