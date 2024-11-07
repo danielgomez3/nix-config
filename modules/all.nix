@@ -284,10 +284,11 @@ in
             eza entr tldr bc tree zip
             pciutils usbutils 
             # cli apps
-            sops age just nixos-anywhere ssh-to-age
             yt-dlp beets spotdl protonvpn-cli_2
             tesseract ocrmypdf
             android-tools adb-sync unzip android-tools ffmpeg mpv ventoy
+            # Nix
+            sops age just nixos-anywhere ssh-to-age colmena
           ];
         };
 
