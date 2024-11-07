@@ -45,7 +45,9 @@
       user = "${username}";
       # dataDir = "/home/${username}/plex";
     };
-
+    ddclient.domains = [ 
+        "danielgomezcoder-s"
+    ];
     syncthing = {
       guiAddress = "0.0.0.0:8384";
       settings.gui = {
