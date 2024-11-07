@@ -18,7 +18,13 @@ edit:
     just rebuild
 
 # TODO: deploy to all systems
-deploy:
+deploy-user target ip:
+    @echo 'Building {{target}}…'
+    nix run github:nix-community/nixos-anywhere -- --extra-files ~/.config/sops/age --generate-hardware-config nixos-generate-config ./hosts/{{target}}/hardware-configuration.nix nixos@{{ip}} --flake .#{{target}}
+
+deploy-root target ip:
+    @echo 'Building {{target}}…'
+    nix run github:nix-community/nixos-anywhere -- --extra-files ~/.config/sops/age --generate-hardware-config nixos-generate-config ./hosts/{{target}}/hardware-configuration.nix root@{{ip}} --flake .#{{target}}
 
 netboot:
     nix build -f ./extra/nix-expressions/netboot/system.nix -o /tmp/run-pixiecore
