@@ -53,7 +53,7 @@
         deployment = {
           # TODO
           tags = ["testdevice" "all"];
-          targetHost = "danielgomezcoder-d.duckdns.org";
+          targetHost = "danielgomezcoder-l.duckdns.org";
         };
         imports = commonImports "testdevice";
         # boot.isContainer = true;
