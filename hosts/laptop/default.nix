@@ -8,14 +8,7 @@ let
   username = config.myConfig.username;
 in
 {
-  # sops.secrets."private_keys/laptop" = {  
-  #   # Automatically generate this private key at this location if it's there or not:
-  #   path = "/home/${username}/.ssh/id_ed25519";
-  #   # mode = "600";
-  #   owner = config.users.users.${username}.name;
-  # };
   myConfig.username = "daniel";  # Specific username for this machine
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   users.users.${username} = {
     description = "laptop";

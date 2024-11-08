@@ -1,15 +1,12 @@
 # desktop.nix
 # NOTE: This contains all common features I want only my desktop to have!
 
-{ pkgs, inputs, username, config, host, ... }:
-
+{ pkgs, inputs, config, host, ... }:
+let
+  username = config.myConfig.username;
+in
 {
-  # sops.secrets."private_keys/user_desktop" = {  # This way, it could be server, desktop, whatever!
-  #   # Automatically generate this private key at this location if it's there or not:
-  #   path = "/home/${username}/.ssh/id_ed25519";
-  #   # mode = "600";
-  #   owner = config.users.users.${username}.name;
-  # };
+  myConfig.username = "daniel";  # Specific username for this machine
   users.users.${username} = {
     description = "desktop";
   };

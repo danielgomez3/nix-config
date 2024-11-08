@@ -2,16 +2,13 @@
 # server.nix
 # NOTE: This contains all common features I want only my server to have!
 
-{ config, pkgs, lib, inputs, host, username, ... }:
+{ config, pkgs, lib, inputs, host, ... }:
 
+let 
+  username = config.myConfig.username;
+in
 {
-  # sops.secrets."private_keys/server" = {  # This way, it could be server, desktop, whatever!
-  #   # Automatically generate this private key at this location if it's there or not:
-  #   path = "/home/${username}/.ssh/id_ed25519";
-  #   # mode = "600";
-  #   owner = config.users.users.${username}.name;
-  # };
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  myConfig.username = "danielgomez3";  # Specific username for this machine
 
   home-manager = { 
     extraSpecialArgs = { inherit inputs; };
