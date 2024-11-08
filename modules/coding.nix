@@ -1,11 +1,12 @@
 
-{ config, pkgs, lib, inputs, username, ... }:
+{ config, pkgs, lib, inputs,  ... }:
 let 
 #   cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
   # myPythonEnv = pkgs.python3.withPackages (ps: with ps; [
   #   matplotlib
   # ]);
   cfg = config.services.coding;
+  username = config.myConfig.username;
 in
 {
   options.services.coding = {

@@ -1,7 +1,8 @@
-{ config, pkgs, lib, username, ... }:
+{ config, pkgs, lib, ... }:
 let
   modKey = "Mod4";
   cfg = config.services.gui;
+  username = config.myConfig.username;
 in
 {
   # imports = [ ./additional/suspend-and-hibernate.nix ];

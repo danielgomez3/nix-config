@@ -5,12 +5,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, username, name, ... }:
+{ config, pkgs, lib, inputs,  name, ... }:
 let 
   # nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
   # cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
   cfg = config.services.all;  # My custom service called 'all'
   secretspath = builtins.toString inputs.mysecrets;
+  username = config.myConfig.username;
 in
 {
 

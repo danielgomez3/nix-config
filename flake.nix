@@ -19,7 +19,7 @@
   outputs = inputs@{ self, nixpkgs, disko, ... }: 
     let 
       system = "x86_64-linux";
-      username = "daniel";
+      # username = "daniel";
       commonImports = h: [
         inputs.home-manager.nixosModules.default
         inputs.sops-nix.nixosModules.sops
@@ -37,7 +37,8 @@
           system = system;
         };
         specialArgs = {
-          inherit inputs username;
+          # inherit inputs username;
+          inherit inputs ;
         };
       };
       defaults = { pkgs, lib, ... }: 
@@ -56,35 +57,14 @@
         };
         imports = commonImports "${name}";
       };
-    #   desktop = {
-    #     deployment = {
-    #       # TODO
-    #       tags = ["desktop" "all"];
-    #       targetHost = "danielgomezcoder-d.duckdns.org";
-    #     };
-    #     # imports = helperImports "desktop";
-    #   };
-    #   laptop = {
-    #     deployment = {
-    #       # TODO
-    #       tags = ["laptop" "all"];
-    #       targetHost = "danielgomezcoder-l.duckdns.org";
-    #     };
-    #     # imports = [
-    #     #   ./hosts/laptop/configuration.nix
-    #     # ];
-    #   };
-    #   server = {
-    #     deployment = {
-    #       # TODO
-    #       tags = ["server" "all"];
-    #       targetHost = "danielgomezcoder-s.duckdns.org";
-    #       targetUser = "danielgomez3";
-    #     };
-    #     # imports = [
-    #     #   ./hosts/server/configuration.nix
-    #     # ];
-    #   };
+      # desktop = {name, node, pkgs, ... }:{
+      #   deployment = {
+      #     # TODO
+      #     tags = ["${name}" "all"];
+      #     targetHost = "192.168.12.135";
+      #   };
+      #   imports = commonImports "${name}";
+      # };
     };
   };
 }

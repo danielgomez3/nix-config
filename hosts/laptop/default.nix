@@ -1,10 +1,11 @@
 # laptop.nix
 # NOTE: This contains all common features I want only my laptop to have!
 
-{ pkgs, inputs, username, host, lib, name, ... }:
+{ config, pkgs, inputs, host, lib, name, ... }:
 
 let 
   modKey = "Mod4";
+  username = config.myConfig.username;
 in
 {
   # sops.secrets."private_keys/laptop" = {  
@@ -13,6 +14,7 @@ in
   #   # mode = "600";
   #   owner = config.users.users.${username}.name;
   # };
+  myConfig.username = "laptopUser"; # Specific username for this machine
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   users.users.${username} = {
