@@ -67,7 +67,7 @@
         deployment = {
           # TODO
           tags = ["${name}" "all"];
-          targetHost = "localhost";
+          targetHost = "192.168.12.182";
         };
         imports = commonImports "${name}";
       };
