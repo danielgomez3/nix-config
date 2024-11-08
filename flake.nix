@@ -20,10 +20,11 @@
     let 
       system = "x86_64-linux";
       username = "daniel";
-      # Helper function to build nixosSystem
-      # FIXME: commonSpecialArgs OR inheriting anything in mkNixosSystem might not be necessary.
-      # NOTE: Default system and username here unless specified
-      # Helper function to get host-specific modules and their respective hardware-configuration.nix
+      commonImports = h: [
+        ./hosts/${h}
+        ./hosts/${h}/hardware-configuration.nix
+        # ./modules
+      ];
     in  
     {
     colmena = {
@@ -39,9 +40,6 @@
           targetPort = 22;
           targetUser = lib.mkDefault "daniel";
         };
-        # import = [
-          
-        # ];
       };
       desktop = {
         deployment = {
@@ -49,7 +47,8 @@
           tags = ["desktop" "all"];
           targetHost = "danielgomezcoder-d.duckdns.org";
         };
-        imports = [./hosts/desktop/hardware-configuration.nix];
+        # imports = helperImports "desktop";
+        imports = commonImports "desktop";
       };
       laptop = {
         deployment = {
@@ -57,14 +56,20 @@
           tags = ["laptop" "all"];
           targetHost = "danielgomezcoder-l.duckdns.org";
         };
+        # imports = [
+        #   ./hosts/laptop/configuration.nix
+        # ];
       };
       server = {
         deployment = {
           # TODO
-          tags = ["desktop" "all"];
+          tags = ["server" "all"];
           targetHost = "danielgomezcoder-s.duckdns.org";
           targetUser = "danielgomez3";
         };
+        # imports = [
+        #   ./hosts/server/configuration.nix
+        # ];
       };
     };
   };
