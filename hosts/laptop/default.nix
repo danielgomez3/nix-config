@@ -14,7 +14,7 @@ in
   #   # mode = "600";
   #   owner = config.users.users.${username}.name;
   # };
-  myConfig.username = "laptopUser"; # Specific username for this machine
+  myConfig.username = "daniel";  # Specific username for this machine
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   users.users.${username} = {

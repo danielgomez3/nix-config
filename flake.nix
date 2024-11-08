@@ -23,6 +23,7 @@
         inputs.home-manager.nixosModules.default
         inputs.sops-nix.nixosModules.sops
         disko.nixosModules.disko
+        ./modules/username.nix
         ./hosts/${h}
         ./hosts/${h}/hardware-configuration.nix
         ./hosts/${h}/disko-config.nix
