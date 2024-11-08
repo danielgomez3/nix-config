@@ -19,7 +19,6 @@
   outputs = inputs@{ self, nixpkgs, disko, ... }: 
     let 
       system = "x86_64-linux";
-      # username = "daniel";
       commonImports = h: [
         inputs.home-manager.nixosModules.default
         inputs.sops-nix.nixosModules.sops
@@ -37,7 +36,6 @@
           system = system;
         };
         specialArgs = {
-          # inherit inputs username;
           inherit inputs ;
         };
       };
