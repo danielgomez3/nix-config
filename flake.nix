@@ -52,7 +52,7 @@
         deployment = {
           # TODO
           tags = ["${name}" "all"];
-          targetHost = "192.168.12.135";
+          targetHost = "danielgomezcoder-l.duckdns.org";
         };
         imports = commonImports "${name}";
       };
