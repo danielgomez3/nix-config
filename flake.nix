@@ -23,7 +23,6 @@
         inputs.home-manager.nixosModules.default
         inputs.sops-nix.nixosModules.sops
         disko.nixosModules.disko
-        ./modules/username.nix
         ./hosts/${h}
         ./hosts/${h}/hardware-configuration.nix
         ./hosts/${h}/disko-config.nix
@@ -52,7 +51,7 @@
         deployment = {
           # TODO
           tags = ["${name}" "all"];
-          targetHost = "danielgomezcoder-l.duckdns.org";
+          targetHost = "192.168.12.135";
         };
         imports = commonImports "${name}";
       };

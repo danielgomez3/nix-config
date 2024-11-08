@@ -40,6 +40,20 @@
 - Encrypt 'username' as well. Maybe even 'host'.
 
 ## Bugs
+- import order *may* matter. We'll see if it brings problems. It shouldn't cuz lazy eval. Here was the order that for sure worked in flake.nix:
+```nix
+commonImports = h: [
+  inputs.home-manager.nixosModules.default
+  inputs.sops-nix.nixosModules.sops
+  disko.nixosModules.disko
+  ./modules/username.nix
+  ./hosts/${h}
+  ./hosts/${h}/hardware-configuration.nix
+  ./hosts/${h}/disko-config.nix
+  ./modules
+];
+  
+```
 - After a system is deployed, changing the user in ./modules/laptop/defaul.nix:`myConfig.username = "";` from say, `ronnie` to `anotherUser` causes syncthing to crash.
   Maybe it's because of sops keys? Being key.pem and cert.pem? Not really. I wouldn't worry about it too much, I think this is just a consequence of real world side effects and system state tracked by syncthing. Can't be helped, and honestly wouldn't/shouldn't really be done anyway. Just deploy a new system.
 - 
