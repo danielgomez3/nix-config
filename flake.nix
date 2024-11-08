@@ -39,22 +39,29 @@
           targetPort = 22;
           targetUser = lib.mkDefault "daniel";
         };
+        # import = [
+          
+        # ];
       };
       desktop = {
         deployment = {
           # TODO
+          tags = ["desktop" "all"];
           targetHost = "danielgomezcoder-d.duckdns.org";
         };
+        imports = [./hosts/desktop/hardware-configuration.nix];
       };
       laptop = {
         deployment = {
           # TODO
+          tags = ["laptop" "all"];
           targetHost = "danielgomezcoder-l.duckdns.org";
         };
       };
       server = {
         deployment = {
           # TODO
+          tags = ["desktop" "all"];
           targetHost = "danielgomezcoder-s.duckdns.org";
           targetUser = "danielgomez3";
         };
