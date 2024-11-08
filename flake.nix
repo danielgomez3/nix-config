@@ -59,7 +59,7 @@
         deployment = {
           # TODO
           tags = ["${name}" "all"];
-          targetHost = "192.168.12.135";
+          targetHost = "192.168.12.149";
         };
         imports = commonImports "${name}";
       };
@@ -67,18 +67,10 @@
         deployment = {
           # TODO
           tags = ["${name}" "all"];
-          targetHost = "192.168.12.135";
+          targetHost = "localhost";
         };
         imports = commonImports "${name}";
       };
-      # desktop = {name, node, pkgs, ... }:{
-      #   deployment = {
-      #     # TODO
-      #     tags = ["${name}" "all"];
-      #     targetHost = "192.168.12.135";
-      #   };
-      #   imports = commonImports "${name}";
-      # };
     };
   };
 }
