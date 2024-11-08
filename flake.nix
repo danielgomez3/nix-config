@@ -54,6 +54,7 @@
           # TODO
           tags = ["testdevice" "all"];
           targetHost = "danielgomezcoder-l.duckdns.org";
+          targetUser = "root";
         };
         imports = commonImports "testdevice";
         # boot.isContainer = true;
