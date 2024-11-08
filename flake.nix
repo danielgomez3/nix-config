@@ -20,7 +20,6 @@
     let 
       system = "x86_64-linux";
       username = "daniel";
-      host = "laptop";
       commonImports = h: [
         inputs.home-manager.nixosModules.default
         inputs.sops-nix.nixosModules.sops
@@ -38,7 +37,7 @@
           system = system;
         };
         specialArgs = {
-          inherit inputs username host;
+          inherit inputs username;
         };
       };
       defaults = { pkgs, lib, ... }: 
@@ -49,13 +48,13 @@
           targetUser = "root";
         };
       };
-      laptop = {
+      laptop = {name, node, pkgs, ... }:{
         deployment = {
           # TODO
-          tags = ["laptop" "all"];
-          targetHost = "danielgomezcoder-l.duckdns.org";
+          tags = ["${name}" "all"];
+          targetHost = "192.168.12.135";
         };
-        imports = commonImports "laptop";
+        imports = commonImports "${name}";
       };
     #   desktop = {
     #     deployment = {

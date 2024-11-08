@@ -5,7 +5,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, host, username, ... }:
+{ config, pkgs, lib, inputs, username, name, ... }:
 let 
   # nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
   # cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
@@ -48,12 +48,12 @@ in
         };
         "duck_dns/token" = {};
         "duck_dns/username" = {};
-        "syncthing/${host}/key_pem" = {
+        "syncthing/${name}/key_pem" = {
           owner = config.users.users.${username}.name;
           # group = config.users.users.${username}.group;
           mode = "0700"; # Restrict read and write access to user only
         };
-        "syncthing/${host}/cert_pem" = {
+        "syncthing/${name}/cert_pem" = {
           owner = config.users.users.${username}.name;
           # group = config.users.users.${username}.group;
           mode = "0700"; # Restrict read and write access to user only
@@ -95,7 +95,7 @@ in
     };
 
     networking = {
-      hostName = host;  # Define your hostname.
+      hostName = name;  # Define your hostname.
       # nameservers = [ "8.8.8.8" "8.8.4.4" ];
       dhcpcd.enable = true;
       # domain = "home";
@@ -158,8 +158,8 @@ in
       syncthing = {
         enable = true;
         user = username;
-        key = config.sops.secrets."syncthing/${host}/key_pem".path;
-        cert = config.sops.secrets."syncthing/${host}/cert_pem".path;
+        key = config.sops.secrets."syncthing/${name}/key_pem".path;
+        cert = config.sops.secrets."syncthing/${name}/cert_pem".path;
         # dataDir = "/home/${username}/.config/data";
         # configDir = "/home/${username}/.config/syncthing";  # Folder for Syncthing's settings and keys
         overrideDevices = true;     # overrides any devices added or deleted through the WebUI
