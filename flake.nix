@@ -16,22 +16,39 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, disko, ... }: 
-    let 
-      system = "x86_64-linux";
-      username = "daniel";
-      # Helper function to build nixosSystem
-      # FIXME: commonSpecialArgs OR inheriting anything in mkNixosSystem might not be necessary.
-
-    in {
-      colmena = {
-        meta = {
-          nixpkgs = import nixpkgs {
-            system = "x86_64-linux";
-          };
-        defaults = { pkgs, ... }: 
-        {
-          
+  outputs = inputs@{ self, nixpkgs, disko, ... }: {
+    colmena = {
+      meta = {
+        nixpkgs = import nixpkgs {
+          system = "x86_64-linux";
+        };
+      };
+      defaults = { pkgs, ... }: 
+      {
+        # TODO
+        deployment = {
+          targetPort = 22;
+        };
+      };
+      desktop = {
+        deployment = {
+          # TODO
+          targetHost = "danielgomezcoder-d.duckdns.org";
+          targetUser = "daniel";
+        };
+      };
+      laptop = {
+        deployment = {
+          # TODO
+          targetHost = "danielgomezcoder-l.duckdns.org";
+          targetUser = "daniel";
+        };
+      };
+      server = {
+        deployment = {
+          # TODO
+          targetHost = "danielgomezcoder-s.duckdns.org";
+          targetUser = "danielgomez3";
         };
       };
     };
