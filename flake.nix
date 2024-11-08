@@ -21,8 +21,12 @@
       system = "x86_64-linux";
       username = "daniel";
       commonImports = h: [
+        inputs.home-manager.nixosModules.default
+        inputs.sops-nix.nixosModules.sops
+        disko.nixosModules.disko
         ./hosts/${h}
         ./hosts/${h}/hardware-configuration.nix
+        ./hosts/${h}/disko-config.nix
       ];
     in  
     {
@@ -30,6 +34,9 @@
       meta = {
         nixpkgs = import nixpkgs {
           system = system;
+        };
+        specialArgs = {
+          inherit inputs;
         };
       };
       defaults = { pkgs, lib, ... }: 
@@ -39,37 +46,50 @@
           targetPort = 22;
           targetUser = lib.mkDefault "daniel";
         };
-        imports = commonImports "desktop";
+        boot.loader.grub = {
+          enable = true;
+          version = 2;
+          devices = [ "/dev/nvme0n1" ]; 
+        };
       };
-      desktop = {
+      testdevice = {
         deployment = {
           # TODO
-          tags = ["desktop" "all"];
+          tags = ["testdevice" "all"];
           targetHost = "danielgomezcoder-d.duckdns.org";
         };
-        # imports = helperImports "desktop";
+        imports = commonImports "testdevice";
+        # boot.isContainer = true;
       };
-      laptop = {
-        deployment = {
-          # TODO
-          tags = ["laptop" "all"];
-          targetHost = "danielgomezcoder-l.duckdns.org";
-        };
-        # imports = [
-        #   ./hosts/laptop/configuration.nix
-        # ];
-      };
-      server = {
-        deployment = {
-          # TODO
-          tags = ["server" "all"];
-          targetHost = "danielgomezcoder-s.duckdns.org";
-          targetUser = "danielgomez3";
-        };
-        # imports = [
-        #   ./hosts/server/configuration.nix
-        # ];
-      };
+    #   desktop = {
+    #     deployment = {
+    #       # TODO
+    #       tags = ["desktop" "all"];
+    #       targetHost = "danielgomezcoder-d.duckdns.org";
+    #     };
+    #     # imports = helperImports "desktop";
+    #   };
+    #   laptop = {
+    #     deployment = {
+    #       # TODO
+    #       tags = ["laptop" "all"];
+    #       targetHost = "danielgomezcoder-l.duckdns.org";
+    #     };
+    #     # imports = [
+    #     #   ./hosts/laptop/configuration.nix
+    #     # ];
+    #   };
+    #   server = {
+    #     deployment = {
+    #       # TODO
+    #       tags = ["server" "all"];
+    #       targetHost = "danielgomezcoder-s.duckdns.org";
+    #       targetUser = "danielgomez3";
+    #     };
+    #     # imports = [
+    #     #   ./hosts/server/configuration.nix
+    #     # ];
+    #   };
     };
   };
 }
