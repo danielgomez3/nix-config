@@ -1,6 +1,7 @@
-{ config, lib, username, ...}:
+{ config, lib, ...}:
 let
   cfg = config.services.virtualization;
+  username = config.myConfig.username;
 in
   {
     options.services.virtualization = {
