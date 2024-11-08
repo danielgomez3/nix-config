@@ -46,18 +46,16 @@
         # TODO
         deployment = {
           targetPort = 22;
-          targetUser = lib.mkDefault "daniel";
-        };
-      };
-      testdevice = {
-        deployment = {
-          # TODO
-          tags = ["testdevice" "all"];
-          targetHost = "danielgomezcoder-l.duckdns.org";
           targetUser = "root";
         };
-        imports = commonImports "testdevice";
-        # boot.isContainer = true;
+      };
+      laptop = {
+        deployment = {
+          # TODO
+          tags = ["laptop" "all"];
+          targetHost = "danielgomezcoder-l.duckdns.org";
+        };
+        imports = commonImports "laptop";
       };
     #   desktop = {
     #     deployment = {
