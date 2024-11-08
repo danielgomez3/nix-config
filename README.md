@@ -2,8 +2,6 @@
 
 > A learning framework for those new to Nix Flakes and Linux deployment.
 
-## TODO
-Completely refactor flake.nix
 
 ## Problem
   - I manage two systems, a laptop and a desktop. I want some similarity in their configuration, and some differences.
@@ -35,4 +33,9 @@ Completely refactor flake.nix
     + A `configuration.nix` that contains universal options for all your systems.
   - `hardware-configuration.nix` is to be merged with your unique flake config for simplicity!
   - This could also fit inside one singular `flake.nix` file, but you'll find that that breaks modularity!
-g
+
+
+## Bugs
+- After a system is deployed, changing the user in ./modules/laptop/defaul.nix:`myConfig.username = "";` from say, `ronnie` to `anotherUser` causes syncthing to crash.
+  Maybe it's because of sops keys? Being key.pem and cert.pem? Not really. I wouldn't worry about it too much, I think this is just a consequence of real world side effects and system state tracked by syncthing. Can't be helped, and honestly wouldn't/shouldn't really be done anyway. Just deploy a new system.
+- 

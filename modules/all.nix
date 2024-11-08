@@ -218,7 +218,7 @@ in
         username = config.sops.secrets."duck_dns/username".path;
         # Use your Duck DNS token as the password
         passwordFile = config.sops.secrets."duck_dns/token".path;  # Shoutout to sops baby.
-        # use = "web, web=https://ifconfig.me";
+        use = "web, web=https://ifconfig.me";
       };
     };
 
