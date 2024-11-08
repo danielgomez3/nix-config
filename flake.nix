@@ -55,6 +55,22 @@
         };
         imports = commonImports "${name}";
       };
+      server = {name, node, pkgs, ... }:{
+        deployment = {
+          # TODO
+          tags = ["${name}" "all"];
+          targetHost = "192.168.12.135";
+        };
+        imports = commonImports "${name}";
+      };
+      desktop = {name, node, pkgs, ... }:{
+        deployment = {
+          # TODO
+          tags = ["${name}" "all"];
+          targetHost = "192.168.12.135";
+        };
+        imports = commonImports "${name}";
+      };
       # desktop = {name, node, pkgs, ... }:{
       #   deployment = {
       #     # TODO
