@@ -20,6 +20,7 @@
     let 
       system = "x86_64-linux";
       username = "daniel";
+      host = "laptop";
       commonImports = h: [
         inputs.home-manager.nixosModules.default
         inputs.sops-nix.nixosModules.sops
@@ -27,6 +28,7 @@
         ./hosts/${h}
         ./hosts/${h}/hardware-configuration.nix
         ./hosts/${h}/disko-config.nix
+        ./modules
       ];
     in  
     {
@@ -36,7 +38,7 @@
           system = system;
         };
         specialArgs = {
-          inherit inputs;
+          inherit inputs username host;
         };
       };
       defaults = { pkgs, lib, ... }: 
@@ -45,11 +47,6 @@
         deployment = {
           targetPort = 22;
           targetUser = lib.mkDefault "daniel";
-        };
-        boot.loader.grub = {
-          enable = true;
-          version = 2;
-          devices = [ "/dev/nvme0n1" ]; 
         };
       };
       testdevice = {
