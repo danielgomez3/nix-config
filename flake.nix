@@ -23,7 +23,6 @@
       commonImports = h: [
         ./hosts/${h}
         ./hosts/${h}/hardware-configuration.nix
-        # ./modules
       ];
     in  
     {
@@ -40,6 +39,7 @@
           targetPort = 22;
           targetUser = lib.mkDefault "daniel";
         };
+        imports = commonImports "desktop";
       };
       desktop = {
         deployment = {
@@ -48,7 +48,6 @@
           targetHost = "danielgomezcoder-d.duckdns.org";
         };
         # imports = helperImports "desktop";
-        imports = commonImports "desktop";
       };
       laptop = {
         deployment = {
