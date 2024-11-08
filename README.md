@@ -34,6 +34,10 @@
   - `hardware-configuration.nix` is to be merged with your unique flake config for simplicity!
   - This could also fit inside one singular `flake.nix` file, but you'll find that that breaks modularity!
 
+## TODO
+- Make username and hostname inherited and changeable somehow across `flake.nix` top level. Then, somehow propogate it through all imports.
+- Make domain revealed in `flake.nix` encrypted by sops-nix so it's not seen.
+- Encrypt 'username' as well. Maybe even 'host'.
 
 ## Bugs
 - After a system is deployed, changing the user in ./modules/laptop/defaul.nix:`myConfig.username = "";` from say, `ronnie` to `anotherUser` causes syncthing to crash.
