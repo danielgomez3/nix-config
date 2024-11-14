@@ -129,7 +129,7 @@ in
                   #   "-c"
                   # ];
                   # shell = ["zsh" "-c"];
-                  # true-color = true;
+                  true-color = true;
                   mouse = true;
                   bufferline = "multiple";
                   # whitespace.characters = {
