@@ -83,6 +83,13 @@ in
           	resume 'swaymsg "output * power on"'
         '';
       };
+      wayland.windowManager.hyprland = {
+        settings = {
+          input =  {
+            "kb_options" = "caps:swapescape";
+          };
+        };
+      };
   };
 
   # NOTE: Unique home-manager config for laptop:

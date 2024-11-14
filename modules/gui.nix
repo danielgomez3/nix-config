@@ -335,9 +335,6 @@ in
           decoration = {
             shadow_offset = "0 5";
           };
-          input =  {
-            "kb_options" = "caps:swapescape";
-          };
           bind = [
             "$mod, h, movefocus, l"
             "$mod, l, movefocus, r"
