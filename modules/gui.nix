@@ -36,7 +36,7 @@ in
     stylix = {
       enable = true;
       image = ./additional/wallpapers/red-glow.png;
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/3024.yaml";
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/embers.yaml";
       cursor = { 
         package = pkgs.bibata-cursors; 
         name = "Bibata-Modern-Ice";
