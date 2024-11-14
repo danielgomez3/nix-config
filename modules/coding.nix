@@ -116,7 +116,7 @@ in
               python312Packages.python-lsp-server 
             ];
             settings = {
-                theme = "catppuccin_macchiato";
+                # theme = "catppuccin_macchiato";
                 editor = {
                   # shell = ["/usr/bin/env" "zsh"];
                   shell = [
