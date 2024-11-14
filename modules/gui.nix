@@ -35,8 +35,8 @@ in
     };
     stylix = {
       enable = true;
-      image = ./additional/wallpapers/rainbow-nord.png;
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+      image = ./additional/wallpapers/red-glow.png;
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/3024.yaml";
       cursor = { 
         package = pkgs.bibata-cursors; 
         name = "Bibata-Modern-Ice";
