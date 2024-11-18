@@ -332,9 +332,6 @@ in
         xwayland.enable = true;
         settings = {
           "$mod" = "SUPER";
-          decoration = {
-            shadow_offset = "0 5";
-          };
           bind = [
             "$mod, h, movefocus, l"
             "$mod, l, movefocus, r"
