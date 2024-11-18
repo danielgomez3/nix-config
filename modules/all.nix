@@ -261,7 +261,7 @@ in
         woeusb ntfs3g 
         iptables nftables file toybox 
         # Security
-        gnupg age yubioath-flutter yubikey-manager pam_u2f
+        gnupg pinentry-tty age yubioath-flutter yubikey-manager pam_u2f
       ];
     };
 
