@@ -260,8 +260,39 @@ in
         lm_sensors 
         woeusb ntfs3g 
         iptables nftables file toybox 
+        # Security
+        gpg age yubioath-flutter yubikey-manager pam_u2f
       ];
     };
+
+    # Yubikey required services and config.
+    # services.udev.packages = [ pkgs.yubikey-personalization ];
+
+    # programs.gnupg.agent = {
+    #   enable = true;
+    #   enableSSHSupport = true;
+    # };
+
+    # services.pcscd.enable = true;
+    # services.udev.packages = [ pkgs.yubikey-personalization ];
+    # services.yubikey-agent.enable = true;
+    # security.pam = {
+    #   sshAgentAuth.enable = true;
+    #   u2f = {
+    #     enable = true;
+    #     settings = {
+    #       cue = true;
+    #       authFile = "/home/${username}/.config/Yubico/u2f_keys";
+    #     };
+    #   };
+    #   services = {
+    #     login.u2fAuth = true;
+    #     sudo = {
+    #       u2fAuth = true;
+    #       sshAgentAuth = true; # Use SSH_AUTH_SOCK for sudo
+    #     };
+    #   };
+    # };
 
 
 
@@ -290,8 +321,6 @@ in
             android-tools adb-sync unzip android-tools ffmpeg mpv ventoy
             # Nix
             sops  just nixos-anywhere ssh-to-age colmena disko
-            # Security
-            age yubioath-flutter yubikey-manager
           ];
         };
 

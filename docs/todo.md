@@ -1,2 +1,2 @@
 - Set res on Hyprland for desktop.
-
+- Make instructions how to initialize a yubikey.
