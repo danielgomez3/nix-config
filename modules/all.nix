@@ -289,7 +289,9 @@ in
             tesseract ocrmypdf
             android-tools adb-sync unzip android-tools ffmpeg mpv ventoy
             # Nix
-            sops age just nixos-anywhere ssh-to-age colmena disko
+            sops  just nixos-anywhere ssh-to-age colmena disko
+            # Security
+            age yubioath-flutter yubikey-manager
           ];
         };
 
