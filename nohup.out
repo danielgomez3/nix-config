@@ -1,1 +1,39 @@
 [INFO ] Using flake: git+file:///home/daniel/Projects/repos-personal/nix-config
+[INFO ] Enumerating nodes...
+[INFO ] Selected 1 out of 3 hosts.
+desktop | Evaluating desktop
+desktop | evaluation warning: daniel profile: You are using
+desktop | 
+desktop |                       Home Manager version 24.05 and
+desktop |                       Nixpkgs version 25.05.
+desktop | 
+desktop |                     Using mismatched versions is likely to cause errors and unexpected
+desktop |                     behavior. It is therefore highly recommended to use a release of Home
+desktop |                     Manager that corresponds with your chosen release of Nixpkgs.
+desktop | 
+desktop |                     If you insist then you can disable this warning by adding
+desktop | 
+desktop |                       home.enableNixpkgsReleaseCheck = false;
+desktop | 
+desktop |                     to your configuration.
+desktop | Evaluated desktop
+desktop | Building desktop
+desktop | /nix/store/8bldipp5ailv71qy9jxmh9v9n0nmy6yw-nixos-system-desktop-25.05pre-git
+desktop | Built "/nix/store/8bldipp5ailv71qy9jxmh9v9n0nmy6yw-nixos-system-desktop-25.05pre-git"
+desktop | Pushing system closure
+desktop | copying 0 paths...
+desktop | Pushed system closure
+desktop | No pre-activation keys to upload
+desktop | Activating system profile
+desktop | activating the configuration...
+desktop | sops-install-secrets: Imported /etc/ssh/ssh_host_rsa_key as GPG key with fingerprint f8a25e182e7adba7d351152125dddabd73e0e4f7
+desktop | sops-install-secrets: Imported /etc/ssh/ssh_host_ed25519_key as age key with fingerprint age1v458w2njsg6ugh8ld9k8smeek3nlkta9qgx3hwcch04ladsv0dssm8pczn
+desktop | setting up /etc...
+desktop | sops-install-secrets: Imported /etc/ssh/ssh_host_rsa_key as GPG key with fingerprint f8a25e182e7adba7d351152125dddabd73e0e4f7
+desktop | sops-install-secrets: Imported /etc/ssh/ssh_host_ed25519_key as age key with fingerprint age1v458w2njsg6ugh8ld9k8smeek3nlkta9qgx3hwcch04ladsv0dssm8pczn
+desktop | reloading user units for daniel...
+desktop | reloading user units for root...
+desktop | restarting sysinit-reactivation.target
+desktop | Activation successful
+desktop | No post-activation keys to upload
+        | All done!
