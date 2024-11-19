@@ -25,7 +25,8 @@ save:
 apply target:
     -just update &
     -just commit &
-    nohup sh -c 'colmena apply -p 3 --on @{{target}}' > nohup.out 2>&1 & 
+    # nohup sh -c 'colmena apply -p 3 --on @{{target}}' > nohup.out 2>&1 & 
+    colmena apply -p 3 --on @{{target}}
 
 rebuild:
     # NOTE: rebuilds and applies to whoever is online and reachable.
