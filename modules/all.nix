@@ -102,12 +102,14 @@ in
       # domain = "home";
       firewall = {
         enable = false;
+        trustedInterfaces = [ "tailscale0"];  # FIXME could possibly be impure? Just my suspicion.
         # Open the necessary UDP ports for PXE boot
         allowedUDPPorts = [ 
-          67 69 4011 
+          67 69 4011 config.services.tailscale.port
         ];
         # Open the necessary TCP port for Pixiecore
         allowedTCPPorts = [ 
+          22
           80
           443
           64172 

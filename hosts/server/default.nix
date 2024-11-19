@@ -87,6 +87,7 @@ in
     serviceConfig.Type = "oneshot";
 
     # have the job run this shell script
+    # FIXME: using 'cat' for the password may be impure and may cause side effects when deploying using NixOs-Anywhere... Investigate!
     script = with pkgs; ''
       # wait for tailscaled to settle
       sleep 2
