@@ -1,22 +1,6 @@
 default:
     @just --list
 
-
-# TODO: Can't just do it for server, moron
-# rebuild:
-#     sudo -E nix flake lock --update-input mysecrets
-#     sudo nixos-rebuild switch --flake .#server
-
-# edit:
-#     $EDITOR . 
-#     just update
-#     just rebuild
-
-# TODO: deploy to all systems
-# deploy target user ip:
-#     @echo 'Building {{target}}…'
-#     nix run github:nix-community/nixos-anywhere -- --extra-files ~/.config/sops/age --generate-hardware-config nixos-generate-config ./hosts/{{target}}/hardware-configuration.nix {{user}}@{{ip}} --flake .#{{target}}
-
 netboot:
     # nix build -f ./extra/nix-expressions/netboot/system.nix -o /tmp/run-pixiecore
     sudo iptables -w -I nixos-fw -p udp -m multiport --dports 67,69,4011 -j ACCEPT
@@ -39,9 +23,9 @@ save:
     git add -A :/; echo -n "Enter commit message: (Enter for default): "; read msg; msg=${msg:-"CAUTION untested changes, possibly broken. Pushing.."}; git commit -m "$msg"; git push
 
 apply target:
-    -just update &
-    -just commit &
-    colmena apply -p 3 --on @{{target}} &
+    nohup just update &
+    nohup just commit &
+    nohup sh -c 'colmena apply -p 3 --on @{{target}}' > nohup.out 2>&1 & 
 
 rebuild:
     # NOTE: rebuilds and applies to whoever is online and reachable.
