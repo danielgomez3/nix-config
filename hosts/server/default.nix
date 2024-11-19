@@ -46,6 +46,10 @@ in
     virtualization = {
       enable = true;
     };
+    tailscale = {
+      enable = true;
+      useRoutingFeatures = "server";
+    };
     plex = {
       enable = true;
       openFirewall = true;
