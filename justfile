@@ -39,15 +39,15 @@ save:
     git add -A :/; echo -n "Enter commit message: (Enter for default): "; read msg; msg=${msg:-"CAUTION untested changes, possibly broken. Pushing.."}; git commit -m "$msg"; git push
 
 apply target:
-    -just update
-    -just commit
-    colmena apply -p 3 --on @{{target}}
+    -just update &
+    -just commit &
+    colmena apply -p 3 --on @{{target}} &
 
 rebuild:
     # NOTE: rebuilds and applies to whoever is online and reachable.
     nix --experimental-features 'nix-command flakes' flake update
     git add -A :/
-    colmena apply -p 3 && git commit -m "deployed succesfully" && git push
+    nohup sh -c 'colmena apply -p 3 && git commit -m "deployed succesfully" && git push' > nohup.out 2>&1 &
 
 #deploy laptop:
 # nix run github:nix-community/nixos-anywhere -- --extra-files ~/.config/sops/age --generate-hardware-config nixos-generate-config ./hosts/laptop/hardware-configuration.nix root@192.168.12.122 --flake .#laptop
