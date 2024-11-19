@@ -23,12 +23,9 @@ save:
     git add -A :/; echo -n "Enter commit message: (Enter for default): "; read msg; msg=${msg:-"CAUTION untested changes, possibly broken. Pushing.."}; git commit -m "$msg"; git push
 
 apply target:
-    git add -A :/; echo -n "Enter commit message: (Enter for default): "; read msg; msg=${msg:-"CAUTION untested changes, possibly broken. Pushing.."}; git commit -m "$msg"
-    nohup sh -c 'colmena apply -p 3 --on @{{target}}' > nohup.out 2>&1 
-
-    # nohup just update 
-    # nohup just commit 
-    # nohup sh -c 'colmena apply -p 3 --on @{{target}}' > nohup.out 2>&1 & 
+    -just update &
+    -just commit &
+    nohup sh -c 'colmena apply -p 3 --on @{{target}}' > nohup.out 2>&1 & 
 
 rebuild:
     # NOTE: rebuilds and applies to whoever is online and reachable.
