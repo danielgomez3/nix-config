@@ -23,8 +23,8 @@ save:
     git add -A :/; echo -n "Enter commit message: (Enter for default): "; read msg; msg=${msg:-"CAUTION untested changes, possibly broken. Pushing.."}; git commit -m "$msg"; git push
 
 apply target:
-    -just update &
-    -just commit &
+    -just update
+    -just commit
     # nohup sh -c 'colmena apply -p 3 --on @{{target}}' > nohup.out 2>&1 & 
     colmena apply -p 3 --on @{{target}}
 
