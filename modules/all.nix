@@ -144,7 +144,7 @@ in
     services = { 
       tailscale = {
         enable = true;
-        authKeyFile = config.sops.secrets.tailscale.${name}.path;
+        authKeyFile = config.sops.secrets."tailscale/${name}".path;
       };
       openssh = {
         enable = true;
