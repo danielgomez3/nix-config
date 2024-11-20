@@ -28,6 +28,9 @@ in
     all = {
       enable = true;
     };
+    tailscale = {
+      authKeyFile = config.sops.secrets.tailscale.path;
+    };
     virtualization = {
       enable = true;
     };

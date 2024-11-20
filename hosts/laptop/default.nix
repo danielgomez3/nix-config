@@ -23,6 +23,9 @@ in
     gui = {
       enable = true;
     };
+    tailscale = {
+      authKeyFile = config.sops.secrets.tailscale.path;
+    };
     syncthing = {
       guiAddress = "127.0.0.1:8383";
     };
