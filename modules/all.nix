@@ -60,8 +60,7 @@ in
         };
         "wifi_networks/home/ssid" = {};
         "wifi_networks/home/psk" = {};
-        # "tailscale/${name}" = {};
-        "tailscale/age" = {};
+        "tailscale" = {};
         github_token = {
           owner = config.users.users.${username}.name;
           group = config.users.users.${username}.group;
@@ -143,10 +142,6 @@ in
 
 
     services = { 
-      tailscale = {
-        enable = true;
-        # authKeyFile = config.sops.secrets."tailscale/${name}".path;
-      };
       openssh = {
         enable = true;
         # hostKeys = [

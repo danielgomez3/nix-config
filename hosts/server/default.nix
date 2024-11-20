@@ -47,6 +47,7 @@ in
       enable = true;
     };
     tailscale = {
+      enable = true;
       useRoutingFeatures = "server";
     };
     plex = {
@@ -98,7 +99,7 @@ in
       fi
 
       # otherwise authenticate with tailscale
-      ${tailscale}/bin/tailscale up -authkey $(cat ${config.sops.secrets.tailscale.all.path})
+      ${tailscale}/bin/tailscale up -authkey $(cat ${config.sops.secrets.tailscale.path})
     '';
   };
 
