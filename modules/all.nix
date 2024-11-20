@@ -60,7 +60,7 @@ in
         };
         "wifi_networks/home/ssid" = {};
         "wifi_networks/home/psk" = {};
-        "tailscale" = {};
+        "tailscale/${name}" = {};
         github_token = {
           owner = config.users.users.${username}.name;
           group = config.users.users.${username}.group;
