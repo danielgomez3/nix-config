@@ -143,7 +143,7 @@ in
 
     services = { 
       tailscale = {
-        enable = false;
+        enable = true;
       };
       openssh = {
         enable = true;
