@@ -28,9 +28,9 @@ in
     all = {
       enable = true;
     };
-    tailscale = {
-      useRoutingFeatures = "client";
-    };
+    # tailscale = {
+    #   useRoutingFeatures = "client";
+    # };
     virtualization = {
       enable = true;
     };
