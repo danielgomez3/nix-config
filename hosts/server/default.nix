@@ -47,7 +47,6 @@ in
       enable = true;
     };
     tailscale = {
-      enable = true;
       useRoutingFeatures = "server";
     };
     plex = {

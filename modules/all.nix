@@ -102,7 +102,8 @@ in
       # domain = "home";
       firewall = {
         enable = false;
-        trustedInterfaces = [ "tailscale0"];  # FIXME could possibly be impure? Just my suspicion.
+        # always allow traffic from your Tailscale network
+        trustedInterfaces = [ "tailscale0"];
         # Open the necessary UDP ports for PXE boot
         allowedUDPPorts = [ 
           67 69 4011 config.services.tailscale.port
@@ -141,6 +142,9 @@ in
 
 
     services = { 
+      tailscale = {
+        enable = true;
+      };
       openssh = {
         enable = true;
         # hostKeys = [
