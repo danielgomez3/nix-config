@@ -24,7 +24,7 @@ save:
 
 
 apply target:
-    echo {{ if target == "all" { "all" } else { "desktop,server,laptop" } }}
+    echo {{ if target == "all" { "all" } else { target } }}
     -just update
     -just commit
     # nohup sh -c 'colmena apply -p 3 --on @{{target}}' > nohup.out 2>&1 & 
