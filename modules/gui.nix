@@ -488,9 +488,6 @@ in
           settings = {
             enable_audio_bell = false;
           };
-          # extraConfig = "
-          #   launch sh -c 'ssh server'
-          # ";
         };
 
 
