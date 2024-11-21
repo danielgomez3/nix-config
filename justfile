@@ -23,8 +23,8 @@ save:
     git add -A :/; echo -n "Enter commit message: (Enter for default): "; read msg; msg=${msg:-"CAUTION untested changes, possibly broken. Pushing.."}; git commit -m "$msg"; git push
 
 
-apply target:
-    # echo {{ if target == "all" { "all" } else { target } }}
+apply target="all":
+    # echo {{ if target == "" { "all" } else { target } }}
     -just update
     -just commit
     colmena apply -p 3 --on @{{target}} && git push
