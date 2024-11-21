@@ -22,11 +22,12 @@ commit:
 save:
     git add -A :/; echo -n "Enter commit message: (Enter for default): "; read msg; msg=${msg:-"CAUTION untested changes, possibly broken. Pushing.."}; git commit -m "$msg"; git push
 
+
 apply target:
+    echo {{ if target == "all" { "all" } else { "desktop,server,laptop" } }}
     -just update
     -just commit
     # nohup sh -c 'colmena apply -p 3 --on @{{target}}' > nohup.out 2>&1 & 
-    target := if "all" {"desktop,laptop,server"} else {{target}}
     colmena apply -p 3 --on @{{target}}
 
 rebuild:
