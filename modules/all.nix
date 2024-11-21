@@ -284,9 +284,12 @@ in
         ignoreShellProgramCheck = true;
         openssh.authorizedKeys.keys = [
           (builtins.readFile ../hosts/desktop/key.pub)
-          (builtins.readFile ../hosts/desktop/root-key.pub)  # Needed for Colmena b/c doesn't use root for colmena?
           (builtins.readFile ../hosts/server/key.pub)
           (builtins.readFile ../hosts/laptop/key.pub)
+          # Needed for Colmena b/c doesn't use root for colmena?
+          (builtins.readFile ../hosts/desktop/root-key.pub)
+          (builtins.readFile ../hosts/laptop/root-key.pub)
+          (builtins.readFile ../hosts/server/root-key.pub)
         ];
       };
     };
