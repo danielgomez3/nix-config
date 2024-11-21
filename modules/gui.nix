@@ -386,10 +386,10 @@ in
             "pavucontrol"
           ];
           windowrule = [
-            "workspace 2, slack"
-            "workspace 2, kdeconnect-sms"
-            "workspace 10, plexamp"
             "workspace 1, firefox"
+            "workspace 2, Slack"
+            "workspace 2, org.kde.kdeconnect.sms"
+            "workspace 10, Plexamp"
             "workspace 10, pavucontrol"
           ];
 
