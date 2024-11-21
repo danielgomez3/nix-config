@@ -386,7 +386,7 @@ in
             "pavucontrol"
             "kitty"
           ];
-          windowrulev2 = [
+          windowrule = [
             "workspace 1, firefox"
             "workspace 2, Slack"
             "workspace 2, org.kde.kdeconnect.sms"
