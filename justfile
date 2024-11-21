@@ -26,6 +26,7 @@ apply target:
     -just update
     -just commit
     # nohup sh -c 'colmena apply -p 3 --on @{{target}}' > nohup.out 2>&1 & 
+    target := if "all" {"desktop,laptop,server"} else {{target}}
     colmena apply -p 3 --on @{{target}}
 
 rebuild:
