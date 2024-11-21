@@ -343,7 +343,7 @@ in
             "$mod SHIFT, k, movewindow, u"
             "$mod SHIFT, j, movewindow, d"
 
-            "$mod,Return,exec,kitty -e server"
+            "$mod,Return,exec,env HOME=/home/daniel USER=daniel kitty -e server"
             "$mod SHIFT,Return,exec,kitty"
             "$mod SHIFT,Q,killactive"   # Close the current window with SUPER+Q
             "$mod SHIFT,E,exit"   # Close the current window with SUPER+Q
