@@ -1,2 +1,2 @@
-- Set res on Hyprland for desktop.
 - Make instructions how to initialize a yubikey.
+- Make all tailscale functionality into module so not everyone has it enabled or has the key added to their system. Actually, having it added to tailscale automatically regardless of the device is not a bad idea.. so nvm?
