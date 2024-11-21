@@ -24,7 +24,7 @@ save:
 
 
 apply target:
-    echo {{ if target == "all" { "all" } else { target } }}
+    # echo {{ if target == "all" { "all" } else { target } }}
     -just update
     -just commit
     colmena apply -p 3 --on @{{target}}
