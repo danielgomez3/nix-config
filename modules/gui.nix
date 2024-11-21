@@ -379,15 +379,18 @@ in
             # "$mod, mouse:273, resizewindow"
           ];
           exec-once = [
-            # ''
-            # exec ${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit
-            # ''
-            # ''
-            # ${pkgs.swayidle}/bin/swayidle -w timeout 320 '${pkgs.swaylock}/bin/swaylock -c 000000 -f' timeout 420 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'
-            # ''
-            # ''
-            #  ${pkgs.swayidle}/bin/swayidle -w before-sleep "${pkgs.swaylock}/bin/swaylock" & ${pkgs.swayidle}/bin/swayidle -w timeout 30 "systemctl suspend"
-            # ''
+            "slack"
+            "kdeconnect-sms"
+            "plexamp"
+            "firefox"
+            "pavucontrol"
+          ];
+          windowrule = [
+            "workspace 2, slack"
+            "workspace 2, kdeconnect-sms"
+            "workspace 10, plexamp"
+            "workspace 1, firefox"
+            "workspace 10, pavucontrol"
           ];
 
           # listener = [
