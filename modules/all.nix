@@ -268,8 +268,10 @@ in
         openssh.authorizedKeys.keys = [
           # "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB+EV/ya8UNE7Q2TcHGuHebn874hDnsQBsCfd+tC/uYs root@desktop"
           # "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJW8ix2afb5YJQiWw2sDJVPV+gfcPo+WexSodqfUCUzu daniel@desktop"
-          (builtins.readFile ../hosts/desktop/key.pub)
+          # (builtins.readFile ../hosts/desktop/key.pub)
           (builtins.readFile ../hosts/desktop/root-key.pub)
+          (builtins.readFile ../hosts/laptop/root-key.pub)
+          (builtins.readFile ../hosts/server/root-key.pub)
         ];
       };
 
@@ -282,8 +284,8 @@ in
         ignoreShellProgramCheck = true;
         openssh.authorizedKeys.keys = [
           (builtins.readFile ../hosts/desktop/key.pub)
-          (builtins.readFile ../hosts/desktop/root-key.pub)
-          # (builtins.readFile ../hosts/server/key.pub)
+          (builtins.readFile ../hosts/desktop/root-key.pub)  # Needed for Colmena b/c doesn't use root for colmena?
+          (builtins.readFile ../hosts/server/key.pub)
           (builtins.readFile ../hosts/laptop/key.pub)
         ];
       };
