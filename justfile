@@ -27,7 +27,7 @@ apply target:
     # echo {{ if target == "all" { "all" } else { target } }}
     -just update
     -just commit
-    colmena apply -p 3 --on @{{target}}
+    colmena apply -p 3 --on @{{target}} && git push
 
 rebuild:
     # NOTE: rebuilds and applies to whoever is online and reachable.
