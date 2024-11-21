@@ -388,7 +388,6 @@ in
           ];
           windowrulev2 = [
             "workspace 1, firefox"
-            "workspace 1, kitty"
             "workspace 2, Slack"
             "workspace 2, org.kde.kdeconnect.sms"
             "workspace 10, Plexamp"
