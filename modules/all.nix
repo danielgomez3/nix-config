@@ -444,26 +444,26 @@ in
 
           ssh = {
             enable = true;
-            matchBlocks = {
-              "server" = {
-                # hostname = "server.danielgomezcoder.org";
-                hostname = "192.168.12.149";
-                user = "danielgomez3";  # FIXME: use sops nix
-              };
-              "desktop" = {
-                hostname = "desktop.danielgomezcoder.org";
-                user = "daniel";  # FIXME: use sops nix
-              };
-              "laptop" = {
-                hostname = "laptop.danielgomezcoder.org";
-                user = "daniel";  # FIXME: use sops nix
-              };
-              # "laptop" = {
-              #   host = "deploy";
-              #   hostname = "danielgomezcoder-l.duckdns.org";
-              #   user = "root";  # FIXME: use sops nix
-              # };
-            };
+            # matchBlocks = {
+            #   "server" = {
+            #     # hostname = "server.danielgomezcoder.org";
+            #     hostname = "192.168.12.149";
+            #     user = "danielgomez3";  # FIXME: use sops nix
+            #   };
+            #   "desktop" = {
+            #     hostname = "desktop.danielgomezcoder.org";
+            #     user = "daniel";  # FIXME: use sops nix
+            #   };
+            #   "laptop" = {
+            #     hostname = "laptop.danielgomezcoder.org";
+            #     user = "daniel";  # FIXME: use sops nix
+            #   };
+            #   # "laptop" = {
+            #   #   host = "deploy";
+            #   #   hostname = "danielgomezcoder-l.duckdns.org";
+            #   #   user = "root";  # FIXME: use sops nix
+            #   # };
+            # };
           };
 
 
