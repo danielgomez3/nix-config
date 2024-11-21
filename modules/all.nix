@@ -236,8 +236,10 @@ in
       users.root = {
         hashedPasswordFile = config.sops.secrets.user_password.path;  
         openssh.authorizedKeys.keys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB+EV/ya8UNE7Q2TcHGuHebn874hDnsQBsCfd+tC/uYs root@desktop"
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJW8ix2afb5YJQiWw2sDJVPV+gfcPo+WexSodqfUCUzu daniel@desktop"
+          # "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB+EV/ya8UNE7Q2TcHGuHebn874hDnsQBsCfd+tC/uYs root@desktop"
+          # "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJW8ix2afb5YJQiWw2sDJVPV+gfcPo+WexSodqfUCUzu daniel@desktop"
+          (builtins.readFile ../hosts/desktop/key.pub)
+          (builtins.readFile ../hosts/desktop/root-key.pub)
         ];
       };
 
@@ -444,29 +446,27 @@ in
 
           ssh = {
             enable = true;
-            # matchBlocks = {
-            #   "server" = {
-            #     # hostname = "server.danielgomezcoder.org";
-            #     hostname = "192.168.12.149";
-            #     user = "danielgomez3";  # FIXME: use sops nix
-            #   };
-            #   "desktop" = {
-            #     hostname = "desktop.danielgomezcoder.org";
-            #     user = "daniel";  # FIXME: use sops nix
-            #   };
-            #   "laptop" = {
-            #     hostname = "laptop.danielgomezcoder.org";
-            #     user = "daniel";  # FIXME: use sops nix
-            #   };
-            #   # "laptop" = {
-            #   #   host = "deploy";
-            #   #   hostname = "danielgomezcoder-l.duckdns.org";
-            #   #   user = "root";  # FIXME: use sops nix
-            #   # };
-            # };
+            matchBlocks = {
+              "server" = {
+                # hostname = "server.danielgomezcoder.org";
+                hostname = "server";
+                user = "danielgomez3";  # FIXME: use sops nix
+              };
+              "desktop" = {
+                hostname = "desktop";
+                user = "daniel";  # FIXME: use sops nix
+              };
+              "laptop" = {
+                hostname = "laptop";
+                user = "daniel";  # FIXME: use sops nix
+              };
+              # "laptop" = {
+              #   host = "deploy";
+              #   hostname = "danielgomezcoder-l.duckdns.org";
+              #   user = "root";  # FIXME: use sops nix
+              # };
+            };
           };
-
-
         };
       };
     };
