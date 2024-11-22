@@ -20,6 +20,7 @@ in
     '';
 
 
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
     hardware = {
       # opengl = {
       #   enable = true;  # NOTE: This might need to be added for laptop too.
