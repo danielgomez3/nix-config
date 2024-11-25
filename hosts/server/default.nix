@@ -44,7 +44,7 @@ in
       enable = true;
     };
     virtualization = {
-      enable = true;
+      enable = false;
     };
     tailscale = {
       useRoutingFeatures = "server";
