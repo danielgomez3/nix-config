@@ -362,6 +362,7 @@ in
             dig dmidecode 
             eza entr tldr bc tree zip
             pciutils usbutils 
+            cifs-utils samba
             # cli apps
             yt-dlp beets spotdl protonvpn-cli_2
             tesseract ocrmypdf
