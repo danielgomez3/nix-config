@@ -511,7 +511,6 @@ in
           settings = { ignorecase = true; };
           plugins = with pkgs.vimPlugins; [ 
             vim-which-key 
-            nord-vim
             vim-markdown
             #bullets-vim
           ];
@@ -559,8 +558,6 @@ in
 
 
             "" vanity
-            colorscheme nord
-            "colorscheme desert
             syntax on
             set termguicolors background=dark 
             set laststatus=0 shortmess+=I noshowmode

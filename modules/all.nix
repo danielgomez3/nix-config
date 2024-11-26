@@ -306,7 +306,7 @@ in
         git wget curl pigz vim
         lm_sensors 
         woeusb ntfs3g 
-        iptables nftables file toybox 
+        iptables nftables file toybox xclip
         # Security
         gnupg pinentry-tty age yubioath-flutter yubikey-manager pam_u2f
       ];
