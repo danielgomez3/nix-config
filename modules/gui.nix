@@ -156,7 +156,7 @@ in
     home-manager.users.${username} = {
       home.packages = with pkgs; [
           # Sway/Wayland/Hyprland
-          grim slurp wl-clipboard xorg.xrandr swayidle swaylock sway-audio-idle-inhibit flashfocus autotiling sway-contrib.grimshot wlprop pw-volume 
+          grim slurp xorg.xrandr swayidle swaylock sway-audio-idle-inhibit flashfocus autotiling sway-contrib.grimshot wlprop pw-volume 
           # adwaita-icon-theme adwaita-qt 
           brightnessctl swappy dmenu
           # hyprland
