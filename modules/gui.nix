@@ -506,9 +506,9 @@ in
           ];
         };
         # TODO: Make a <leader>/ function that will search fuzzily. Every space will interpret '.*'
-        vim = {
-          enable = true;
-        };
+        # vim = {
+        #   enable = true;
+        # };
         hyprlock = {
           enable = true;
           # settings = {
