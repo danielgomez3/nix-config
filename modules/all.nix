@@ -354,9 +354,6 @@ in
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     home-manager = { 
-      sharedModules = [{
-        stylix.targets.vim.enable = true;
-      }];
       backupFileExtension = "hm-backup";
       extraSpecialArgs = { inherit inputs; };
       users.${username} = {
@@ -375,6 +372,7 @@ in
             sops  just nixos-anywhere ssh-to-age colmena disko
           ];
         };
+        stylix.targets.vim.enable = false;
 
         programs = {
 
