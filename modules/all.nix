@@ -508,13 +508,13 @@ in
           };
 
           vim = {
-            enable = false;
-            settings = { ignorecase = true; };
-            plugins = with pkgs.vimPlugins; [ 
-              vim-which-key 
-              vim-markdown
-              #bullets-vim
-            ];
+            enable = true;
+            # settings = { ignorecase = true; };
+            # plugins = with pkgs.vimPlugins; [ 
+            #   vim-which-key 
+            #   vim-markdown
+            #   #bullets-vim
+            # ];
             extraConfig = ''
               set path+=**/* nocompatible incsearch smartcase ignorecase termguicolors background=dark mouse-=a
               set wildmenu wildignorecase
