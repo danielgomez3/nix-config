@@ -523,7 +523,7 @@ in
             filetype plugin indent on
             set noswapfile confirm scrolloff=20
             set autoindent expandtab tabstop=2 shiftwidth=2
-            argadd ~/Productivity/notes ~/Productivity/planning/* ~/flake/configuration.nix  " add this single dir and file to my buffer list
+            "" argadd ~/Productivity/notes ~/Productivity/planning/* ~/flake/configuration.nix  " add this single dir and file to my buffer list
 
 
             "" Netrw
@@ -559,36 +559,10 @@ in
 
             "" vanity
             syntax on
-            set termguicolors background=dark 
+            "set termguicolors background=dark 
             set laststatus=0 shortmess+=I noshowmode
             set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:
             "let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'haskell', 'cpp']
-            " Customize Markdown heading colors
-            hi! link markdownHeadingDelimiter Boolean
-            hi! link markdownH1 DiffAdd
-            hi! link markdownH2 DiffDelete
-            hi! link markdownH3 DiffChange
-            hi! link markdownH4 debugPC
-            hi! link markdownH6 Statement
-            hi! link markdownH5 Debug
-
-
-
-            " Highlight TODO in markdown doc comments:
-            "augroup markdown_todo
-            "  autocmd!
-            "  autocmd FileType markdown syntax match markdownTodo /\<TODO:.*\>/
-            "  autocmd FileType markdown highlight markdownTodo guifg=#FF4500 ctermfg=208
-            "augroup END
-            "syntax sync minlines=9999  " Put this at the end.
-            "syntax sync maxlines=9999
-            "syntax sync fromstart
-            "set synmaxcol=0
-            ""set synmincol=0
-            "set redrawtime=10000
-            "set maxmempattern=2000000
-
-
           '';
         };
         hyprlock = {
