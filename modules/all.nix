@@ -91,7 +91,7 @@ in
         name = "Bibata-Modern-Ice";
         # size = 50;
       };
-      targets.nixvim.enable = false;
+      # targets.nixvim.enable = false;
       # fonts = {
       #   monospace = {
       #     package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
@@ -508,7 +508,7 @@ in
           };
 
           vim = {
-            enable = true;
+            enable = false;
             settings = { ignorecase = true; };
             plugins = with pkgs.vimPlugins; [ 
               vim-which-key 
