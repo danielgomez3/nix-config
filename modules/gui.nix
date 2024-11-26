@@ -508,13 +508,6 @@ in
         # TODO: Make a <leader>/ function that will search fuzzily. Every space will interpret '.*'
         vim = {
           enable = true;
-          settings = { ignorecase = true; };
-          plugins = with pkgs.vimPlugins; [ 
-            vim-which-key 
-            vim-markdown
-            #bullets-vim
-          ];
-
         };
         hyprlock = {
           enable = true;
