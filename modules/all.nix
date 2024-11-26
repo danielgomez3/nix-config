@@ -91,7 +91,7 @@ in
         name = "Bibata-Modern-Ice";
         # size = 50;
       };
-      targets.vim.enable = false;
+      targets.nixvim.enable = false;
       # fonts = {
       #   monospace = {
       #     package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
