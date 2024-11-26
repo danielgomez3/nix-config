@@ -91,6 +91,7 @@ in
         name = "Bibata-Modern-Ice";
         # size = 50;
       };
+      targets.vim.enable = false;
       # fonts = {
       #   monospace = {
       #     package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
@@ -515,7 +516,7 @@ in
               #bullets-vim
             ];
             extraConfig = ''
-              set path+=**/* nocompatible incsearch smartcase ignorecase termguicolors background=dark 
+              set path+=**/* nocompatible incsearch smartcase ignorecase termguicolors background=dark mouse-=a
               set wildmenu wildignorecase
 
 
