@@ -93,7 +93,7 @@ in
                   "bind \"Alt l\"" = {
                     GoToNextTab = [];
                   };
-                  "bind \"Alt l\"" = {
+                  "bind \"Alt h\"" = {
                     GoToPreviousTab = [];
                   };
                   # "Alt l" = [ "GoToNextTab" ];
