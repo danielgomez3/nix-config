@@ -52,20 +52,20 @@ in
 
         ];
 
-        home.file.zellij = {
-          target = ".config/zellij/config.kdl";
-          text = ''
-            default_mode "locked"
-            scrollback_editor "hx"
-            pane_frames false
-            keybinds {
-                locked {
-                    bind "Alt l" { GoToNextTab; }
-                    bind "Alt h" { GoToPreviousTab; }
-                }
-            }
-          '';
-        };
+        # home.file.zellij = {
+        #   target = ".config/zellij/config.kdl";
+        #   text = ''
+        #     default_mode "locked"
+        #     scrollback_editor "hx"
+        #     pane_frames false
+        #     keybinds {
+        #         locked {
+        #             bind "Alt l" { GoToNextTab; }
+        #             bind "Alt h" { GoToPreviousTab; }
+        #         }
+        #     }
+        #   '';
+        # };
 
         programs = {
 
@@ -80,6 +80,21 @@ in
             enableBashIntegration = true;
             enableZshIntegration = true;
             enableFishIntegration = true;
+          };
+
+          zellij = {
+            enable = true;
+            settings = {
+              default_mode = "locked";
+              scrollback_editor = "hx";
+              pane_frames = false;
+              keybinds = {
+                locked = {
+                  "Alt l" = [ "GoToNextTab" ];
+                  "Alt h" = [ "GoToPreviousTab" ];
+                };
+              };
+            };
           };
     
           helix = {
