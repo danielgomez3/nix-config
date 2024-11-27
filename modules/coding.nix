@@ -108,6 +108,7 @@ in
                 normal = {
                   "bind \"Alt r\"" = {
                     TabNameInput = [0];
+                  };
                 };
               };
             };
