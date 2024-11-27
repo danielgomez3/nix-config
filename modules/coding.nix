@@ -106,6 +106,11 @@ in
                   #   TabNameInput = [0];
                   # };
                 };
+                renametab = {
+                  "bind \"Enter\"" = {
+                    SwitchToMode = ["locked"];
+                  };
+                };
               };
             };
           };
