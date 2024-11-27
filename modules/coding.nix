@@ -103,7 +103,7 @@ in
                   "bind \"Alt r\"" = {
                     NewTab = [];
                     SwitchToMode = ["renametab"];
-                    TabNameInput = ["0"];
+                    TabNameInput = [0];
                   };
                 };
               };
