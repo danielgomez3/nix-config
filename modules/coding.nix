@@ -111,12 +111,6 @@ in
                     SwitchToMode = ["locked"];
                   };
                 };
-                newtab = {
-                  "" = { # Bind the default `NewTab` behavior
-                    SwitchToMode = ["renametab"];
-                    TabNameInput = [0];
-                  };
-                };
               };
             };
           };
