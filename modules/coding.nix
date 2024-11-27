@@ -109,7 +109,6 @@ in
                 renametab = {
                   "bind \"Enter\"" = {
                     SwitchToMode = ["locked"];
-                    TabNameInput = [0];
                   };
                 };
               };
