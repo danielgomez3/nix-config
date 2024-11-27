@@ -112,7 +112,7 @@ in
                   };
                 };
                 newtab = {
-                  "bind \"\"" = { # Bind the default `NewTab` behavior
+                  "" = { # Bind the default `NewTab` behavior
                     SwitchToMode = ["renametab"];
                     TabNameInput = [0];
                   };
