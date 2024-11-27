@@ -96,6 +96,9 @@ in
                   "bind \"Alt h\"" = {
                     GoToPreviousTab = [];
                   };
+                  "bind \"Alt r\"" = {
+                    RenameTab = [];
+                  };
                   # "Alt l" = [ "GoToNextTab" ];
                   # "Alt h" = [ "GoToPreviousTab" ];
                 };
