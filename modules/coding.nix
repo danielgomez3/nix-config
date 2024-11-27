@@ -90,8 +90,14 @@ in
               pane_frames = false;
               keybinds = {
                 locked = {
-                  "Alt l" = [ "GoToNextTab" ];
-                  "Alt h" = [ "GoToPreviousTab" ];
+                  "bind \"Alt l\"" = {
+                    GoToNextTab = [];
+                  };
+                  "bind \"Alt l\"" = {
+                    GoToPreviousTab = [];
+                  };
+                  # "Alt l" = [ "GoToNextTab" ];
+                  # "Alt h" = [ "GoToPreviousTab" ];
                 };
               };
             };
