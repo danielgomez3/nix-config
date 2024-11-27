@@ -96,15 +96,15 @@ in
                   "bind \"Alt h\"" = {
                     GoToPreviousTab = [];
                   };
-                  # "bind \"Alt r\"" = {
-                  #   SwitchToMode = ["renametab"];
-                  #   TabNameInput = [0];
-                  # };
                   "bind \"Alt r\"" = {
-                    NewTab = [];
                     SwitchToMode = ["renametab"];
                     TabNameInput = [0];
                   };
+                  # "bind \"Alt r\"" = {
+                  #   NewTab = [];
+                  #   SwitchToMode = ["renametab"];
+                  #   TabNameInput = [0];
+                  # };
                 };
               };
             };
