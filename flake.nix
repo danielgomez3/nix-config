@@ -39,6 +39,7 @@
           system = system;
           config.permittedInsecurePackages = [
             "dotnet-core-combined"
+            "dotnet-sdk-6.0.428"
           ];
         };
         specialArgs = {
