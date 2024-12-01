@@ -68,13 +68,13 @@ in
 
   networking = {
     wireless = {
-      enable = true;
-      networks = {
-        "TMOBILE-F526" = {
-          # psk = config.sops.secrets."wifi_networks/home/psk".path;
-          psk = "reshuffle.think.wool.tug";
-        };
-      };
+      iwd.enable = true;
+      # networks = {
+      #   "TMOBILE-F526" = {
+      #     # psk = config.sops.secrets."wifi_networks/home/psk".path;
+      #     psk = "reshuffle.think.wool.tug";
+      #   };
+      # };
     };
   };
 
