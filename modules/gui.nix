@@ -138,7 +138,7 @@ in
         source-han-sans
         source-han-sans-japanese
         source-han-serif-japanese
-        (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+        # (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ];
       fontconfig.defaultFonts = {
         serif = [ "Noto Serif" "Source Han Serif" ];
