@@ -37,9 +37,11 @@
       meta = {
         nixpkgs = import nixpkgs {
           system = system;
-          config.permittedInsecurePackages = [
+          config.permittedInsecurePackages = [  # FIXME: Remove this and figure out what depends!
             "dotnet-core-combined"
             "dotnet-sdk-6.0.428"
+            "dotnet-sdk-wrapped-6.0.428"
+            "dotnet-sdk-wrapped-6.0.428"
           ];
         };
         specialArgs = {
