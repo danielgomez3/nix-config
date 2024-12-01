@@ -37,6 +37,9 @@
       meta = {
         nixpkgs = import nixpkgs {
           system = system;
+          config.permittedInsecurePackages = [
+            "openssl-1.1.1w"
+          ];
         };
         specialArgs = {
           inherit inputs;
