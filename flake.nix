@@ -16,7 +16,7 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     colmena.url = "github:zhaofengli/colmena";
     # stylix.url = "github:danth/stylix/release-24.05";
-    stylix.url = "github:danth/stylix";
+    # stylix.url = "github:danth/stylix";
     mysecrets = {
       url = "git+ssh://git@github.com/danielgomez3/nix-secrets.git?ref=main&shallow=1";
       flake = false;
@@ -60,7 +60,7 @@
           inputs.home-manager.nixosModules.default
           inputs.sops-nix.nixosModules.sops
           disko.nixosModules.disko
-          inputs.stylix.nixosModules.stylix
+          # inputs.stylix.nixosModules.stylix
           # {
           #   nix.settings = {
           #     substituters = ["https://hyprland.cachix.org"];
