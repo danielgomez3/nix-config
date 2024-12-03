@@ -106,12 +106,13 @@ in
       #     name = "DejaVu Serif";
       #   };
       # };
-      # targets = {
+      targets = {
       #   helix.enable = true;
       #   sway.enable = true;
       #   swaylock.enable = true;
       #   wezterm.enable = true;
-      # };
+        regreet.enable = false;
+      };
     };
 
     # https://wiki.nixos.org/wiki/Syncthing#tips
