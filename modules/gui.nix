@@ -507,7 +507,7 @@ in
         };
         # TODO: Make a <leader>/ function that will search fuzzily. Every space will interpret '.*'
         hyprlock = {
-          enable = true;
+          enable = false;
           # settings = {
           #   general = {
           #     disable_loading_bar = true;
