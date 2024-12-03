@@ -29,10 +29,10 @@ in
       #   driSupport32Bit = true;
       #   package32 = pkgs.pkgsi686Linux.mesa.drivers;
       # };
-      graphics = {
-        enable = true;
-        enable32Bit = true;
-      };
+      # graphics = {
+      #   enable = true;
+      #   enable32Bit = true;
+      # };
     };
     # kanshi systemd service <https://nixos.wiki/wiki/Sway>
     # systemd.user.services.kanshi = {
