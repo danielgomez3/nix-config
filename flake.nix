@@ -37,12 +37,12 @@
       meta = {
         nixpkgs = import nixpkgs {
           system = system;
-          # config.permittedInsecurePackages = [  # FIXME: Remove this and figure out what depends!
-          #   "dotnet-core-combined"
-          #   "dotnet-sdk-6.0.428"
-          #   "dotnet-sdk-wrapped-6.0.428"
-          #   "dotnet-sdk-wrapped-6.0.428"
-          # ];
+          config.permittedInsecurePackages = [  # FIXME: Remove this and figure out what depends!
+            "dotnet-core-combined"
+            "dotnet-sdk-6.0.428"
+            "dotnet-sdk-wrapped-6.0.428"
+            "dotnet-sdk-wrapped-6.0.428"
+          ];
         };
         specialArgs = {
           inherit inputs;
@@ -60,12 +60,12 @@
           inputs.sops-nix.nixosModules.sops
           disko.nixosModules.disko
           inputs.stylix.nixosModules.stylix
-          {
-            nix.settings = {
-              substituters = ["https://hyprland.cachix.org"];
-              trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-            };
-          }
+          # {
+          #   nix.settings = {
+          #     substituters = ["https://hyprland.cachix.org"];
+          #     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+          #   };
+          # }
           ./modules
         ];
       };
