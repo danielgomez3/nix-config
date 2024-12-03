@@ -111,7 +111,6 @@ in
       #   sway.enable = true;
       #   swaylock.enable = true;
       #   wezterm.enable = true;
-        regreet.enable = false;
       };
     };
 
