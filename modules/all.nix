@@ -373,7 +373,7 @@ in
             sops  just nixos-anywhere ssh-to-age colmena disko
           ];
         };
-        stylix.targets.vim.enable = false;
+        # stylix.targets.vim.enable = false;
 
         programs = {
 
