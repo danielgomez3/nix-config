@@ -21,19 +21,19 @@ in
 
 
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
-    hardware = {
-      # opengl = {
-      #   enable = true;  # NOTE: This might need to be added for laptop too.
-      #   package = pkgs.mesa.drivers;
-      #   # driSupport = true;
-      #   driSupport32Bit = true;
-      #   package32 = pkgs.pkgsi686Linux.mesa.drivers;
-      # };
-      # graphics = {
-      #   enable = true;
-      #   enable32Bit = true;
-      # };
-    };
+    # hardware = {
+    #   # opengl = {
+    #   #   enable = true;  # NOTE: This might need to be added for laptop too.
+    #   #   package = pkgs.mesa.drivers;
+    #   #   # driSupport = true;
+    #   #   driSupport32Bit = true;
+    #   #   package32 = pkgs.pkgsi686Linux.mesa.drivers;
+    #   # };
+    #   graphics = {
+    #     enable = true;
+    #     enable32Bit = true;
+    #   };
+    # };
     # kanshi systemd service <https://nixos.wiki/wiki/Sway>
     # systemd.user.services.kanshi = {
     #   description = "kanshi daemon";
