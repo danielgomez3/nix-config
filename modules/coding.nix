@@ -124,7 +124,8 @@ in
               #typescript typescript-language-server
               marksman ltex-ls  # Writing
               nil nixfmt-classic
-              clang-tools  # C
+              astyle clang-tools  # C
+              
               lua-language-server
               rust-analyzer
               # bash-language-server
