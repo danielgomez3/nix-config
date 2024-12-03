@@ -12,7 +12,7 @@ netboot:
 
 update:
     # nix flake update
-    # nix flake lock
+    nix flake lock
 
 commit:
     # git add -A :/; echo -n "Enter commit message (Enter for default): "; read msg; msg=${msg:-"CAUTION untested changes, possibly broken"}; git commit -m "$msg"; 
