@@ -35,17 +35,17 @@ in
       };
     };
     # kanshi systemd service <https://nixos.wiki/wiki/Sway>
-    # systemd.user.services.kanshi = {
-    #   description = "kanshi daemon";
-    #   environment = {
-    #     WAYLAND_DISPLAY="wayland-1";
-    #     DISPLAY = ":0";
-    #   }; 
-    #   serviceConfig = {
-    #     Type = "simple";
-    #     ExecStart = ''${pkgs.kanshi}/bin/kanshi -c kanshi_config_file'';
-    #   };
-    # };
+    systemd.user.services.kanshi = {
+      description = "kanshi daemon";
+      environment = {
+        WAYLAND_DISPLAY="wayland-1";
+        DISPLAY = ":0";
+      }; 
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = ''${pkgs.kanshi}/bin/kanshi -c kanshi_config_file'';
+      };
+    };
 
     # Brighness and volume <https://nixos.wiki/wiki/Sway>
     users.users.${username}.extraGroups = [ "video" ];
@@ -299,7 +299,7 @@ in
 
       
       wayland.windowManager.hyprland = {
-        enable = true;
+        enable = false;
         xwayland.enable = true;
         settings = {
           "$mod" = "SUPER";
