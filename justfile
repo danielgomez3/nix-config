@@ -11,7 +11,7 @@ netboot:
     # sudo iptables -w -D nixos-fw -p tcp -m tcp --dport 64172 -j ACCEPT
 
 update:
-    nix flake update
+    # nix flake update
     # nix flake lock
 
 commit:
