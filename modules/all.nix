@@ -248,17 +248,17 @@ in
           };
         };
       };
-      ddclient = {
-        enable = false;
-        # username = config.sops.secrets."ddns/username".path;
-        username = "token";
-        passwordFile = config.sops.secrets."ddns/token".path;  
-        usev4 = "webv4,webv4=ifconfig.me/ip";
-        protocol = "cloudflare";
-        zone = "danielgomezcoder.org";
-        verbose = true;
-        ssl = true;
-      };
+      # ddclient = {
+      #   enable = false;
+      #   # username = config.sops.secrets."ddns/username".path;
+      #   username = "token";
+      #   passwordFile = config.sops.secrets."ddns/token".path;  
+      #   usev4 = "webv4,webv4=ifconfig.me/ip";
+      #   protocol = "cloudflare";
+      #   zone = "danielgomezcoder.org";
+      #   verbose = true;
+      #   ssl = true;
+      # };
     };
 
 
