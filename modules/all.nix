@@ -83,7 +83,7 @@ in
       };
     };
     stylix = {
-      enable = true;
+      enable = false;
       image = ./additional/wallpapers/cotton-candy.png;
       # base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
       base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox.yaml";
