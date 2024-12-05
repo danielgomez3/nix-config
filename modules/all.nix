@@ -84,7 +84,7 @@ in
     };
     stylix = {
       enable = true;
-      image = ./additional/wallpapers/cotton-candy.png;
+      image = ./additional/wallpapers/grey.jpg;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
       # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox.yaml";
       # cursor = { 
@@ -107,12 +107,12 @@ in
       #     name = "DejaVu Serif";
       #   };
       # };
-      targets = {
+      # targets = {
       #   helix.enable = true;
       #   sway.enable = true;
       #   swaylock.enable = true;
       #   wezterm.enable = true;
-      };
+      # };
     };
 
     # https://wiki.nixos.org/wiki/Syncthing#tips
