@@ -15,7 +15,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     colmena.url = "github:zhaofengli/colmena";
-    # stylix.url = "github:danth/stylix/release-24.05";
+    stylix.url = "github:danth/stylix/release-24.05";
     # stylix.url = "github:danth/stylix";
     mysecrets = {
       url = "git+ssh://git@github.com/danielgomez3/nix-secrets.git?ref=main&shallow=1";
