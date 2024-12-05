@@ -17,8 +17,8 @@ netboot:
 
 
 apply target="all":
-    nix flake lock --update-input mysecrets
-    git add -A :/; msg=${msg:-"CAUTION untested changes, possibly broken"}; git commit -m "$msg"; 
+    -nix flake lock --update-input mysecrets
+    -git add -A :/; msg=${msg:-"CAUTION untested changes, possibly broken"}; git commit -m "$msg"; 
     colmena apply -p 3 --on @{{target}} && git push
 
 rebuild:
