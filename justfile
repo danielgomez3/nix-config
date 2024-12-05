@@ -10,9 +10,9 @@ netboot:
     # sudo iptables -w -D nixos-fw -p udp -m multiport --dports 67,69,4011 -j ACCEPT
     # sudo iptables -w -D nixos-fw -p tcp -m tcp --dport 64172 -j ACCEPT
 
-update:
-    # nix flake update
-    nix flake lock
+# update:
+#   nix flake update
+#   nix flake lock
 
 commit:
     # git add -A :/; echo -n "Enter commit message (Enter for default): "; read msg; msg=${msg:-"CAUTION untested changes, possibly broken"}; git commit -m "$msg"; 
@@ -25,7 +25,8 @@ save:
 
 apply target="all":
     # echo {{ if target == "" { "all" } else { target } }}
-    -just update
+    # -just update
+    nix flake lock --update-input mysecrets
     -just commit
     colmena apply -p 3 --on @{{target}} && git push
 
