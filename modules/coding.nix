@@ -33,7 +33,7 @@ in
       users.${username} = {
         home.packages = with pkgs; [
         # dev
-        zellij
+        # zellij
         shellcheck exercism csvkit sshx fzf
         pandoc-include poppler_utils graphviz librsvg 
         git-filter-repo 
@@ -51,21 +51,6 @@ in
         # (import ./my-awesome-script.nix { inherit pkgs;})
 
         ];
-
-        # home.file.zellij = {
-        #   target = ".config/zellij/config.kdl";
-        #   text = ''
-        #     default_mode "locked"
-        #     scrollback_editor "hx"
-        #     pane_frames false
-        #     keybinds {
-        #         locked {
-        #             bind "Alt l" { GoToNextTab; }
-        #             bind "Alt h" { GoToPreviousTab; }
-        #         }
-        #     }
-        #   '';
-        # };
 
         programs = {
 
