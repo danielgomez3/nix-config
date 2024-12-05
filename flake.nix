@@ -23,8 +23,8 @@
     };
   };
 
-  # outputs = inputs@{ self, nixpkgs, disko, colmena, stylix, ... }: 
-  outputs = inputs@{ self, nixpkgs, disko, colmena, ... }: 
+  outputs = inputs@{ self, nixpkgs, disko, colmena, stylix, ... }: 
+  # outputs = inputs@{ self, nixpkgs, disko, colmena, ... }: 
     let 
       system = "x86_64-linux";
       commonImports = h: [
@@ -60,7 +60,7 @@
           inputs.home-manager.nixosModules.default
           inputs.sops-nix.nixosModules.sops
           disko.nixosModules.disko
-          # inputs.stylix.nixosModules.stylix
+          inputs.stylix.nixosModules.stylix
           # {
           #   nix.settings = {
           #     substituters = ["https://hyprland.cachix.org"];
