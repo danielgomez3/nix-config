@@ -202,11 +202,11 @@ in
           };
           pandoc = {
             enable = true;
-            templates = {
-              "default.latex" = ../extra/pandoc-templates/eisvogel/eisvogel.latex;
-              "default.markdown" = ../extra/pandoc-templates/eisvogel/eisvogel.latex;
-              "default.pdf" = ../extra/pandoc-templates/eisvogel/eisvogel.latex;
-            };
+            # templates = {
+            #   "default.latex" = ../extra/pandoc-templates/eisvogel/eisvogel.latex;
+            #   "default.markdown" = ../extra/pandoc-templates/eisvogel/eisvogel.latex;
+            #   "default.pdf" = ../extra/pandoc-templates/eisvogel/eisvogel.latex;
+            # };
           };
         };
       };
