@@ -310,6 +310,7 @@ in
         lm_sensors 
         woeusb ntfs3g 
         iptables nftables file toybox 
+        waypipe # x11 forwarding alternative:
         # Security
         gnupg pinentry-tty age yubioath-flutter yubikey-manager pam_u2f
       ];
