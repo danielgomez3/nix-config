@@ -153,9 +153,9 @@ in
     };
 
 
-    # environment.systemPackages = with pkgs; [
-    #   xorg.xauth  # for X11 forwarding.
-    # ];
+    environment.systemPackages = with pkgs; [
+      xorg.xauth  # for X11 forwarding.
+    ];
 
     home-manager.users.${username} = {
       home.packages = with pkgs; [
