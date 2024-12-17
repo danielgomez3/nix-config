@@ -16,6 +16,7 @@ in
     # };
     systemPackages = with pkgs; [
       kitty  # Make SSHing into this pretty.
+      zathura
     ];
   };
 
