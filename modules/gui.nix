@@ -241,8 +241,10 @@ in
           # exec sway-audio-idle-inhibit
           no_focus [all]
           focus_on_window_activation none
-          assign [class="[Ss]lack"] title=["[Ss]lack"] workspace 2
-          assign [class="[Ss]potify" title="[Ss]potify"] workspace 2
+          #assign [class="[Ss]lack"] title=[".*Slack.*"] workspace 2
+          #assign [class="[Ss]potify" title="[Ss]potify"] workspace 2
+          assign [app_id="Slack"] workspace 2
+          assign [title="(?i).*slack.*"] workspace 2
           assign [class="[Pp]lexamp" title="[Pp]lexamp"] workspace 2
           assign [title="KDE Connect SMS"] workspace 2
           assign [title="Volume Control"] workspace 10
