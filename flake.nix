@@ -56,6 +56,7 @@
           inputs.sops-nix.nixosModules.sops
           disko.nixosModules.disko
           inputs.stylix.nixosModules.stylix
+          home-manager.nixosModules.home-manager
           # {
           #   nix.settings = {
           #     substituters = ["https://hyprland.cachix.org"];
