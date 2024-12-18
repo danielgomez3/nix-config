@@ -393,7 +393,7 @@ in
         # };
 
         swaylock = {
-          enable = false;
+          enable = true;
         };
         wezterm = {
           enable = true;
