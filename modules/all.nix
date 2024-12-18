@@ -511,7 +511,7 @@ in
           };
 
           vim = {
-            enable = true;
+            enable = false;
             # settings = { ignorecase = true; };
             # plugins = with pkgs.vimPlugins; [ 
             #   vim-which-key 
@@ -572,6 +572,9 @@ in
 
           neovim = {
             enable = true;
+            viAlias = true;
+            vimAlias = true;
+            vimdiffAlias = true;
           };
 
           
