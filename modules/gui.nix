@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, home-manager, ... }:
+{ config, pkgs, lib, inputs, ... }:
 let
   modKey = "Mod4";
   cfg = config.services.gui;
@@ -6,7 +6,6 @@ let
 in
 {
   # imports = [ ./additional/suspend-and-hibernate.nix ];
-  imports = [ home-manager.nixosModules.home-manager ];
   options.services.gui = {
     enable = lib.mkEnableOption "gui service";
   };
