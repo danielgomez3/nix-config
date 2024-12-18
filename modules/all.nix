@@ -403,7 +403,7 @@ in
               #bind 'set completion-ignore-case on'
 
               c() { z "$@" && eza --icons --color=always --group-directories-first; }
-              e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
+              #e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
 
               # NOTE: screenshot
               _s() {
@@ -414,7 +414,7 @@ in
                 local filepath="./.screenshots/''${filename}"
   
                 # Take screenshot using slurp and grim
-                grim -g "$(slurp)" "$filepath"
+                ${pkgs.grim} -g "$(${pkgs.slurp})" "$filepath"
   
                 # Print Markdown image link to stdout
                 echo "![''${input}]($filepath)"
@@ -459,8 +459,7 @@ in
               shopt -s autocd cdspell globstar extglob nocaseglob
 
               #c() { z "$@" && eza --icons --color=always --group-directories-first; }
-              #e() { [ $# -eq 0 ] && hx . || hx "$@"; }
-              e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
+              #e() { if [ $# -eq 0 ]; then hx .; else hx "$@"; fi; }
             '';
             shellAliases = {
               f = "fg";
