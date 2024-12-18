@@ -17,13 +17,14 @@
     colmena.url = "github:zhaofengli/colmena";
     stylix.url = "github:danth/stylix/release-24.05";
     # stylix.url = "github:danth/stylix";
+    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     mysecrets = {
       url = "git+ssh://git@github.com/danielgomez3/nix-secrets.git?ref=main&shallow=1";
       flake = false;
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, disko, colmena, stylix, ... }: 
+  outputs = inputs@{ self, nixpkgs, home-manager, disko, colmena, stylix, nix-doom-emacs, ... }: 
   # outputs = inputs@{ self, nixpkgs, disko, colmena, ... }: 
     let 
       system = "x86_64-linux";
