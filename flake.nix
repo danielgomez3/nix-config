@@ -24,7 +24,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, disko, colmena, stylix, nix-doom-emacs, ... }: 
+  outputs = inputs@{ self, nixpkgs, home-manager, disko, colmena, stylix, ... }: 
   # outputs = inputs@{ self, nixpkgs, disko, colmena, ... }: 
     let 
       system = "x86_64-linux";
