@@ -123,7 +123,6 @@ in
     security = {
       polkit.enable = true;
       pam.services.swaylock = {};
-      pam.services.hyprlock = {};
     };
     # security.pam.services.gdm = {};
     security.pam.loginLimits = [
@@ -186,7 +185,7 @@ in
       # };
 
       services.swayidle = {
-        enable = false;
+        enable = true;
       };
 
       services = {
@@ -196,12 +195,12 @@ in
             general = {
               after_sleep_cmd = "hyprctl dispatch dpms on";
               ignore_dbus_inhibit = false;
-              lock_cmd = "swayidle";
+              lock_cmd = "swaylock";
             };
             listener = [
               {
                 timeout = 300;
-                on-timeout = "swayidle";
+                on-timeout = "swaylock";
               }
               {
                 timeout = 390;
