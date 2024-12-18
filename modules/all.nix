@@ -570,6 +570,10 @@ in
             '';
           };
 
+          neovim = {
+            enable = true;
+          };
+
           
         };
       };

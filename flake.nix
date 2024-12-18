@@ -17,6 +17,7 @@
     colmena.url = "github:zhaofengli/colmena";
     stylix.url = "github:danth/stylix/release-24.05";
     # stylix.url = "github:danth/stylix";
+    # inputs.nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     mysecrets = {
       url = "git+ssh://git@github.com/danielgomez3/nix-secrets.git?ref=main&shallow=1";
       flake = false;
@@ -45,7 +46,6 @@
       };
       defaults = { pkgs, lib, ... }: 
       {
-        # TODO
         deployment = {
           targetPort = 22;
           targetUser = "root";
@@ -66,7 +66,6 @@
       };
       laptop = {name, node, pkgs, ... }:{
         deployment = {
-          # TODO
           tags = ["${name}" "all"];
           targetHost = "${name}";
         };
@@ -74,7 +73,6 @@
       };
       server = {name, node, pkgs, ... }:{
         deployment = {
-          # TODO
           tags = ["${name}" "all"];
           targetHost = "${name}";
         };
@@ -82,7 +80,6 @@
       };
       desktop = {name, node, pkgs, ... }:{
         deployment = {
-          # TODO
           tags = ["${name}" "all"];
           targetHost = "${name}";
         };
