@@ -414,7 +414,7 @@ in
                 local filepath="./.screenshots/''${filename}"
   
                 # Take screenshot using slurp and grim
-                ${pkgs.grim} -g "$(${pkgs.slurp})" "$filepath"
+                grim -g "$(slurp)" "$filepath"
   
                 # Print Markdown image link to stdout
                 echo "![''${input}]($filepath)"
