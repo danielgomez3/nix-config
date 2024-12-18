@@ -6,7 +6,7 @@ let
 in
 {
   # imports = [ ./additional/suspend-and-hibernate.nix ];
-  imports = [ nix-doom-emacs.hmModule ];
+  # imports = [ nix-doom-emacs.hmModule ];
   options.services.gui = {
     enable = lib.mkEnableOption "gui service";
   };
