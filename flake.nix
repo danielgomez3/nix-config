@@ -57,7 +57,6 @@
           disko.nixosModules.disko
           inputs.stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
-          nix-doom-emacs.hmModule
           # {
           #   nix.settings = {
           #     substituters = ["https://hyprland.cachix.org"];
