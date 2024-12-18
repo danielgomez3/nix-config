@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, nix-doom-emacs, ... }:
+{ config, pkgs, lib, inputs, ... }:
 let
   modKey = "Mod4";
   cfg = config.services.gui;
