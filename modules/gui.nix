@@ -6,7 +6,6 @@ let
 in
 {
   # imports = [ ./additional/suspend-and-hibernate.nix ];
-  # imports = [ nix-doom-emacs.hmModule ];
   options.services.gui = {
     enable = lib.mkEnableOption "gui service";
   };
@@ -361,11 +360,7 @@ in
       };
 
       programs = {
-        doom-emacs = {
-          enable = true;
-          doomPrivateDir = ./doom.d; # Directory containing your config.el, init.el
-                                     # and packages.el files
-        };
+
         # waybar = {
         #   enable = true;
         #   settings = [
