@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, nix-doom-emacs, ... }:
 let
   modKey = "Mod4";
   cfg = config.services.gui;
@@ -6,6 +6,7 @@ let
 in
 {
   # imports = [ ./additional/suspend-and-hibernate.nix ];
+  imports = [ nix-doom-emacs.hmModule ];
   options.services.gui = {
     enable = lib.mkEnableOption "gui service";
   };
