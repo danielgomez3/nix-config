@@ -37,7 +37,7 @@ in
   };
 
   hardware.keyboard.zsa.enable = true;
-  services.acme = {
+  security.acme = {
     defaults.email = "danielgomezcoder@gmail.com";
     acceptTerms = true;
   };
