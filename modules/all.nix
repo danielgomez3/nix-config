@@ -252,17 +252,6 @@ in
           };
         };
       };
-      # ddclient = {
-      #   enable = false;
-      #   # username = config.sops.secrets."ddns/username".path;
-      #   username = "token";
-      #   passwordFile = config.sops.secrets."ddns/token".path;  
-      #   usev4 = "webv4,webv4=ifconfig.me/ip";
-      #   protocol = "cloudflare";
-      #   zone = "danielgomezcoder.org";
-      #   verbose = true;
-      #   ssl = true;
-      # };
     };
 
 
@@ -480,7 +469,8 @@ in
           git = {
             enable = true;
             userName = "danielgomez3";
-            userEmail = "danielgomezcoder@gmail.com";
+            userEmail = "danielgomezcoder@gmail.com";  # FIXME: use sops nix, but doesn't seem to work:     defaults.email = "${toString config.sops.secrets.email}";
+
             extraConfig = {
               credential.helper = "store";
             };

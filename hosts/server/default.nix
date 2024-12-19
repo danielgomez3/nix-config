@@ -74,12 +74,6 @@ in
         };
       };
     };
-    ddclient = {
-      domains = [ 
-          "server.danielgomezcoder.org"
-      ];
-      interval = "3m";
-    };
     syncthing = {
       guiAddress = "0.0.0.0:8384";
       settings.gui = {
