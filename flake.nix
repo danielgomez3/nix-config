@@ -29,10 +29,11 @@
     let 
       system = "x86_64-linux";
       # rootPath = builtins.path { path = self; }; # Ensure it's copied to the Nix store
+      rootPath = self.outPath;
       commonImports = h: [
-        "${self.outPath}/hosts/${h}"
-        "${self.outPath}/hosts/${h}/hardware-configuration.nix"
-        "${self.outPath}/hosts/${h}/disko-config.nix"
+        "${rootPath}/hosts/${h}"
+        "${rootPath}/hosts/${h}/hardware-configuration.nix"
+        "${rootPath}/hosts/${h}/disko-config.nix"
       ];
     in  
     {
