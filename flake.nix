@@ -28,12 +28,11 @@
   # outputs = inputs@{ self, nixpkgs, disko, colmena, ... }: 
     let 
       system = "x86_64-linux";
-      # rootPath = builtins.path { path = self; }; # Ensure it's copied to the Nix store
-      rootPath = self.outPath;
+      # rootPath = self.outPath;
       commonImports = h: [
-        "${rootPath}/hosts/${h}"
-        "${rootPath}/hosts/${h}/hardware-configuration.nix"
-        "${rootPath}/hosts/${h}/disko-config.nix"
+        "${self.outPath}/hosts/${h}"
+        "${self.outPath}/hosts/${h}/hardware-configuration.nix"
+        "${self.outPath}/hosts/${h}/disko-config.nix"
       ];
     in  
     {
@@ -57,13 +56,13 @@
           inputs.sops-nix.nixosModules.sops
           disko.nixosModules.disko
           inputs.stylix.nixosModules.stylix
+          "${self.outPath}./modules"
           # {
           #   nix.settings = {
           #     substituters = ["https://hyprland.cachix.org"];
           #     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
           #   };
           # }
-          ./modules
         ];
       };
       laptop = {name, node, pkgs, ... }:{
