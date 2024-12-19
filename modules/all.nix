@@ -5,7 +5,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs,  name, ... }:
+{ self, config, pkgs, lib, inputs,  name, ... }:
 let 
   # nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
   # cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
@@ -84,7 +84,7 @@ in
     };
     stylix = {
       enable = true;
-      image = ./additional/wallpapers/white.jpg;
+      image = "${self.outPath}./additional/wallpapers/white.jpg";
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
       # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox.yaml";
       # cursor = { 
