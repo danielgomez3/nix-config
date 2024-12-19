@@ -84,7 +84,6 @@ in
       guiAddress = "0.0.0.0:8384";
       settings.gui = {
         user = "${username}";
-        # FIXME: This is bad. This is a unique password tho.
         password = "${toString config.sops.secrets.syncthing.gui_password}";
         # password = config.sops.secrets.user_password.path;
       };
