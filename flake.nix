@@ -28,11 +28,11 @@
   # outputs = inputs@{ self, nixpkgs, disko, colmena, ... }: 
     let 
       system = "x86_64-linux";
-      rootPath = builtins.path { path = self; }; # Ensure it's copied to the Nix store
+      # rootPath = builtins.path { path = self; }; # Ensure it's copied to the Nix store
       commonImports = h: [
-        "${rootPath}/hosts/${h}"
-        "${rootPath}/hosts/${h}/hardware-configuration.nix"
-        "${rootPath}/hosts/${h}/disko-config.nix"
+        "${self.outPath}/hosts/${h}"
+        "${self.outPath}/hosts/${h}/hardware-configuration.nix"
+        "${self.outPath}/hosts/${h}/disko-config.nix"
       ];
     in  
     {
