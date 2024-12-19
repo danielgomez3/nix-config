@@ -49,6 +49,7 @@ in
         };
         "ddns/token" = {};
         "ddns/username" = {};
+        "syncthing/gui_password" = {}; 
         "syncthing/${name}/key_pem" = {
           owner = config.users.users.${username}.name;
           # group = config.users.users.${username}.group;
