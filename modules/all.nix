@@ -84,7 +84,8 @@ in
     };
     stylix = {
       enable = true;
-      image = "${self.outPath}./additional/wallpapers/white.jpg";
+      # image = "${self.outPath}./additional/wallpapers/white.jpg";
+      image = ./additional/wallpapers/white.jpg;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
       # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox.yaml";
       # cursor = { 
