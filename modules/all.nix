@@ -42,6 +42,7 @@ in
         generateKey = true;
       };
       secrets = {
+        email = {};
         user_password = {
           # Decrypt 'user-password' to /run/secrets-for-users/ so it can be used to create the user and assign their password without having to run 'passwd <user>' imperatively:
           neededForUsers = true;
