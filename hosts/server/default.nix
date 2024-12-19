@@ -38,7 +38,8 @@ in
 
   hardware.keyboard.zsa.enable = true;
   security.acme = {
-    defaults.email = "danielgomezcoder@gmail.com";  # FIXME: this is bad
+    # defaults.email = "danielgomezcoder@gmail.com";  # FIXME: this is bad
+    defaults.email = "${toString config.sops.secrets.email}";
     acceptTerms = true;
   };
   services = {
