@@ -29,9 +29,9 @@
     let 
       system = "x86_64-linux";
       commonImports = h: [
-        self.hosts.${h}
-        self.hosts.${h}/hardware-configuration.nix
-        self.hosts.${h}/disko-config.nix
+        self.hosts.desktop
+        # self.hosts.${h}/hardware-configuration.nix
+        # self.hosts.${h}/disko-config.nix
       ];
     in  
     {
