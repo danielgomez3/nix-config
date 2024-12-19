@@ -56,6 +56,9 @@ in
       user = "${username}";
       # dataDir = "/home/${username}/plex";
     };
+    vaultwarden = {
+      enable = true;
+    };
     ddclient = {
       domains = [ 
           "server.danielgomezcoder.org"
