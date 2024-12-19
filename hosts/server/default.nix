@@ -29,14 +29,18 @@ in
       };
       # programs = {
       #   };
-      };
     };
+  };
 
   users.users.${username} = {
     description = "server";
   };
 
   hardware.keyboard.zsa.enable = true;
+  services.acme = {
+    defaults.email = "danielgomezcoder@gmail.com";
+    acceptTerms = true;
+  };
   services = {
     coding = {
       enable = true;
@@ -57,6 +61,9 @@ in
       # dataDir = "/home/${username}/plex";
     };
     vaultwarden = {
+      enable = true;
+    };
+    nginx = {
       enable = true;
     };
     ddclient = {

@@ -14,7 +14,8 @@ netboot:
 #   nix flake update
 #   nix flake lock
 
-
+secrets:
+    nix
 
 apply target="all":
     -nix flake lock --update-input mysecrets
