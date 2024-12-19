@@ -480,7 +480,7 @@ in
           git = {
             enable = true;
             userName = "danielgomez3";
-            userEmail = "${toString config.sops.secrets.email}";
+            userEmail = "danielgomezcoder@gmail.com";
             extraConfig = {
               credential.helper = "store";
             };
