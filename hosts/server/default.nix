@@ -38,7 +38,7 @@ in
 
   hardware.keyboard.zsa.enable = true;
   security.acme = {
-    defaults.email = "${config.sops.secrets.email}";
+    defaults.email = "danielgomezcoder@gmail.com";
     acceptTerms = true;
   };
   services = {
