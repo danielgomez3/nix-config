@@ -67,7 +67,7 @@ in
       enable = true;
       recommendedGzipSettings = true;
       virtualHosts."server.tail1b372c.ts.net" = {
-        enableAcme = true;
+        enableACME = true;
         forseSSL = true;
         locations."/" = {
           proxyPass = "http://127.0.0.1:8050";
