@@ -80,7 +80,7 @@ in
         gui = {
           user = "boo";
           # password = "naruto88";
-          password = "${toString config.sops.secrets.syncthing.gui_password.path}";
+          password = config.sops.secrets.syncthing.gui_password.path;
         };
         folders = {
           "Documents" = {         # Name of folder in Syncthing, also the folder ID
