@@ -79,8 +79,8 @@ in
       settings = {
         gui = {
           user = "${username}";
-          password = "${toString config.sops.secrets.syncthing.gui_password}";
-          # password = config.sops.secrets.user_password.path;
+          # password = "${toString config.sops.secrets.syncthing.gui_password}";
+          password = config.sops.secrets.user_password.path;
         };
         folders = {
           "Documents" = {         # Name of folder in Syncthing, also the folder ID
