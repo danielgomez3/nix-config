@@ -77,11 +77,10 @@ in
     syncthing = {
       guiAddress = "0.0.0.0:8384";
       settings = {
-        gui = {
-          user = "${username}";
-          # password = "${toString config.sops.secrets.syncthing.gui_password}";
-          password = config.sops.secrets.user_password.path;
-        };
+        # gui = {
+        #   user = "${username}";
+        #   password = config.sops.secrets.user_password.path;
+        # };
         folders = {
           "Documents" = {         # Name of folder in Syncthing, also the folder ID
             path = "/home/${username}/Documents";    # Which folder to add to Syncthing
