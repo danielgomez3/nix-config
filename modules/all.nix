@@ -230,6 +230,26 @@ in
               autoAcceptFolders = true;
             };
           };
+          folders = {
+            "Documents" = {         # Name of folder in Syncthing, also the folder ID
+              path = "/home/${username}/Documents";    # Which folder to add to Syncthing
+              devices = [ "desktop" "server" "laptop" ];      # Which devices to share the folder with
+              autoAccept = true;
+              id = "Documents";
+            };
+            "Productivity" = {
+              path = "/home/${username}/Documents/productivity";
+              devices = [ "desktop" "server" "laptop" "phone" ];
+              autoAccept = true;
+              id = "Productivity";
+            };
+            "Projects" = {
+              path = "/home/${username}/Projects";
+              devices = [ "desktop" "server" "laptop" ];
+              autoAccept = true;
+              id = "Projects";
+            };
+          };
         };
       };
     };
