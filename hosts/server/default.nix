@@ -78,9 +78,9 @@ in
       guiAddress = "0.0.0.0:8384";
       settings = {
         gui = {
-          user = "boo";
-          # password = "naruto88";
-          password = config.sops.secrets.syncthing.gui_password.path;
+          user = "${username}";
+          password = "naruto88";
+          # password = config.sops.secrets.syncthing.gui_password.path;
         };
         folders = {
           "Documents" = {         # Name of folder in Syncthing, also the folder ID
