@@ -200,7 +200,7 @@ in
         };
       };
       syncthing = {
-        enable = false;
+        enable = true;
         user = username;
         key = config.sops.secrets."syncthing/${name}/key_pem".path;
         cert = config.sops.secrets."syncthing/${name}/cert_pem".path;
@@ -228,26 +228,6 @@ in
             "laptop" = { 
               id = "KENW57K-IHEFCFB-36STV55-62K3EMI-AX5HGSV-IKHWLX3-MULG6CZ-6DIEZAS"; 
               autoAcceptFolders = true;
-            };
-          };
-          folders = {
-            "Documents" = {         # Name of folder in Syncthing, also the folder ID
-              path = "/home/${username}/Documents";    # Which folder to add to Syncthing
-              devices = [ "desktop" "server" "laptop" ];      # Which devices to share the folder with
-              autoAccept = true;
-              id = "Documents";
-            };
-            "Productivity" = {
-              path = "/home/${username}/Documents/productivity";
-              devices = [ "desktop" "server" "laptop" "phone" ];
-              autoAccept = true;
-              id = "Productivity";
-            };
-            "Projects" = {
-              path = "/home/${username}/Projects";
-              devices = [ "desktop" "server" "laptop" ];
-              autoAccept = true;
-              id = "Projects";
             };
           };
         };
