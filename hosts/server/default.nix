@@ -79,7 +79,7 @@ in
       settings = {
         gui = {
           user = "${username}";
-          password = "naruto88";
+          password = "naruto88";  # FIXME: the sops path doesn't work.
           # password = config.sops.secrets.syncthing.gui_password.path;
         };
         folders = {
