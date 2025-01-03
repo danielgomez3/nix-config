@@ -14,6 +14,8 @@ netboot:
 #   nix flake update
 #   nix flake lock
 
+save:
+    -git add -A :/; echo -n "Git commit message:" read msg; msg=${msg:-"CAUTION untested changes, possibly broken"}; git commit -m "$msg" && git push
 
 apply target="all":
     -nix flake lock --update-input mysecrets
