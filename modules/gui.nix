@@ -341,7 +341,7 @@ in
           windowrule = [
             "workspace 1 silent, firefox"
             "workspace 2 silent, Slack"
-            "workspace 2 silent, org.kde.kdeconnect.sms"
+            "workspace 3 silent, org.kde.kdeconnect.sms"
             "workspace 10 silent, Plexamp"
             "workspace 10 silent, pavucontrol"
           ];
