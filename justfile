@@ -15,7 +15,9 @@ netboot:
 #   nix flake lock
 
 save:
-    -git add -A :/; echo -n "Enter commit message: "; read msg; msg=${msg:-"CAUTION untested changes, possibly broken"}; git commit -m "$msg" && git push
+    -git add -A :/; msg=${msg:-"CAUTION untested changes, possibly broken"}; git commit -m "$msg"; 
+    colmena build -p 3 all 
+    echo -n "Configuration build succesful! Enter commit message: "; read msg; msg=${msg:-"CAUTION untested changes, possibly broken"}; git commit --ammend -m "$msg" && git push
 
 apply target="all":
     -nix flake lock --update-input mysecrets
