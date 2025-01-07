@@ -13,6 +13,9 @@ netboot:
 # update:
 #   nix flake update
 #   nix flake lock
+test:
+    -git add -A :/; msg=${msg:-"CAUTION untested changes, possibly broken"}; git commit -m "$msg"; 
+    colmena build -p 3 
 
 save:
     -git add -A :/; msg=${msg:-"CAUTION untested changes, possibly broken"}; git commit -m "$msg"; 
