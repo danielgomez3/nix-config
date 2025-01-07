@@ -17,7 +17,7 @@ netboot:
 save:
     -git add -A :/; msg=${msg:-"CAUTION untested changes, possibly broken"}; git commit -m "$msg"; 
     colmena build -p 3 
-    echo -n "Configuration build succesful! Enter commit message: "; read msg; msg=${msg:-"CAUTION untested changes, possibly broken"}; git commit --ammend "$msg" && git push
+    echo -n "Configuration build succesful! Enter commit message: "; read msg; msg=${msg:-"CAUTION untested changes, possibly broken"}; git commit --amend -m "$msg" && git push
 
 apply target="all":
     -nix flake lock --update-input mysecrets
