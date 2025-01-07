@@ -29,12 +29,13 @@
     let 
       system = "x86_64-linux";
       # rootPath = self.outPath;
-      commonImports = h: [
+      myLib = import ./myLib/default.nix {inherit inputs;};
+      commonImports = h: [  # Every host dir may contain the following:
         "${self.outPath}/hosts/${h}"
         "${self.outPath}/hosts/${h}/hardware-configuration.nix"
         "${self.outPath}/hosts/${h}/disko-config.nix"
       ];
-    in  
+    in 
     {
     colmena = {
       meta = {
