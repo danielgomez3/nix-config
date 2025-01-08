@@ -18,22 +18,22 @@ in
     "rtw88_8821ce"
   ];
 
-  services = {
+  myNixOS = {
+    all = {
+      enable = true;
+    };
     coding = {
       enable = true;
     };
     gui = {
       enable = true;
     };
-    all = {
-      enable = true;
-    };
-    tailscale = {
-      authKeyFile = config.sops.secrets.tailscale.path;
-    };
     virtualization = {
       enable = true;
     };
+  };
+
+  services = {
     xserver = {
       xkb = {
         options = "caps:swapescape";
@@ -43,6 +43,9 @@ in
         #   symbolsFile = ./custom_symbols;
         # };
       };
+    };
+    tailscale = {
+      authKeyFile = config.sops.secrets.tailscale.path;
     };
     syncthing.guiAddress = "127.0.0.1:8385";
   };

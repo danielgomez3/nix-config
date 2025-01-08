@@ -15,7 +15,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     colmena.url = "github:zhaofengli/colmena";
-    stylix.url = "github:danth/stylix/release-24.05";
+    # stylix.url = "github:danth/stylix/release-24.05";
     # stylix.url = "github:danth/stylix";
     # inputs.nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     mysecrets = {
@@ -24,7 +24,8 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, disko, colmena, stylix, ... }: 
+  # outputs = inputs@{ self, nixpkgs, disko, colmena, stylix, ... }: 
+  outputs = inputs@{ self, nixpkgs, disko, colmena,  ... }: 
   # outputs = inputs@{ self, nixpkgs, disko, colmena, ... }: 
     let 
       system = "x86_64-linux";
@@ -56,7 +57,7 @@
           inputs.home-manager.nixosModules.default
           inputs.sops-nix.nixosModules.sops
           disko.nixosModules.disko
-          inputs.stylix.nixosModules.stylix
+          # inputs.stylix.nixosModules.stylix
           "${self.outPath}/modules"
         ];
       };
@@ -70,13 +71,13 @@
       # };
 
       # NOTE: Example hosts/machines:
-      laptop = {name, node, pkgs, ... }:{
-        deployment = {
-          tags = ["${name}" "all"];
-          targetHost = "${name}";
-        };
-        imports = commonImports "${name}";
-      };
+      # laptop = {name, node, pkgs, ... }:{
+      #   deployment = {
+      #     tags = ["${name}" "all"];
+      #     targetHost = "${name}";
+      #   };
+      #   imports = commonImports "${name}";
+      # };
       server = {name, node, pkgs, ... }:{
         deployment = {
           tags = ["${name}" "all"];

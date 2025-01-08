@@ -41,16 +41,19 @@ in
     defaults.email = "${toString config.sops.secrets.email}";
     acceptTerms = true;
   };
-  services = {
-    coding = {
+  myNixOS = {
+    all = {
       enable = true;
     };
-    all = {
+    coding = {
       enable = true;
     };
     virtualization = {
       enable = false;
     };
+  };
+
+  services = {
     tailscale = {
       useRoutingFeatures = "server";
     };
@@ -103,8 +106,7 @@ in
           };
         };
       };
-    };
-
+    };   
   };
 
   # create a oneshot job to authenticate to Tailscale
