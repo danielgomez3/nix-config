@@ -13,7 +13,17 @@ let
       configExtension = config: (lib.mkIf cfg.${name}.enable config);
     })
     (myLib.filesIn ./features);
+   programs =
+      myLib.extendModules
+      (name: {
+        extraOptions = {
+          myNixOS.${name}.enable = lib.mkEnableOption "enable my ${name} configuration";
+        };
+
+        configExtension = config: (lib.mkIf cfg.${name}.enable config);
+      })
+      (myLib.filesIn ./programs);
 in
 {
-  imports = [ ] ++ features;
+  imports = [ ] ++ features ++ programs;
 }

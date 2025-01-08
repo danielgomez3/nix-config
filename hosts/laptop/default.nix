@@ -5,10 +5,10 @@
 
 let 
   modKey = "Mod4";
-  username = config.myConfig.username;
+  username = config.myVars.username;
 in
 {
-  myConfig.username = "daniel";  # Specific username for this machine
+  myVars.username = "daniel";  # Specific username for this machine
 
   users.users.${username} = {
     description = "laptop";
@@ -16,6 +16,7 @@ in
 
   myNixOS = {
     all.enable = true;
+    sops.enable = true;
     desktop-environment.enable = true;
     desktop-apps.enable = true;
     coding.enable = true;

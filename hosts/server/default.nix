@@ -5,10 +5,22 @@
 { config, pkgs, lib, inputs, host, name, ... }:
 
 let 
-  username = config.myConfig.username;
+  username = config.myVars.username;
 in
 {
-  myConfig.username = "danielgomez3";  # Specific username for this machine
+  myVars.username = "danielgomez3";  # Specific username for this machine
+  users.users.${username} = {
+    description = "server";
+  };
+  myNixOS = {
+    all.enable = true;
+    sops.enable = true;
+    desktop-environment.enable = true;
+    desktop-apps.enable = true;
+    coding.enable = true;
+    virtualization.enable = false;
+  };
+
   environment = {
     # sessionVariables = {
     #   GITHUB_TOKEN = config.sops.secrets.github_token.path;  
@@ -32,25 +44,11 @@ in
     };
   };
 
-  users.users.${username} = {
-    description = "server";
-  };
 
   hardware.keyboard.zsa.enable = true;
   security.acme = {
     defaults.email = "${toString config.sops.secrets.email}";
     acceptTerms = true;
-  };
-  myNixOS = {
-    all = {
-      enable = true;
-    };
-    coding = {
-      enable = true;
-    };
-    virtualization = {
-      enable = false;
-    };
   };
 
   services = {

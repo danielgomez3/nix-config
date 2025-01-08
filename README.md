@@ -54,6 +54,6 @@ commonImports = h: [
 ];
   
 ```
-- After a system is deployed, changing the user in ./modules/laptop/defaul.nix:`myConfig.username = "";` from say, `ronnie` to `anotherUser` causes syncthing to crash.
+- After a system is deployed, changing the user in ./modules/laptop/defaul.nix:`myVars.username = "";` from say, `ronnie` to `anotherUser` causes syncthing to crash.
   Maybe it's because of sops keys? Being key.pem and cert.pem? Not really. I wouldn't worry about it too much, I think this is just a consequence of real world side effects and system state tracked by syncthing. Can't be helped, and honestly wouldn't/shouldn't really be done anyway. Just deploy a new system.
 - 

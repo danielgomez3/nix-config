@@ -1,6 +1,6 @@
 { config, lib, ...}:
 let
-  username = config.myConfig.username;
+  username = config.myVars.username;
 in
   {
     # users.extraGroups.vboxusers.members = [ "daniel" ];

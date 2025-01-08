@@ -5,7 +5,7 @@ let
   # myPythonEnv = pkgs.python3.withPackages (ps: with ps; [
   #   matplotlib
   # ]);
-  username = config.myConfig.username;
+  username = config.myVars.username;
 in
 {
     #virtualisation.docker.enable = true;

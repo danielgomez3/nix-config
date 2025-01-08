@@ -1,7 +1,7 @@
 { config, pkgs, lib, inputs, ... }:
 let
   modKey = "Mod4";
-  username = config.myConfig.username;
+  username = config.myVars.username;
 in
 {
   

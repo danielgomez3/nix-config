@@ -1,6 +1,6 @@
 { config, pkgs, lib, inputs, ... }:
 let
-  username = config.myConfig.username;
+  username = config.myVars.username;
 in
 {
 
