@@ -15,12 +15,8 @@ in
   };
 
   myNixOS = {
-    all.enable = true;
-    sops.enable = true;
     desktop-environment.enable = true;
     desktop-apps.enable = true;
-    coding.enable = true;
-    virtualization.enable = false;
   };
 
   services = {
@@ -56,19 +52,6 @@ in
    xkb.options = "caps:swapescape";
   };
 
-  networking = {
-    wireless.iwd = {
-      enable = true;
-      settings = {
-        IPv6 = {
-          Enabled = true;
-        };
-        Settings = {
-          AutoConnect = true;
-        };
-      };
-    };
-  };
 
   home-manager.users.${username} = {
       wayland.windowManager.sway = {

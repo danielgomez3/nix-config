@@ -15,6 +15,7 @@ netboot:
 #   nix flake lock
 build:
     # -git add -A :/; msg=${msg:-"CAUTION untested changes, possibly broken"}; git commit -m "$msg"; 
+    -nix flake lock --update-input mysecrets
     -git add -A :/
     colmena build -p 3 
 

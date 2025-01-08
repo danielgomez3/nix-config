@@ -12,14 +12,6 @@ in
   users.users.${username} = {
     description = "server";
   };
-  myNixOS = {
-    all.enable = true;
-    sops.enable = true;
-    desktop-environment.enable = true;
-    desktop-apps.enable = true;
-    coding.enable = true;
-    virtualization.enable = false;
-  };
 
   environment = {
     # sessionVariables = {

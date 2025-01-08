@@ -70,35 +70,6 @@ in
       systemd-boot.configurationLimit = 3;
     };
 
-    networking = {
-      hostName = name;  # Define your hostname.
-      # nameservers = [ "8.8.8.8" "8.8.4.4" ];
-      dhcpcd.enable = true;
-      # domain = "home";
-      firewall = {
-        enable = false;
-        # always allow traffic from your Tailscale network
-        trustedInterfaces = [ "tailscale0"];
-        # Open the necessary UDP ports for PXE boot
-        allowedUDPPorts = [ 
-          67 69 4011 config.services.tailscale.port
-        ];
-        # Open the necessary TCP port for Pixiecore
-        allowedTCPPorts = [ 
-          22
-          80
-          443
-          64172 
-        ];
-        allowPing = true;     # Optional: Allow ICMP (ping)
-        # Set default policies to 'accept' for both incoming and outgoing traffic
-      };
-      # firewall.allowedUDPPorts = [ 67 69 4011 ];
-      # firewall.allowedTCPPorts = [ 64172 ];
-    };
-
-    # Set your time zone.
-    time.timeZone = "America/New_York";
 
     # Select internationalisation properties.
     i18n.defaultLocale = "en_US.UTF-8";

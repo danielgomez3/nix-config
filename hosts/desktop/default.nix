@@ -11,12 +11,8 @@ in
     description = "desktop";
   };
   myNixOS = {
-    all.enable = true;
-    sops.enable = true;
     desktop-environment.enable = true;
     desktop-apps.enable = true;
-    coding.enable = true;
-    virtualization.enable = false;
   };
 
   time.hardwareClockInLocalTime = true;
@@ -57,17 +53,6 @@ in
     #   };
     # };
 
-  networking = {
-    wireless = {
-      iwd.enable = true;
-      # networks = {
-      #   "TMOBILE-F526" = {
-      #     # psk = config.sops.secrets."wifi_networks/home/psk".path;
-      #     psk = "reshuffle.think.wool.tug";
-      #   };
-      # };
-    };
-  };
 
   home-manager = { 
     # extraSpecialArgs = { inherit inputs; };
