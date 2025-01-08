@@ -28,7 +28,6 @@
   # outputs = inputs@{ self, nixpkgs, disko, colmena,  ... }: 
     let 
       system = "x86_64-linux";
-      # rootPath = self.outPath;
       myLib = import ./myLib/default.nix {inherit inputs;};
       commonImports = h: [  # Every host dir may contain the following:
         "${self.outPath}/hosts/${h}"
@@ -43,7 +42,7 @@
           system = system;
         };
         specialArgs = {
-          inherit inputs myLib;
+          inherit inputs myLib self;
         };
       };
       defaults = { pkgs, lib, ... }: 
