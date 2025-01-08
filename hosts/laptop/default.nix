@@ -13,17 +13,15 @@ in
   users.users.${username} = {
     description = "laptop";
   };
+
   myNixOS = {
-    all = {
-      enable = true;
-    };
-    coding = {
-      enable = true;
-    };
-    gui = {
-      enable = true;
-    };  
+    all.enable = true;
+    desktop-environment.enable = true;
+    desktop-apps.enable = true;
+    coding.enable = true;
+    virtualization.enable = false;
   };
+
   services = {
     tailscale = {
       authKeyFile = config.sops.secrets.tailscale.path;

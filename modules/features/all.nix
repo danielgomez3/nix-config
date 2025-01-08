@@ -79,7 +79,7 @@ in
       };
     };
     stylix = {
-      enable = false;
+      enable = true;
       image = "${self.outPath}/modules/additional/wallpapers/white.jpg";
       # image = ../additional/wallpapers/white.jpg;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";

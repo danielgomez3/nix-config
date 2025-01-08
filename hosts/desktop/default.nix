@@ -10,6 +10,14 @@ in
   users.users.${username} = {
     description = "desktop";
   };
+  myNixOS = {
+    all.enable = true;
+    desktop-environment.enable = true;
+    desktop-apps.enable = true;
+    coding.enable = true;
+    virtualization.enable = false;
+  };
+
   time.hardwareClockInLocalTime = true;
   hardware.keyboard.zsa.enable = true;
 
@@ -17,21 +25,6 @@ in
     # "iwlwifi"
     "rtw88_8821ce"
   ];
-
-  myNixOS = {
-    all = {
-      enable = true;
-    };
-    coding = {
-      enable = true;
-    };
-    gui = {
-      enable = true;
-    };
-    virtualization = {
-      enable = true;
-    };
-  };
 
   services = {
     xserver = {
