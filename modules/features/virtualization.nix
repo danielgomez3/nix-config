@@ -3,28 +3,23 @@ let
   username = config.myConfig.username;
 in
   {
-    options.services.virtualization = {
-      enable = lib.mkEnableOption "virtualization service";  
-    };
+    # users.extraGroups.vboxusers.members = [ "daniel" ];
+    users.users.${username}.extraGroups = [ "docker" ];
 
-
-      # users.extraGroups.vboxusers.members = [ "daniel" ];
-      users.users.${username}.extraGroups = [ "docker" ];
-
-      virtualisation = {
-        docker = {
+    virtualisation = {
+      docker = {
+        enable = true;
+        rootless = {
           enable = true;
-          rootless = {
-            enable = true;
-            setSocketVariable = true;
-          };
-        }; 
-        # virtualbox = {
-        #   host = {
-        #     enable = true;
-        #     enableExtensionPack = true;
-        #   };
-        # };
-      };
+          setSocketVariable = true;
+        };
+      }; 
+      # virtualbox = {
+      #   host = {
+      #     enable = true;
+      #     enableExtensionPack = true;
+      #   };
+      # };
+    };
     
   }

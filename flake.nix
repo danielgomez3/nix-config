@@ -7,9 +7,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    # wezterm-flake.url = "github:wez/wezterm/main?dir=nix";
-    # wezterm-flake.inputs.nixpkgs.follows = "nixpkgs";
-    # hyprland.url = "github:hyprwm/Hyprland";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.url = "github:Mic92/sops-nix";
