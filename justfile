@@ -22,10 +22,10 @@ commit:
     -git add -A :/
     echo -n "Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. No commit message"}; git commit -m "$msg"
 
-save:
-    -git add -A :/;
-    colmena build -p 3 
-    echo -n "Configuration build succesful! Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. No commit message"}; git commit -m "$msg"
+# save:
+#     -git add -A :/;
+#     colmena build -p 3 
+#     echo -n "Configuration build succesful! Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. No commit message"}; git commit -m "$msg"
 
 apply target="all":
     -nix flake lock --update-input mysecrets
