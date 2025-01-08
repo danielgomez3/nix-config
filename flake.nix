@@ -71,13 +71,13 @@
       # };
 
       # NOTE: Example hosts/machines:
-      # laptop = {name, node, pkgs, ... }:{
-      #   deployment = {
-      #     tags = ["${name}" "all"];
-      #     targetHost = "${name}";
-      #   };
-      #   imports = commonImports "${name}";
-      # };
+      laptop = {name, node, pkgs, ... }:{
+        deployment = {
+          tags = ["${name}" "all"];
+          targetHost = "${name}";
+        };
+        imports = commonImports "${name}";
+      };
       server = {name, node, pkgs, ... }:{
         deployment = {
           tags = ["${name}" "all"];

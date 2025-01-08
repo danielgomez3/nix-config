@@ -13,7 +13,7 @@ in
   users.users.${username} = {
     description = "laptop";
   };
-  services = {
+  myNixOS = {
     all = {
       enable = true;
     };
@@ -22,7 +22,9 @@ in
     };
     gui = {
       enable = true;
-    };
+    };  
+  };
+  services = {
     tailscale = {
       authKeyFile = config.sops.secrets.tailscale.path;
     };
@@ -47,7 +49,6 @@ in
        START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
        STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
       };
-
     };
   };
 
