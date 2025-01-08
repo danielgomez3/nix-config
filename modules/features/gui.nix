@@ -1,16 +1,11 @@
 { config, pkgs, lib, inputs, ... }:
 let
   modKey = "Mod4";
-  cfg = config.services.gui;
   username = config.myConfig.username;
 in
 {
   # imports = [ ./additional/suspend-and-hibernate.nix ];
-  options.services.gui = {
-    enable = lib.mkEnableOption "gui service";
-  };
 
-  config = lib.mkIf cfg.enable {
 
     systemd.sleep.extraConfig = ''
       AllowSuspend=yes
@@ -502,5 +497,4 @@ in
 
       };
     };
-  };
 }

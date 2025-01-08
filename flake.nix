@@ -43,7 +43,7 @@
           system = system;
         };
         specialArgs = {
-          inherit inputs;
+          inherit inputs myLib;
         };
       };
       defaults = { pkgs, lib, ... }: 

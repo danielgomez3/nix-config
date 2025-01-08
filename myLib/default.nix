@@ -12,36 +12,36 @@ in rec {
 
   # ========================== Buildables ========================== #
 
-  mkSystem = config:
-    inputs.nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        inherit inputs outputs myLib;
-      };
-      modules = [
-        config
-        outputs.nixosModules.default
-      ];
-    };
+  # mkSystem = config:
+  #   inputs.nixpkgs.lib.nixosSystem {
+  #     specialArgs = {
+  #       inherit inputs outputs myLib;
+  #     };
+  #     modules = [
+  #       config
+  #       outputs.nixosModules.default
+  #     ];
+  #   };
 
-  mkHome = sys: config:
-    inputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = pkgsFor sys;
-      extraSpecialArgs = {
-        inherit inputs myLib outputs;
-      };
-      modules = [
+  # mkHome = sys: config:
+  #   inputs.home-manager.lib.homeManagerConfiguration {
+  #     pkgs = pkgsFor sys;
+  #     extraSpecialArgs = {
+  #       inherit inputs myLib outputs;
+  #     };
+  #     modules = [
         
-        # TODO: move this
-        inputs.stylix.homeManagerModules.stylix
-        {
-          stylix.image = ./../nixosModules/features/stylix/gruvbox-mountain-village.png;
-          nixpkgs.config.allowUnfree = true;
-        }
+  #       # TODO: move this
+  #       inputs.stylix.homeManagerModules.stylix
+  #       {
+  #         stylix.image = ./../nixosModules/features/stylix/gruvbox-mountain-village.png;
+  #         nixpkgs.config.allowUnfree = true;
+  #       }
 
-        config
-        outputs.homeManagerModules.default
-      ];
-    };
+  #       config
+  #       outputs.homeManagerModules.default
+  #     ];
+  #   };
 
   # =========================== Helpers ============================ #
 

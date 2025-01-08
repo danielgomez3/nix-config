@@ -5,14 +5,9 @@ let
   # myPythonEnv = pkgs.python3.withPackages (ps: with ps; [
   #   matplotlib
   # ]);
-  cfg = config.services.coding;
   username = config.myConfig.username;
 in
 {
-  options.services.coding = {
-    enable = lib.mkEnableOption "coding service";
-  };
-  config = lib.mkIf cfg.enable {
     #virtualisation.docker.enable = true;
     services.mysql = {
       enable = true;
@@ -211,5 +206,4 @@ in
         };
       };
     };
-  };
 }

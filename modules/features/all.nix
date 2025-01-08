@@ -5,22 +5,16 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ self, config, pkgs, lib, inputs,  name, ... }:
+{ config, pkgs, lib, inputs,  name, ... }:
 let 
   # nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
   # cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
-  cfg = config.services.all;  # My custom service called 'all'
   secretspath = builtins.toString inputs.mysecrets;
   username = config.myConfig.username;
 in
 {
 
-  options.services.all = {
-    enable = lib.mkEnableOption "My 'all' service!";
-  };
-
   # A custom 'service' called 'all'. If a system has this enabled, it will inherit the following settings!:
-  config = lib.mkIf cfg.enable {
 
     swapDevices = [{
       device = "/swapfile";
@@ -570,7 +564,6 @@ in
           
         };
       };
-    };
   };
 
 

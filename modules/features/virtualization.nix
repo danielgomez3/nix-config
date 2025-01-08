@@ -1,6 +1,5 @@
 { config, lib, ...}:
 let
-  cfg = config.services.virtualization;
   username = config.myConfig.username;
 in
   {
@@ -8,7 +7,6 @@ in
       enable = lib.mkEnableOption "virtualization service";  
     };
 
-    config = lib.mkIf cfg.enable {
 
       # users.extraGroups.vboxusers.members = [ "daniel" ];
       users.users.${username}.extraGroups = [ "docker" ];
@@ -29,5 +27,4 @@ in
         # };
       };
     
-    };
   }
