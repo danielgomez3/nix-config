@@ -1,5 +1,5 @@
 
-{ config, pkgs, lib, inputs,  ... }:
+{ config, pkgs, pkgsUnstable, lib, inputs,  ... }:
 let 
 #   cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
   # myPythonEnv = pkgs.python3.withPackages (ps: with ps; [
@@ -97,6 +97,7 @@ in
     
           helix = {
             enable = true;
+            package = pkgsUnstable.helix;
             defaultEditor = true;
             extraPackages = with pkgs; [
               vscode-langservers-extracted
@@ -117,6 +118,11 @@ in
                 # theme = "catppuccin_macchiato";
                 editor = {
                   # shell = ["/usr/bin/env" "zsh"];
+                  end-of-line-diagnostics = "hint";
+                  inline-diagnostics = {
+                    cursor-line = "error";
+                    other-lines = "error";
+                  };
                   shell = [
                     "zsh"
                     "-c"

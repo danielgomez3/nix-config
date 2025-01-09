@@ -3,8 +3,8 @@
   description = "danielgomez3's NixOS configuration";
 
   inputs = {
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";  # Nix Options version as well
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix/release-24.11";
@@ -20,10 +20,11 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, disko, colmena, stylix, ... }: 
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, disko, colmena, stylix, ... }: 
   # outputs = inputs@{ self, nixpkgs, disko, colmena,  ... }: 
     let 
       system = "x86_64-linux";
+      pkgsUnstable = import nixpkgs-unstable { inherit system; };
       myLib = import ./myLib/default.nix {inherit inputs;};
       commonImports = h: [  # Every host dir may contain the following:
         "${self.outPath}/hosts/${h}"
@@ -38,7 +39,7 @@
           system = system;
         };
         specialArgs = {
-          inherit inputs myLib self;
+          inherit inputs myLib self pkgsUnstable;
         };
       };
       defaults = { pkgs, lib, ... }: 

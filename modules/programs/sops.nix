@@ -33,10 +33,9 @@ in
         # group = config.users.users.${username}.group;
         mode = "0700"; # Restrict read and write access to user only
       };
-      # "wifi_networks" = {};
-      "wifi_networks/wifi_home_psk" = {};
-      # "wifi_networks/home/ssid" = {};
-      # "wifi_networks/home/psk" = {};
+      "wireless" = {};
+      # "wifi_networks/home_ssid" = {};
+      # "wifi_networks/home_psk" = {};
       "tailscale" = {};
       github_token = {
         owner = config.users.users.${username}.name;

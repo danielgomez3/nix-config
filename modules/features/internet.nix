@@ -35,11 +35,12 @@ in
     # firewall.allowedTCPPorts = [ 64172 ];
     wireless = {
       enable = true;
-      secretsFile = config.sops.secrets."wifi_networks/wifi_home_psk".path;
+      secretsFile = config.sops.secrets."wireless".path;
       networks = {
         # "${config.sops.secrets.wifi_networks/home/ssid}" = {
         "maple" = {
-          psk = "ext:wifi_home_psk";
+          psk = "naruto88";
+          # pskRaw = "ext:home_psk";
         };
       };
     };
