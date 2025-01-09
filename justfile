@@ -21,22 +21,22 @@ build:
 
 commit:
     -git add -A :/
-    echo -n "Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. No commit message"}; git commit -m "$msg"
+    echo -n "Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
     git push
 
 
 # save:
 #     -git add -A :/;
 #     colmena build -p 3 
-#     echo -n "Configuration build succesful! Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. No commit message"}; git commit -m "$msg"
+#     echo -n "Configuration build succesful! Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
 
 apply target="all":
     -nix flake update mysecrets
     # -git add -A :/; msg=${msg:-"CAUTION untested changes, possibly broken"}; git commit -m "$msg"; 
     -git add -A :/
-    -msg=${msg:-"CAUTION unreviewed changes. No commit message"}; git commit -m "$msg"
+    -msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
     colmena apply -p 3 --on @{{target}} && git push
-    echo -n "Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. No commit message"}; git commit --amend "$msg"
+    echo -n "Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit --amend "$msg"
 
 
 rebuild:
