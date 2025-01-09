@@ -190,7 +190,9 @@ in
       wezterm = {
         enable = true;
         # package = inputs.wezterm.packages.${pkgs.system}.default;
-      #   extraConfig = ''
+        extraConfig = ''
+          front_end = "WebGpu",
+          enable_wayland = false,
       #     -- local wezterm = require 'wezterm'
       #     -- local mux = wezterm.mux
 
@@ -205,7 +207,7 @@ in
       #     hide_tab_bar_if_only_one_tab = true,
       #     color_scheme = "rose-pine",
       #     }
-      #   '';
+        '';
       };
 
       obs-studio = {

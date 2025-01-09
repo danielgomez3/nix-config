@@ -7,13 +7,12 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";  # Nix Options version as well
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    stylix.url = "github:danth/stylix/release-24.11";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     colmena.url = "github:zhaofengli/colmena";
-    stylix.url = "github:danth/stylix/release-24.05";
-    # stylix.url = "github:danth/stylix";
     # inputs.nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     mysecrets = {
       url = "git+ssh://git@github.com/danielgomez3/nix-secrets.git?ref=main&shallow=1";
