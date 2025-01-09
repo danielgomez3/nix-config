@@ -22,18 +22,19 @@ build:
 commit:
     -git add -A :/
     echo -n "Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. No commit message"}; git commit -m "$msg"
+    git push
+
 
 # save:
 #     -git add -A :/;
 #     colmena build -p 3 
 #     echo -n "Configuration build succesful! Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. No commit message"}; git commit -m "$msg"
 
-deploy target="all":
+apply target="all":
     -nix flake lock --update-input mysecrets
     # -git add -A :/; msg=${msg:-"CAUTION untested changes, possibly broken"}; git commit -m "$msg"; 
     -git add -A :/
     colmena apply -p 3 --on @{{target}} && git push
-    echo -n "build and deployment successful! Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. No commit message"}; git commit -m "$msg" && git push
 
 
 rebuild:

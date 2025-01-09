@@ -191,22 +191,9 @@ in
         enable = true;
         # package = inputs.wezterm.packages.${pkgs.system}.default;
         extraConfig = ''
-          front_end = "WebGpu",
-          enable_wayland = false,
-      #     -- local wezterm = require 'wezterm'
-      #     -- local mux = wezterm.mux
-
-      #     -- wezterm.on('gui-startup', function()
-      #     --   -- Tab 1: Plan
-      #     --   local tab, first_pane, window = mux.spawn_window {}
-      #     --   first_pane:send_text "zellij -l welcome\n"
-      #     -- end)
-
-      #     return {
-      #     --   -- default_prog = { 'zellij', '-l', 'welcome' },
-      #     hide_tab_bar_if_only_one_tab = true,
-      #     color_scheme = "rose-pine",
-      #     }
+          return {
+            front_end = "WebGpu",
+          }
         '';
       };
 
