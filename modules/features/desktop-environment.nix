@@ -39,16 +39,17 @@ in
   };
 
   services = { 
-    greetd = {
-      enable = true;
-      settings = {
-        default_session = {
-          # command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
-          user = "greeter"; 
-        };
-      };
-    };
+    # greetd = {
+    #   enable = true;
+    #   settings = {
+    #     default_session = {
+    #       # command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+    #       command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+    #       user = "greeter"; 
+    #     };
+    #   };
+    # };
+    xserver.displayManager.lightdm.enable = true;
 
     # Enable CUPS to print documents.
     printing.enable = true;
