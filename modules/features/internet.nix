@@ -36,13 +36,13 @@ in
     wireless = {
       enable = true;
       # secretsFile = config.sops.secrets."wireless".path;
-      environmentFile = "/run/secrets/wireless.env";
+      secretsFile = "/run/secrets/wireless.env";
       networks = {
         # "${config.sops.secrets.wifi_networks/home/ssid}" = {
         "maple" = {
           # psk = "naruto88";
           # psk = "@home_psk@";
-          psk = "ext:home_psk";
+          pskRaw = "ext:home_psk";
         };
       };
     };
