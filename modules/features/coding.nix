@@ -9,6 +9,7 @@ let
 in
 {
     #virtualisation.docker.enable = true;
+    environment.variables.EDITOR = "${pkgsUnstable.hx}";
     services.mysql = {
       enable = true;
       package = pkgs.mariadb;
