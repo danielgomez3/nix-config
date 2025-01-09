@@ -33,7 +33,7 @@ in
         # group = config.users.users.${username}.group;
         mode = "0700"; # Restrict read and write access to user only
       };
-      "wireless" = {};
+      "wireless.env" = {};
       # "wifi_networks/home_ssid" = {};
       # "wifi_networks/home_psk" = {};
       "tailscale" = {};
