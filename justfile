@@ -36,7 +36,7 @@ apply target="all":
     -git add -A :/
     -msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
     colmena apply -p 3 --on @{{target}} && git push
-    echo -n "Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit --amend "$msg"
+    echo -n "Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit --amend -m "$msg"
 
 
 rebuild:
