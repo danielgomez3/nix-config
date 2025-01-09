@@ -40,7 +40,7 @@ in
         # "${config.sops.secrets.wifi_networks/home/ssid}" = {
         "maple" = {
           # psk = "naruto88";
-          psk = "ext:home_psk";
+          psk = "@home_psk@";
         };
       };
     };
