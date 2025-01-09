@@ -36,6 +36,7 @@ apply target="all":
     -git add -A :/
     -msg=${msg:-"CAUTION unreviewed changes. No commit message"}; git commit -m "$msg"
     colmena apply -p 3 --on @{{target}} && git push
+    echo -n "Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. No commit message"}; git commit --amend "$msg"
 
 
 rebuild:
