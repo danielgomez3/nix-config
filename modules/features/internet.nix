@@ -35,8 +35,8 @@ in
     # firewall.allowedTCPPorts = [ 64172 ];
     wireless = {
       enable = true;
-      # secretsFile = config.sops.secrets."wireless".path;
-      secretsFile = "/run/secrets/wireless.env";
+      secretsFile = config.sops.secrets."wireless".path;
+      # secretsFile = "/run/secrets/wireless.env";
       networks = {
         # "${config.sops.secrets.wifi_networks/home/ssid}" = {
         "maple" = {
