@@ -34,6 +34,7 @@ apply target="all":
     -nix flake update mysecrets
     # -git add -A :/; msg=${msg:-"CAUTION untested changes, possibly broken"}; git commit -m "$msg"; 
     -git add -A :/
+    msg=${msg:-"CAUTION unreviewed changes. No commit message"}; git commit -m "$msg"
     colmena apply -p 3 --on @{{target}} && git push
 
 
