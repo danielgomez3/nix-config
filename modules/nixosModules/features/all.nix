@@ -172,9 +172,9 @@ in
       users.root = {
         hashedPasswordFile = config.sops.secrets.user_password.path;  
         openssh.authorizedKeys.keys = [
-          (builtins.readFile ../../hosts/desktop/key.pub)
-          (builtins.readFile ../../hosts/server/key.pub)
-          (builtins.readFile ../../hosts/laptop/key.pub)
+          (builtins.readFile "${self.outpath}"hosts/desktop/key.pub)
+          (builtins.readFile "${self.outpath}"hosts/server/key.pub)
+          (builtins.readFile "${self.outpath}"hosts/laptop/key.pub)
         ];
       };
 
@@ -188,13 +188,13 @@ in
         # FIXME: relative imports
         openssh.authorizedKeys.keys = [
           # Needed for personal use, to ssh and do some normal user work.
-          (builtins.readFile ../../hosts/desktop/key.pub)
-          (builtins.readFile ../../hosts/server/key.pub)
-          (builtins.readFile ../../hosts/laptop/key.pub)
+          (builtins.readFile "${self.outpath}"hosts/desktop/key.pub)
+          (builtins.readFile "${self.outpath}"hosts/server/key.pub)
+          (builtins.readFile "${self.outpath}"hosts/laptop/key.pub)
           # Needed for Colmena b/c doesn't use root for colmena?
-          (builtins.readFile ../../hosts/desktop/root-key.pub)
-          (builtins.readFile ../../hosts/laptop/root-key.pub)
-          (builtins.readFile ../../hosts/server/root-key.pub)
+          (builtins.readFile "${self.outpath}"hosts/desktop/root-key.pub)
+          (builtins.readFile "${self.outpath}"hosts/laptop/root-key.pub)
+          (builtins.readFile "${self.outpath}"hosts/server/root-key.pub)
         ];
       };
     };
