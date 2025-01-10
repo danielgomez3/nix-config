@@ -53,7 +53,7 @@
           inputs.sops-nix.nixosModules.sops
           disko.nixosModules.disko
           inputs.stylix.nixosModules.stylix
-          "${self.outPath}/modules"
+          "${self.outPath}/modules/nixosModules"
         ];
       };
       # NOTE: add additional hosts/machines using this code block:
