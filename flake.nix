@@ -54,6 +54,7 @@
           disko.nixosModules.disko
           inputs.stylix.nixosModules.stylix
           "${self.outPath}/modules/nixosModules"
+          "${self.outPath}/modules/homeManagerModules"
         ];
       };
       # NOTE: add additional hosts/machines using this code block:
