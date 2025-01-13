@@ -7,7 +7,7 @@
   myLib,
   ...
 }: let
-  cfg = config.myHomeManager;
+  cfg = config.home-manager.users.${username}.myHomeManager;
   username = config.myVars.username;
 
 
