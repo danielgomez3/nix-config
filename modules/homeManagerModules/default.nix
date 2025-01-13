@@ -47,11 +47,8 @@
   #   (myLib.filesIn ./bundles);
 
 in {
-  # home-manager.users.${username}.imports =
-  #   []
-  #   ++ programs;
-  homeManagerConfiguration = {
-    
-  };
+  home-manager.users.${username}.imports =
+    []
+    ++ programs;
 }
 
