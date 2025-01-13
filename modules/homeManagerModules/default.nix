@@ -52,8 +52,9 @@ in {
     # ++ features
     # ++ bundles;
     ++ programs;
-  config.myHomeManager = {
-    kitty.enable = true;
-  };
+  # DELETEME:
+  # config.myHomeManager = {
+  #   kitty.enable = true;
+  # };
 }
 
