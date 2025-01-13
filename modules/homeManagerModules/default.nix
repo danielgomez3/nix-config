@@ -47,14 +47,11 @@
   #   (myLib.filesIn ./bundles);
 
 in {
-  home-manager.users.${username}.imports =
-    []
-    # ++ features
-    # ++ bundles;
-    ++ programs;
-  # DELETEME:
-  # config.myHomeManager = {
-  #   kitty.enable = true;
-  # };
+  # home-manager.users.${username}.imports =
+  #   []
+  #   ++ programs;
+  homeManagerConfiguration = {
+    
+  };
 }
 
