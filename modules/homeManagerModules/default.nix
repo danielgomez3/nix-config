@@ -52,5 +52,8 @@ in {
     # ++ features
     # ++ bundles;
     ++ programs;
+  config.myHomeManager = {
+    kitty.enable = true;
+  };
 }
 
