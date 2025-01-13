@@ -50,5 +50,8 @@ in {
   home-manager.users.${username}.imports =
     []
     ++ programs;
+  home-manager.users.${username}.myHomeManager = {
+    kitty.enable = true; # Enable the kitty module
+  };
 }
 
