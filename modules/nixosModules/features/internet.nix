@@ -1,5 +1,4 @@
 { self, config, pkgs, lib, inputs, name, ... }:
-
 let 
   # nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
   # cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
@@ -33,13 +32,15 @@ in
     };
     # firewall.allowedUDPPorts = [ 67 69 4011 ];
     # firewall.allowedTCPPorts = [ 64172 ];
+
+    # Enables WPA_SUPPLICANT
     wireless = {
       enable = true;
       secretsFile = config.sops.secrets."wireless.env".path;
       # secretsFile = "/run/secrets/wireless.env";
       networks = {
         # "${config.sops.secrets.wifi_networks/home/ssid}" = {
-        "ext:home_ssid" = {
+        "maple" = {  # FIXME: this is bad. Shouldn't reveal any information
           # psk = "naruto88";
           # psk = "@home_psk@";
           pskRaw = "ext:home_psk";
