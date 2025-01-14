@@ -11,6 +11,7 @@ in
     zathura.enable = true;
     obs-studio.enable = true;
     zsh.enable = true;
+    starship.enable = true;
   };
 
 }
