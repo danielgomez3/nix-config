@@ -5,13 +5,6 @@ let
 in
 {
   
-  systemd.sleep.extraConfig = ''
-    AllowSuspend=yes
-    AllowHibernation=yes
-    AllowHybridSleep=yes
-    AllowSuspendThenHibernate=yes
-  '';
-
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   # Brighness and volume <https://nixos.wiki/wiki/Sway>
   users.users.${username}.extraGroups = [ "video" ];

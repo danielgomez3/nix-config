@@ -4,6 +4,13 @@ let
 in
 {
 
+  myNixOS = {
+    wezterm.enable = true;
+    kitty.enable = true;
+    emacs.enable = true;
+    zathura.enable = true;
+    obs-studio.enable = true;
+  };
   programs = {
     kdeconnect.enable = true;
   };
@@ -35,39 +42,10 @@ in
     ];
 
 
-    # services.mako = {
-    #   enable = true;
-    #   defaultTimeout = 16;
-    #   maxVisible = 16;
-    # };
-
     services.swayidle = {
       enable = true;
     };
 
-    services = {
-      hypridle = {
-        enable = true;
-        settings = {
-          general = {
-            after_sleep_cmd = "hyprctl dispatch dpms on";
-            ignore_dbus_inhibit = false;
-            lock_cmd = "swaylock";
-          };
-          listener = [
-            {
-              timeout = 300;
-              on-timeout = "swaylock";
-            }
-            {
-              timeout = 390;
-              on-timeout = "systemctl suspend";
-              on-resume = "hyprctl dispatch dpms on";
-            }
-          ];
-        };
-      };
-    };
 
 
     wayland.windowManager.hyprland = {
@@ -149,128 +127,6 @@ in
         };
       # extraConfig = ''
       # '';
-    };
-
-    programs = {
-
-      # waybar = {
-      #   enable = true;
-      #   settings = [
-      #     {
-      #       mainBar = {
-      #         layer = "top";
-      #         position = "top";
-      #         height = 30;
-      #         # output = [
-      #         #   "eDP-1"
-      #         #   "HDMI-A-1"
-      #         # ];
-      #         modules-left = [ "sway/workspaces" "sway/mode" "wlr/taskbar" ];
-      #         modules-center = [ "sway/window" "custom/hello-from-waybar" ];
-      #         "sway/workspaces" = {
-      #           disable-scroll = true;
-      #           all-outputs = true;
-      #         };
-      #         "custom/hello-from-waybar" = {
-      #           format = "hello {}";
-      #           max-length = 40;
-      #           interval = "once";
-      #           exec = pkgs.writeShellScript "hello-from-waybar" ''
-      #             echo "from within waybar"
-      #           '';
-      #         };
-      #       };
-      #     }
-      #   ];
-      # };
-
-      swaylock = {
-        enable = true;
-      };
-
-      obs-studio = {
-        enable = true;
-      };
-
-      zathura = {
-        enable = true;
-        options = {
-          selection-clipboard = "clipboard";
-          scroll-step = 50;
-        };
-        # extraConfig = 
-        # ''
-        #     # Clipboard
-        #     set selection-clipboard clipboard
-        #     set scroll-step 50
-        # '';
-      };
-
-      kitty = {
-        enable = true;
-        settings = {
-          enable_audio_bell = false;
-        };
-      };
-
-
-      # vscode = {
-      #   enable = true;
-      #   extensions = with pkgs.vscode-extensions; [
-      #     dracula-theme.theme-dracula
-      #     vscodevim.vim
-      #     yzhang.markdown-all-in-one
-      #   ];
-      # };
-      emacs = {
-        enable = true;
-        # package = emacsPackages.doom;
-        extraConfig = ''
-  		  (pdf-tools-install) ; Standard activation command
-  		  (recentf-mode 1)
-  		  (setq recentf-max-menu-items 25)
-  		  (setq recentf-max-saved-items 25)
-  		  (global-set-key "\C-x\ \C-r" 'recentf-open-files)
-  		  ;; No sound
-  		  (setq visible-bell t) 
-  		  (setq ring-bell-function 'ignore)
-  		  ;;(set-face-attribute 'default nil :font "DejaVu Sans Mono-12")
-
-  	    ;; Undo
-  		  ;;(global-undo-tree-mode)
-
-  		  ;; Vanity
-  		  (load-theme 'dracula t)
-  		  (menu-bar-mode -1)
-  		  (scroll-bar-mode -1)
-  		  (tool-bar-mode -1)
-
-
-        '';
-
-        extraPackages = epkgs: [
-    	      epkgs.dracula-theme
-            epkgs.pdf-tools
-            #epkgs.undo-tree
-            epkgs.markdown-mode
-            epkgs.nix-mode
-            epkgs.chatgpt-shell
-        ];
-      };
-      # TODO: Make a <leader>/ function that will search fuzzily. Every space will interpret '.*'
-      hyprlock = {
-        enable = false;
-        # settings = {
-        #   general = {
-        #     disable_loading_bar = true;
-        #     grace = 10;
-        #     hide_cursor = true;
-        #     no_fade_in = false;
-        #   };
-
-        # };
-      };
-
     };
   };
 }

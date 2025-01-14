@@ -1,37 +1,39 @@
-{ config, pkgs, ... }: let
-  hibernateEnvironment = {
-    HIBERNATE_SECONDS = "3600";
-    HIBERNATE_LOCK = "/var/run/autohibernate.lock";
+{pkgs,lib,config,name,...}:
+let
+  username = config.myVars.username;
+in
+{
+  home-manager.users.${username}.programs.swaylock.enable = true;
+
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=yes
+    AllowHibernation=yes
+    AllowHybridSleep=yes
+    AllowSuspendThenHibernate=yes
+  '';
+
+  services = {
+    hypridle = {
+      enable = true;
+      settings = {
+        general = {
+          after_sleep_cmd = "hyprctl dispatch dpms on";
+          ignore_dbus_inhibit = false;
+          lock_cmd = "swaylock";
+        };
+        listener = [
+          {
+            timeout = 300;
+            on-timeout = "swaylock";
+          }
+          {
+            timeout = 390;
+            on-timeout = "systemctl suspend";
+            on-resume = "hyprctl dispatch dpms on";
+          }
+        ];
+      };
+    };
   };
-in {
-  systemd.services."awake-after-suspend-for-a-time" = {
-    description = "Sets up the suspend so that it'll wake for hibernation";
-    wantedBy = [ "suspend.target" ];
-    before = [ "systemd-suspend.service" ];
-    environment = hibernateEnvironment;
-    script = ''
-      curtime=$(date +%s)
-      echo "$curtime $1" >> /tmp/autohibernate.log
-      echo "$curtime" > $HIBERNATE_LOCK
-      ${pkgs.utillinux}/bin/rtcwake -m no -s $HIBERNATE_SECONDS
-    '';
-    serviceConfig.Type = "simple";
-  };
-  systemd.services."hibernate-after-recovery" = {
-    description = "Hibernates after a suspend recovery due to timeout";
-    wantedBy = [ "suspend.target" ];
-    after = [ "systemd-suspend.service" ];
-    environment = hibernateEnvironment;
-    script = ''
-      curtime=$(date +%s)
-      sustime=$(cat $HIBERNATE_LOCK)
-      rm $HIBERNATE_LOCK
-      if [ $(($curtime - $sustime)) -ge $HIBERNATE_SECONDS ] ; then
-        systemctl hibernate
-      else
-        ${pkgs.utillinux}/bin/rtcwake -m no -s 1
-      fi
-    '';
-    serviceConfig.Type = "simple";
-  };
+
 }
