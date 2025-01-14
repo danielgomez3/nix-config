@@ -14,13 +14,6 @@ in
     bundles.desktop-environment.enable = true;
     bundles.base-system.enable = true;
   };
-  home-manager.users.${username} = {
-    description = "desktop";
-    myHomeManager = {
-      features.gui-apps.enable = true;
-    };
-  };
-
   time.hardwareClockInLocalTime = true;
   hardware.keyboard.zsa.enable = true;
 
@@ -61,32 +54,11 @@ in
 
 
   home-manager = { 
-    # extraSpecialArgs = { inherit inputs; };
     users.${username} = {
-      home = {
-        # packages = with pkgs; [
-        #   minecraft
-        # ];
-        # pointerCursor = {
-        #   name = "Adwaita";
-        #   # package = pkgs.adwaita-icon-theme;  # Unstable
-        #   package = pkgs.gnome.adwaita-icon-theme;
-        #   size = 24;
-        #   x11 = {
-        #     enable = true;
-        #     defaultCursor = "Adwaita";
-        #   };
-        # };
+      description = "desktop";
+      myHomeManager = {
+        bundles.desktop-environment.enable = true;
       };
-
-      # wayland.windowManager.hyprland = {
-      #   extraConfig = ''
-      #     # monitor=Monitor_Name,Resolution,Refresh_Rate,Scale
-      #     monitor=HDMI-A-1,1920x1080,60,1,0,0
-      #   '';
-      # };
-
-
       wayland.windowManager.sway = {
         extraConfig = ''
         output HDMI-A-1 scale 2
