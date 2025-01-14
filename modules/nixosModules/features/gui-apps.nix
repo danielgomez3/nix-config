@@ -187,15 +187,6 @@ in
       swaylock = {
         enable = true;
       };
-      wezterm = {
-        enable = true;
-        # package = inputs.wezterm.packages.${pkgs.system}.default;
-        extraConfig = ''
-          return {
-            front_end = "WebGpu",
-          }
-        '';
-      };
 
       obs-studio = {
         enable = true;
