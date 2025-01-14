@@ -1,6 +1,6 @@
 { config, lib, pkgs, self, ... }:
 {
-  tailscale = {
+  services.tailscale = {
     enable = true;
     # authKeyFile = config.sops.secrets.tailscale.path;
   };
