@@ -32,7 +32,6 @@ in
         # Misc.
         bluez bluez-alsa bluez-tools
         imagemagick
-        caffeine  # Keep awake on command
     ];
 
 
