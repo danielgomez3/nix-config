@@ -28,9 +28,11 @@ in
   imports = [ ] ++ features ++ programs;
   config.myNixOS = {
     all.enable = true;
-    sops.enable = true;
     internet.enable = true;
     coding.enable = true;
     virtualization.enable = false;
+    sops.enable = true;
+    stylix.enable = true;
+    syncthing.enable = true;
   };
 }
