@@ -72,7 +72,7 @@ in {
       myHomeManager = {
         kitty.enable = true; # Enable the kitty module
         zsh.enable = true; 
-        bash.enable = false;
+        # bash.enable = false;
         vim.enable = true; 
         neovim.enable = true; 
         ssh.enable = true; 
