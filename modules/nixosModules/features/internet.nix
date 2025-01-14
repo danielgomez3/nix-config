@@ -36,8 +36,8 @@ in
     # Enables WPA_SUPPLICANT
     wireless = {
       enable = true;
+      # Declarative configuration
       secretsFile = config.sops.secrets."wireless.env".path;
-      # secretsFile = "/run/secrets/wireless.env";
       networks = {
         # "${config.sops.secrets.wifi_networks/home/ssid}" = {
         "maple" = {  # FIXME: this is bad. Shouldn't reveal any information
@@ -46,6 +46,15 @@ in
           pskRaw = "ext:home_psk";
         };
       };
+      # Imperative configuration https://github.com/percygt/nix-dots/blob/f25f89bf97c917c7b096d384c2b3c510cb6ae4c5/modules/core/wpa_supplicant.nix#L24
+      allowAuxiliaryImperativeNetworks = true;
+      userControlled = {
+        enable = true;
+        group = "network";
+      };
+      extraConfig = ''
+        update_config=1
+      '';
     };
   };
 }
