@@ -12,16 +12,16 @@
 
 
   # Taking all modules in ./features and adding enables to them
-  # features =
-  #   myLib.extendModules
-  #   (name: {
-  #     extraOptions = {
-  #       myHomeManager.${name}.enable = lib.mkEnableOption "enable my ${name} configuration";
-  #     };
+  features =
+    myLib.extendModules
+    (name: {
+      extraOptions = {
+        myHomeManager.${name}.enable = lib.mkEnableOption "enable my ${name} configuration";
+      };
 
-  #     configExtension = config: (lib.mkIf cfg.${name}.enable config);
-  #   })
-  #   (myLib.filesIn ./features);
+      configExtension = config: (lib.mkIf cfg.${name}.enable config);
+    })
+    (myLib.filesIn ./features);
 
   programs =
     myLib.extendModules
@@ -48,27 +48,27 @@
 
 in {
   home-manager = {
-    backupFileExtension = "hm-backup";
-    extraSpecialArgs = { inherit inputs; };
-    users.${username} = {
-      home = {
-        stateVersion = "24.05";
-        packages = with pkgs; [
-          dig dmidecode 
-          eza entr tldr bc tree zip
-          pciutils usbutils 
-          cifs-utils samba
-          # cli apps
-          yt-dlp beets spotdl protonvpn-cli_2
-          tesseract ocrmypdf
-          android-tools adb-sync unzip android-tools ffmpeg mpv ventoy
-          # Nix
-          sops  just nixos-anywhere ssh-to-age colmena disko
-        ];
-      };
       imports =
         []
-        ++ programs;
+        ++ programs ++ features;
+      backupFileExtension = "hm-backup";
+      extraSpecialArgs = { inherit inputs; };
+      users.${username} = {
+        home = {
+          stateVersion = "24.05";
+          packages = with pkgs; [
+            dig dmidecode 
+            eza entr tldr bc tree zip
+            pciutils usbutils 
+            cifs-utils samba
+            # cli apps
+            yt-dlp beets spotdl protonvpn-cli_2
+            tesseract ocrmypdf
+            android-tools adb-sync unzip android-tools ffmpeg mpv ventoy
+            # Nix
+            sops  just nixos-anywhere ssh-to-age colmena disko
+          ];
+        };
       myHomeManager = {
         kitty.enable = true; # Enable the kitty module
         zsh.enable = true; 
