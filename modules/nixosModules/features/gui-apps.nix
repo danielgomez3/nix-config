@@ -7,9 +7,9 @@ in
   myNixOS = {
     wezterm.enable = true;
     kitty.enable = true;
-    emacs.enable = true;
-    zathura.enable = true;
-    obs-studio.enable = true;
+    # emacs.enable = true;
+    # zathura.enable = true;
+    # obs-studio.enable = true;
   };
   programs = {
     kdeconnect.enable = true;
