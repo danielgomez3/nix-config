@@ -54,31 +54,6 @@ in
     };
 
 
-    services = { 
-      tailscale = {
-        enable = true;
-        # authKeyFile = config.sops.secrets.tailscale.path;
-      };
-      openssh = {
-        enable = true;
-        # hostKeys = [
-        #   {
-        #     # XXX: No longer needed? Just generate a root user key and copy it over to /etc/ssh. Or what is done here: maybe you could set the path to /root/.ssh/id_ed25519 then copy that over.
-        #     comment = "to be copied over to /etc/ssh/";
-        #     path = "/etc/ssh/ssh_host_ed25519_key";
-        #     # path = "/root/.ssh/id_ed25519";
-        #     type = "ed25519";
-        #   }
-        # ];
-        settings = {
-          PasswordAuthentication = false;
-          KbdInteractiveAuthentication = false;
-          X11Forwarding = true;
-          # PermitRootLogin = "yes";        # Allow root login with password
-        };
-      };
-    };
-
 
     users = {
       # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -160,21 +135,4 @@ in
     #   };
     # };
 
-
-
-    # This value determines the NixOS release from which the default
-    # settings for stateful data, like file locations and database versions
-    # on your system were taken. It‘s perfectly fine and recommended to leave
-    # this value at the release version of the first install of this system.
-    # Before changing this value read the documentation for this option
-    # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-    system.stateVersion = "24.05"; # Did you read the comment?
-
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-
-
-
-
-  
 }

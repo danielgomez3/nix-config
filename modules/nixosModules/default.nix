@@ -26,6 +26,8 @@ let
 in
 {
   imports = [ ] ++ features ++ programs;
+  system.stateVersion = "24.05"; 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   config.myNixOS = {
     all.enable = true;
     internet.enable = true;
@@ -34,5 +36,7 @@ in
     sops.enable = true;
     stylix.enable = true;
     syncthing.enable = true;
+    openssh.enable = true;
+    tailscale.enable = true;
   };
 }
