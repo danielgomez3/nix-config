@@ -39,7 +39,7 @@ in
       # secretsFile = "/run/secrets/wireless.env";
       networks = {
         # "${config.sops.secrets.wifi_networks/home/ssid}" = {
-        "maple" = {
+        "ext:home_ssid" = {
           # psk = "naruto88";
           # psk = "@home_psk@";
           pskRaw = "ext:home_psk";
