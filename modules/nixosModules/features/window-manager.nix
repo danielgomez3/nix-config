@@ -116,7 +116,6 @@ in
         startup = [
           { command = "slack"; }
           { command = "pavucontrol"; }
-          { command = "firefox"; }
         ];
         # keybindings
         bars = [
