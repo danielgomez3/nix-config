@@ -44,35 +44,33 @@ in
   };
 
 
-  home-manager.users.${username} = {
-      wayland.windowManager.sway = {
-        extraConfig = ''
-        output HDMI-A-1 scale 2
-        ## Sleep
+  home-manager.users.${username}.wayland.windowManager.sway = {
+    extraConfig = ''
+    output HDMI-A-1 scale 2
+    ## Sleep
 
-        exec swayidle -w \
-        	timeout 520 'swaylock -c 000000 -f' \
-        	timeout 550 'swaymsg "output * power off"' \
-        	resume 'swaymsg "output * power on"'
+    exec swayidle -w \
+    	timeout 520 'swaylock -c 000000 -f' \
+    	timeout 550 'swaymsg "output * power off"' \
+    	resume 'swaymsg "output * power on"'
 
-        '';
-        config = {
-          startup = [
-            { command = "kdeconnect-sms"; }
-            { command = "plexamp"; }
-          ];
+    '';
+    config = {
+      startup = [
+        { command = "kdeconnect-sms"; }
+        { command = "plexamp"; }
+      ];
+    };
+  };
+
+  home-manager.users.${username}.programs = {
+    ssh = {
+      enable = true;
+      matchBlocks = {
+        "server-hosts" = {
+          host = "github.com gitlab.com";
         };
       };
-
-      programs = {
-        ssh = {
-          enable = true;
-          matchBlocks = {
-            "server-hosts" = {
-              host = "github.com gitlab.com";
-            };
-          };
-        };
-      };
+    };
   };
 }
