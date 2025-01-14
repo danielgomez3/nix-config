@@ -14,6 +14,9 @@ in
     bundles.desktop-environment.enable = true;
     bundles.base-system.enable = true;
   };
+  myHomeManager = {
+    features.gui-apps.enable = true;
+  };
 
   time.hardwareClockInLocalTime = true;
   hardware.keyboard.zsa.enable = true;
