@@ -4,7 +4,7 @@ config,
 ...
 }: {
 
-  ssh = {
+  programs.ssh = {
     enable = true;
     matchBlocks = {
       "server" = {

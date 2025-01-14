@@ -4,7 +4,7 @@ config,
 ...
 }: {
 
-  vim = {
+  programs.vim = {
     enable = false;
     # settings = { ignorecase = true; };
     # plugins = with pkgs.vimPlugins; [ 
