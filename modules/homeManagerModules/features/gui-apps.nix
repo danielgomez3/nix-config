@@ -10,6 +10,7 @@ in
     emacs.enable = true;
     zathura.enable = true;
     obs-studio.enable = true;
+    zsh.enable = true;
   };
 
 }
