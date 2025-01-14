@@ -14,6 +14,10 @@ in
     bundles.desktop-environment.enable = true;
     bundles.base-system.enable = true;
   };
+  home-manager.users.${username}.myHomeManager= {
+    bundles.desktop-environment.enable = true;
+  };
+
   time.hardwareClockInLocalTime = true;
   hardware.keyboard.zsa.enable = true;
 
@@ -41,9 +45,6 @@ in
 
 
   home-manager.users.${username} = {
-      myHomeManager = {
-        bundles.desktop-environment.enable = true;
-      };
       wayland.windowManager.sway = {
         extraConfig = ''
         output HDMI-A-1 scale 2
@@ -69,14 +70,6 @@ in
           matchBlocks = {
             "server-hosts" = {
               host = "github.com gitlab.com";
-              identitiesOnly = true;
-              identityFile = [
-                "/home/${username}/.ssh/id_ed25519"
-                # "~/.ssh/id_ed25519"
-                # config.sops.secrets."private_ssh_keys/${host}".path  # This is normal user key, not a root key.
-                # config.sops.secrets."private_ssh_keys/desktop".path  # This is normal user key, not a root key.
-                # "${config.sops.secrets."private_ssh_keys/common".path}"
-              ];
             };
           };
         };
