@@ -37,7 +37,7 @@ deploy target="all":
     # -git add -A :/; msg=${msg:-"CAUTION untested changes, possibly broken"}; git commit -m "$msg"; 
     -git add -A :/
     -msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
-    colmena apply -p 3 --on @{{target}} && git push
+    colmena apply -p 3 --on @{{target}}
     echo -n "Enter commit message: "; read msg; msg=${msg:-"Successful apply! No commit message given."}; git commit --amend -m "$msg"
 
 
