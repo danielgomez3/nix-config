@@ -68,7 +68,7 @@ in {
       };
       imports =
         []
-        ++ programs ++ features;
+        ++ features ++ programs;
       # myHomeManager = {
       #   kitty.enable = true; # Enable the kitty module
       #   zsh.enable = true; 
