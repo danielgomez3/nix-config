@@ -35,16 +35,16 @@
     (myLib.filesIn ./programs);
 
   # Taking all module bundles in ./bundles and adding bundle.enables to them
-  # bundles =
-  #   myLib.extendModules
-  #   (name: {
-  #     extraOptions = {
-  #       myHomeManager.bundles.${name}.enable = lib.mkEnableOption "enable ${name} module bundle";
-  #     };
+  bundles =
+    myLib.extendModules
+    (name: {
+      extraOptions = {
+        myHomeManager.bundles.${name}.enable = lib.mkEnableOption "enable ${name} module bundle";
+      };
 
-  #     configExtension = config: (lib.mkIf cfg.bundles.${name}.enable config);
-  #   })
-  #   (myLib.filesIn ./bundles);
+      configExtension = config: (lib.mkIf cfg.bundles.${name}.enable config);
+    })
+    (myLib.filesIn ./bundles);
 
 in {
   home-manager = {
@@ -68,7 +68,7 @@ in {
       };
       imports =
         []
-        ++ programs ++ features;
+        ++ programs ++ features ++ bundles;
       # myHomeManager = {
       #   kitty.enable = true; # Enable the kitty module
       #   zsh.enable = true; 
