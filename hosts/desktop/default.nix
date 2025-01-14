@@ -7,9 +7,9 @@ let
 in
 {
   myVars.username = "daniel";  # Specific username for this machine
-  # users.users.${username} = {
-  #   description = "desktop";
-  # };
+  users.users.${username} = {
+    description = "desktop";
+  };
   myNixOS = {
     bundles.desktop-environment.enable = true;
     bundles.base-system.enable = true;
@@ -53,9 +53,7 @@ in
     # };
 
 
-  home-manager = { 
-    users.${username} = {
-      description = "desktop";
+  home-manager.users.${username} = {
       myHomeManager = {
         bundles.desktop-environment.enable = true;
       };
@@ -96,6 +94,5 @@ in
           };
         };
       };
-    };
   };
 }
