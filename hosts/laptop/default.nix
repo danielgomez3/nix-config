@@ -20,12 +20,6 @@ in
   };
 
   services = {
-    tailscale = {
-      authKeyFile = config.sops.secrets.tailscale.path;
-    };
-    syncthing = {
-      guiAddress = "127.0.0.1:8383";
-    };
     tlp = {
       enable = true;
       settings = {
@@ -45,6 +39,9 @@ in
        STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
       };
     };
+    syncthing = {
+      guiAddress = "127.0.0.1:8383";
+    };
   };
 
   services.xserver = {
@@ -54,6 +51,10 @@ in
 
 
   home-manager.users.${username} = {
+      myHomeManager = {
+        features.gui-apps.enable = true;
+        features.cli-apps.enable = true;
+      };
       wayland.windowManager.sway = {
         extraConfig = ''
           ## Sleep

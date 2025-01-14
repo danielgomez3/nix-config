@@ -7,6 +7,10 @@ config,
   programs.ssh = {
     enable = true;
     matchBlocks = {
+      "server-hosts" = {
+        host = "github.com gitlab.com";
+        identitiesOnly = true;
+      };
       "server" = {
         # hostname = "server.danielgomezcoder.org";
         hostname = "server";

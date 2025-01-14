@@ -33,46 +33,32 @@ in
         # };
       };
     };
-    tailscale = {
-      authKeyFile = config.sops.secrets.tailscale.path;
-    };
     syncthing.guiAddress = "127.0.0.1:8385";
   };
 
 
   home-manager.users.${username} = {
-      myHomeManager = {
-        bundles.desktop-environment.enable = true;
-      };
-      wayland.windowManager.sway = {
-        extraConfig = ''
-        output HDMI-A-1 scale 2
-        ## Sleep
+    myHomeManager = {
+      features.gui-apps.enable = true;
+      features.cli-apps.enable = true;
+    };
+    wayland.windowManager.sway = {
+      extraConfig = ''
+      output HDMI-A-1 scale 2
+      ## Sleep
 
-        exec swayidle -w \
-        	timeout 520 'swaylock -c 000000 -f' \
-        	timeout 550 'swaymsg "output * power off"' \
-        	resume 'swaymsg "output * power on"'
+      exec swayidle -w \
+      	timeout 520 'swaylock -c 000000 -f' \
+      	timeout 550 'swaymsg "output * power off"' \
+      	resume 'swaymsg "output * power on"'
 
-        '';
-        config = {
-          startup = [
-            { command = "kdeconnect-sms"; }
-            { command = "plexamp"; }
-          ];
-        };
+      '';
+      config = {
+        startup = [
+          { command = "kdeconnect-sms"; }
+          { command = "plexamp"; }
+        ];
       };
-
-      programs = {
-        ssh = {
-          enable = true;
-          matchBlocks = {
-            "server-hosts" = {
-              host = "github.com gitlab.com";
-              identitiesOnly = true;
-            };
-          };
-        };
-      };
+    };
   };
 }

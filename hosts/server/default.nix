@@ -28,13 +28,17 @@ in
 
 
   home-manager = { 
-    # extraSpecialArgs = { inherit inputs; };
-    users.root = {
-      home = {
-        stateVersion = "24.05";
+    users = {
+      root = {
+        home = {
+          stateVersion = "24.05";
+        };
       };
-      # programs = {
-      #   };
+    ${username} = {
+      myHomeManager = {
+        features.cli-apps.enable = true;
+      };      
+    };
     };
   };
 
@@ -129,22 +133,5 @@ in
       ${tailscale}/bin/tailscale up -authkey $(cat ${config.sops.secrets.tailscale.path})
     '';
   };
-
-  # home-manager = { 
-  #   extraSpecialArgs = { inherit inputs; };
-  #   users.${username} = {
-  #     programs = with pkgs; {
-  #       kitty = {
-  #         font = {
-  #           size = 11;
-  #         };
-  #       };
-  #     };
-  #   };
-  #   packages = with pkgs; [
-  #     hello
-  #   ];
-
-  # };
 
 }
