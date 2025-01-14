@@ -7,15 +7,18 @@ let
 in
 {
   myVars.username = "daniel";  # Specific username for this machine
-  users.users.${username} = {
-    description = "desktop";
-  };
+  # users.users.${username} = {
+  #   description = "desktop";
+  # };
   myNixOS = {
     bundles.desktop-environment.enable = true;
     bundles.base-system.enable = true;
   };
-  home-manager.users.${username}.myHomeManager = {
-    features.gui-apps.enable = true;
+  home-manager.users.${username} = {
+    description = "desktop";
+    myHomeManager = {
+      features.gui-apps.enable = true;
+    };
   };
 
   time.hardwareClockInLocalTime = true;
