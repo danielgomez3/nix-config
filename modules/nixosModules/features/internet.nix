@@ -50,11 +50,11 @@ in
       allowAuxiliaryImperativeNetworks = true;
       userControlled = {
         enable = true;
-        group = "network";
+        # group = "network";
       };
-      extraConfig = ''
-        update_config=1
-      '';
+      # extraConfig = ''
+      #   update_config=1
+      # '';
     };
   };
 }
