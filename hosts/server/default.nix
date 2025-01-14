@@ -34,11 +34,11 @@ in
           stateVersion = "24.05";
         };
       };
-    ${username} = {
-      myHomeManager = {
-        features.cli-apps.enable = true;
-      };      
-    };
+      ${username} = {
+        myHomeManager = {
+          features.cli-apps.enable = true;
+        };      
+      };
     };
   };
 
