@@ -12,7 +12,9 @@ in
   users.users.${username} = {
     description = "server";
   };
-
+  myNixOS = {
+    bundles.base-system.enable = true;
+  };
   environment = {
     # sessionVariables = {
     #   GITHUB_TOKEN = config.sops.secrets.github_token.path;  
