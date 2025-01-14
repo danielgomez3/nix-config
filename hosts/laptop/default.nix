@@ -15,8 +15,7 @@ in
   };
 
   myNixOS = {
-    desktop-environment.enable = true;
-    desktop-apps.enable = true;
+    bundles.desktop-environment.enable = true;
   };
 
   services = {
@@ -72,22 +71,4 @@ in
       };
   };
 
-  # NOTE: Unique home-manager config for laptop:
-  # home-manager = { 
-  #   extraSpecialArgs = { inherit inputs; };
-  #   users.${username} = {
-  #     programs = with pkgs; {
-  #       kitty = {
-  #         font = {
-  #           size = 14;
-  #         };
-  #       };
-  #     };
-  #   };
-  # };
-
-
-
-
-
-  }
+}

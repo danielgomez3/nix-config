@@ -11,8 +11,7 @@ in
     description = "desktop";
   };
   myNixOS = {
-    desktop-environment.enable = true;
-    desktop-apps.enable = true;
+    bundles.desktop-environment.enable = true;
   };
 
   time.hardwareClockInLocalTime = true;
