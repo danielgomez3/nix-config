@@ -53,6 +53,7 @@ in {
       ++ programs;
     myHomeManager = {
       kitty.enable = true; # Enable the kitty module
+      zsh.enable = true; 
     };
   };
 }
