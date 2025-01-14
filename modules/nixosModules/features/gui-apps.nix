@@ -26,12 +26,13 @@ in
         libreoffice hunspell hunspellDicts.uk_UA hunspellDicts.th_TH
         cmus xournalpp pavucontrol
         feh ardour audacity vlc 
-        #gnome-session
+        # gnome-session
         libsForQt5.kpeople # HACK: Get kde sms working properly
         libsForQt5.kpeoplevcard # HACK: Get kde sms working properly
         # Misc.
         bluez bluez-alsa bluez-tools
         imagemagick
+        caffeine
     ];
 
 
