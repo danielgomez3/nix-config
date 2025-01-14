@@ -27,8 +27,6 @@ in
 {
   imports = [ ] ++ features ++ programs;
   config.myNixOS = {
-    system.stateVersion = "24.05"; 
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
     all.enable = true;
     internet.enable = true;
     coding.enable = true;
