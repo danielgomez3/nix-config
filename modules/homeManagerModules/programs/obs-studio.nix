@@ -1,6 +1,6 @@
 { config, lib, pkgs, self, ... }:
 {
-  obs-studio = {
+  programs.obs-studio = {
     enable = true;
   };
 }

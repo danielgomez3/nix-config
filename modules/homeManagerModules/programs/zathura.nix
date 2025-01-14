@@ -1,6 +1,6 @@
 { config, lib, pkgs, self, ... }:
 {
-  zathura = {
+  programs.zathura = {
     enable = true;
     options = {
       selection-clipboard = "clipboard";
