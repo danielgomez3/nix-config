@@ -14,10 +14,6 @@ in
     bundles.desktop-environment.enable = true;
     bundles.base-system.enable = true;
   };
-  home-manager.users.${username}.myHomeManager= {
-    bundles.desktop-environment.enable = true;
-  };
-
   time.hardwareClockInLocalTime = true;
   hardware.keyboard.zsa.enable = true;
 
@@ -44,33 +40,39 @@ in
   };
 
 
-  home-manager.users.${username}.wayland.windowManager.sway = {
-    extraConfig = ''
-    output HDMI-A-1 scale 2
-    ## Sleep
+  home-manager.users.${username} = {
+      myHomeManager = {
+        bundles.desktop-environment.enable = true;
+      };
+      wayland.windowManager.sway = {
+        extraConfig = ''
+        output HDMI-A-1 scale 2
+        ## Sleep
 
-    exec swayidle -w \
-    	timeout 520 'swaylock -c 000000 -f' \
-    	timeout 550 'swaymsg "output * power off"' \
-    	resume 'swaymsg "output * power on"'
+        exec swayidle -w \
+        	timeout 520 'swaylock -c 000000 -f' \
+        	timeout 550 'swaymsg "output * power off"' \
+        	resume 'swaymsg "output * power on"'
 
-    '';
-    config = {
-      startup = [
-        { command = "kdeconnect-sms"; }
-        { command = "plexamp"; }
-      ];
-    };
-  };
-
-  home-manager.users.${username}.programs = {
-    ssh = {
-      enable = true;
-      matchBlocks = {
-        "server-hosts" = {
-          host = "github.com gitlab.com";
+        '';
+        config = {
+          startup = [
+            { command = "kdeconnect-sms"; }
+            { command = "plexamp"; }
+          ];
         };
       };
-    };
+
+      programs = {
+        ssh = {
+          enable = true;
+          matchBlocks = {
+            "server-hosts" = {
+              host = "github.com gitlab.com";
+              identitiesOnly = true;
+            };
+          };
+        };
+      };
   };
 }
