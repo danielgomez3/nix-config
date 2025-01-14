@@ -51,10 +51,10 @@ in
 
 
   home-manager.users.${username} = {
-      # myHomeManager = {
-      #   features.gui-apps.enable = true;
-      #   features.cli-apps.enable = true;
-      # };
+      myHomeManager = {
+        gui-apps.enable = true;
+        cli-apps.enable = true;
+      };
       wayland.windowManager.sway = {
         extraConfig = ''
           ## Sleep
