@@ -38,7 +38,7 @@ let
 
 in
 {
-  imports = [ ] ++ features ++ programs;
+  imports = [ ] ++ features ++ programs ++ bundles;
   config.myNixOS = {
     all.enable = true;
     internet.enable = true;
