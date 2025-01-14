@@ -24,7 +24,6 @@ build:
 commit:
     -git add -A :/
     echo -n "Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
-    git push
 
 
 # save:
