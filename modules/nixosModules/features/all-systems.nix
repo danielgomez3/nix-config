@@ -7,23 +7,25 @@
 
 { self, config, pkgs, lib, inputs,  name, ... }:
 let 
-  # nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
-  # cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
   username = config.myVars.username;
 in
 {
 
-  # A custom 'service' called 'all'. If a system has this enabled, it will inherit the following settings!:
+    # This value determines the NixOS release from which the default
+    # settings for stateful data, like file locations and database versions
+    # on your system were taken. It‘s perfectly fine and recommended to leave
+    # this value at the release version of the first install of this system.
+    # Before changing this value read the documentation for this option
+    # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+    system.stateVersion = "24.05"; # Did you read the comment?
+    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
 
     swapDevices = [{
       device = "/swapfile";
       size = 16 * 1024; # 16GB
     }];
     nixpkgs.config.allowUnfree = true;
-    # nix.settings = {
-    #   substituters. ["https://hyprland.cachix.org"];
-    #   trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-    # };
 
     # https://wiki.nixos.org/wiki/Syncthing#tips
     # Don't create default ~/Sync folder
@@ -134,18 +136,6 @@ in
     #     };
     #   };
     # };
-
-
-
-    # This value determines the NixOS release from which the default
-    # settings for stateful data, like file locations and database versions
-    # on your system were taken. It‘s perfectly fine and recommended to leave
-    # this value at the release version of the first install of this system.
-    # Before changing this value read the documentation for this option
-    # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-    system.stateVersion = "24.05"; # Did you read the comment?
-
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 
 

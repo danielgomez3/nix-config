@@ -40,7 +40,7 @@ in
 {
   imports = [ ] ++ features ++ programs ++ bundles;
   config.myNixOS = {
-    all.enable = true;
+    all-systems.enable = true;
     internet.enable = true;
     coding.enable = true;
     virtualization.enable = false;
