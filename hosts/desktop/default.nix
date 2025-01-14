@@ -12,6 +12,7 @@ in
   };
   myNixOS = {
     bundles.desktop-environment.enable = true;
+    bundles.base-system.enable = true;
   };
 
   time.hardwareClockInLocalTime = true;

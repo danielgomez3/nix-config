@@ -16,6 +16,7 @@ in
 
   myNixOS = {
     bundles.desktop-environment.enable = true;
+    bundles.base-system.enable = true;
   };
 
   services = {

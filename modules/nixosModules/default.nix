@@ -39,15 +39,4 @@ let
 in
 {
   imports = [ ] ++ features ++ programs ++ bundles;
-  config.myNixOS = {
-    all-systems.enable = true;
-    internet.enable = true;
-    coding.enable = true;
-    virtualization.enable = false;
-    sops.enable = true;
-    stylix.enable = true;
-    syncthing.enable = true;
-    openssh.enable = true;
-    tailscale.enable = true;
-  };
 }
