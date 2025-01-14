@@ -1,7 +1,4 @@
 { config, pkgs, lib, inputs, ... }:
-let
-  username = config.myVars.username;
-in
 {
 
   myHomeManager = {

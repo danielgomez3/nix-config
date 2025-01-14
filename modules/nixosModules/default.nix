@@ -3,6 +3,7 @@
 let
   # cfg = config.services.all;  # My custom service called 'all'
   cfg = config.myNixOS;
+
   features =
     myLib.extendModules
     (name: {
