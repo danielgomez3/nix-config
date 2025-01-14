@@ -1,6 +1,6 @@
 { config, lib, pkgs, self, ... }:
 {
-  emacs = {
+  programs.emacs = {
     enable = true;
     # package = emacsPackages.doom;
     extraConfig = ''
