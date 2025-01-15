@@ -2,25 +2,20 @@
 
   services.swayidle = {
     enable = true;
-    package = pkgs.swayidle;
-    events = [
-      {
-        event = "before-sleep";
-        command = ""; # Disable redundant locking here
-      }
-    ];
     timeouts = [
       {
         timeout = 10;
-        command = "${pkgs.swaylock-effects}/bin/swaylock";
+        command = "${pkgs.swaylock}/bin/swaylock -fF";
       }
       {
         timeout = 20;
         command = "${pkgs.systemd}/bin/systemctl suspend";
       }
     ];
-    extraArgs = [ "-w" ];
-    systemdTarget = "sway-session.target";
+    events = [{
+      event = "lock";
+      command = "${pkgs.swaylock}/bin/swaylock -fF";
+    }];
   };
 
 }
