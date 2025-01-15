@@ -44,13 +44,6 @@ let
         }
       ]
       ++
-      # Mute mic
-      (afterLockTimeout {
-        timeout = 5;
-        command = "${pactl} set-source-mute @DEFAULT_SOURCE@ yes";
-        resumeCommand = "${pactl} set-source-mute @DEFAULT_SOURCE@ no";
-      })
-      ++
       # Suspend the system
       [
         {
