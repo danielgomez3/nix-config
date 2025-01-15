@@ -1,6 +1,6 @@
 {pkgs,lib,...}:{
 
-  ly = {
+  services.displayManager.ly = {
     enable = true;
   };
 
