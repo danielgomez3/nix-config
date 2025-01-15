@@ -28,7 +28,7 @@ in
       exec_always autotiling
 
       # Functionality
-      # exec sway-audio-idle-inhibit
+      exec ${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit
       no_focus [all]
       focus_on_window_activation none
       #assign [class="[Ss]lack"] title=[".*Slack.*"] workspace 2
@@ -39,6 +39,8 @@ in
       assign [title="KDE Connect SMS"] workspace 2
       assign [title="Volume Control"] workspace 10
       bindsym ${modKey}+Semicolon exec --no-startup-id flash_window
+
+      # Prevent lock screens when firefox is in full
     '';
     config = {
       modifier = "${modKey}";
