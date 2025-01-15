@@ -11,14 +11,13 @@
       defaultShared = true;
       openFirewall = true;
     };
+
     # Enable autodescovery of network printers
     avahi = {
       enable = true;
       nssmdns4 = true;
       openFirewall = true;
     };
-    # Maybe drivers needed too...
-    # printing.drivers = [ YOUR_DRIVER ];
 
   };
 }
