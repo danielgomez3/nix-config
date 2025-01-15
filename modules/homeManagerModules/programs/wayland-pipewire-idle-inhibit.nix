@@ -1,18 +1,16 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, inputs, ... }: {
 
+  imports = [ inputs.wayland-pipewire-idle-inhibit.homeModules.default ];
   services.wayland-pipewire-idle-inhibit = {
     enable = true;
     systemdTarget = "sway-session.target";
     settings = {
       verbosity = "INFO";
-      media_minimum_duration = 10;
+      media_minimum_duration = 30;
       idle_inhibitor = "wayland";
-      # sink_whitelist = [
-      #   { name = "Starship/Matisse HD Audio Controller Analog Stereo"; }
-      # ];
+      sink_whitelist = [
+      ];
       node_blacklist = [
-        { name = "spotify"; }
-        { app_name = "Music Player Daemon"; }
       ];
     };
   };
