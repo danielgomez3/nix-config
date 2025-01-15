@@ -3,6 +3,7 @@
   services = {
     # Enable CUPS to print documents.
     printing.enable = true;
+    services.printing.drivers = [ pkgs.brlaser ];
     # Enable autodescovery of network printers
     avahi = {
       enable = true;
