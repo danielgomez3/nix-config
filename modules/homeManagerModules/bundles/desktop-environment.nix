@@ -5,6 +5,6 @@
     cli-apps.enable = true; 
     sway.enable = true;
     swayidle.enable = true;
-    wayland-pipewire-idle-inhibit.enable = true;
+    # wayland-pipewire-idle-inhibit.enable = true;
   }; 
 }
