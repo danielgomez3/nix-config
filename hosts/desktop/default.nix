@@ -48,8 +48,8 @@ in
       ## Sleep
 
       exec swayidle -w \
-      	timeout 20 'swaylock -c 000000 -f' \
-      	timeout 50 'swaymsg "output * power off"' \
+      	timeout 20 'swaylock' \
+      	timeout 30 'systemctl suspend' \
       	resume 'swaymsg "output * power on"'
 
       '';
