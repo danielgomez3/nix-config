@@ -41,7 +41,7 @@ in
     myHomeManager = {
       # gui-apps.enable = true;
       # cli-apps.enable = true;
-      bundles.gui-apps.enable = true;
+      bundles.desktop-environment.enable = true;
     };
     wayland.windowManager.sway = {
       extraConfig = ''
