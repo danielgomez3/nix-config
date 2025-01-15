@@ -8,10 +8,8 @@
       verbosity = "INFO";
       media_minimum_duration = 30;
       idle_inhibitor = "wayland";
-      sink_whitelist = [
-      ];
-      node_blacklist = [
-      ];
+      # sink_whitelist = [];
+      # node_blacklist = [];
     };
   };
 
