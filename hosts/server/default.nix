@@ -43,7 +43,6 @@ in
   };
 
 
-  hardware.keyboard.zsa.enable = true;
   security.acme = {
     defaults.email = "${toString config.sops.secrets.email}";
     acceptTerms = true;
