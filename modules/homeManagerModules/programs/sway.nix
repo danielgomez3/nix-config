@@ -24,8 +24,8 @@ in
 
 
       # Vanity
-      exec_always --no-startup-id flashfocus
-      exec_always autotiling
+      #exec_always --no-startup-id flashfocus
+      #exec_always autotiling
 
       # Functionality
       no_focus [all]
@@ -42,7 +42,7 @@ in
       # Prevent lockscreen when fullscreen:
       for_window [class=".*"] inhibit_idle fullscreen
       for_window [app_id=".*"] inhibit_idle fullscreen
-      exec wayland-pipewire-idle-inhibit 
+      #exec wayland-pipewire-idle-inhibit 
     '';
     config = {
       modifier = "${modKey}";
@@ -50,6 +50,18 @@ in
       startup = [
         { command = "slack"; }
         { command = "pavucontrol"; }
+        {
+          command = "autotiling";
+          always = true;
+        }
+        {
+          command = "flashfocus";
+          always = true;
+        }
+        {
+          command =  "wayland-pipewire-idle-inhibit";
+          always = true;
+        } 
         # { command = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"; }
       ];
       # keybindings
