@@ -1,4 +1,6 @@
-{pkgs,lib,...}:{
+{ config, lib, pkgs, self, ... }:
+{
+
   # https://wiki.nixos.org/wiki/Sway
   services.greetd = {                                                      
     enable = true;                                                         
@@ -9,4 +11,6 @@
       };                                                                   
     };                                                                     
   };
+
+
 }
