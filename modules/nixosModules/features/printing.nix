@@ -2,8 +2,10 @@
   # https://wiki.nixos.org/wiki/Printing
   services = {
     # Enable CUPS to print documents.
-    printing.enable = true;
-    printing.drivers = [ pkgs.brlaser ];
+    printing = {
+      enable = true;
+      drivers = [ pkgs.brlaser ];
+    };
     # Enable autodescovery of network printers
     avahi = {
       enable = true;
