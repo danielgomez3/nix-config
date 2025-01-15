@@ -39,8 +39,10 @@ in
       assign [title="Volume Control"] workspace 10
       bindsym ${modKey}+Semicolon exec --no-startup-id flash_window
 
-      # Prevent lockscreen when audio is playing TODO: put in dedicated area:
-      #exec wayland-pipewire-idle-inhibit 
+      # Prevent lockscreen when fullscreen:
+      for_window [class=".*"] inhibit_idle fullscreen
+      for_window [app_id=".*"] inhibit_idle fullscreen
+      exec wayland-pipewire-idle-inhibit 
     '';
     config = {
       modifier = "${modKey}";
@@ -48,10 +50,6 @@ in
       startup = [
         { command = "slack"; }
         { command = "pavucontrol"; }
-        {
-          command = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit";
-          always = false;
-        }
         # { command = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"; }
       ];
       # keybindings
