@@ -23,10 +23,6 @@ in
       }
 
 
-      # Vanity
-      #exec_always --no-startup-id flashfocus
-      #exec_always autotiling
-
       # Functionality
       no_focus [all]
       focus_on_window_activation none
@@ -38,11 +34,6 @@ in
       assign [title="KDE Connect SMS"] workspace 2
       assign [title="Volume Control"] workspace 10
       bindsym ${modKey}+Semicolon exec --no-startup-id flash_window
-
-      # Prevent lockscreen when fullscreen:
-      for_window [class=".*"] inhibit_idle fullscreen
-      for_window [app_id=".*"] inhibit_idle fullscreen
-      #exec wayland-pipewire-idle-inhibit 
     '';
     config = {
       modifier = "${modKey}";
@@ -51,15 +42,15 @@ in
         { command = "slack"; }
         { command = "pavucontrol"; }
         {
-          command = "autotiling";
+          command = "${pkgs.autotiling}/bin/autotiling";
           always = true;
         }
         {
-          command = "flashfocus";
+          command = "${pkgs.flashfocus}/bin/flashfocus";
           always = true;
         }
         {
-          command =  "wayland-pipewire-idle-inhibit";
+          command = "${pkgs.wayland-pipewire-idle-inhibit}/wayland-pipewire-idle-inhibit";
           always = true;
         } 
         # { command = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"; }

@@ -45,7 +45,6 @@ in
   };
 
   services.xserver = {
-   # enable = true;
    xkb.options = "caps:swapescape";
   };
 
@@ -54,15 +53,6 @@ in
       myHomeManager = {
         gui-apps.enable = true;
         cli-apps.enable = true;
-      };
-      wayland.windowManager.sway = {
-        extraConfig = ''
-          ## Sleep
-          exec swayidle -w \
-          	timeout 320 'swaylock -c 000000 -f' \
-          	timeout 350 'swaymsg "output * power off"' \
-          	resume 'swaymsg "output * power on"'
-        '';
       };
       wayland.windowManager.hyprland = {
         settings = {
