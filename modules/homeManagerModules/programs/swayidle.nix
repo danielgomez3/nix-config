@@ -12,7 +12,7 @@ let
   swaymsg = "${config.wayland.windowManager.sway.package}/bin/swaymsg";
 
   isLocked = "${pgrep} -x ${swaylock}";
-  lockTime = 15 * 60; # TODO: configurable desktop (10 min)/laptop (4 min)
+  lockTime = 10; 
 
   # Makes two timeouts: one for when the screen is not locked (lockTime+timeout) and one for when it is.
   afterLockTimeout =
@@ -46,7 +46,7 @@ let
       ++
       # Mute mic
       (afterLockTimeout {
-        timeout = 10;
+        timeout = 5;
         command = "${pactl} set-source-mute @DEFAULT_SOURCE@ yes";
         resumeCommand = "${pactl} set-source-mute @DEFAULT_SOURCE@ no";
       })
@@ -54,7 +54,7 @@ let
       # Suspend the system
       [
         {
-          timeout = lockTime + 40;
+          timeout = lockTime + 10;
           command = "${isLocked} && systemctl suspend";
         }
       ];
