@@ -26,7 +26,6 @@ in
       # Vanity
       exec_always --no-startup-id flashfocus
       exec_always autotiling
-      exec_always sway-audio-idle-inhibit
 
       # Functionality
       no_focus [all]
