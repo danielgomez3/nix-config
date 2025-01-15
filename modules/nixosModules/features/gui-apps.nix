@@ -33,14 +33,7 @@ in
         bluez bluez-alsa bluez-tools
         imagemagick
     ];
-
-
-    services.swayidle = {
-      enable = true;
-    };
-
-
-
   };
+
 }
 

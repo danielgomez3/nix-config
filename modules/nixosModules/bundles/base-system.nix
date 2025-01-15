@@ -17,6 +17,12 @@ in
   system.stateVersion = "24.05"; 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=yes
+    AllowHibernation=yes
+    AllowHybridSleep=yes
+    AllowSuspendThenHibernate=yes
+  '';
 
   swapDevices = [{
     device = "/swapfile";
