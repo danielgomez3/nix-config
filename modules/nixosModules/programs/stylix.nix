@@ -3,7 +3,7 @@
   stylix = {
     enable = true;
     # TODO: Maybe make a new dir? Or maybe make this path more pure with a variable.
-    image = "${self.outPath}/modules/nixosModules/additional/wallpapers/white.jpg";
+    image = "${self.outPath}/modules/nixosModules/additional/wallpapers/pink-pastel.jpg";
     # image = ../additional/wallpapers/white.jpg;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox.yaml";

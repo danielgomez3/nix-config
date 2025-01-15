@@ -46,13 +46,6 @@ in
     wayland.windowManager.sway = {
       extraConfig = ''
       output HDMI-A-1 scale 2
-      ## Sleep
-
-      #exec swayidle -w \
-      #	timeout 20 'swaylock' \
-      #	timeout 30 'systemctl suspend' \
-      #	resume 'swaymsg "output * power on"'
-
       '';
       config = {
         startup = [
