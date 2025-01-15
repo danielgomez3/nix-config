@@ -1,16 +1,12 @@
-{pkgs,lib,...}:{
+{ pkgs, lib, ... }: {
 
   services.swayidle = {
     enable = true;
-    package = pkgs.swayidle; # Default package, can be customized if needed
+    package = pkgs.swayidle;
     events = [
       {
         event = "before-sleep";
-        command = "${pkgs.swaylock-effects}/bin/swaylock";
-      }
-      {
-        event = "lock";
-        command = "${pkgs.swaylock-effects}/bin/swaylock";
+        command = ""; # Disable redundant locking here
       }
     ];
     timeouts = [
@@ -23,8 +19,8 @@
         command = "${pkgs.systemd}/bin/systemctl suspend";
       }
     ];
-    extraArgs = [ "-w" ]; # Default, keeps swayidle alive while sway is running
-    systemdTarget = "sway-session.target"; # Adjust target if needed
+    extraArgs = [ "-w" ];
+    systemdTarget = "sway-session.target";
   };
 
 }
