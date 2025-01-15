@@ -48,6 +48,7 @@ in
         { command = "slack"; }
         { command = "pavucontrol"; }
         # { command = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"; }
+        { command = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"; }
       ];
       # keybindings
       bars = [

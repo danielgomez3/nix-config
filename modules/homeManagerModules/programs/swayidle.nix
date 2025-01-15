@@ -6,7 +6,8 @@
     timeouts = [
       {
         timeout = 10;
-        command = "${pkgs.swaylock}/bin/swaylock -fF";
+        # command = "${pkgs.swaylock}/bin/swaylock -fF";
+        command = "${pkgs.swaylock}/bin/swaylock";
       }
       {
         timeout = 20;
@@ -15,7 +16,8 @@
     ];
     events = [{
       event = "lock";
-      command = "${pkgs.swaylock}/bin/swaylock -fF";
+      # command = "${pkgs.swaylock}/bin/swaylock -fF";
+        command = "${pkgs.swaylock}/bin/swaylock";
     }];
   };
 
