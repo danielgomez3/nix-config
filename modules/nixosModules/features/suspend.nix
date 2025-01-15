@@ -18,7 +18,7 @@ in
         enable = true;
         settings = {
           general = {
-            after_sleep_cmd = "hyprctl dispatch dpms on";
+            after_sleep_cmd = "${pkgs.hyprctl} dispatch dpms on";
             ignore_dbus_inhibit = false;
             lock_cmd = "swaylock";
           };
@@ -30,7 +30,7 @@ in
             {
               timeout = 30;
               on-timeout = "systemctl suspend";
-              on-resume = "hyprctl dispatch dpms on";
+              on-resume = "${pkgs.hyprctl} dispatch dpms on";
             }
           ];
         };
