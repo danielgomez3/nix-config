@@ -1,7 +1,7 @@
 {pkgs,lib,...}:{
 
   myNixOS = {
-    gdm.enable = true;
+    greetd.enable = true;
   };
 
 

@@ -44,7 +44,6 @@ in
     polkit.enable = true;
     pam.services.swaylock = {};
   };
-  # security.pam.services.gdm = {};
   security.pam.loginLimits = [
     { domain = "@users"; item = "rtprio"; type = "-"; value = 1; }
   ];
