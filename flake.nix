@@ -54,7 +54,6 @@
         };
         imports = [
           inputs.home-manager.nixosModules.default
-          inputs.wayland-pipewire-idle-inhibit.homeModules.default
           inputs.sops-nix.nixosModules.sops
           disko.nixosModules.disko
           inputs.stylix.nixosModules.stylix
