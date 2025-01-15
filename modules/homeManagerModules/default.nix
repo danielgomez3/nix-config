@@ -5,7 +5,6 @@
   config,
   lib,
   myLib,
-  wayland-pipewire-idle-inhibit,
   ...
 }: let
   cfg = config.home-manager.users.${username}.myHomeManager;
