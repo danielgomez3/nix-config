@@ -1,7 +1,7 @@
 {pkgs,lib,...}:{
 
   myNixOS = {
-    lightdm.enable = true;
+    gdm.enable = true;
   };
 
 
