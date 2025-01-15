@@ -68,6 +68,7 @@ in {
       };
       imports =
         []
+        ++ inputs.wayland-pipewire-idle-inhibit.homeModules.default
         ++ features ++ programs ++ bundles;
       # myHomeManager = {
       #   kitty.enable = true; # Enable the kitty module

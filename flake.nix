@@ -24,7 +24,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, disko, colmena, stylix, ... }: 
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, disko, colmena, stylix, wayland-pipewire-idle-inhibit, ... }: 
   # outputs = inputs@{ self, nixpkgs, disko, colmena,  ... }: 
     let 
       system = "x86_64-linux";
