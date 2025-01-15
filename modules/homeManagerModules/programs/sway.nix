@@ -28,7 +28,6 @@ in
       exec_always autotiling
 
       # Functionality
-      exec ${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit
       no_focus [all]
       focus_on_window_activation none
       #assign [class="[Ss]lack"] title=[".*Slack.*"] workspace 2
@@ -48,6 +47,7 @@ in
       startup = [
         { command = "slack"; }
         { command = "pavucontrol"; }
+        { command = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"; }
       ];
       # keybindings
       bars = [
