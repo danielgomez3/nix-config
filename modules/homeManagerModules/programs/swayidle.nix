@@ -6,8 +6,8 @@
     timeouts = [
       {
         timeout = 10;
-        command = "swaymsg 'output * dpms off'";
-        resumeCommand = "swaymsg 'output * dpms on'"; # Optional: Restore screen when activity resumes
+        # command = "swaymsg 'output * dpms off'";
+        command = "${pkgs.swaylock}/bin/swaylock -fF"; # Lock the screen after 10 seconds
       }
       {
         timeout = 20;
