@@ -1,16 +1,22 @@
 {pkgs,lib,...}:{
 
-  services.sway = {
+  services.swayidle = {
     enable = true;
-    config = {
-      idle = {
-        enabled = true;
-        timeout = {
-          "10s" = "swaymsg 'output * dpms off'";
-          "20s" = "systemctl suspend";
-        };
-      };
-    };
+    package = pkgs.swayidle; # Default package, can be customized if needed
+    timeouts = [
+      {
+        timeout = 10;
+        command = "swaymsg 'output * dpms off'";
+        resumeCommand = "swaymsg 'output * dpms on'"; # Optional: Restore screen when activity resumes
+      }
+      {
+        timeout = 20;
+        command = "systemctl suspend";
+      }
+    ];
+    events = []; # Add events like locking the screen if needed
+    extraArgs = [ "-w" ]; # Default, keeps swayidle alive while sway is running
+    systemdTarget = "sway-session.target"; # Adjust target if needed
   };
 
 }
