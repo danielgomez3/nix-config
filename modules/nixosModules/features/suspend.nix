@@ -24,11 +24,11 @@ in
           };
           listener = [
             {
-              timeout = 300;
+              timeout = 20;
               on-timeout = "swaylock";
             }
             {
-              timeout = 390;
+              timeout = 30;
               on-timeout = "systemctl suspend";
               on-resume = "hyprctl dispatch dpms on";
             }

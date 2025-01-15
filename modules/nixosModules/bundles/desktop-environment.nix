@@ -9,7 +9,7 @@
     greeter.enable = true;
     printing.enable = true;
     sound.enable = true;
-    suspend-and-hibernate.enable = true;
+    suspend.enable = true;
   };
 
 }
