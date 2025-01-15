@@ -9,7 +9,6 @@
     greeter.enable = true;
     printing.enable = true;
     sound.enable = true;
-    swayidle.enable = true;
   };
 
 }
