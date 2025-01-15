@@ -5,11 +5,11 @@
     enable = true;
     timeouts = [
       {
-        timeout = 200;
+        timeout = 10;
         command = "${pkgs.swaylock}/bin/swaylock -fF";
       }
       {
-        timeout = 300;
+        timeout = 20;
         command = "${pkgs.systemd}/bin/systemctl suspend";
       }
     ];
