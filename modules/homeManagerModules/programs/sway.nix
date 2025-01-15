@@ -40,7 +40,7 @@ in
       bindsym ${modKey}+Semicolon exec --no-startup-id flash_window
 
       # Prevent lockscreen when audio is playing TODO: put in dedicated area:
-      exec wayland-pipewire-idle-inhibit 
+      #exec wayland-pipewire-idle-inhibit 
     '';
     config = {
       modifier = "${modKey}";
@@ -48,7 +48,10 @@ in
       startup = [
         { command = "slack"; }
         { command = "pavucontrol"; }
-        { command = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"; }
+        {
+          command = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit";
+          always = false;
+        }
         # { command = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"; }
       ];
       # keybindings
