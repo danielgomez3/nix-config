@@ -3,18 +3,26 @@
   services.swayidle = {
     enable = true;
     package = pkgs.swayidle; # Default package, can be customized if needed
+    events = [
+      {
+        event = "before-sleep";
+        command = "${pkgs.swaylock-effects}/bin/swaylock";
+      }
+      {
+        event = "lock";
+        command = "${pkgs.swaylock-effects}/bin/swaylock";
+      }
+    ];
     timeouts = [
       {
         timeout = 10;
-        # command = "swaymsg 'output * dpms off'";
-        command = "${pkgs.swaylock}/bin/swaylock -fF"; # Lock the screen after 10 seconds
+        command = "${pkgs.swaylock-effects}/bin/swaylock";
       }
       {
         timeout = 20;
-        command = "systemctl suspend";
+        command = "${pkgs.systemd}/bin/systemctl suspend";
       }
     ];
-    events = []; # Add events like locking the screen if needed
     extraArgs = [ "-w" ]; # Default, keeps swayidle alive while sway is running
     systemdTarget = "sway-session.target"; # Adjust target if needed
   };
