@@ -4,7 +4,7 @@
   inputs,
   config,
   lib,
-  myLib,
+  myHelper,
   ...
 }: let
   cfg = config.home-manager.users.${username}.myHomeManager;
@@ -13,7 +13,7 @@
 
   # Taking all modules in ./features and adding enables to them
   features =
-    myLib.extendModules
+    myHelper.extendModules
     (name: {
       extraOptions = {
         myHomeManager.${name}.enable = lib.mkEnableOption "enable my ${name} configuration";
@@ -21,10 +21,10 @@
 
       configExtension = config: (lib.mkIf cfg.${name}.enable config);
     })
-    (myLib.filesIn ./features);
+    (myHelper.filesIn ./features);
 
   programs =
-    myLib.extendModules
+    myHelper.extendModules
     (name: {
       extraOptions = {
         myHomeManager.${name}.enable = lib.mkEnableOption "enable my ${name} configuration";
@@ -32,11 +32,11 @@
 
       configExtension = config: (lib.mkIf cfg.${name}.enable config);
     })
-    (myLib.filesIn ./programs);
+    (myHelper.filesIn ./programs);
 
   # Taking all module bundles in ./bundles and adding bundle.enables to them
   bundles =
-    myLib.extendModules
+    myHelper.extendModules
     (name: {
       extraOptions = {
         myHomeManager.bundles.${name}.enable = lib.mkEnableOption "enable ${name} module bundle";
@@ -44,7 +44,7 @@
 
       configExtension = config: (lib.mkIf cfg.bundles.${name}.enable config);
     })
-    (myLib.filesIn ./bundles);
+    (myHelper.filesIn ./bundles);
 
 in {
   home-manager = {

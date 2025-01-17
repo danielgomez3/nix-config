@@ -1,5 +1,5 @@
 {inputs}: let
-  myLib = (import ./default.nix) {inherit inputs;};
+  myHelper = (import ./default.nix) {inherit inputs;};
   outputs = inputs.self.outputs;
 in rec {
   # ================================================================ #
@@ -15,7 +15,7 @@ in rec {
   # mkSystem = config:
   #   inputs.nixpkgs.lib.nixosSystem {
   #     specialArgs = {
-  #       inherit inputs outputs myLib;
+  #       inherit inputs outputs myHelper;
   #     };
   #     modules = [
   #       config
@@ -27,7 +27,7 @@ in rec {
   #   inputs.home-manager.lib.homeManagerConfiguration {
   #     pkgs = pkgsFor sys;
   #     extraSpecialArgs = {
-  #       inherit inputs myLib outputs;
+  #       inherit inputs myHelper outputs;
   #     };
   #     modules = [
         

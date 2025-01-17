@@ -1,11 +1,11 @@
 # imports = [ ./username.nix ./coding.nix ./gui.nix ./all.nix ./virtualization.nix ];
-{ myLib, config, pkgs, lib, inputs,  name, ... }:
+{ myHelper, config, pkgs, lib, inputs,  name, ... }:
 let
   # cfg = config.services.all;  # My custom service called 'all'
   cfg = config.myNixOS;
 
   features =
-    myLib.extendModules
+    myHelper.extendModules
     (name: {
       extraOptions = {
         myNixOS.${name}.enable = lib.mkEnableOption "enable my ${name} configuration";
@@ -13,10 +13,10 @@ let
 
       configExtension = config: (lib.mkIf cfg.${name}.enable config);
     })
-    (myLib.filesIn ./features);
+    (myHelper.filesIn ./features);
 
     bundles =
-      myLib.extendModules
+      myHelper.extendModules
       (name: {
         extraOptions = {
           myNixOS.bundles.${name}.enable = lib.mkEnableOption "enable ${name} module bundle";
@@ -24,10 +24,10 @@ let
 
         configExtension = config: (lib.mkIf cfg.bundles.${name}.enable config);
       })
-      (myLib.filesIn ./bundles);
+      (myHelper.filesIn ./bundles);
 
    programs =
-      myLib.extendModules
+      myHelper.extendModules
       (name: {
         extraOptions = {
           myNixOS.${name}.enable = lib.mkEnableOption "enable my ${name} configuration";
@@ -35,7 +35,7 @@ let
 
         configExtension = config: (lib.mkIf cfg.${name}.enable config);
       })
-      (myLib.filesIn ./programs);
+      (myHelper.filesIn ./programs);
 
 in
 {
