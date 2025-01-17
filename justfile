@@ -10,8 +10,8 @@ msg_build_success := "Successful build! No commit message given."
 msg_deploy_success := "Successful apply/deploy on @{{target}}! No commit message given"
 
 commit_unreviewed_changes:
-    -git add -A :/
-    msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
+    @-git add -A :/
+    @msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
     
 commit_successful_changes default_message="No commit message given.":
     echo -n "Enter commit message: "; read msg; msg=${msg:-"{{default_message}}"}; git commit --amend -m "$msg"
