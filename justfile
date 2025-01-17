@@ -6,8 +6,8 @@ default:
 #   nix flake update
 #   nix flake lock
 
-msg_build_success := "echo Successful build! No commit message given."
-msg_deploy_success := ""
+msg_build_success := "Successful build! No commit message given."
+msg_deploy_success := "Successful apply/deploy on @{{target}}! No commit message given"
 
 commit_unreviewed_changes:
     msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
@@ -30,25 +30,24 @@ build:
 #     -git add -A :/
 #     echo -n "Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
 
-# deploy target="all":
-#     -nix flake update mysecrets
-#     -git add -A :/
-#     just commit_unreviewed_changes
-#     just colmena {{target}}
+deploy target="all":
+    -nix flake update mysecrets
+    -git add -A :/
+    just commit_unreviewed_changes
+    just colmena {{target}}
 
-# colmena target:
-#     #!/usr/bin/env bash
-#     if ! colmena apply -p 3 --on @{{target}}; then
-#         git reset --soft HEAD~1
-#     else
-#         m := 'Successful apply/deploy on @{{target}}! No commit message given'
-#         just commit_successful_changes $m
-#     fi
+colmena target:
+    #!/usr/bin/env bash
+    if ! colmena apply -p 3 --on @{{target}}; then
+        git reset --soft HEAD~1
+    else
+        just commit_successful_changes {{msg_deploy_success}}
+    fi
 
-# rebuild:
-#     nix --experimental-features 'nix-command flakes' flake update
-#     git add -A :/
-#     nohup sh -c 'colmena apply -p 3 && git commit -m "build and deployment succesfull" && git push' > nohup.out 2>&1 &
+rebuild:
+    nix --experimental-features 'nix-command flakes' flake update
+    git add -A :/
+    nohup sh -c 'colmena apply -p 3 && git commit -m "build and deployment succesfull" && git push' > nohup.out 2>&1 &
 
 
 
