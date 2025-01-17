@@ -14,13 +14,17 @@ netboot:
 #   nix flake update
 #   nix flake lock
 
+commit_unreviewed_changes:
+    -msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
+    
+
 debug $RUST_BACKTRACE="1":
     just build
 
 build:
     -nix flake update mysecrets
     -git add -A :/
-    -msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
+    just commit_unreviewed_changes
     colmena build -p 3 
     echo -n "Enter commit message: "; read msg; msg=${msg:-"Same as last commit message (successful build, deployment not ready)."}; git commit --amend -m "$msg"
 
@@ -31,9 +35,18 @@ commit:
 deploy target="all":
     -nix flake update mysecrets
     -git add -A :/
-    -msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
-    if colmena apply -p 3 --on @{{target}}; then echo 'POOP True' else echo 'POOP False'
-    echo -n "Enter commit message: "; read msg; msg=${msg:-"Successful apply/deploy on @{{target}}! No commit message given."}; git commit --amend -m "$msg"
+    just commit_unreviewed_changes
+    just colmena {{target}}
+
+colmena target:
+    #!/usr/bin/env bash
+    if ! colmena apply -p 3 --on @{{target}}; then
+        @echo 'Recipe command failed!'
+        git reset --soft HEAD~1
+    else
+        @echo 'Recipe command succeeded!'
+        @echo -n 'Enter commit message: '; read msg; msg=${msg:-"Successful apply/deploy on @{{target}}! No commit message given."}; git commit --amend -m "$msg"
+    fi
 
 rebuild:
     nix --experimental-features 'nix-command flakes' flake update
