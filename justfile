@@ -15,7 +15,7 @@ update_secrets:
 
 _commit_unreviewed_changes:
     @-git add -A :/
-    @msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
+    @-msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
     
 _commit_successful_changes default_message="No commit message given.":
     @echo -n "(optional) Enter commit message: "; read msg; msg=${msg:-"{{default_message}}"}; git commit --amend -m "$msg"
