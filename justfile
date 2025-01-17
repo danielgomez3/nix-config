@@ -9,6 +9,10 @@ default:
 msg_build_success := "Successful build! No commit message given."
 msg_deploy_success := "Successful apply/deploy on @{{target}}! No commit message given"
 
+update_secrets:
+    @-nix flake update mysecrets
+    
+
 commit_unreviewed_changes:
     @-git add -A :/
     @msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
@@ -20,7 +24,7 @@ debug $RUST_BACKTRACE="1":
     just build
 
 build:
-    -nix flake update mysecrets
+    just update_secrets
     just commit_unreviewed_changes
     colmena build -p 3 
     just commit_successful_changes "{{msg_build_success}}"
@@ -31,7 +35,7 @@ build:
 #     echo -n "Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
 
 deploy target="all":
-    -nix flake update mysecrets
+    just update_secrets
     just commit_unreviewed_changes
     just colmena {{target}}
 
@@ -43,10 +47,8 @@ colmena target:
         just commit_successful_changes "{{msg_deploy_success}}"
     fi
 
-rebuild:
-    nix --experimental-features 'nix-command flakes' flake update
-    git add -A :/
-    nohup sh -c 'colmena apply -p 3 && git commit -m "build and deployment succesfull" && git push' > nohup.out 2>&1 &
+
+
 
 
 
