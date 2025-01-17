@@ -43,7 +43,7 @@ deploy_test target="all":
     -git add -A :/
     -msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
     # Run colmena apply and handle errors
-    message := if $(shell colmena apply -p 3 --on $"{{target}}") { "0" } else { "1" }
+    message := if shell(colmena apply -p 3 --on @{{target}}) { "0" } else { "1" }
     @echo "poopy error code: {{target}}"
     echo -n "Enter commit message: "; read msg; msg=${msg:-"Successful apply/deploy on @{{target}}! No commit message given."}; git commit --amend -m "$msg"
 
