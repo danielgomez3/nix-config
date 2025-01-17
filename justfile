@@ -20,7 +20,7 @@ debug $RUST_BACKTRACE="1":
     just build
 
 build:
-    -nix flake update mysecrets
+    @-nix flake update mysecrets
     @just commit_unreviewed_changes
     colmena build -p 3 
     @just commit_successful_changes "{{msg_build_success}}"
