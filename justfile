@@ -13,39 +13,40 @@ update_secrets:
     @-nix flake update mysecrets
     
 
-commit_unreviewed_changes:
+_commit_unreviewed_changes:
     @-git add -A :/
     @msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
     
-commit_successful_changes default_message="No commit message given.":
+_commit_successful_changes default_message="No commit message given.":
     @echo -n "(optional) Enter commit message: "; read msg; msg=${msg:-"{{default_message}}"}; git commit --amend -m "$msg"
+
+_colmena_deploy target:
+    #!/usr/bin/env bash
+    if ! colmena apply -p 3 --on @{{target}}; then
+        git reset --soft HEAD~1
+    else
+        just _commit_successful_changes "{{msg_deploy_success}}"
+    fi
 
 debug $RUST_BACKTRACE="1":
     just build
 
 build:
     just update_secrets
-    just commit_unreviewed_changes
+    just _commit_unreviewed_changes
     colmena build -p 3 
-    just commit_successful_changes "{{msg_build_success}}"
+    just _commit_successful_changes "{{msg_build_success}}"
+
+deploy target="all":
+    just update_secrets
+    just _commit_unreviewed_changes
+    just _colmena_deploy {{target}}
 
 # NOTE: Don't use, because it's not very dynamic of you.
 # commit:
 #     -git add -A :/
 #     echo -n "Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
 
-deploy target="all":
-    just update_secrets
-    just commit_unreviewed_changes
-    just colmena {{target}}
-
-colmena target:
-    #!/usr/bin/env bash
-    if ! colmena apply -p 3 --on @{{target}}; then
-        git reset --soft HEAD~1
-    else
-        just commit_successful_changes "{{msg_deploy_success}}"
-    fi
 
 
 
