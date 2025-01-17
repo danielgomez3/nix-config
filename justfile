@@ -35,13 +35,6 @@ deploy target="all":
     if colmena apply -p 3 --on @{{target}}; then echo 'POOP True' else echo 'POOP False'
     echo -n "Enter commit message: "; read msg; msg=${msg:-"Successful apply/deploy on @{{target}}! No commit message given."}; git commit --amend -m "$msg"
 
-deploy_test target="all":
-    -nix flake update mysecrets
-    -git add -A :/
-    -msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
-    result := `colmena apply -p 3 --on @{{target}}`
-    echo -n "Enter commit message: "; read msg; msg=${msg:-"Successful apply/deploy on @{{target}}! No commit message given."}; git commit --amend -m "$msg"
-
 rebuild:
     nix --experimental-features 'nix-command flakes' flake update
     git add -A :/
