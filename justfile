@@ -18,7 +18,6 @@ debug $RUST_BACKTRACE="1":
     just build
 
 build:
-    # -git add -A :/; msg=${msg:-"CAUTION untested changes, possibly broken"}; git commit -m "$msg"; 
     -nix flake update mysecrets
     -git add -A :/
     -msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
@@ -28,12 +27,6 @@ build:
 commit:
     -git add -A :/
     echo -n "Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
-
-
-# save:
-#     -git add -A :/;
-#     colmena build -p 3 
-#     echo -n "Configuration build succesful! Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
 
 deploy target="all":
     -nix flake update mysecrets
