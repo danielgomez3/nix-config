@@ -13,6 +13,10 @@ netboot:
 # update:
 #   nix flake update
 #   nix flake lock
+
+debug $RUST_BACKTRACE="1":
+    just build
+
 build:
     # -git add -A :/; msg=${msg:-"CAUTION untested changes, possibly broken"}; git commit -m "$msg"; 
     -nix flake update mysecrets
@@ -42,7 +46,7 @@ deploy_test target="all":
     -nix flake update mysecrets
     -git add -A :/
     -msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
-    result := `{{ style("colmena apply -p 3 --on @{{target}}") }}`
+    result := `colmena apply -p 3 --on @{{target}}`
     echo -n "Enter commit message: "; read msg; msg=${msg:-"Successful apply/deploy on @{{target}}! No commit message given."}; git commit --amend -m "$msg"
 
 rebuild:
