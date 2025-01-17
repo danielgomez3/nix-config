@@ -32,7 +32,6 @@ build:
 
 deploy target="all":
     -nix flake update mysecrets
-    -git add -A :/
     just commit_unreviewed_changes
     just colmena {{target}}
 
