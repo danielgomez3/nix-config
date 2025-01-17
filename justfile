@@ -14,7 +14,7 @@ commit_unreviewed_changes:
     @msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
     
 commit_successful_changes default_message="No commit message given.":
-    @echo -n "Enter commit message: "; read msg; msg=${msg:-"{{default_message}}"}; git commit --amend -m "$msg"
+    @echo -n "(optional) Enter commit message: "; read msg; msg=${msg:-"{{default_message}}"}; git commit --amend -m "$msg"
 
 debug $RUST_BACKTRACE="1":
     just build
