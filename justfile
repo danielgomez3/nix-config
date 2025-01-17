@@ -40,7 +40,7 @@ colmena target:
     if ! colmena apply -p 3 --on @{{target}}; then
         git reset --soft HEAD~1
     else
-        just commit_successful_changes {{msg_deploy_success}}
+        just commit_successful_changes "{{msg_deploy_success}}"
     fi
 
 rebuild:
