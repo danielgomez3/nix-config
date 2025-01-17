@@ -14,7 +14,7 @@ commit_unreviewed_changes:
     @msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
     
 commit_successful_changes default_message="No commit message given.":
-    echo -n "Enter commit message: "; read msg; msg=${msg:-"{{default_message}}"}; git commit --amend -m "$msg"
+    @echo -n "Enter commit message: "; read msg; msg=${msg:-"{{default_message}}"}; git commit --amend -m "$msg"
 
 debug $RUST_BACKTRACE="1":
     just build
@@ -23,7 +23,7 @@ build:
     -nix flake update mysecrets
     just commit_unreviewed_changes
     colmena build -p 3 
-    @just commit_successful_changes "{{msg_build_success}}"
+    just commit_successful_changes "{{msg_build_success}}"
 
 # NOTE: Don't use, because it's not very dynamic of you.
 # commit:
