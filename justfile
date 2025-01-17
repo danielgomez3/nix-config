@@ -32,9 +32,7 @@ deploy target="all":
     -nix flake update mysecrets
     -git add -A :/
     -msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
-    message := ```
-    colmena apply -p 3 --on @{{target}}
-    ```
+    results = `colmena apply -p 3 --on @{{target}}`
     echo -n "Enter commit message: "; read msg; msg=${msg:-"Successful apply/deploy on @{{target}}! No commit message given."}; git commit --amend -m "$msg"
 
 deploy_test target="all":
