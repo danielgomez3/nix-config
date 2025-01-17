@@ -6,6 +6,7 @@ default:
 #   nix flake update
 #   nix flake lock
 
+host := "`hostname`"
 msg_build_success := "Successful build! No commit message given."
 msg_deploy_success := "Successful apply/deploy on @{{target}}! No commit message given"
 
@@ -37,7 +38,7 @@ build:
     colmena build -p 3 
     just _commit_successful_changes "{{msg_build_success}}"
 
-deploy target="all":
+deploy target="`{{host}}`":
     just update_secrets
     just _commit_unreviewed_changes
     just _colmena_deploy {{target}}
