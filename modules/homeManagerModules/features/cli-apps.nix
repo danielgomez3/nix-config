@@ -4,6 +4,7 @@
     starship.enable = true;
     ssh.enable = true;
     git.enable = true;
+    neovim.enable = true;
   };
 }
 
