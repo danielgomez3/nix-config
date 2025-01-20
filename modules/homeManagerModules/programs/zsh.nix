@@ -25,6 +25,8 @@
       conf = "cd ~/Projects/repos-personal/flakes/flake/ && hx modules/coding.nix modules/all.nix";
       notes = "cd ~/Documents/notes && hx .";
       zrf = "zellij run floating";
+      send_downloads_to_server = "${pkgs.rsync}/bin/rsync --remove-source-fiules -avz ~/Downloads/* server";
+      send_downloads_to_desktop = "${pkgs.rsync}/bin/rsync --remove-source-fiules -avz ~/Downloads/* desktop";
     };
     zplug = {
       enable = true;
