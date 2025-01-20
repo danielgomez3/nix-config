@@ -5,6 +5,7 @@
     ssh.enable = true;
     git.enable = true;
     neovim.enable = true;
+    zellij.enable = true;
   };
 }
 
