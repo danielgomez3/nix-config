@@ -8,6 +8,12 @@
       pane_frames = false;
       keybinds = {
         locked = {
+          "bind \"Alt ]\"" = {
+            MoveTab = ["Right"];
+          };
+          "bind \"Alt [\"" = {
+            MoveTab = ["Left"];
+          };
           "bind \"Alt l\"" = {
             GoToNextTab = [];
           };
@@ -29,14 +35,14 @@
             SwitchToMode = ["locked"];
           };
         };
-        tab = {
-          "bind \"Alt ]\"" = {
-            MoveTab = ["Right"];
-          };
-          "bind \"Alt [\"" = {
-            MoveTab = ["Left"];
-          };
-        };
+        # tab = {
+        #   "bind \"Alt ]\"" = {
+        #     MoveTab = ["Right"];
+        #   };
+        #   "bind \"Alt [\"" = {
+        #     MoveTab = ["Left"];
+        #   };
+        # };
       };
     };
   };
