@@ -43,6 +43,7 @@ deploy target=(host):
     just _commit_unreviewed_changes
     just _colmena_deploy {{target}}
 
+    
 # NOTE: Don't use, because it's not very dynamic of you.
 # commit:
 #     -git add -A :/

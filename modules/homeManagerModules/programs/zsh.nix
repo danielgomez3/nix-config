@@ -26,5 +26,11 @@
       notes = "cd ~/Documents/notes && hx .";
       zrf = "zellij run floating";
     };
+    zplug = {
+      enable = true;
+      plugins = [
+        {name = "hlissner/zsh-autopair";}
+      ];
+    };
   };
 }
