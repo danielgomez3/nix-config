@@ -4,6 +4,7 @@ let
 in
 {
 
+  programs.swaylock.enable = true;
   wayland.windowManager.sway = {
     enable = true;
     # wrapperFeatures.gtk = true;
