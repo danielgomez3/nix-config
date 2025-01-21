@@ -101,8 +101,8 @@ in
     # };
     systemPackages = with pkgs; [
       # linux linux-firmware
+      lm_sensors efibootmgr
       git wget curl pigz 
-      lm_sensors 
       woeusb ntfs3g 
       iptables nftables file toybox 
       waypipe # x11 forwarding alternative:
