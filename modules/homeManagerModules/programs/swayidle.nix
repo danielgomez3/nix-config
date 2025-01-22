@@ -30,16 +30,6 @@
     #     default
     #   ];
     timeouts = lib.mkMerge [
-      {
-        timeout = 250;
-        command = "${pkgs.swaylock}/bin/swaylock -fF";
-      }
-      {
-        timeout = 300;
-        command = "${pkgs.systemd}/bin/systemctl suspend";
-      }
-
-      # Conditional inclusion based on isHardwareLimited
       (lib.mkIf osConfig.myVars.isHardwareLimited [
         {
           timeout = 120;
@@ -50,6 +40,17 @@
           command = "${pkgs.systemd}/bin/systemctl suspend";
         }
       ])
+      [
+        {
+          timeout = 250;
+          command = "${pkgs.swaylock}/bin/swaylock -fF";
+        }
+        {
+          timeout = 300;
+          command = "${pkgs.systemd}/bin/systemctl suspend";
+        }
+      ]
+      # Conditional inclusion based on isHardwareLimited
     ];
 
     events = [
