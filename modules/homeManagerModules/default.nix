@@ -5,6 +5,7 @@
   config,
   lib,
   myHelper,
+  self,
   ...
 }: let
   cfg = config.home-manager.users.${username}.myHomeManager;
@@ -67,7 +68,9 @@ in {
         ];
       };
       imports =
-        []
+        [
+          "${self.outPath}/modules/nixosModules/features/my-vars.nix"
+        ]
         ++ features ++ programs ++ bundles;
       # myHomeManager = {
       #   kitty.enable = true; # Enable the kitty module

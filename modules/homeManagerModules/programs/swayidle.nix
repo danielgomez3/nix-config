@@ -1,8 +1,5 @@
 { config, pkgs, lib, ... }: {
 
-  imports = [
-    ../../../modules/nixosModules/features/my-vars.nix  # Adjust the path if necessary
-  ];
   services.swayidle = {
     enable = true;
 
