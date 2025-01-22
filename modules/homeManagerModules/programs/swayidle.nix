@@ -1,10 +1,10 @@
-{ fartPoop, pkgs, lib, ... }: {
+{ osConfig, pkgs, lib, ... }: {
 
   services.swayidle = {
     enable = true;
 
     timeouts = lib.mkMerge [
-      (lib.mkIf fartPoop.myVars.isHardwareLimited [
+      (lib.mkIf osConfig.myVars.isHardwareLimited [
         {
           timeout = 120;
           command = "${pkgs.swaylock}/bin/swaylock -fF";
@@ -14,7 +14,7 @@
           command = "${pkgs.systemd}/bin/systemctl suspend";
         }
       ])
-      (lib.mkIf (!fartPoop.myVars.isHardwareLimited) [
+      (lib.mkIf (!osConfig.myVars.isHardwareLimited) [
         {
           timeout = 250;
           command = "${pkgs.swaylock}/bin/swaylock -fF";
