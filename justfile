@@ -49,10 +49,10 @@ repl:
 garbage:
     nix-collect-garbage -d --delete-older-than 10d
     
-# NOTE: Don't use, because it's not very dynamic of you.
-# commit:
-#     -git add -A :/
-#     echo -n "Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
+save:
+    @echo "{{ style("error") }}WARNING! This isn't a good idea.. very undynamic of you to do.{{ NORMAL }}"
+    -git add -A :/
+    echo -n "Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
 
 
 
