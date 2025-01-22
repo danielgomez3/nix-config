@@ -14,7 +14,7 @@
           command = "${pkgs.systemd}/bin/systemctl suspend";
         }
       ];
-      hardwareLimited = [
+      short = [
         {
           timeout = 120;
           command = "${pkgs.swaylock}/bin/swaylock -fF";
@@ -26,7 +26,7 @@
       ];
     in
       lib.mkMerge [
-        (lib.mkIf osConfig.myVars.isHardwareLimited hardwareLimited)
+        (lib.mkIf osConfig.myVars.isHardwareLimited short)
         default
       ];
 
