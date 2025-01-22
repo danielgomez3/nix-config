@@ -54,13 +54,14 @@ in
       myHomeManager = {
         bundles.desktop-environment.enable = true;
       };
-      wayland.windowManager.hyprland = {
-        settings = {
-          input =  {
-            "kb_options" = "caps:swapescape";
-          };
-        };
-      };
+      # TODO: put away in a conditional configuration
+      # wayland.windowManager.hyprland = {
+      #   settings = {
+      #     input =  {
+      #       "kb_options" = "caps:swapescape";
+      #     };
+      #   };
+      # };
   };
 
 }
