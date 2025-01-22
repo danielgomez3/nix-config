@@ -43,6 +43,8 @@ deploy target=(host):
     just _commit_unreviewed_changes
     just _colmena_deploy {{target}}
 
+repl:
+    export NIX_PATH=nixpkgs=flake:nixpkgs && colmena repl
     
 # NOTE: Don't use, because it's not very dynamic of you.
 # commit:
