@@ -69,7 +69,6 @@ in {
       };
       imports =
         [
-          "${self.outPath}/modules/nixosModules/features/my-vars.nix"
         ]
         ++ features ++ programs ++ bundles;
       # myHomeManager = {
