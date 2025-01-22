@@ -6,6 +6,7 @@
 let 
   modKey = "Mod4";
   username = config.myVars.username;
+  config.myVars.isLightweight = true;
 in
 {
   myVars.username = "daniel";  # Specific username for this machine
