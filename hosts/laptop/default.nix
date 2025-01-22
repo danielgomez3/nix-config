@@ -9,6 +9,7 @@ let
 in
 {
   myVars.username = "daniel";  # Specific username for this machine
+  myVars.isHardwareLimited = true;
 
   users.users.${username} = {
     description = "laptop";
