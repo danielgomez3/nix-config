@@ -39,6 +39,7 @@
         command = "${pkgs.systemd}/bin/systemctl suspend";
       }
 
+      # Conditional inclusion based on isHardwareLimited
       (lib.mkIf osConfig.myVars.isHardwareLimited [
         {
           timeout = 120;
@@ -50,6 +51,7 @@
         }
       ])
     ];
+
     events = [
       {
         event = "lock";
