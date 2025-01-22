@@ -39,18 +39,17 @@
         command = "${pkgs.systemd}/bin/systemctl suspend";
       }
 
-      (lib.mkIf osConfig.myVars.isHardwareLimited
+      (lib.mkIf osConfig.myVars.isHardwareLimited [
         {
-          timeout = 250;
+          timeout = 120;
           command = "${pkgs.swaylock}/bin/swaylock -fF";
         }
         {
-          timeout = 300;
+          timeout = 220;
           command = "${pkgs.systemd}/bin/systemctl suspend";
         }
-      )
+      ])
     ];
-
     events = [
       {
         event = "lock";
