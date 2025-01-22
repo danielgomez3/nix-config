@@ -45,6 +45,9 @@ deploy target=(host):
 
 repl:
     export NIX_PATH=nixpkgs=flake:nixpkgs && colmena repl
+
+garbage:
+    nix-collect-garbage -d --delete-older-than 10d
     
 # NOTE: Don't use, because it's not very dynamic of you.
 # commit:
