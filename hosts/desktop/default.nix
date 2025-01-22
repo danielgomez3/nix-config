@@ -23,8 +23,7 @@ in
   #   "rtw88_8821ce"
   # ];
   boot.kernelParams = [
-    "amdgpu.backlight=0"
-    "acpi_backlight=none"
+    "acpi_backlight=video"
   ];
 
   services = {
