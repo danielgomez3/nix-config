@@ -102,6 +102,7 @@ in
     systemPackages = with pkgs; [
       # linux linux-firmware
       lm_sensors efibootmgr
+      jmtpfs  # For interfacing with my OP-1 Field.
       git wget curl pigz 
       woeusb ntfs3g 
       iptables nftables file toybox 

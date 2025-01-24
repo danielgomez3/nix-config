@@ -37,6 +37,7 @@ in
       ${username} = {
         myHomeManager = {
           cli-apps.enable = true;
+          # filesystem-backup.enable = true;
         };      
       };
     };

@@ -22,9 +22,10 @@ in
   #   # "iwlwifi"
   #   "rtw88_8821ce"
   # ];
-  boot.kernelParams = [
-    "acpi_backlight=video"
-  ];
+  # NOTE: for brightness
+  # boot.kernelParams = [
+  #   "acpi_backlight=video"
+  # ];
 
   services = {
     xserver = {
