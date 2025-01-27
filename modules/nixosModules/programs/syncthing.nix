@@ -60,8 +60,14 @@ in
             autoAccept = true;
             id = "Productivity";
           };
+          "Notes" = {
+            path = "/home/${username}/notes";
+            devices = [ "desktop" "server" "laptop" ];
+            autoAccept = true;
+            id = "Projects";
+          };
           "Projects" = {
-            path = "/home/${username}/Projects";
+            path = "/home/${username}/projects";
             devices = [ "desktop" "server" "laptop" ];
             autoAccept = true;
             id = "Projects";
