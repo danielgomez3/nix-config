@@ -34,6 +34,7 @@ in
             autoAcceptFolders = true;
           };
         })
+
         (lib.mkIf config.myVars.isSyncthingClient{
           "server" = { 
             id = "WDBCNRM-YJOKGOJ-FMABWTI-4UNDU2P-SKR3VP7-TEWBA3M-NKCT65Y-JHMVKQ3"; 
