@@ -61,13 +61,13 @@ in
             id = "Productivity";
           };
           "Notes" = {
-            path = "/home/${username}/notes";
+            path = "/home/${username}/Documents/notes";
             devices = [ "desktop" "server" "laptop" ];
             autoAccept = true;
-            id = "Projects";
+            id = "Notes";
           };
           "Projects" = {
-            path = "/home/${username}/projects";
+            path = "/home/${username}/Documents/projects";
             devices = [ "desktop" "server" "laptop" ];
             autoAccept = true;
             id = "Projects";
