@@ -54,6 +54,9 @@ in
           "Notes" = {
             devices = [ "desktop" "server" "laptop" ];
           };
+          "Misc" = {
+            devices = [ "desktop" "server" "laptop" ];
+          };
           "Projects" = {
             devices = [ "desktop" "server" "laptop" ];
           };
@@ -73,6 +76,9 @@ in
             devices = [ "server" ];
           };
 
+          "Misc" = {
+            devices = [ "server" ];
+          };
         })
 
         {  # Hopefully, control will go here as default regardless of condition
@@ -81,6 +87,11 @@ in
             path = "/home/${username}/Documents/productivity";
             autoAccept = true;
             id = "Productivity";
+          };
+          "Misc" = {
+            path = "/home/${username}/Documents/misc";
+            autoAccept = true;
+            id = "Misc";
           };
           "Notes" = {
             path = "/home/${username}/Documents/notes";
