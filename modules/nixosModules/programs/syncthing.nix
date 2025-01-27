@@ -49,16 +49,16 @@ in
         (lib.mkIf config.myVars.isSyncthingServer{  # Condition
 
           "Productivity" = {
-            devices = [ "desktop" "server" "laptop" "phone" ];
+            devices = [ "desktop" "laptop" "phone" ];
           };
           "Notes" = {
-            devices = [ "desktop" "server" "laptop" ];
+            devices = [ "desktop" "laptop" ];
           };
           "Misc" = {
-            devices = [ "desktop" "server" "laptop" ];
+            devices = [ "desktop" "laptop" ];
           };
           "Projects" = {
-            devices = [ "desktop" "server" "laptop" ];
+            devices = [ "desktop" "laptop" ];
           };
 
         })
@@ -71,14 +71,16 @@ in
           "Projects" = {
             devices = [ "server" ];
           };
-
           "Notes" = {
             devices = [ "server" ];
           };
-
           "Misc" = {
             devices = [ "server" ];
           };
+          "Downloads" = {
+            devices = [ "server" ];
+          };
+
         })
 
         {  # Hopefully, control will go here as default regardless of condition
@@ -102,6 +104,11 @@ in
             path = "/home/${username}/Documents/projects";
             autoAccept = true;
             id = "Projects";
+          };
+          "Downloads" = {
+            path = "/home/${username}/Documents/Downloads";
+            autoAccept = true;
+            id = "Downloads";
           };
 
         }
