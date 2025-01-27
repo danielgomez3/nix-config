@@ -14,8 +14,6 @@ in
     overrideFolders = true;     # overrides any folders added or deleted through the WebUI
     settings = {
       options.urAccepted = -1;
-    };
-    settings = {
       devices = lib.mkMerge [
 
         (lib.mkIf config.myVars.isSyncthingServer{
@@ -45,26 +43,76 @@ in
 
       ];
 
-      folders = {
-        "Documents" = {         # Name of folder in Syncthing, also the folder ID
-          path = "/home/${username}/Documents";    # Which folder to add to Syncthing
-          devices = [ "desktop" "server" "laptop" ];      # Which devices to share the folder with
-          autoAccept = true;
-          id = "Documents";
-        };
-        "Productivity" = {
-          path = "/home/${username}/Documents/productivity";
-          devices = [ "desktop" "server" "laptop" "phone" ];
-          autoAccept = true;
-          id = "Productivity";
-        };
-        "Projects" = {
-          path = "/home/${username}/Projects";
-          devices = [ "desktop" "server" "laptop" ];
-          autoAccept = true;
-          id = "Projects";
-        };
-      };
+      folders = lib.mkMerge [ 
+
+        (lib.mkIf config.myVars.isSyncthingServer{
+
+          "Documents" = {         # Name of folder in Syncthing, also the folder ID
+            path = "/home/${username}/Documents";    # Which folder to add to Syncthing
+            devices = [ "desktop" "server" "laptop" ];      # Which devices to share the folder with
+            autoAccept = true;
+            id = "Documents";
+          };
+          "Productivity" = {
+            path = "/home/${username}/Documents/productivity";
+            devices = [ "desktop" "server" "laptop" "phone" ];
+            autoAccept = true;
+            id = "Productivity";
+          };
+          "Projects" = {
+            path = "/home/${username}/Projects";
+            devices = [ "desktop" "server" "laptop" ];
+            autoAccept = true;
+            id = "Projects";
+          };
+
+        })
+
+        (lib.mkIf config.myVars.isSyncthingClient{
+
+          "Documents" = {         # Name of folder in Syncthing, also the folder ID
+            path = "/home/${username}/Documents";    # Which folder to add to Syncthing
+            devices = [ "server" ];      # Which devices to share the folder with
+            autoAccept = true;
+            id = "Documents";
+          };
+          "Productivity" = {
+            path = "/home/${username}/Documents/productivity";
+            devices = [ "server" ];
+            autoAccept = true;
+            id = "Productivity";
+          };
+          "Projects" = {
+            path = "/home/${username}/Projects";
+            devices = [ "server" ];
+            autoAccept = true;
+            id = "Projects";
+          };
+
+        })
+
+      ];
+
+        # "Documents" = {         # Name of folder in Syncthing, also the folder ID
+        #   path = "/home/${username}/Documents";    # Which folder to add to Syncthing
+        #   devices = [ "desktop" "server" "laptop" ];      # Which devices to share the folder with
+        #   autoAccept = true;
+        #   id = "Documents";
+        # };
+        # "Productivity" = {
+        #   path = "/home/${username}/Documents/productivity";
+        #   devices = [ "desktop" "server" "laptop" "phone" ];
+        #   autoAccept = true;
+        #   id = "Productivity";
+        # };
+        # "Projects" = {
+        #   path = "/home/${username}/Projects";
+        #   devices = [ "desktop" "server" "laptop" ];
+        #   autoAccept = true;
+        #   id = "Projects";
+        # };
+
+
     };
   };
 }
