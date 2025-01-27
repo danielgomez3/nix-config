@@ -3,6 +3,7 @@ let
   username = config.myVars.username;
 in
 {
+
   myNixOS = {
     internet.enable = true;
     sops.enable = true;
@@ -12,8 +13,8 @@ in
     stylix.enable = true;
     coding.enable = true;
     virtualization.enable = false;
-    
   };
+
   system.stateVersion = "24.05"; 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

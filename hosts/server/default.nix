@@ -76,8 +76,8 @@ in
       };
     };
     # DELETME:
-    # syncthing = {
-    #   guiAddress = "0.0.0.0:8384";
+    syncthing = {
+      guiAddress = "0.0.0.0:8384";
     #   settings = {
     #     gui = {
     #       user = "${username}";
@@ -105,7 +105,7 @@ in
     #       };
     #     };
     #   };
-    # };   
+    };   
   };
 
   # create a oneshot job to authenticate to Tailscale
