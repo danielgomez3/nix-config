@@ -13,6 +13,16 @@
       default = false; # optional default
       description = "Is the machine hardware limited? Do we desire to save energy?";
     };
+    isSyncthingServer = lib.mkOption {
+      type = lib.types.bool;
+      default = false; # optional default
+      description = "Is the machine a Syncthing Server?";
+    };
+    isSyncthingClient = lib.mkOption {
+      type = lib.types.bool;
+      default = false; # optional default
+      description = "Is the machine a Syncthing Client?";
+    };
   };
 }
 

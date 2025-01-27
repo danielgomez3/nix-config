@@ -16,24 +16,27 @@ in
       options.urAccepted = -1;
     };
     settings = {
-      devices = {
-        "desktop" = { 
-          id = "WCI6FZO-QIWS4TH-IHIQIVM-O7QUE4O-DT2L4JM-BCCXKNM-FOSYHFB-BZSKNQW"; 
-          autoAcceptFolders = true;
-        };
-        "phone" = { 
-          id = "TSV6QDP-T6LBRW4-XKE6S2R-ETAYRSU-B2WHSCK-P3R62AX-3KZDTW4-GWSCZA2"; 
-          autoAcceptFolders = true;
-        };
-        "server" = { 
-          id = "WDBCNRM-YJOKGOJ-FMABWTI-4UNDU2P-SKR3VP7-TEWBA3M-NKCT65Y-JHMVKQ3"; 
-          autoAcceptFolders = true;
-        };
-        "laptop" = { 
-          id = "KENW57K-IHEFCFB-36STV55-62K3EMI-AX5HGSV-IKHWLX3-MULG6CZ-6DIEZAS"; 
-          autoAcceptFolders = true;
-        };
-      };
+      devices = lib.mkMerge [
+        (lib.mkIf config.myVars.isSyncthingServer{
+          "desktop" = { 
+            id = "WCI6FZO-QIWS4TH-IHIQIVM-O7QUE4O-DT2L4JM-BCCXKNM-FOSYHFB-BZSKNQW"; 
+            autoAcceptFolders = true;
+          };
+          "phone" = { 
+            id = "TSV6QDP-T6LBRW4-XKE6S2R-ETAYRSU-B2WHSCK-P3R62AX-3KZDTW4-GWSCZA2"; 
+            autoAcceptFolders = true;
+          };
+          "server" = { 
+            id = "WDBCNRM-YJOKGOJ-FMABWTI-4UNDU2P-SKR3VP7-TEWBA3M-NKCT65Y-JHMVKQ3"; 
+            autoAcceptFolders = true;
+          };
+          "laptop" = { 
+            id = "KENW57K-IHEFCFB-36STV55-62K3EMI-AX5HGSV-IKHWLX3-MULG6CZ-6DIEZAS"; 
+            autoAcceptFolders = true;
+          };
+          
+        })
+      ];
       folders = {
         "Documents" = {         # Name of folder in Syncthing, also the folder ID
           path = "/home/${username}/Documents";    # Which folder to add to Syncthing

@@ -7,6 +7,7 @@ let
 in
 {
   myVars.username = "daniel";  # Specific username for this machine
+  myVars.isSyncthingClient = true;
   users.users.${username} = {
     description = "desktop";
   };
