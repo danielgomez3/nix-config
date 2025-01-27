@@ -10,6 +10,7 @@ in
 {
   myVars.username = "daniel";  # Specific username for this machine
   myVars.isHardwareLimited = true;
+  myVars.isSyncthingClient = true;
 
   users.users.${username} = {
     description = "laptop";
