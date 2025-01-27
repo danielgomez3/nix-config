@@ -16,7 +16,7 @@ in
       options.urAccepted = -1;
       devices = lib.mkMerge [
 
-        (lib.mkIf config.myVars.isSyncthingServer{
+        (lib.mkIf config.myVars.isSyncthingServer{  # Condition
           "desktop" = { 
             id = "WCI6FZO-QIWS4TH-IHIQIVM-O7QUE4O-DT2L4JM-BCCXKNM-FOSYHFB-BZSKNQW"; 
             autoAcceptFolders = true;
@@ -35,7 +35,7 @@ in
           };
         })
 
-        (lib.mkIf config.myVars.isSyncthingClient{
+        (lib.mkIf config.myVars.isSyncthingClient{  # Condition
           "server" = { 
             id = "WDBCNRM-YJOKGOJ-FMABWTI-4UNDU2P-SKR3VP7-TEWBA3M-NKCT65Y-JHMVKQ3"; 
             autoAcceptFolders = true;
@@ -46,78 +46,56 @@ in
 
       folders = lib.mkMerge [ 
 
-        (lib.mkIf config.myVars.isSyncthingServer{
+        (lib.mkIf config.myVars.isSyncthingServer{  # Condition
 
-          "Documents" = {         # Name of folder in Syncthing, also the folder ID
-            path = "/home/${username}/Documents";    # Which folder to add to Syncthing
-            devices = [ "desktop" "server" "laptop" ];      # Which devices to share the folder with
-            autoAccept = true;
-            id = "Documents";
+          "Productivity" = {
+            devices = [ "desktop" "server" "laptop" "phone" ];
           };
+          "Notes" = {
+            devices = [ "desktop" "server" "laptop" ];
+          };
+          "Projects" = {
+            devices = [ "desktop" "server" "laptop" ];
+          };
+
+        })
+
+        (lib.mkIf config.myVars.isSyncthingClient{  # Condition
+
+          "Productivity" = {
+            devices = [ "server" ];
+          };
+          "Projects" = {
+            devices = [ "server" ];
+          };
+
+          "Notes" = {
+            devices = [ "server" ];
+          };
+
+        })
+
+        {  # Hopefully, control will go here as default regardless of condition
+
           "Productivity" = {
             path = "/home/${username}/Documents/productivity";
-            devices = [ "desktop" "server" "laptop" "phone" ];
             autoAccept = true;
             id = "Productivity";
           };
           "Notes" = {
             path = "/home/${username}/Documents/notes";
-            devices = [ "desktop" "server" "laptop" ];
             autoAccept = true;
             id = "Notes";
           };
           "Projects" = {
             path = "/home/${username}/Documents/projects";
-            devices = [ "desktop" "server" "laptop" ];
             autoAccept = true;
             id = "Projects";
           };
 
-        })
-
-        (lib.mkIf config.myVars.isSyncthingClient{
-
-          "Documents" = {         # Name of folder in Syncthing, also the folder ID
-            path = "/home/${username}/Documents";    # Which folder to add to Syncthing
-            devices = [ "server" ];      # Which devices to share the folder with
-            autoAccept = true;
-            id = "Documents";
-          };
-          "Productivity" = {
-            path = "/home/${username}/Documents/productivity";
-            devices = [ "server" ];
-            autoAccept = true;
-            id = "Productivity";
-          };
-          "Projects" = {
-            path = "/home/${username}/Projects";
-            devices = [ "server" ];
-            autoAccept = true;
-            id = "Projects";
-          };
-
-        })
+        }
 
       ];
-
-        # "Documents" = {         # Name of folder in Syncthing, also the folder ID
-        #   path = "/home/${username}/Documents";    # Which folder to add to Syncthing
-        #   devices = [ "desktop" "server" "laptop" ];      # Which devices to share the folder with
-        #   autoAccept = true;
-        #   id = "Documents";
-        # };
-        # "Productivity" = {
-        #   path = "/home/${username}/Documents/productivity";
-        #   devices = [ "desktop" "server" "laptop" "phone" ];
-        #   autoAccept = true;
-        #   id = "Productivity";
-        # };
-        # "Projects" = {
-        #   path = "/home/${username}/Projects";
-        #   devices = [ "desktop" "server" "laptop" ];
-        #   autoAccept = true;
-        #   id = "Projects";
-        # };
 
 
     };
