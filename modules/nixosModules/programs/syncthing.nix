@@ -106,7 +106,7 @@ in
             id = "Projects";
           };
           "Downloads" = {
-            path = "/home/${username}/Documents/Downloads";
+            path = "/home/${username}/Downloads";
             autoAccept = true;
             id = "Downloads";
           };
