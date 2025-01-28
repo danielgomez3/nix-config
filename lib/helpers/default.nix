@@ -84,11 +84,13 @@ in rec {
   # TODO: Can be easily abstracted
   isPublicUserSshKey = x: (builtins.match ".*\\key.pub$") x != null;  # Left is evaluated first
   isPublicUserOrRootSshKey = x: (builtins.match ".*\\.pub$") x != null;  # Left is evaluated first
-  listOfPublicUserSshKeys = builtins.filter 
-    (x: isPublicUserSshKey (builtins.toString x))
-    (lib.filesystem.listFilesRecursive ./.);
-  listOfPublicOrRootSshKeys = builtins.filter 
-    (x: isPublicUserOrRootSshKey (builtins.toString x))
-    (lib.filesystem.listFilesRecursive ./.);
+  listOfPublicUserSshKeys = searchableDir :
+    builtins.filter 
+      (x: isPublicUserSshKey (builtins.toString x))
+      (lib.filesystem.listFilesRecursive searchableDir );
+  listOfPublicOrRootSshKeys = searchableDir :
+    builtins.filter 
+      (x: isPublicUserOrRootSshKey (builtins.toString x))
+      (lib.filesystem.listFilesRecursive searchableDir);
 
 }

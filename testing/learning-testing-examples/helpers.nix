@@ -10,6 +10,11 @@ listOfPublicKeys = builtins.filter
     (x: isPublicSshKey (builtins.toString x))
     (nixpkgs.lib.filesystem.listFilesRecursive ./.);
 
+FuncPublicUserSshKeys = searchableDir :
+  builtins.filter 
+    (x: isPublicSshKey (builtins.toString x))
+    (nixpkgs.lib.filesystem.listFilesRecursive searchableDir );
+
 filesIn = dir: (map (fname: dir + "/${fname}")
   (builtins.attrNames (builtins.readDir dir)));
 

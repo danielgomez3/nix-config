@@ -32,14 +32,6 @@ _colmena_apply target:
 debug $RUST_BACKTRACE="1":
     just build
 
-debug-with-repl:
-    export NIX_PATH=nixpkgs=flake:nixpkgs && colmena repl
-
-repl:
-    # nix repl --file ./lib/nix-expressions/learning-testing-examples/helpers.nix
-    cd {{invocation_directory()}}; nix repl --extra-experimental-features 'flakes' --file {{justfile_directory()}}/testing/learning-testing-examples/helpers.nix
-    
-
 build:
     just update_secrets
     just _commit_unreviewed_changes
@@ -62,7 +54,20 @@ save:
 
 
 
+## 
+# Using REPL
+## 
 
+debug-with-repl:
+    export NIX_PATH=nixpkgs=flake:nixpkgs && colmena repl
+
+repl:
+    # nix repl --file ./lib/nix-expressions/learning-testing-examples/helpers.nix
+    cd {{invocation_directory()}}; nix repl --extra-experimental-features 'flakes' --file {{justfile_directory()}}/testing/learning-testing-examples/derivations.nix
+
+repl-flake:
+    cd {{invocation_directory()}}; nix repl --extra-experimental-features 'flakes' --expr "import \"{{justfile_directory()}}/testing/learning-testing-examples/withSelf.nix\""
+    
 
 
 
