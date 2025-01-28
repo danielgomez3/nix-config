@@ -9,7 +9,7 @@ in
   users.${username}.openssh.authorizedKeys.keys = myHelper.listOfPublicUserOrRootSshKeys;
   # NOTE: keys that we want root to have. Not necessary to have another root user's key.
   # TODO: Remember or explain why root even needs a user's key. I think it's for colmena or for Nixos-anywhere, I can't remember. It's most likely not even needed at all!
-  user.root.openssh.authorizedKeys.keys = myHelper.listOfPublicUserSshKeys;
+  users.root.openssh.authorizedKeys.keys = myHelper.listOfPublicUserSshKeys;
   services.openssh = {
     enable = true;
     # hostKeys = [
