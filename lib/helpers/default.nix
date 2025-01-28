@@ -1,6 +1,8 @@
-{inputs}: let
+# NOTE: Credit to Vimjoyer 'myLib' <https://github.com/vimjoyer/nixconf/blob/main/myLib/default.nix>
+{inputs,lib}: let
   myHelper = (import ./default.nix) {inherit inputs;};
   outputs = inputs.self.outputs;
+  
 in rec {
   # ================================================================ #
   # =                            My Lib                            = #
@@ -108,4 +110,17 @@ in rec {
       "aarch64-darwin"
     ]
     (system: pkgs inputs.nixpkgs.legacyPackages.${system});
+
+
+  # NOTE: Additional functions.
+  # TODO: Can be easily abstracted
+  isPublicUserSshKey = x: (builtins.match ".*\\key.pub$") x != null;  # Left is evaluated first
+  isPublicUserOrRootSshKey = x: (builtins.match ".*\\.pub$") x != null;  # Left is evaluated first
+  listOfPublicUserSshKeys = builtins.filter 
+    (x: isPublicUserSshKey (builtins.toString x))
+    (lib.filesystem.listFilesRecursive ./.);
+  listOfPublicOrRootSshKeys = builtins.filter 
+    (x: isPublicUserOrRootSshKey (builtins.toString x))
+    (lib.filesystem.listFilesRecursive ./.);
+
 }

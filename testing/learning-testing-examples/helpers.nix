@@ -1,11 +1,15 @@
 let
     nixpkgs = import (builtins.getFlake "nixpkgs") {};
+    isPublicSshKey = x: (builtins.match ".*\\.pub$") x != null;  # Left is evaluated first
 in
 {
 
 nixpkgs = nixpkgs; # Expose nixpkgs as a top-level attribute
 
-isPubSshKey = x: (builtins.match ".*\\.pub$") x != null;  # Left is evaluated first
+listOfPublicKeys = builtins.filter 
+    (x: isPublicSshKey (builtins.toString x))
+    (nixpkgs.lib.filesystem.listFilesRecursive ./.);
+
 filesIn = dir: (map (fname: dir + "/${fname}")
   (builtins.attrNames (builtins.readDir dir)));
 
