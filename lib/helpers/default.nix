@@ -1,5 +1,5 @@
 # NOTE: Credit to Vimjoyer 'myLib' <https://github.com/vimjoyer/nixconf/blob/main/myLib/default.nix>
-{inputs,lib}: let
+{inputs}: let
   myHelper = (import ./default.nix) {inherit inputs;};
   outputs = inputs.self.outputs;
   
