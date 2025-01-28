@@ -14,38 +14,6 @@ in rec {
 
   # ========================== Buildables ========================== #
 
-  # mkSystem = config:
-  #   inputs.nixpkgs.lib.nixosSystem {
-  #     specialArgs = {
-  #       inherit inputs outputs myHelper;
-  #     };
-  #     modules = [
-  #       config
-  #       outputs.nixosModules.default
-  #     ];
-  #   };
-
-  # mkHome = sys: config:
-  #   inputs.home-manager.lib.homeManagerConfiguration {
-  #     pkgs = pkgsFor sys;
-  #     extraSpecialArgs = {
-  #       inherit inputs myHelper outputs;
-  #     };
-  #     modules = [
-        
-  #       # TODO: move this
-  #       inputs.stylix.homeManagerModules.stylix
-  #       {
-  #         stylix.image = ./../nixosModules/features/stylix/gruvbox-mountain-village.png;
-  #         nixpkgs.config.allowUnfree = true;
-  #       }
-
-  #       config
-  #       outputs.homeManagerModules.default
-  #     ];
-  #   };
-
-  # =========================== Helpers ============================ #
 
   filesIn = dir: (map (fname: dir + "/${fname}")
     (builtins.attrNames (builtins.readDir dir)));

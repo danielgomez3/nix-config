@@ -29,7 +29,10 @@
     let 
       system = "x86_64-linux";
       pkgsUnstable = import nixpkgs-unstable { inherit system; };
-      myHelper = import ./lib/helpers/default.nix {inherit inputs;};
+      myHelper = import ./lib/helpers/default.nix {
+        inherit inputs;
+        lib = inputs.nixpkgs.lib;
+        };
       commonImports = h: [  # Every host dir may contain the following:
         "${self.outPath}/hosts/${h}"
         "${self.outPath}/hosts/${h}/hardware-configuration.nix"
