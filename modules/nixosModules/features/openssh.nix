@@ -6,10 +6,10 @@ in
   # NOTE: Keys we want our normal user to have. We need to have root keys so we can access root and deploy.
   # User key is needed for personal use and ssh.
   # Root key is needed for colmena to rebuild 'apply'
-  # users.${username}.openssh.authorizedKeys.keys = myHelper.listOfPublicUserOrRootSshKeys "${self.outPath}/hosts";
+  users.${username}.openssh.authorizedKeys.keys = (myHelper.listOfPublicUserOrRootSshKeys "${self.outPath}/hosts");
   # NOTE: keys that we want root to have. Not necessary to have another root user's key.
   # TODO: Remember or explain why root even needs a user's key. I think it's for colmena or for Nixos-anywhere, I can't remember. It's most likely not even needed at all!
-  # users.root.openssh.authorizedKeys.keys = myHelper.listOfPublicUserSshKeys "${self.outPath}/hosts";
+  users.root.openssh.authorizedKeys.keys = (myHelper.listOfPublicUserSshKeys "${self.outPath}/hosts");
   services.openssh = {
     enable = true;
     # hostKeys = [
