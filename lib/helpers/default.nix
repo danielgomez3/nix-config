@@ -82,7 +82,7 @@ in rec {
 
   # NOTE: Additional functions.
   # TODO: Can be easily abstracted
-  isPublicUserSshKey = x: (builtins.match ".*\\key.pub$") x != null;  # Left is evaluated first
+  isPublicUserSshKey = x: (builtins.match ".*\\.pub$") x != null;  # Left is evaluated first
   isPublicUserOrRootSshKey = x: (builtins.match ".*\\.pub$") x != null;  # Left is evaluated first
   test = 
     builtins.filter 

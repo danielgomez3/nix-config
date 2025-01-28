@@ -63,7 +63,7 @@ debug-with-repl:
 
 repl:
     # nix repl --file ./lib/nix-expressions/learning-testing-examples/helpers.nix
-    cd {{invocation_directory()}}; nix repl --extra-experimental-features 'flakes' --file {{justfile_directory()}}/testing/learning-testing-examples/derivations.nix
+    cd {{invocation_directory()}}; nix repl --extra-experimental-features 'flakes' --file {{justfile_directory()}}/testing/learning-testing-examples/helpers.nix
 
 repl-flake:
     cd {{invocation_directory()}}; nix repl --extra-experimental-features 'flakes' --expr "import \"{{justfile_directory()}}/testing/learning-testing-examples/withSelf.nix\""
