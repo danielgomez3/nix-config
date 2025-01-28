@@ -62,7 +62,8 @@
         ];
       };
       # NOTE: add additional hosts/machines using this code block:
-      # myDeviceAndHostname = {name, node, pkgs, ... }:{
+
+      # _ = {name, node, pkgs, ... }:{
       #   deployment = {
       #     tags = ["${name}" "all"];
       #     targetHost = "${name}";
@@ -70,7 +71,7 @@
       #   imports = commonImports "${name}";
       # };
 
-      # NOTE: Example hosts/machines:
+      # NOTE: Desired hosts/machines:
       laptop = {name, node, pkgs, ... }:{
         deployment = {
           tags = ["${name}" "all"];
@@ -92,6 +93,14 @@
         };
         imports = commonImports "${name}";
       };
+      pre-production = {name, node, pkgs, ... }:{
+        deployment = {
+          tags = ["${name}" "all"];
+          targetHost = "${name}";
+        };
+        imports = commonImports "${name}";
+      };
+
     };
   };
 }

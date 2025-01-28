@@ -91,6 +91,8 @@ in
         (builtins.readFile "${self.outPath}/hosts/laptop/root-key.pub")
         (builtins.readFile "${self.outPath}/hosts/server/root-key.pub")
       ];
+      # openssh.authorizedKeys.keys = [
+      # ];
     };
   };
   # List packages installed in system profile. To search, run:
