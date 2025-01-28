@@ -58,7 +58,9 @@
             windows = {
               size = "50%"; # Reserved space for Windows
               content = {
-                type = "empty"; # Leave this partition unformatted for Windows
+                type = "filesystem"; # Leave this partition unformatted for Windows
+                format = "ntfs";
+                mountpoint = null; # Windows will use this; NixOS won't mount it
               };
             };
           };
