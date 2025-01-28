@@ -93,13 +93,13 @@
         };
         imports = commonImports "${name}";
       };
-      pre-production = {name, node, pkgs, ... }:{
-        deployment = {
-          tags = ["${name}" "all"];
-          targetHost = "${name}";
-        };
-        imports = commonImports "${name}";
-      };
+      # pre-production = {name, node, pkgs, ... }:{
+      #   deployment = {
+      #     tags = ["${name}" "all"];
+      #     targetHost = "${name}";
+      #   };
+      #   imports = commonImports "${name}";
+      # };
 
     };
   };
