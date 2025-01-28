@@ -66,14 +66,6 @@ in
     mutableUsers = false;  # Required for a password 'passwd' to be set via sops during system activation (over anything done imperatively)!
     users.root = {
       hashedPasswordFile = config.sops.secrets.user_password.path;  
-      # NOTE: keys that we want root to have. Not necessary to have another root user's key.
-      # TODO: Remember or explain why root even needs a user's key. I think it's for colmena or for Nixos-anywhere, I can't remember. It's most likely not even needed at all!
-      # openssh.authorizedKeys.keys = [
-      #   (builtins.readFile "${self.outPath}/hosts/desktop/key.pub")
-      #   (builtins.readFile "${self.outPath}/hosts/server/key.pub")
-      #   (builtins.readFile "${self.outPath}/hosts/laptop/key.pub")
-      # ];
-      openssh.authorizedKeys.keys = myHelper.ListOfPublicUserSshKey;
     };
 
     users.${username} = {
@@ -83,21 +75,6 @@ in
       extraGroups = [ "wheel" ];
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
-      # NOTE: Keys we want our normal user to have. We need to have root keys so we can access root and deploy.
-      # User key is needed for personal use and ssh.
-      # Root key is needed for colmena to rebuild 'apply'
-      # 
-      # openssh.authorizedKeys.keys = [
-      #   # Needed for personal use, to ssh and do some normal user work.
-      #   (builtins.readFile "${self.outPath}/hosts/desktop/key.pub")
-      #   (builtins.readFile "${self.outPath}/hosts/server/key.pub")
-      #   (builtins.readFile "${self.outPath}/hosts/laptop/key.pub")
-      #   # Needed for Colmena b/c doesn't use root for colmena?
-      #   (builtins.readFile "${self.outPath}/hosts/desktop/root-key.pub")
-      #   (builtins.readFile "${self.outPath}/hosts/laptop/root-key.pub")
-      #   (builtins.readFile "${self.outPath}/hosts/server/root-key.pub")
-      # ];
-      openssh.authorizedKeys.keys = myHelper.ListOfPublicUserOrRootSshKey;
     };
   };
   # List packages installed in system profile. To search, run:
