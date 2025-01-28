@@ -88,11 +88,11 @@ in rec {
   #   builtins.filter 
   #     (x: isPublicUserSshKey (builtins.toString x))
   #     (lib.filesystem.listFilesRecursive ./. );
-  listOfPublicUserSshKeys = searchableDir :
+  findPublicUserSshKeys = searchableDir :
     builtins.filter 
       (x: isPublicUserSshKey (builtins.toString x))
       (lib.filesystem.listFilesRecursive searchableDir );
-  listOfPublicOrRootSshKeys = searchableDir :
+  findPublicOrRootSshKeys = searchableDir :
     builtins.filter 
       (x: isPublicUserOrRootSshKey (builtins.toString x))
       (lib.filesystem.listFilesRecursive searchableDir);
