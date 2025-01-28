@@ -1,59 +1,20 @@
-# 🤗 A Simply educational Nix Flake ❄️ 🎓
+# Synopsis
 
-> A learning framework for those new to Nix Flakes and Linux deployment.
+What this repository is:
+- A Linux System and IaC using `Nix`, a functional programming language and package manager. This includes users, permissions, apps, directories, and services that would exist on each different machine, and all of your choosing.
+
+# Use
+
+Via this repository, one has the abilities to accomplish the following:
+- A fully automated, declarative, and remote install of a Linux machine.
+- Pulling from a separate and private git repository of encrypted secrets <https://github.com/danielgomez3/public_nix-secrets> (using `age` for encryption, and edited on host environment with `sops`). This private repository would store the user passwords, hostnames, even online credentials that would be ready on a new undeployed Linux system.
+- Deployment on computer hardware via a network connection. Instant SSH access to each deployed machine using any of the following tools:
+  - Deploying via PXE boot using `netboot.xyz`.
+  - Deploying instantly on a cloud platform resource (like GCP, Azure, etc.) using `terrraform`.
+- Doing so in parallel using a deployment module called `colmena`.
+- Optional passwordless login (only login via a `Yubikey`. I use a Yubikey for all my Linux Systems).
 
 
-## Problem
-  - I manage two systems, a laptop and a desktop. I want some similarity in their configuration, and some differences.
-  - I want infrastructure as code --> 🤓 (you).
-  - I don't want to overcomplicate with *another* build tool 🙄.
+# Structure
 
-## Solution
-  - A declarative Operating System (or file) with reproduceability baked-in :)
-
-
-#### Opinions
-  - Docker is not as reproducible as you think. It comes with some big drawbacks, and It doesn't ever fix the underlying issue of non-determinism when using non-declaritive Operating Systems.
-
-#### Learn
-  - Follow the breadcrumbs in the `flake.nix` file.
-  - After cloning this repository and moving files into `etc/nixos`, Here's how you can view the current existing configurations:
-  ```nix
-  ❯ sudo nix flake show                      
-    git+file:///etc/nixos?ref=refs/heads/main&rev=dc80b702a572984635f4ac0cebf6b457c204ce4f
-    └───nixosConfigurations
-        ├───desktop: NixOS configuration
-        └───laptop: NixOS configuration
-  ```
-
-#### Background
-  - After careful consideration, There are only 3 necessary files!
-    + `flake.nix` The entry point for our program/configuration.
-    + At least one unique configuration, such as a `desktop.nix`, or a `server.nix`, that contains system-level, hardware-level, and home-manager options for the unique system (When you have more servers or systems, you can create more `_.nix` files with similar structure).
-    + A `configuration.nix` that contains universal options for all your systems.
-  - `hardware-configuration.nix` is to be merged with your unique flake config for simplicity!
-  - This could also fit inside one singular `flake.nix` file, but you'll find that that breaks modularity!
-
-## TODO
-- Make username and hostname inherited and changeable somehow across `flake.nix` top level. Then, somehow propogate it through all imports.
-- Make domain revealed in `flake.nix` encrypted by sops-nix so it's not seen.
-- Encrypt 'username' as well. Maybe even 'host'.
-
-## Bugs
-- import order *may* matter. We'll see if it brings problems. It shouldn't cuz lazy eval. Here was the order that for sure worked in flake.nix:
-```nix
-commonImports = h: [
-  inputs.home-manager.nixosModules.default
-  inputs.sops-nix.nixosModules.sops
-  disko.nixosModules.disko
-  ./modules/username.nix
-  ./hosts/${h}
-  ./hosts/${h}/hardware-configuration.nix
-  ./hosts/${h}/disko-config.nix
-  ./modules
-];
-  
-```
-- After a system is deployed, changing the user in ./modules/laptop/defaul.nix:`myVars.username = "";` from say, `ronnie` to `anotherUser` causes syncthing to crash.
-  Maybe it's because of sops keys? Being key.pem and cert.pem? Not really. I wouldn't worry about it too much, I think this is just a consequence of real world side effects and system state tracked by syncthing. Can't be helped, and honestly wouldn't/shouldn't really be done anyway. Just deploy a new system.
-- 
+The `flake.nix` file declaratively describes the Linux machines that may exist and be deployed. The `/hosts/` directory guides the flow of what characteristics those machines would contain. The `/modules/` directory contains those said modules, programs, etc to be inherited by the hosts. 

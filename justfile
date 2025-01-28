@@ -8,7 +8,7 @@ default:
 
 host := "`hostname`"
 msg_build_success := "Successful build! No commit message given."
-msg_deploy_success := "Successful apply/deploy on @{{target}}! No commit message given"
+msg_apply_success := "Successful apply/apply on @{{target}}! No commit message given"
 
 update_secrets:
     @-nix flake update mysecrets
@@ -18,15 +18,15 @@ _commit_unreviewed_changes:
     @-git add -A :/
     @-msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
     
-_commit_successful_changes default_message="No commit message given. Refer to last message.":
+_commit_successful_changes default_message:
     @echo -n "(optional) Enter commit message: "; read msg; msg=${msg:-"{{default_message}}"}; git commit --amend -m "$msg"
 
-_colmena_deploy target:
+_colmena_apply target:
     #!/usr/bin/env bash
-    if ! colmena apply -p 3 --on @{{target}}; then
+    if ! colmena apply -p 3 --on @{{target}}; then  # If apply fails, erase default commit mesage
         git reset --soft HEAD~1
     else
-        just _commit_successful_changes "{{msg_deploy_success}}"
+        just _commit_successful_changes "{{msg_apply_success}}"
     fi
 
 debug $RUST_BACKTRACE="1":
@@ -38,10 +38,10 @@ build:
     colmena build -p 3 
     just _commit_successful_changes "{{msg_build_success}}"
 
-deploy target=(host):
+apply target=(host):
     just update_secrets
     just _commit_unreviewed_changes
-    just _colmena_deploy {{target}}
+    just _colmena_apply {{target}}
 
 repl:
     export NIX_PATH=nixpkgs=flake:nixpkgs && colmena repl
@@ -68,7 +68,7 @@ save:
 
 
 
-#deploy laptop:
+#apply laptop:
 # nix run github:nix-community/nixos-anywhere -- --extra-files ~/.config/sops/age --generate-hardware-config nixos-generate-config ./hosts/laptop/hardware-configuration.nix root@192.168.12.122 --flake .#laptop
 
 
