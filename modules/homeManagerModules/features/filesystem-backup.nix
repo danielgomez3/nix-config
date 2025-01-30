@@ -3,6 +3,10 @@ let
   username = osConfig.myVars.username;
 in
 {
+  services.borgmatic = {
+    enable = true;
+    frequency = "*-*-* *:00/3:00";  # Run every 3 hours
+  };
   programs.borgmatic = {
     enable = true;
     backups.${username} = {
