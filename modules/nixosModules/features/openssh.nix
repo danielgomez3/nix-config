@@ -3,8 +3,8 @@ let
   username = config.myVars.username;
   # regexUserKey = ".*key\\.pub$";
   # regexUserOrRootKey = ".*/key\\.pub$";
-  regexUserKey = "key\.pub";
-  regexRootKeyOrUserKey = "key\.pub|root-key\.pub";
+  regexUserKey = "key\\.pub";
+  regexRootKeyOrUserKey = "key\\.pub|root-key\\.pub";
 in
 {
   # NOTE: Keys we want our normal user to have. We need to have root keys so we can access root and deploy.
