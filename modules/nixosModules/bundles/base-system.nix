@@ -86,6 +86,7 @@ in
     # };
     systemPackages = with pkgs; [
       # linux linux-firmware
+      rclone  # DELETEME:
       lm_sensors efibootmgr
       vim
       alsa-utils jmtpfs  # For interfacing with my OP-1 Field.

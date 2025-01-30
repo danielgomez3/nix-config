@@ -20,8 +20,6 @@ in
         # Decrypt 'user-password' to /run/secrets-for-users/ so it can be used to create the user and assign their password without having to run 'passwd <user>' imperatively:
         neededForUsers = true;
       };
-      "ddns/token" = {};
-      "ddns/username" = {};
       "syncthing/gui_password" = {}; 
       "syncthing/${name}/key_pem" = {
         owner = config.users.users.${username}.name;
@@ -41,6 +39,8 @@ in
         owner = config.users.users.${username}.name;
         group = config.users.users.${username}.group;
       };
+      "google_drive/id" = {};
+      "google_drive/secret" = {};
       # "private_ssh_keys/common" = {  # This way, it could be server, desktop, whatever!
       #   # Automatically generate this private key at this location if it's there or not:
       #   path = "/home/${username}/.ssh/id_ed25519";

@@ -19,8 +19,8 @@ in
       xdg.configFile."rclone/rclone.conf".text = ''
         [gdrive_mount]
         type = drive
-        client_id = ${config.sops.secrets.gdrive_id}
-        client_secret = ${config.sops.secrets.gdrive_secret}
+        client_id = ${config.sops.secrets.google_drive.id}
+        client_secret = ${config.sops.secrets.google_drive.secret}
       '';
   };
 }
