@@ -3,27 +3,12 @@ let
   username = config.myVars.username;
 in
 {
-  services.restic.backups = {
-    gdrive = {
-      user = "${username}";
-      repository = "rclone:gdrive/${username}}";
-      initialize = true;
-      passwordFile = config.sops.secrets.user_password.path;
-      paths = [
-        "/home/${username}/Documents"
-      ];
-      timerConfig = {
-        onCalendar = "saturday 23:00";
-      };
-    };
+  services.borgbackup.jobs.${username} = {
+    paths = "/home/${username}";
+    encryption.mode = "none";
+    environment.BORG_RSH = "ssh -i /home/${username}/.ssh/id_ed25519";
+    repo = "ssh://i7y02z7l@i7y02z7l.repo.borgbase.com/./repo";
+    compression = "auto,zstd";
+    startAt = "daily";
   };
-  # home-manager.users.${username} = {
-  #   home.packages = [ pkgs.rclone ];
-  #     xdg.configFile."rclone/rclone.conf".text = ''
-  #       [gdrive_mount]
-  #       type = drive
-  #       client_id = ${config.sops.secrets.google_drive.id}
-  #       client_secret = ${config.sops.secrets.google_drive.secret}
-  #     '';
-  # };
 }
