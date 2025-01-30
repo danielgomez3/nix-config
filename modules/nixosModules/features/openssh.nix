@@ -1,8 +1,10 @@
 { config, lib, pkgs, self, myHelper, ... }:
 let
   username = config.myVars.username;
-  regexUserKey = ".*key\\.pub$";
-  regexUserOrRootKey = ".*/key\\.pub$";
+  # regexUserKey = ".*key\\.pub$";
+  # regexUserOrRootKey = ".*/key\\.pub$";
+  regexUserKey = "key\.pub";
+  regexRootKeyOrUserKey = "key\.pub|root-key\.pub";
 in
 {
   # NOTE: Keys we want our normal user to have. We need to have root keys so we can access root and deploy.
@@ -10,7 +12,7 @@ in
   # Root key is needed for colmena to rebuild 'apply'
   users.users.${username}.openssh.authorizedKeys.keys =
     myHelper.listContentsOfFiles
-    (myHelper.recSearchFileExtension regexUserOrRootKey "${self.outPath}/hosts");
+    (myHelper.recSearchFileExtension regexRootKeyOrUserKey "${self.outPath}/hosts");
   # NOTE: keys that we want root to have. Not necessary to have another root user's key.
   # Root needs a user's keys because ...?
   users.users.root.openssh.authorizedKeys.keys =
