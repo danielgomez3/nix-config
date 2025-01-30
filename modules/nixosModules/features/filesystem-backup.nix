@@ -12,15 +12,18 @@ in
       paths = [
         "/home/${username}/Documents"
       ];
+      timerConfig = {
+        onCalendar = "saturday 23:00";
+      };
     };
   };
-  home-manager.users.${username} = {
-    home.packages = [ pkgs.rclone ];
-      xdg.configFile."rclone/rclone.conf".text = ''
-        [gdrive_mount]
-        type = drive
-        client_id = ${config.sops.secrets.google_drive.id}
-        client_secret = ${config.sops.secrets.google_drive.secret}
-      '';
-  };
+  # home-manager.users.${username} = {
+  #   home.packages = [ pkgs.rclone ];
+  #     xdg.configFile."rclone/rclone.conf".text = ''
+  #       [gdrive_mount]
+  #       type = drive
+  #       client_id = ${config.sops.secrets.google_drive.id}
+  #       client_secret = ${config.sops.secrets.google_drive.secret}
+  #     '';
+  # };
 }
