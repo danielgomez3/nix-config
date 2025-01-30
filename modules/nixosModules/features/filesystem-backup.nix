@@ -14,5 +14,13 @@ in
       ];
     };
   };
-  home-manager.users.${username}.home.packages = [ pkgs.rclone ];
+  home-manager.users.${username} = {
+    home.packages = [ pkgs.rclone ];
+      xdg.configFile."rclone/rclone.conf".text = ''
+        [gdrive_mount]
+        type = drive
+        client_id = ${config.sops.secrets.gdrive_id}
+        client_secret = ${config.sops.secrets.gdrive_secret}
+      '';
+  };
 }

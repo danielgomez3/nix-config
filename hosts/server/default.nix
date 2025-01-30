@@ -16,7 +16,7 @@ in
   };
   myNixOS = {
     bundles.base-system.enable = true;
-    filesystem-backup.enable = true;
+    filesystem-backup.enable = false;
   };
   environment = {
     # sessionVariables = {
