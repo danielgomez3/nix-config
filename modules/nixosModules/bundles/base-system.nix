@@ -40,7 +40,7 @@ in
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
-    systemd-boot.configurationLimit = 3;
+    systemd-boot.configurationLimit = 6;
   };
 
 
@@ -87,6 +87,7 @@ in
     systemPackages = with pkgs; [
       # linux linux-firmware
       lm_sensors efibootmgr
+      vim
       alsa-utils jmtpfs  # For interfacing with my OP-1 Field.
       git wget curl pigz 
       woeusb ntfs3g 
