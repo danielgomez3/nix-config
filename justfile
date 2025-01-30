@@ -78,10 +78,16 @@ repl-flake:
 
 
 
-#apply laptop:
+#deploy laptop:
 # nix run github:nix-community/nixos-anywhere -- --extra-files ~/.config/sops/age --generate-hardware-config nixos-generate-config ./hosts/laptop/hardware-configuration.nix root@192.168.12.122 --flake .#laptop
 
+deploy machine:
+    nix run github:nix-community/nixos-anywhere -- --extra-files ~/.config/sops/age --generate-hardware-config nixos-generate-config ./hosts/{{machine}}/hardware-configuration.nix root@192.168.12.122 --flake .#{{machine}}
 
+generate-keys:
+    mkdir --parents ~/.config/sops/age
+    ssh-to-age -- private-key -i ~/.ssh/id_ed25519 > ~/.config/sops/age/keys.txt
+    
 
 netboot:
     # nix build -f ./extra/nix-expressions/netboot/system.nix -o /tmp/run-pixiecore

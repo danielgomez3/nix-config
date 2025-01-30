@@ -16,6 +16,7 @@ in
   };
   myNixOS = {
     bundles.base-system.enable = true;
+    filesystem-backup.enable = true;
   };
   environment = {
     # sessionVariables = {
@@ -39,7 +40,6 @@ in
       ${username} = {
         myHomeManager = {
           cli-apps.enable = true;
-          # filesystem-backup.enable = true;
         };      
       };
     };
