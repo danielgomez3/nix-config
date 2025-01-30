@@ -1,8 +1,8 @@
 { config, lib, pkgs, self, myHelper, ... }:
 let
   username = config.myVars.username;
-  regexUserKey = ".*key\\.pub$";  # FIXME broken. Does root too
-  regexUserOrRootKey = ".*/key\\.pub$";
+  regexUserOrRootKey = ".*key\\.pub$";  # FIXME broken. Does root too
+  regexUserKey = ".*/key\\.pub$";
 in
 {
   # NOTE: Keys we want our normal user to have. We need to have root keys so we can access root and deploy.
