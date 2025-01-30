@@ -19,7 +19,7 @@ in
           }
         ];
         extraConfig = {
-          ssh_command = "ssh -i /home/om/.ssh/id_rsa";
+          ssh_command = "ssh -i /home/${username}/.ssh/id_rsa";
           borg_base_directory = "/home/${username}/Documents";
         };
       };
