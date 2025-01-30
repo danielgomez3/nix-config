@@ -82,19 +82,25 @@ in rec {
 
   # NOTE: Additional functions.
   # TODO: Can be easily abstracted
-  isPublicUserSshKey = x: (builtins.match ".*/key\\.pub$" x) != null;
-  isPublicUserOrRootSshKey = x: (builtins.match ".*\\.pub$" x) != null;  # Left is evaluated first
-  # test = 
+  # isPublicUserSshKey = x: (builtins.match ".*/key\\.pub$" x) != null;
+  # isPublicUserOrRootSshKey = x: (builtins.match ".*\\.pub$" x) != null;  # Left is evaluated first
+
+  # findPublicUserSshKeys = searchableDir :
   #   builtins.filter 
   #     (x: isPublicUserSshKey (builtins.toString x))
-  #     (lib.filesystem.listFilesRecursive ./. );
-  findPublicUserSshKeys = searchableDir :
-    builtins.filter 
-      (x: isPublicUserSshKey (builtins.toString x))
-      (lib.filesystem.listFilesRecursive searchableDir );
-  findPublicUserOrRootSshKeys = searchableDir :
-    builtins.filter 
-      (x: isPublicUserOrRootSshKey (builtins.toString x))
-      (lib.filesystem.listFilesRecursive searchableDir);
+  #     (lib.filesystem.listFilesRecursive searchableDir );
+  # findPublicUserOrRootSshKeys = searchableDir :
+  #   builtins.filter 
+  #     (x: isPublicUserOrRootSshKey (builtins.toString x))
+  #     (lib.filesystem.listFilesRecursive searchableDir);
 
+  # NOTE: Ssh helpers
+  recSearchFileExtension = regex: path:
+    builtins.filter
+      (f: builtins.match regex (builtins.toString f) != null)
+      (lib.filesystem.listFilesRecursive path);
+
+  listContentsOfFiles = files:
+    builtins.map builtins.readFile files;
+  
 }
