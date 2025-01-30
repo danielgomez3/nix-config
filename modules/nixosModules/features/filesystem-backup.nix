@@ -3,7 +3,7 @@ let
   username = config.myVars.username;
 in
 {
-  services.restic.backups.${username} = {
+  services.restic.backups = {
     gdrive = {
       user = "${username}";
       repository = "rclone:gdrive/${username}}";
