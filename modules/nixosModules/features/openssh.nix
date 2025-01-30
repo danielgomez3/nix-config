@@ -1,7 +1,7 @@
 { config, lib, pkgs, self, myHelper, ... }:
 let
   username = config.myVars.username;
-  regexUserKey = "key\\.pub$";
+  regexUserKey = ".*key\\.pub$";  # FIXME broken. Does root too
   regexUserOrRootKey = ".*/key\\.pub$";
 in
 {
