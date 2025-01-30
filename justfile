@@ -81,8 +81,8 @@ repl-flake:
 #deploy laptop:
 # nix run github:nix-community/nixos-anywhere -- --extra-files ~/.config/sops/age --generate-hardware-config nixos-generate-config ./hosts/laptop/hardware-configuration.nix root@192.168.12.122 --flake .#laptop
 
-deploy machine:
-    nix run github:nix-community/nixos-anywhere -- --extra-files ~/.config/sops/age --generate-hardware-config nixos-generate-config ./hosts/{{machine}}/hardware-configuration.nix root@192.168.12.122 --flake .#{{machine}}
+# deploy machine:
+#     nix run github:nix-community/nixos-anywhere -- --extra-files ~/.config/sops/age --generate-hardware-config nixos-generate-config ./hosts/{{machine}}/hardware-configuration.nix root@192.168.12.122 --flake .#{{machine}}
 
 generate-keys:
     mkdir --parents ~/.config/sops/age
