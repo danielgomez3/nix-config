@@ -90,7 +90,7 @@ generate-keys:
     
 
 netboot:
-    nix build -f ./extra/nix-expressions/netboot/system.nix -o /tmp/run-pixiecore
+    nix build -f ./lib/nix-expressions/netboot/system.nix -o /tmp/run-pixiecore
     -sudo iptables -w -I nixos-fw -p udp -m multiport --dports 67,69,4011 -j ACCEPT
     -sudo iptables -w -I nixos-fw -p tcp -m tcp --dport 64172 -j ACCEPT
     sudo $(realpath /tmp/run-pixiecore)
