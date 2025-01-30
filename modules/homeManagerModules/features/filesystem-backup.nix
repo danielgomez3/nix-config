@@ -18,7 +18,10 @@ in
             "label" = "server-backup";
           }
         ];
-      
+        extraConfig = {
+          ssh_command = "ssh -i /home/om/.ssh/id_rsa";
+          borg_base_directory = "/home/${username}/Documents";
+        };
       };
     };
     
