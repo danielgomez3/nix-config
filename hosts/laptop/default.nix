@@ -51,18 +51,8 @@ in
   };
 
 
-  home-manager.users.${username} = {
-      myHomeManager = {
+  home-manager.users.${username}.myHomeManager = {
         bundles.desktop-environment.enable = true;
-      };
-      # TODO: put away in a conditional configuration
-      # wayland.windowManager.hyprland = {
-      #   settings = {
-      #     input =  {
-      #       "kb_options" = "caps:swapescape";
-      #     };
-      #   };
-      # };
   };
 
 }

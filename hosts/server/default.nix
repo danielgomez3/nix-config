@@ -17,6 +17,11 @@ in
   };
   myNixOS = {
     bundles.base-system.enable = true;
+    netboot.enable = true;
+  };
+  home-manager.users.${username}.myHomeManager = {
+    cli-apps.enable = true;
+    filesystem-backup.enable = true;
   };
   environment = {
     # sessionVariables = {
@@ -29,22 +34,6 @@ in
     ];
   };
 
-
-  home-manager = { 
-    users = {
-      root = {
-        home = {
-          stateVersion = "24.05";
-        };
-      };
-      ${username} = {
-        myHomeManager = {
-          cli-apps.enable = true;
-          filesystem-backup.enable = true;
-        };      
-      };
-    };
-  };
 
 
   security.acme = {
