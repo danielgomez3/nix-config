@@ -40,9 +40,9 @@ in
         cabal-install stack ghc
         sqlint
         nixpkgs-fmt
-        python3
         # Hacking
         openvpn nmap gobuster nikto thc-hydra dirb steghide wpscan chisel
+        python3 cargo
         ];
 
         programs = {
