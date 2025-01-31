@@ -90,7 +90,7 @@ repl-flake:
 
 init-machine machine_name:
     cp -r {{justfile_directory()}}/lib/templateHost {{justfile_directory()}}/hosts/{{machine_name}}
-    ssh-keygen -t ed25519 -a 32 -f {{justfile_directory()}}/hosts/{{machine_name}}
+    ssh-keygen -t ed25519 -a 32 -f {{justfile_directory()}}/hosts/{{machine_name}}/key
     
 
 netboot:
