@@ -77,6 +77,8 @@ repl-flake:
 
 
 
+#deploy laptop:
+# nix run github:nix-community/nixos-anywhere -- --extra-files ~/.config/sops/age --generate-hardware-config nixos-generate-config ./hosts/laptop/hardware-configuration.nix root@192.168.12.122 --flake .#laptop
 
 [confirm("Are you sure you want to potentially erase this machine and redploy?")]
 deploy machine:
