@@ -11,8 +11,7 @@ in
   users.users.${username}.openssh.authorizedKeys.keys =
     myHelper.readContentsOfFiles
     (myHelper.recSearchFileExtension regexUserKey "${self.outPath}/hosts");
-  # NOTE: keys that we want root to have. Not necessary to have another root user's key.
-  # Root needs a user's keys because ...?
+  # FIXME: Give root only other root keys.
   users.users.root.openssh.authorizedKeys.keys =
     myHelper.readContentsOfFiles
     (myHelper.recSearchFileExtension regexUserOrRootKey "${self.outPath}/hosts");

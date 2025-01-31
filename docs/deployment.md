@@ -2,6 +2,7 @@
 # Deployment
 
 The following are steps to accomplish deploying a NixOS machine.
+An alternate or lesser set of steps derived from <https://nix-community.github.io/nixos-anywhere/quickstart.html>.
 
 ## Prerequisites
 
@@ -22,4 +23,6 @@ As per <https://nixos.org/download/#nix-install-macos>:
 ## TODO
 
 ## Connect to target
-Connect to the net-booted system's root user, not normal user.
+1. Disable secure boot in the bios on target machine (for Windows machines).
+<!-- TODO: For what purpose?: -->
+1. Do an initial connect to the netbooted system's root user, not the normal user via SSH (the IP address will be shown on the netboot screen): `ssh root@<ip_address>`

@@ -80,17 +80,18 @@ repl-flake:
 #deploy laptop:
 # nix run github:nix-community/nixos-anywhere -- --extra-files ~/.config/sops/age --generate-hardware-config nixos-generate-config ./hosts/laptop/hardware-configuration.nix root@192.168.12.122 --flake .#laptop
 
-[confirm("Are you sure you want to potentially erase this machine and redploy?")]
-deploy machine:
-    nix run github:nix-community/nixos-anywhere -- --extra-files ~/.config/sops/age --generate-hardware-config nixos-generate-config ./hosts/{{machine}}/hardware-configuration.nix root@192.168.12.122 --flake .#{{machine}}
+[confirm("Are you sure you want to potentially erase this machine's disk and deploy?")]
+deploy host ip_address:
+    nix run github:nix-community/nixos-anywhere -- --extra-files ~/.config/sops/age --generate-hardware-config nixos-generate-config ./hosts/{{host}}/hardware-configuration.nix root@{{ip_address}} --flake .#{{host}}
 
-# generate-age-keys:
-#     mkdir --parents ~/.config/sops/age
-#     ssh-to-age -- private-key -i ~/.ssh/id_ed25519 > ~/.config/sops/age/keys.txt
+generate-age-keys:
+    mkdir --parents ~/.config/sops/age
+    nix shell nixpkgs#age -c age-keygen -o ~/.config/sops/age/keys.txt
+    # nix run nixpkgs#ssh-to-age -- private-key -i ~/.ssh/id_ed25519 > ~/.config/sops/age/keys.txt
 
-init-machine machine_name username hostname:
-    @cp -r {{justfile_directory()}}/lib/templateHost {{justfile_directory()}}/hosts/{{machine_name}}
-    @sed -i.bak -e "s/USERNAME/{{username}}/" -e "s/HOSTNAME/{{hostname}}/" {{justfile_directory()}}/hosts/{{machine_name}}/default.nix
+init-machine username host:
+    @cp -r {{justfile_directory()}}/lib/templateHost {{justfile_directory()}}/hosts/{{host}}
+    @sed -i.bak -e "s/USERNAME/{{username}}/" -e "s/HOSTNAME/{{host}}/" {{justfile_directory()}}/hosts/{{host}}/default.nix
     echo "Replacement completed. Backup saved as 'default.nix.bak'."
 
 
