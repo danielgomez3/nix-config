@@ -5,7 +5,8 @@ in
 {
   services.borgmatic = {
     enable = true;
-    frequency = "*-*-* *:00/3:00";  # Run every 3 hours
+    # frequency = "*-*-* *:00/3:00";  # Run every 3 hours
+    frequency = "*-*-* *:0/30";
   };
   programs.borgmatic = {
     enable = true;
