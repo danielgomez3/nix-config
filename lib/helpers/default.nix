@@ -86,7 +86,7 @@ in rec {
       (f: builtins.match regex (builtins.toString f) != null)
       (lib.filesystem.listFilesRecursive path);
 
-  listContentsOfFiles = files:
+  readContentsOfFiles = files:
     builtins.map builtins.readFile files;
   
 }
