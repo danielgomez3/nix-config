@@ -8,7 +8,7 @@ default:
 
 host := "`hostname`"
 msg_build_success := "Successful build! No commit message given."
-msg_apply_success := "Successful apply/apply on @{{target}}! No commit message given"
+msg_apply_success := "Successful colmena apply on target(s)! No commit message given"
 
 update_secrets:
     @-nix flake update mysecrets
