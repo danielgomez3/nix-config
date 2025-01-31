@@ -50,7 +50,7 @@
 in {
   home-manager = {
     backupFileExtension = "hm-backup";
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs self; };
     users.${username} = {
       home = {
         stateVersion = "24.05";

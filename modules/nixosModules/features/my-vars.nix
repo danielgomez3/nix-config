@@ -8,6 +8,11 @@
       default = "error"; # optional default
       description = "The username for this specific machine.";
     };
+    hostname = lib.mkOption {
+      type = lib.types.str;
+      default = "error"; # optional default
+      description = "The hostname for this specific machine.";
+    };
     isHardwareLimited = lib.mkOption {
       type = lib.types.bool;
       default = false; # optional default

@@ -1,4 +1,4 @@
-{ osConfig, pkgs,lib,...}:
+{osConfig, pkgs,lib,...}:
 let
   username = osConfig.myVars.username;
 in

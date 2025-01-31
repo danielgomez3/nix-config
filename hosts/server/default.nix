@@ -9,6 +9,7 @@ let
 in
 {
   myVars.username = "danielgomez3";  # Specific username for this machine
+  myVars.hostname = "${name}";  # Specific username for this machine
   myVars.isSyncthingServer = true;
 
   users.users.${username} = {

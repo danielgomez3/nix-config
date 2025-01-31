@@ -1,11 +1,8 @@
-{
-pkgs,
-config,
-...
-}: {
+{self,osConfig,pkgs,config,...}:{
 
   programs.ssh = {
     enable = true;
+    userKnownHostsFile = "${self.outPath}/hosts/${osConfig.myVars.hostname}/known_hosts";
     matchBlocks = {
       "server-hosts" = {
         host = "github.com gitlab.com";
