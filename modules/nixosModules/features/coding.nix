@@ -29,8 +29,7 @@ in
       users.${username} = {
         home.packages = with pkgs; [
         # dev
-        # zellij
-        shellcheck exercism csvkit sshx fzf
+        shellcheck exercism csvkit sshx fzf 
         pandoc-include poppler_utils graphviz librsvg 
         git-filter-repo 
         # texliveTeTeX
@@ -41,11 +40,9 @@ in
         cabal-install stack ghc
         sqlint
         nixpkgs-fmt
+        python3
         # Hacking
         openvpn nmap gobuster nikto thc-hydra dirb steghide wpscan chisel
-        # My personal scripts:
-        # (import ./my-awesome-script.nix { inherit pkgs;})
-
         ];
 
         programs = {

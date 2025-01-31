@@ -8,8 +8,8 @@ let
   username = config.myVars.username;
 in
 {
-  myVars.username = "USERNAME";  # Specific username for this machine
-  myVars.hostname = "HOSTNAME";  # Specific hostname for this machine
+  myVars.username = "poopy";  # Specific username for this machine
+  myVars.hostname = "stinky";  # Specific hostname for this machine
   users.users.${username} = {
     description = "server";
   };
