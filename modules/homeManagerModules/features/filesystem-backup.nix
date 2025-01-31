@@ -15,7 +15,8 @@ in
         sourceDirectories = [ "/home/${username}/Documents"];
         repositories = [
           {
-            "path" = "ssh://rc12y91q@rc12y91q.repo.borgbase.com/./repo";
+            "path" = "ssh://judi4lzd@judi4lzd.repo.borgbase.com/./repo";
+            
             "label" = "server-backup";
           }
         ];
