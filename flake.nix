@@ -13,6 +13,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     colmena.url = "github:zhaofengli/colmena";
+    nix-netboot-serve.url = "github:determinatesystem/nix-netboot-serve"
     # inputs.nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     mysecrets = {
       url = "git+ssh://git@github.com/danielgomez3/nix-secrets.git?ref=main&shallow=1";
