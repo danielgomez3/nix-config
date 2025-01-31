@@ -97,13 +97,13 @@
         };
         imports = commonImports "${name}";
       };
-      thinkpadserver = {name, node, pkgs, ... }:{
-        deployment = {
-          tags = ["${name}" "all"];
-          targetHost = "${name}";
-        };
-        imports = commonImports "${name}";
-      };
+      # thinkpadserver = {name, node, pkgs, ... }:{
+      #   deployment = {
+      #     tags = ["${name}" "all"];
+      #     targetHost = "${name}";
+      #   };
+      #   imports = commonImports "${name}";
+      # };
 
     };
   };
