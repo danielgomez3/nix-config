@@ -16,9 +16,7 @@ in
     description = "server";
   };
   users.users.hydra = {
-    description = "For Hydra program";
-    home = "/home/hydra";
-    isSystemUser= true;
+    hashedPasswordFile = config.sops.secrets.user_password.path;  
   };
   myNixOS = {
     bundles.base-system.enable = true;
