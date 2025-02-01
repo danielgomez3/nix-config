@@ -15,6 +15,11 @@ in
   users.users.${username} = {
     description = "server";
   };
+  users.users.hydra = {
+    description = "For Hydra program";
+    home = "/home/hydra";
+    isSystemUser= true;
+  };
   myNixOS = {
     bundles.base-system.enable = true;
     netboot.enable = true;
