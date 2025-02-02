@@ -1,7 +1,7 @@
 {pkgs,lib,...}:{
 
   environment.systemPackages = with pkgs; [
-    pavucontrol pamixer libnotify
+    pavucontrol pamixer libnotify pulseaudioFull
   ];
 
   # Enable sound with pipewire, wireplumber and pulseaudio.
