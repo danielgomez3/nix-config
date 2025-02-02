@@ -11,8 +11,15 @@ in
     extraConfig = ''
       # exec sleep 5; systemctl --user start kanshi.service
       workspace number 1
+
+      # Brightness
       bindsym XF86MonBrightnessDown exec light -U 10
       bindsym XF86MonBrightnessUp exec light -A 10
+
+      # Volume
+      bindsym XF86AudioRaiseVolume exec pamixer -i 5 && pamixer --get-volume > $WOBSOCK
+      bindsym XF86AudioLowerVolume exec pamixer -d 5 && pamixer --get-volume > $WOBSOCK
+      bindsym XF86AudioMute exec pamixer --toggle-mute # no graphical output here
 
       #bindsym $mod+n exec 'flashfocus --flash'
       for_window [class="^.*"] border pixel 0
@@ -40,7 +47,7 @@ in
       modifier = "${modKey}";
       terminal = "wezterm";
       startup = [
-        { command = "slack"; }
+        # { command = "slack"; }
         { command = "pavucontrol"; }
         {
           command = "${pkgs.autotiling}/bin/autotiling";

@@ -1,5 +1,10 @@
 {pkgs,lib,...}:{
-    # Enable sound with pipewire.
+
+  environment.systemPackages = with pkgs; [
+    pavucontrol pamixer
+  ];
+
+  # Enable sound with pipewire, wireplumber and pulseaudio.
   services.pipewire = {
       enable = true;
       alsa.enable = true;

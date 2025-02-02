@@ -24,7 +24,7 @@ in
         # gui apps
         firefox zoom-us slack spotify okular plexamp
         libreoffice hunspell hunspellDicts.uk_UA hunspellDicts.th_TH
-        cmus xournalpp pavucontrol
+        cmus xournalpp 
         feh ardour audacity vlc evince
         # gnome-session
         libsForQt5.kpeople # HACK: Get kde sms working properly
