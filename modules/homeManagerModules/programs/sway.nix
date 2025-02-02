@@ -10,7 +10,8 @@ in
     # wrapperFeatures.gtk = true;
     extraConfig = ''
       # exec sleep 5; systemctl --user start kanshi.service
-      workspace number 1
+      # workspace number 1
+      workspace_auto_back_and_forth no
 
       # Brightness
       bindsym XF86MonBrightnessDown exec light -U 10
@@ -40,8 +41,6 @@ in
       # Functionality
       no_focus [all]
       focus_on_window_activation none
-      #assign [class="[Ss]lack"] title=[".*Slack.*"] workspace 3
-      #assign [class="[Ss]potify" title="[Ss]potify"] workspace 3
       assign [app_id="Slack"] workspace 3
       assign [title="(?i).*slack.*"] workspace 3
       assign [class="[Pp]lexamp" title="[Pp]lexamp"] workspace 3
@@ -50,6 +49,9 @@ in
       bindsym ${modKey}+Semicolon exec --no-startup-id flash_window
     '';
     config = {
+      # assigns = {
+      #   "3" = [{}];
+      # };
       modifier = "${modKey}";
       terminal = "wezterm";
       startup = [
