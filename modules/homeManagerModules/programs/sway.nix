@@ -1,9 +1,15 @@
-{pkgs,lib,...}:
+{pkgs,osConfig,...}:
 let
   modKey = "Mod4";
 in
 {
 
+  assertions = [
+    {
+      assertion = osConfig.security.polkit.enable or false;
+      message = "Sway requires Polkit to be enabled. Please enable 'security.polkit.enable' in your system configuration.";
+    }
+  ];
   programs.swaylock.enable = true;
   wayland.windowManager.sway = {
     enable = true;
