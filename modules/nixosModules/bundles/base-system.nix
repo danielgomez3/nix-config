@@ -5,6 +5,7 @@ in
 {
 
   myNixOS = {
+    systemd-boot.enable = true;
     internet.enable = true;
     sops.enable = true;
     openssh.enable = true;
@@ -37,11 +38,6 @@ in
     syncthing.environment.STNODEFAULTFOLDER = "true";  
   };
 
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-    systemd-boot.configurationLimit = 6;
-  };
 
 
   # Select internationalisation properties.
@@ -86,8 +82,9 @@ in
     # };
     systemPackages = with pkgs; [
       # linux linux-firmware
+      efibootmgr  # for forcing dual-boot in cli 
       rclone  # DELETEME:
-      lm_sensors efibootmgr
+      lm_sensors 
       vim
       alsa-utils jmtpfs  # For interfacing with my OP-1 Field.
       git wget curl pigz 
