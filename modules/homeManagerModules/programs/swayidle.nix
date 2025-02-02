@@ -2,7 +2,7 @@
 
   services.swayidle = {
     enable = true;
-    timeouts = lib.mkMerge [
+    timeouts = lib.mkMerge [  # Command to run after 'timeout-seconds' of inactivity
       (lib.mkIf osConfig.myVars.isHardwareLimited [
         {
           timeout = 120;
@@ -13,6 +13,7 @@
           command = "${pkgs.systemd}/bin/systemctl suspend";
         }
       ])
+      # Default settings if condition not true:
       [
         {
           timeout = 250;
@@ -26,10 +27,7 @@
     ];
 
     events = [
-      {
-        event = "lock";
-        command = "${pkgs.swaylock}/bin/swaylock -fF";
-      }
+      { event = "lid"; command = "${pkgs.swaylock}/bin/swaylock -fF && ${pkgs.systemd}/bin/systemctl suspend"; }
     ];
   };
 
