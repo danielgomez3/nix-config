@@ -10,16 +10,16 @@
 
   # TTY
   fonts.fonts = with pkgs; [ meslo-lgs-nf ];
-  services.kmscon =
-  {
-    enable = true;
-    hwRender = true;
-    extraConfig =
-    ''
-      font-name=MesloLGS NF
-      font-size=14
-    '';
-  };
+  # services.kmscon =
+  # {
+  #   enable = true;
+  #   hwRender = true;
+  #   extraConfig =
+  #   ''
+  #     font-name=MesloLGS NF
+  #     font-size=14
+  #   '';
+  # };
 
   # Boot
   boot =
