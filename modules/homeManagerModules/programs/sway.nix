@@ -17,9 +17,9 @@ in
       bindsym XF86MonBrightnessUp exec light -A 10
 
       # Volume
-      bindsym XF86AudioRaiseVolume exec pamixer -i 5 && pamixer --get-volume > $WOBSOCK
-      bindsym XF86AudioLowerVolume exec pamixer -d 5 && pamixer --get-volume > $WOBSOCK
-      bindsym XF86AudioMute exec pamixer --toggle-mute # no graphical output here
+      bindsym XF86AudioRaiseVolume exec pamixer -i 5 && pamixer --get-volume
+      bindsym XF86AudioLowerVolume exec pamixer -d 5 && pamixer --get-volume
+      bindsym XF86AudioMute exec pamixer --toggle-mute 
 
       #bindsym $mod+n exec 'flashfocus --flash'
       for_window [class="^.*"] border pixel 0

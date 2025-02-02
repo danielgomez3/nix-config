@@ -19,7 +19,7 @@ _commit_unreviewed_changes:
     @-msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
     
 _commit_successful_changes default_message:
-    @echo -n "(optional) Enter commit message: "; read msg; msg=${msg:-"{{default_message}}"}; git commit --amend -m "$msg"
+    @echo -n "(optional) Enter commit message (5s timeout): "; read -t 5 msg || msg="{{default_message}}"; git commit --amend -m "$msg"
 
 _colmena_apply target:
     #!/usr/bin/env bash
@@ -49,7 +49,7 @@ garbage:
 save:
     @echo "{{ style("error") }}WARNING! This isn't a good idea.. very undynamic of you to do.{{ NORMAL }}"
     -git add -A :/
-    echo -n "Enter commit message: "; read msg; msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
+    just _commit_successful_changes "{{msg_build_success}}"
 
 
 
