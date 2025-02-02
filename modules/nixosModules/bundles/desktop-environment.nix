@@ -9,7 +9,7 @@
     display-manager.enable = true;
     printing.enable = true;
     sound.enable = true;
-    logind.enable = true;
+    logind.enable = false;
   };
 
 }

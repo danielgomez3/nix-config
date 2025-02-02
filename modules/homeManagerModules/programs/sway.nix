@@ -21,6 +21,12 @@ in
       bindsym XF86AudioLowerVolume exec pamixer -d 5 && pamixer --get-volume
       bindsym XF86AudioMute exec pamixer --toggle-mute 
 
+      # Lock laptop if lid is closed
+      set $lock '${pkgs.swaylock}/bin/swaylock -fF'
+      bindswitch --reload --locked lid:on exec $lock
+
+      
+
       #bindsym $mod+n exec 'flashfocus --flash'
       for_window [class="^.*"] border pixel 0
       titlebar_border_thickness 0
