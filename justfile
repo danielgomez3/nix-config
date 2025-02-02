@@ -32,6 +32,9 @@ _colmena_apply target:
         just _commit_successful_changes "{{msg_apply_success}}"
     fi
 
+# _notify_targets:
+    
+
 debug $RUST_BACKTRACE="1":
     just build
 
