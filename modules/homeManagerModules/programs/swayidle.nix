@@ -27,7 +27,7 @@
     ];
 
     events = [
-      { event = "lid"; command = "${pkgs.swaylock}/bin/swaylock -fF && ${pkgs.systemd}/bin/systemctl suspend"; }
+      { event = "lock"; command = "${pkgs.swaylock}/bin/swaylock -fF"; }
     ];
   };
 
