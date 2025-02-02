@@ -4,10 +4,12 @@ let
 in
 {
 
+  # FIXME: you could also apply a condition, saying (if target machine is a NixOS machine, then assert this condition).
+  # Or, you could just 'osConfig.security.polkit.enable = true;'
   assertions = [
     {
       assertion = osConfig.security.polkit.enable or false;
-      message = "Sway requires Polkit to be enabled. Please enable 'security.polkit.enable' in your system configuration.";
+      message = "Sway requires Polkit to be enabled. Please enable 'security.polkit.enable' in your NixOS system configuration.";
     }
   ];
   programs.swaylock.enable = true;
