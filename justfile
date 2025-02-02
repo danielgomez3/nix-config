@@ -19,8 +19,8 @@ _commit_unreviewed_changes:
     @-msg=${msg:-"CAUTION unreviewed changes. Broken Configuration!"}; git commit -m "$msg"
     
 _commit_successful_changes default_message:
-    @echo -n "(optional) Enter commit message (15s timeout): "; \
-    read -t 15 msg || msg=""; \
+    @echo -n "(optional) Enter commit message (20s timeout): "; \
+    read -t 20 msg || msg=""; \
     msg=${msg:-"{{default_message}}"}; \
     git commit --amend -m "$msg"
 

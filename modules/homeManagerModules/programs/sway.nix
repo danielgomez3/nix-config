@@ -10,8 +10,8 @@ in
     # wrapperFeatures.gtk = true;
     extraConfig = ''
       # exec sleep 5; systemctl --user start kanshi.service
-      # workspace number 1
-      # workspace_auto_back_and_forth no
+      workspace number 1
+      exec sleep 1; swaymsg workspace 1  # Ensure workspace 1 is selected after startup
 
       # Brightness
       bindsym XF86MonBrightnessDown exec light -U 10
@@ -56,7 +56,9 @@ in
       terminal = "wezterm";
       startup = [
         # { command = "slack"; }
-        { command = "swaymsg exec '${pkgs.pavucontrol}/bin/pavucontrol' workspace 10"; }
+        {
+          command = "swaymsg exec '${pkgs.pavucontrol}/bin/pavucontrol'";
+        }
         {
           command = "${pkgs.autotiling}/bin/autotiling";
           always = true;
