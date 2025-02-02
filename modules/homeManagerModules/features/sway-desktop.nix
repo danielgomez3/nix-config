@@ -3,8 +3,7 @@
   myHomeManager = {
     sway.enable = true;
     swayidle.enable = true;
-    mako.enable = false;
-    wayland-notifications.enable = true;
+    mako.enable = true;  # Wayland notifications
     wayland-pipewire-idle-inhibit.enable = true;
   }; 
 }

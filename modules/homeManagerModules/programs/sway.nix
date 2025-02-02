@@ -18,8 +18,6 @@ in
     # wrapperFeatures.gtk = true;
     extraConfig = ''
       # exec sleep 5; systemctl --user start kanshi.service
-      workspace number 1
-      exec sleep 1; swaymsg workspace 1  # Ensure workspace 1 is selected after startup
 
       # Brightness
       bindsym XF86MonBrightnessDown exec light -U 10
