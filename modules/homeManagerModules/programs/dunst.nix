@@ -4,7 +4,7 @@ let
   #   ${pkgs.pulseaudio}/bin/mpv ${pkgs.yaru-theme}/share/sounds/Yaru/stereo/message.oga
   # '';
   playNotificationSound = pkgs.writeShellScript "play-notification-sound" ''
-      ${pkgs.pipewire}/bin/pw-cat --volume=0.2 ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/message.oga
+      ${pkgs.pulseaudio}/bin/paplay --volume 30000 ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/message.oga"
     '';
 in
 {
