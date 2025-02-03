@@ -4,9 +4,20 @@ default:
     @just --list
 
 
+# NOTE: Do not use lightly
 # update:
 #   nix flake update
 #   nix flake lock
+
+
+
+
+
+
+
+# #
+# Internal use, helpers
+# #
 
 host := "`hostname`"
 msg_build_success := "Successful build! No commit message given."
@@ -18,9 +29,6 @@ _notify_targets target:
     @for target in $(echo {{target}} | tr ',' ' '); do \
         echo $target; ssh "$target" "notify-send 'Task Complete' 'Server command has finished running.'"; \
     done
-
-update_secrets:
-    @-nix flake update mysecrets
 
 _commit_unreviewed_changes:
     @-git add -A :/
@@ -41,12 +49,19 @@ _colmena_apply target:
         just _commit_successful_changes "{{msg_apply_success}}"
     fi
 
+
+
+
+
+
+
+    
 # #
-# Building, applying
+# Building, applying, tasks
 # #
 
-debug $RUST_BACKTRACE="1":
-    just build
+update_secrets:
+    @-nix flake update mysecrets
 
 build notification_target:
     just update_secrets
@@ -71,9 +86,19 @@ save:
 
 
 
+
+
+
+
+
+
+
 ## 
-# Using REPL
+# Using REPL, debugging
 ## 
+
+debug $RUST_BACKTRACE="1":
+    just build
 
 debug-with-repl:
     export NIX_PATH=nixpkgs=flake:nixpkgs && colmena repl
@@ -91,11 +116,10 @@ repl-flake:
 
 
 
+# #
+# Deployment, provisioning
+# #
 
-
-
-#deploy laptop:
-# nix run github:nix-community/nixos-anywhere -- --extra-files ~/.config/sops/age --generate-hardware-config nixos-generate-config ./hosts/laptop/hardware-configuration.nix root@192.168.12.122 --flake .#laptop
 
 [confirm("Are you sure you want to potentially erase this machine's disk and deploy?")]
 deploy host ip_address:
@@ -110,10 +134,7 @@ init-machine username host:
     @cp -r {{justfile_directory()}}/lib/templateHost {{justfile_directory()}}/hosts/{{host}}
     @sed -i.bak -e "s/USERNAME/{{username}}/" -e "s/HOSTNAME/{{host}}/" {{justfile_directory()}}/hosts/{{host}}/default.nix
     echo "Replacement completed. Backup saved as 'default.nix.bak'."
-
-
-    
-
+   
 netboot:
     nix build -f ./lib/nix-expressions/netboot/system.nix -o /tmp/run-pixiecore
     -sudo iptables -w -I nixos-fw -p udp -m multiport --dports 67,69,4011 -j ACCEPT

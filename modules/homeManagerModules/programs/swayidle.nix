@@ -5,11 +5,11 @@
     timeouts = lib.mkMerge [  # Command to run after 'timeout-seconds' of inactivity
       (lib.mkIf osConfig.myVars.isHardwareLimited [
         {
-          timeout = 120;
+          timeout = 220;
           command = "${pkgs.swaylock}/bin/swaylock -fF";
         }
         {
-          timeout = 220;
+          timeout = 320;
           command = "${pkgs.systemd}/bin/systemctl suspend";
         }
       ])
