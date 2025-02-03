@@ -2,7 +2,7 @@
 {
   services.tailscale = {
     enable = true;
-    authKeyFile = lib.mkIf (config.sops.secrets ? tailscale) config.sops.secrets.tailscale.path;
+    authKeyFile = config.sops.secrets.tailscale.path;
   };
   # NOTE: I found this on my server's configuration. I'm pretty sure it just auth's tailscale to work for the first time, and thereon.
   # create a oneshot job to authenticate to Tailscale
