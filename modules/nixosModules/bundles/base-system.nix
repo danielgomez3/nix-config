@@ -6,6 +6,7 @@ in
 
   myNixOS = {
     systemd-boot.enable = true;
+    yubikey.enable = true;
     internet.enable = true;
     sops.enable = true;
     openssh.enable = true;
