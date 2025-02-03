@@ -10,7 +10,7 @@ host := "`hostname`"
 msg_build_success := "Successful build! No commit message given."
 msg_apply_success := "Successful colmena apply on target(s)! No commit message given"
 
-_notify_targets *target:
+_notify_targets target:
     @for target in $(echo {{target}} | tr ',' ' '); do \
         ssh "$$target" "notify-send 'Task Complete' 'Your command has finished running.'"; \
     done
@@ -30,7 +30,7 @@ _commit_successful_changes default_message:
 
 _colmena_apply target:
     #!/usr/bin/env bash
-    just _notify_targets "{{target}}"
+    just _notify_targets {{target}}
     if ! colmena apply -p 3 --on @{{target}}; then  # If apply fails, erase default commit mesage
         git reset --soft HEAD~1
     else
