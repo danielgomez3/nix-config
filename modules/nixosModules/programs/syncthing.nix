@@ -3,6 +3,11 @@ let
   username = config.myVars.username;
 in
 {
+    # https://wiki.nixos.org/wiki/Syncthing#tips
+    # Don't create default ~/Sync folder
+    systemd.services = {
+      syncthing.environment.STNODEFAULTFOLDER = "true";  
+    };
   services.syncthing = {
     enable = true;
     user = username;

@@ -33,11 +33,6 @@ in
   }];
   nixpkgs.config.allowUnfree = true;
 
-  # https://wiki.nixos.org/wiki/Syncthing#tips
-  # Don't create default ~/Sync folder
-  systemd.services = {
-    syncthing.environment.STNODEFAULTFOLDER = "true";  
-  };
 
 
 
