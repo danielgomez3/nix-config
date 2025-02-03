@@ -46,7 +46,7 @@ in
       #   group = config.users.users.${username}.group; # Make the token accessible to this group
       # };    
     }
-    // (lib.mkIf config.myNixos.syncthing.enable {
+    // (lib.mkIf config.myNixOS.syncthing.enable {
       "syncthing/gui_password" = {}; 
       "syncthing/${name}/key_pem" = {
         owner = config.users.users.${username}.name;
