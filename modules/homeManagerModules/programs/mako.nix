@@ -1,6 +1,6 @@
 {pkgs,...}:{
     home.packages = with pkgs; [
-       libnotify mpv
+       libnotify pulseaudioFull
     ];
     services.mako = {
       enable = true;
@@ -13,7 +13,7 @@
       maxIconSize = 24;
       extraConfig = let
         play = sound:
-          "${pkgs.mpv}/bin/mpv ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/${sound}.oga";
+          "${pkgs.pulseaudio}/bin/paplay ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/${sound}.oga";
       in ''
         on-notify=exec ${play "complete"}
       '';
