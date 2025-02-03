@@ -17,12 +17,12 @@ in
   };
   myNixOS = {
     bundles.base-system.enable = true;
+    filesystem-backup.enable = true;
     netboot.enable = true;
     hydra.enable = true;
   };
   home-manager.users.${username}.myHomeManager = {
     cli-apps.enable = true;
-    filesystem-backup.enable = true;
   };
   environment = {
     # sessionVariables = {
