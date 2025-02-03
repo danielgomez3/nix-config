@@ -45,19 +45,6 @@ in
       #   owner = config.users.users.${username}.name; # Make the token accessible to this user
       #   group = config.users.users.${username}.group; # Make the token accessible to this group
       # };    
-    }
-    // (lib.mkIf config.myNixOS.syncthing.enable {
-      "syncthing/gui_password" = {}; 
-      "syncthing/${name}/key_pem" = {
-        owner = config.users.users.${username}.name;
-        # group = config.users.users.${username}.group;
-        mode = "0700"; # Restrict read and write access to user only
-      };
-      "syncthing/${name}/cert_pem" = {
-        owner = config.users.users.${username}.name;
-        # group = config.users.users.${username}.group;
-        mode = "0700"; # Restrict read and write access to user only
-      };
-    });
+    };
   };
 }
