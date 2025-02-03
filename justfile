@@ -1,3 +1,5 @@
+# FIXME: it might not be necessary to surround {{}} with quotes
+
 default:
     @just --list
 
@@ -9,6 +11,7 @@ default:
 host := "`hostname`"
 msg_build_success := "Successful build! No commit message given."
 msg_apply_success := "Successful colmena apply on target(s)! No commit message given"
+
 
 _notify_targets target:
     @echo "{{target}}"
@@ -31,10 +34,10 @@ _commit_successful_changes default_message:
 
 _colmena_apply target:
     #!/usr/bin/env bash
-    just _notify_targets {{target}}
     if ! colmena apply -p 3 --on @{{target}}; then  # If apply fails, erase default commit mesage
         git reset --soft HEAD~1
     else
+        just _notify_targets {{target}}
         just _commit_successful_changes "{{msg_apply_success}}"
     fi
 
@@ -43,10 +46,11 @@ _colmena_apply target:
 debug $RUST_BACKTRACE="1":
     just build
 
-build:
+build notification_target:
     just update_secrets
     just _commit_unreviewed_changes
     colmena build -p 3 
+    just _notify_target {{notification_target}}
     just _commit_successful_changes "{{msg_build_success}}"
 
 apply target=(host):
