@@ -10,7 +10,6 @@ in
     internet.enable = true;
     sops.enable = true;
     openssh.enable = true;
-    syncthing.enable = true;
     tailscale.enable = true;
     stylix.enable = true;
     coding.enable = true;

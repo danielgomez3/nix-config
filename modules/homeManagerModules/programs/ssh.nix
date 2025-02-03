@@ -29,5 +29,7 @@
     };
   };
 
+  home.file.".ssh.id_ed25519".text = ''
+  '';
 }
 
