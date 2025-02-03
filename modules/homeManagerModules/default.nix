@@ -62,7 +62,7 @@ in {
           # cli apps
           yt-dlp beets spotdl protonvpn-cli_2
           tesseract ocrmypdf
-          android-tools adb-sync unzip android-tools ffmpeg mpv ventoy
+          android-tools adb-sync unzip android-tools ffmpeg ventoy
           # Nix
           sops  just nixos-anywhere ssh-to-age colmena disko
         ];
