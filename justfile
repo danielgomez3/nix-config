@@ -13,7 +13,7 @@ msg_apply_success := "Successful colmena apply on target(s)! No commit message g
 _notify_targets target:
     @echo "{{target}}"
     @for target in $(echo {{target}} | tr ',' ' '); do \
-        ssh "$$target" "notify-send 'Task Complete' 'Your command has finished running.'"; \
+        echo $target; ssh "$target" "notify-send 'Task Complete' 'Your command has finished running.'"; \
     done
 
 update_secrets:
