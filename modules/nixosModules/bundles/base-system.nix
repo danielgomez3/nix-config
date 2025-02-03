@@ -6,7 +6,7 @@ in
 
   myNixOS = {
     systemd-boot.enable = true;
-    yubikey.enable = true;
+    yubikey.enable = false;
     internet.enable = true;
     sops.enable = true;
     openssh.enable = true;
@@ -93,7 +93,7 @@ in
       iptables nftables file toybox 
       waypipe # x11 forwarding alternative:
       # Security
-      pinentry-tty age 
+      age 
     ];
   };
 

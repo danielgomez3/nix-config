@@ -15,9 +15,6 @@ in
   users.users.${username} = {
     description = "server";
   };
-  users.users.hydra = {
-    hashedPasswordFile = config.sops.secrets.user_password.path;  
-  };
   myNixOS = {
     bundles.base-system.enable = true;
     netboot.enable = true;
