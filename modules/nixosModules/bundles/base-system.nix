@@ -9,7 +9,7 @@ in
     yubikey.enable = lib.mkDefault false;
     internet.enable = lib.mkDefault true;
     sops.enable = lib.mkDefault true;
-    syncthin.enable = lib.mkDefault true;
+    syncthing.enable = lib.mkDefault true;
     openssh.enable = lib.mkDefault true;
     tailscale.enable = lib.mkDefault true;
     stylix.enable = lib.mkDefault true;
