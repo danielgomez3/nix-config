@@ -12,11 +12,11 @@ host := "`hostname`"
 msg_build_success := "Successful build! No commit message given."
 msg_apply_success := "Successful colmena apply on target(s)! No commit message given"
 
-
+# NOTE: Targets would have to use the mako module in this flake repo for this to work
 _notify_targets target:
     @echo "{{target}}"
     @for target in $(echo {{target}} | tr ',' ' '); do \
-        echo $target; ssh "$target" "notify-send 'Task Complete' 'Your command has finished running.'"; \
+        echo $target; ssh "$target" "notify-send 'Task Complete' 'Server command has finished running.'"; \
     done
 
 update_secrets:
@@ -41,7 +41,9 @@ _colmena_apply target:
         just _commit_successful_changes "{{msg_apply_success}}"
     fi
 
-    
+# #
+# Building, applying
+# #
 
 debug $RUST_BACKTRACE="1":
     just build
@@ -59,7 +61,7 @@ apply target=(host):
     just _colmena_apply {{target}}
 
 garbage:
-    nix-collect-garbage -d --delete-older-than 10d
+    nix-collect-garbage -d --delete-older-than 5d
     
 save:
     @echo "{{ style("error") }}WARNING! This isn't a good idea.. very undynamic of you to do.{{ NORMAL }}"
