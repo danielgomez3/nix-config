@@ -10,7 +10,7 @@ host := "`hostname`"
 msg_build_success := "Successful build! No commit message given."
 msg_apply_success := "Successful colmena apply on target(s)! No commit message given"
 
-_notify_targets target:
+_notify_targets *target:
     @for target in $(echo {{target}} | tr ',' ' '); do \
         ssh "$$target" "notify-send 'Task Complete' 'Your command has finished running.'"; \
     done
