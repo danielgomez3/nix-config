@@ -1,8 +1,11 @@
 { config, pkgs, ... }:
 let
+  # playNotificationSound = pkgs.writeShellScript "play-notification-sound" ''
+  #   ${pkgs.pulseaudio}/bin/mpv ${pkgs.yaru-theme}/share/sounds/Yaru/stereo/message.oga
+  # '';
   playNotificationSound = pkgs.writeShellScript "play-notification-sound" ''
-    ${pkgs.pulseaudio}/bin/mpv ${pkgs.yaru-theme}/share/sounds/Yaru/stereo/message.oga
-  '';
+      ${pkgs.pulseaudio}/bin/paplay ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/message.oga
+    '';
 in
 {
   home.packages = with pkgs; [
