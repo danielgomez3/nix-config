@@ -50,7 +50,7 @@ build notification_target:
     just update_secrets
     just _commit_unreviewed_changes
     colmena build -p 3 
-    just _notify_target {{notification_target}}
+    just _notify_targets {{notification_target}}
     just _commit_successful_changes "{{msg_build_success}}"
 
 apply target=(host):
