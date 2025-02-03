@@ -2,8 +2,11 @@
 
   services.udev.packages =  with pkgs; [
     yubikey-personalization
-    pam_u2f  # To generate public key
-    cmatrix
+    pam_u2f  
+  ];
+
+  environment.systemPackages = with pkgs; [
+    pam_u2f  
   ];
 
   programs.gnupg.agent = {
