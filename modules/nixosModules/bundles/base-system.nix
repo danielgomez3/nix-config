@@ -5,15 +5,16 @@ in
 {
 
   myNixOS = {
-    systemd-boot.enable = true;
-    yubikey.enable = false;
-    internet.enable = true;
-    sops.enable = true;
-    openssh.enable = true;
-    tailscale.enable = true;
-    stylix.enable = true;
-    coding.enable = true;
-    virtualization.enable = false;
+    systemd-boot.enable = lib.mkDefault true;
+    yubikey.enable = lib.mkDefault false;
+    internet.enable = lib.mkDefault true;
+    sops.enable = lib.mkDefault true;
+    syncthin.enable = lib.mkDefault true;
+    openssh.enable = lib.mkDefault true;
+    tailscale.enable = lib.mkDefault true;
+    stylix.enable = lib.mkDefault true;
+    coding.enable = lib.mkDefault true;
+    virtualization.enable = lib.mkDefault false;
   };
 
   system.stateVersion = "24.05"; 

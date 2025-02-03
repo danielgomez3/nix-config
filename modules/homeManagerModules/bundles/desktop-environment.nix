@@ -1,8 +1,8 @@
 {pkgs,lib,...}:
 {
   myHomeManager = {
-    gui-apps.enable = true; 
-    cli-apps.enable = true; 
-    sway-desktop.enable = true; 
+    gui-apps.enable = lib.mkDefault true; 
+    cli-apps.enable = lib.mkDefault true; 
+    sway-desktop.enable = lib.mkDefault true; 
   }; 
 }

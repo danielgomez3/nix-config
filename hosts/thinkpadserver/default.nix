@@ -16,7 +16,6 @@ in
 
   myNixOS = {
     bundles.base-system.enable = true;
-    syncthing.enable = false;
   };
 
   home-manager.users.${username}.myHomeManager = {

@@ -17,7 +17,6 @@ in
   };
   myNixOS = {
     bundles.base-system.enable = true;
-    syncthing.enable = true;
     netboot.enable = true;
     hydra.enable = true;
   };

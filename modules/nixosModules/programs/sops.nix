@@ -20,17 +20,6 @@ in
         # Decrypt 'user-password' to /run/secrets-for-users/ so it can be used to create the user and assign their password without having to run 'passwd <user>' imperatively:
         neededForUsers = true;
       };
-      "syncthing/gui_password" = {}; 
-      "syncthing/${name}/key_pem" = {
-        owner = config.users.users.${username}.name;
-        # group = config.users.users.${username}.group;
-        mode = "0700"; # Restrict read and write access to user only
-      };
-      "syncthing/${name}/cert_pem" = {
-        owner = config.users.users.${username}.name;
-        # group = config.users.users.${username}.group;
-        mode = "0700"; # Restrict read and write access to user only
-      };
       "wireless.env" = {};
       # "wifi_networks/home_ssid" = {};
       # "wifi_networks/home_psk" = {};
@@ -56,6 +45,19 @@ in
       #   owner = config.users.users.${username}.name; # Make the token accessible to this user
       #   group = config.users.users.${username}.group; # Make the token accessible to this group
       # };    
-    };
+    }
+    // (lib.mkIf config.myNixos.syncthing.enable {
+      "syncthing/gui_password" = {}; 
+      "syncthing/${name}/key_pem" = {
+        owner = config.users.users.${username}.name;
+        # group = config.users.users.${username}.group;
+        mode = "0700"; # Restrict read and write access to user only
+      };
+      "syncthing/${name}/cert_pem" = {
+        owner = config.users.users.${username}.name;
+        # group = config.users.users.${username}.group;
+        mode = "0700"; # Restrict read and write access to user only
+      };
+    });
   };
 }

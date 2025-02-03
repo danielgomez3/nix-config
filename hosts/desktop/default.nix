@@ -14,7 +14,6 @@ in
   myNixOS = {
     bundles.desktop-environment.enable = true;
     bundles.base-system.enable = true;
-    syncthing.enable = true;
   };
   time.hardwareClockInLocalTime = true;
   hardware.keyboard.zsa.enable = true;

@@ -4,12 +4,12 @@
   ...
 }: {
   myNixOS = {
-    gui-apps.enable = true;  
-    window-manager.enable = true;
-    display-manager.enable = true;
-    printing.enable = true;
-    sound.enable = true;
-    logind.enable = false;
+    gui-apps.enable = lib.mkDefault true;  
+    window-manager.enable = lib.mkDefault true;
+    display-manager.enable = lib.mkDefault true;
+    printing.enable = lib.mkDefault true;
+    sound.enable = lib.mkDefault true;
+    logind.enable = lib.mkDefault false;
   };
 
 }
