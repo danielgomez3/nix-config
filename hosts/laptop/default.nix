@@ -22,6 +22,7 @@ in
   };
 
   services = {
+    libinput.touchpad.disableWhileTyping = true;
     tlp = {
       enable = true;
       settings = {

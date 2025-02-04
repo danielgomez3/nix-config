@@ -76,9 +76,6 @@ in
           command = "swaymsg exec 'kdeconnect-app'";
         }
         {
-          command = "swaymsg exec 'kdeconnect-indicator'";
-        }
-        {
           command = "swaymsg exec kdeconnect-sms'";
         }
         {
