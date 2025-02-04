@@ -1,4 +1,5 @@
 {pkgs,lib,...}:{
+
   myHomeManager ={
     zsh.enable = true;
     starship.enable = true;
@@ -7,5 +8,9 @@
     neovim.enable = true;
     zellij.enable = true;
   };
+
+  home.packages = with pkgs; [
+    pocketsphinx
+  ];
 }
 

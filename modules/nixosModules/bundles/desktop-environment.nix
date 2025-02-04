@@ -3,6 +3,7 @@
   lib,
   ...
 }: {
+
   myNixOS = {
     gui-apps.enable = lib.mkDefault true;  
     window-manager.enable = lib.mkDefault true;
