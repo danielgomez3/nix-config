@@ -9,7 +9,8 @@ in
       "/home/${username}/Documents"
     ];
     environment.BORG_RSH = "ssh -i /root/.ssh/id_ed25519";  # FIXME use pure sops nix path
-    repo = "ssh://q4mtob1t@q4mtob1t.repo.borgbase.com/./repo";
+    # repo = "ssh://q4mtob1t@q4mtob1t.repo.borgbase.com/./repo";
+    repo = "cat ${config.sops.secrets."borgbase/repo".path}";
     compression = "auto,zstd";
     startAt = "daily";
     persistentTimer = true;
