@@ -19,7 +19,7 @@ in
     bundles.base-system.enable = true;
     netboot.enable = true;
     hydra.enable = true;
-    borg-backup.enable = true;
+    borg-backup.enable = false;
   };
   home-manager.users.${username}.myHomeManager = {
     cli-apps.enable = true;
