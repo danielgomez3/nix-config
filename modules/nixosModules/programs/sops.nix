@@ -20,6 +20,7 @@ in
         };
         "wireless.env" = {};
         "tailscale" = {};
+        "borgbase/repo" = {};
         github_token = {
           owner = config.users.users.${username}.name;
           group = config.users.users.${username}.group;
