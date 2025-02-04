@@ -12,7 +12,7 @@ in
     repo = "ssh://q4mtob1t@q4mtob1t.repo.borgbase.com/./repo";
     # repo = "ssh://q4mtob1t@q4mtob1t.repo.borgbase.com:repo";
     compression = "auto,zstd";
-    startAt = "hourly";
+    startAt = "daily";
     persistentTimer = true;
     encryption = {
       mode = "none";
