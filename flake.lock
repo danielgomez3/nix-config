@@ -396,22 +396,6 @@
         "url": "ssh://git@github.com/danielgomez3/nix-secrets.git"
       }
     },
-    "nerd-dictation": {
-      "locked": {
-        "lastModified": 1686083629,
-        "narHash": "sha256-o+oXem+NKyxphPF3qCQdpzjcW2EZ5EAjt+lbt0vRpuk=",
-        "owner": "jtojnar",
-        "repo": "nixpkgs",
-        "rev": "9367ac0d4ed8305ec2cb8f0d8ec26181438f3036",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jtojnar",
-        "ref": "nerd-dictation",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nix-github-actions": {
       "inputs": {
         "nixpkgs": [
@@ -608,7 +592,6 @@
         "disko": "disko",
         "home-manager": "home-manager",
         "mysecrets": "mysecrets",
-        "nerd-dictation": "nerd-dictation",
         "nix-netboot-serve": "nix-netboot-serve",
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-unstable": "nixpkgs-unstable",

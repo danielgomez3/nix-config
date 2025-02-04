@@ -16,7 +16,6 @@
     nix-netboot-serve.url = "github:determinatesystems/nix-netboot-serve";
     # inputs.nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     nur.url = "github:nix-community/NUR";
-    nerd-dictation.url = "github:jtojnar/nixpkgs/nerd-dictation";
     mysecrets = {
       url = "git+ssh://git@github.com/danielgomez3/nix-secrets.git?ref=main&shallow=1";
       flake = false;
