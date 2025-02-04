@@ -12,6 +12,7 @@ in
     repo = "ssh://s2iyaw6a@s2iyaw6a.repo.borgbase.com/./repo";
     compression = "auto,zstd";
     startAt = "daily";
+    persistentTimer = true;
   };
 
 
