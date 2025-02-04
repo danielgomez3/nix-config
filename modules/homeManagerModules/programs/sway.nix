@@ -55,10 +55,12 @@ in
       # Functionality
       no_focus [all]
       focus_on_window_activation none
+      # For assigns, use wl-prop
       assign [app_id="Slack"] workspace 3
       assign [title="(?i).*slack.*"] workspace 3
       assign [class="[Pp]lexamp" title="[Pp]lexamp"] workspace 3
-      assign [title="KDE Connect SMS"] workspace 2
+      assign [title="KDE Connect SMS"] workspace 10
+      assign [title="KDE Connect"] workspace 10
       assign [title="Volume Control"] workspace 10
       bindsym ${modKey}+Semicolon exec --no-startup-id flash_window
     '';
