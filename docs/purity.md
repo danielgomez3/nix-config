@@ -1,0 +1,1 @@
+- Make sure that borg-backup will run with no initialization phase.

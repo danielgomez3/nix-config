@@ -32,7 +32,15 @@ in
       set $lock '${pkgs.swaylock}/bin/swaylock -fF'
       bindswitch --reload --locked lid:on exec $lock
 
-      
+      # For Thinkpad Yoga 11e Trackpad:
+      input "Elan Touchpad" {
+          left_handed enabled
+          tap enabled
+          natural_scroll disabled
+          dwt enabled
+          accel_profile "flat" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
+          pointer_accel 0.8 # set mouse sensitivity (between -1 and 1)
+      }
 
       #bindsym $mod+n exec 'flashfocus --flash'
       for_window [class="^.*"] border pixel 0
