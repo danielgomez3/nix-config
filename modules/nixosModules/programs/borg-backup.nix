@@ -7,12 +7,14 @@ in
     paths = [
       "/home/${username}/Documents"
     ];
-    encryption.mode = "none";
     environment.BORG_RSH = "ssh -i /home/${username}/.ssh/id_ed25519";
-    repo = "ssh://s2iyaw6a@s2iyaw6a.repo.borgbase.com/./repo";
+    repo = "ssh://q4mtob1t@q4mtob1t.repo.borgbase.com/./repo";
     compression = "auto,zstd";
-    startAt = "daily";
+    startAt = "hourly";
     persistentTimer = true;
+    encryption = {
+      mode = "none";
+    };
   };
 
 
