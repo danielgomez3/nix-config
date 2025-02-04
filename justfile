@@ -45,7 +45,7 @@ _colmena_apply target:
     if ! colmena apply -p 3 --on @{{target}}; then  # If apply fails, erase default commit mesage
         git reset --soft HEAD~1
     else
-        -just _notify_targets {{target}}
+        just _notify_targets {{target}}
         just _commit_successful_changes "{{msg_apply_success}}"
     fi
 
