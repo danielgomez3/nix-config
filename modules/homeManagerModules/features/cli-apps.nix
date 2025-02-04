@@ -8,11 +8,5 @@
     neovim.enable = true;
     zellij.enable = true;
   };
-
-  home.packages = with pkgs; [
-    pocketsphinx  # live voice speach recogn.
-    sox  # convert audio files, effects, filters,etc
-
-  ];
 }
 
