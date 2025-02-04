@@ -4,11 +4,6 @@ let
 in
 {
 
-  programs = {
-    kdeconnect.enable = true;
-  };
-
-
   environment.systemPackages = with pkgs; [
     xorg.xauth  # for X11 forwarding.
   ];

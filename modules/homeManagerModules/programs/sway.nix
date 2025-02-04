@@ -73,6 +73,15 @@ in
       startup = [
         # { command = "slack"; }
         {
+          command = "swaymsg exec 'kdeconnect-app'";
+        }
+        {
+          command = "swaymsg exec 'kdeconnect-indicator'";
+        }
+        {
+          command = "swaymsg exec kdeconnect-sms'";
+        }
+        {
           command = "swaymsg exec '${pkgs.pavucontrol}/bin/pavucontrol'";
         }
         {
