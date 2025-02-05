@@ -50,18 +50,18 @@
             specialArgs = commonSpecialArgs // { host = "desktop"; };
             modules = hostModules ./hosts/desktop;
           };
-          laptop = mkNixosSystem {
-            specialArgs = commonSpecialArgs // { host = "laptop"; };
-            modules = hostModules ./hosts/laptop;
-          };
+          # laptop = mkNixosSystem {
+          #   specialArgs = commonSpecialArgs // { host = "laptop"; };
+          #   modules = hostModules ./hosts/laptop;
+          # };
           # laptoptest = mkNixosSystem {
           #   specialArgs = commonSpecialArgs // { host = "laptop"; };
           #   modules = hostModules ./hosts/laptoptest;
           # };
-          server = mkNixosSystem {
-            specialArgs = commonSpecialArgs // { username = "danielgomez3"; host = "server"; };
-            modules = hostModules ./hosts/server;
-          };
+          # server = mkNixosSystem {
+          #   specialArgs = commonSpecialArgs // { username = "danielgomez3"; host = "server"; };
+          #   modules = hostModules ./hosts/server;
+          # };
           # # NOTE: This needs to be encrypted AF. Maybe the whole usb needs to be encrypted as a result..
           # live-iso = mkNixosSystem {
           #   specialArgs = commonSpecialArgs // { host = "usb"; };
