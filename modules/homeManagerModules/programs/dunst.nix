@@ -1,11 +1,11 @@
 { config, pkgs, ... }:
 let
   # playNotificationSound = pkgs.writeShellScript "play-notification-sound" ''
-  #   ${pkgs.pulseaudio}/bin/mpv ${pkgs.yaru-theme}/share/sounds/Yaru/stereo/message.oga
+  #     ${pkgs.pulseaudio}/bin/paplay --volume 30000 ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/complete.oga
   # '';
-  playNotificationSound = pkgs.writeShellScript "play-notification-sound" ''
-      ${pkgs.pulseaudio}/bin/paplay --volume 30000 ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/complete.oga
-    '';
+  playNotificationSound = sound:
+    "${pkgs.pulseaudio}/bin/paplay ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/${sound}.oga";
+
 in
 {
   home.packages = with pkgs; [
@@ -36,9 +36,13 @@ in
         msg_urgency = "critical";
       };
 
+      urgency_normal = {
+        script = "${playNotificationSound "complete"}";
+      };
+
       play_sound = {
         summary = "*";
-        script = "${playNotificationSound}";
+        script = "${playNotificationSound "message"}";
       };
     };
 
