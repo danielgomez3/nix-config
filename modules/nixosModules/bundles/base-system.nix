@@ -20,13 +20,9 @@ in
   system.stateVersion = "24.05"; 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.allowed-uris = [
-    "https://"
-    "github:NixOS/"
-    "github:nixos/"
-    "github:hercules-ci/"
-    "github:numtide/"
-    "github:nix-community/"
-    "github:zhaofengli/"
+    "github:"
+    "git+https://github.com/"
+    "git+ssh://github.com/"
   ];
   
 
