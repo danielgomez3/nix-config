@@ -26,7 +26,7 @@ in
     "github:hercules-ci/"
     "github:numtide/"
     "github:cachix/"
-    "github:colmena/"
+    "github:zhaofengli/"
     "github:nix-community/"
   ];
   
