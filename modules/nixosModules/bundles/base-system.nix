@@ -19,6 +19,12 @@ in
 
   system.stateVersion = "24.05"; 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.allowed-uris = [
+    "github:"
+    "git+https://github.com/"
+    "git+ssh://github.com/"
+  ];
+  
 
   systemd.sleep.extraConfig = ''
     AllowSuspend=yes

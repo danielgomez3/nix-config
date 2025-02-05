@@ -111,11 +111,6 @@
 
   hydraJobs = {
     # inherit (self) packages;
-    nix.settings.allowed-uris = [
-      "github:"
-      "git+https://github.com/"
-      "git+ssh://github.com/"
-    ];
     deployment = hive.toplevel;
   };
     
