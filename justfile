@@ -24,10 +24,10 @@ msg_build_success := "Successful build! No commit message given."
 msg_apply_success := "Successful colmena apply on target(s)! No commit message given"
 
 # NOTE: Targets would have to use the mako module in this flake repo for this to work
-_notify_targets target severity_level:
+_notify_targets target:
     @echo "{{target}}"
     @for target in $(echo {{target}} | tr ',' ' '); do \
-        echo $target; ssh "$target" "notify-send -u {{severity_level}} 'Task Complete' 'Server command has finished running.'"; \
+        echo $target; ssh "$target" "notify-send 'Task Complete' 'Server command has finished running.'"; \
     done
 
 _commit_unreviewed_changes:
@@ -45,7 +45,7 @@ _colmena_apply target:
     if ! colmena apply -p 3 --on @{{target}}; then  # If apply fails, erase default commit mesage
         git reset --soft HEAD~1
     else
-        just _notify_targets {{target}} "normal"
+        just _notify_targets {{target}}
         just _commit_successful_changes "{{msg_apply_success}}"
     fi
 
