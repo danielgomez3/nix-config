@@ -42,45 +42,48 @@
       ];
 
     in {
-      nixosConfigurations = {
 
-        desktop = mkNixosSystem {
-          specialArgs = commonSpecialArgs // { host = "desktop"; };
-          modules = hostModules ./hosts/desktop;
+      hydraJobs = {
+        nixosConfigurations = {
+
+          desktop = mkNixosSystem {
+            specialArgs = commonSpecialArgs // { host = "desktop"; };
+            modules = hostModules ./hosts/desktop;
+          };
+          laptop = mkNixosSystem {
+            specialArgs = commonSpecialArgs // { host = "laptop"; };
+            modules = hostModules ./hosts/laptop;
+          };
+          laptoptest = mkNixosSystem {
+            specialArgs = commonSpecialArgs // { host = "laptop"; };
+            modules = hostModules ./hosts/laptoptest;
+          };
+          server = mkNixosSystem {
+            specialArgs = commonSpecialArgs // { username = "danielgomez3"; host = "server"; };
+            modules = hostModules ./hosts/server;
+          };
+          # NOTE: This needs to be encrypted AF. Maybe the whole usb needs to be encrypted as a result..
+          live-iso = mkNixosSystem {
+            specialArgs = commonSpecialArgs // { host = "usb"; };
+            modules = ./hosts/server/hardware-configuration.nix ./hosts/live-iso;
+          };
+          installer = mkNixosSystem {
+            specialArgs = commonSpecialArgs // { username = "installer"; host = "usb"; };
+            modules = ./hosts/server/hardware-configuration.nix ./hosts/installer;
+          };
+          # deploy = mkNixosSystem {
+          #   specialArgs = commonSpecialArgs // { username = "deploy"; host = "server"; };
+          #   modules = ./hosts/server/hardware-configuration.nix ./hosts/deploy;
+          # };
+          # rescueDevice = mkNixosSystem {
+          #   specialArgs = commonSpecialArgs // { username = "rescue"; host = "laptop"; };
+          #   modules = hostModules ./hosts/rescueDevice;
+          # };
+          # # FIXME not really used or working..
+          # customIso = mkNixosSystem {
+          #   modules = [ ./hosts/customIso ];
+          # };
         };
-        laptop = mkNixosSystem {
-          specialArgs = commonSpecialArgs // { host = "laptop"; };
-          modules = hostModules ./hosts/laptop;
-        };
-        laptoptest = mkNixosSystem {
-          specialArgs = commonSpecialArgs // { host = "laptop"; };
-          modules = hostModules ./hosts/laptoptest;
-        };
-        server = mkNixosSystem {
-          specialArgs = commonSpecialArgs // { username = "danielgomez3"; host = "server"; };
-          modules = hostModules ./hosts/server;
-        };
-        # NOTE: This needs to be encrypted AF. Maybe the whole usb needs to be encrypted as a result..
-        live-iso = mkNixosSystem {
-          specialArgs = commonSpecialArgs // { host = "usb"; };
-          modules = ./hosts/server/hardware-configuration.nix ./hosts/live-iso;
-        };
-        installer = mkNixosSystem {
-          specialArgs = commonSpecialArgs // { username = "installer"; host = "usb"; };
-          modules = ./hosts/server/hardware-configuration.nix ./hosts/installer;
-        };
-        # deploy = mkNixosSystem {
-        #   specialArgs = commonSpecialArgs // { username = "deploy"; host = "server"; };
-        #   modules = ./hosts/server/hardware-configuration.nix ./hosts/deploy;
-        # };
-        # rescueDevice = mkNixosSystem {
-        #   specialArgs = commonSpecialArgs // { username = "rescue"; host = "laptop"; };
-        #   modules = hostModules ./hosts/rescueDevice;
-        # };
-        # # FIXME not really used or working..
-        # customIso = mkNixosSystem {
-        #   modules = [ ./hosts/customIso ];
-        # };
       };
     };
 }
