@@ -32,7 +32,7 @@ in
         msg_urgency = "normal";
       };
 
-      base16_critical = {
+      urgency_critical = {
         msg_urgency = "critical";
         script = "${playNotificationSound "message"}";
       };
