@@ -27,7 +27,7 @@ msg_apply_success := "Successful colmena apply on target(s)! No commit message g
 _notify_targets target severity_level:
     @echo "{{target}}"
     @for target in $(echo {{target}} | tr ',' ' '); do \
-        echo $target; ssh "$target" "notify-send -u normal 'Task Complete' 'Server command has finished running.'"; \
+        echo $target; ssh "$target" "notify-send -u {{severity_level}} 'Task Complete' 'Server command has finished running.'"; \
     done
 
 _commit_unreviewed_changes:
