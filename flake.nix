@@ -110,6 +110,7 @@
     };
 
   hydraJobs = {
+    inherit (self) packages;
     deployment = hive.toplevel;
   };
     
