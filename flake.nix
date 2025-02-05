@@ -34,7 +34,6 @@
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, disko, colmena, stylix, wayland-pipewire-idle-inhibit, ... }: 
-  # outputs = inputs@{ self, nixpkgs, disko, colmena,  ... }: 
     let 
       system = "x86_64-linux";
       pkgsUnstable = import nixpkgs-unstable { inherit system; };
@@ -117,9 +116,7 @@
     };
 
   hydraJobs = {
-    # inherit (self) packages;
     deployment = hive.toplevel;
-    # hydraJobs.deployment = (colmena.lib.makeHive self.colmena).toplevel;
   };
     
   };

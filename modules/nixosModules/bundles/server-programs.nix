@@ -2,7 +2,7 @@
   
   myNixOS = {
     bundles.base-system.enable = true;
-    netboot.enable = true;
+    nix-netboot-serve.enable = true;
     hydra.enable = true;
     borg-backup.enable = true;
     plex.enable = true;

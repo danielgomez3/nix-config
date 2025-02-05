@@ -19,9 +19,6 @@ in
   myNixOS = {
     bundles.server-programs.enable = true;
     bundles.base-system.enable = true;
-    netboot.enable = true;
-    hydra.enable = true;
-    borg-backup.enable = true;
   };
 
   home-manager.users.${username}.myHomeManager = {
