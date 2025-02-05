@@ -31,6 +31,7 @@
     let 
       system = "x86_64-linux";
       pkgsUnstable = import nixpkgs-unstable { inherit system; };
+      hive = colmena.lib.makeHive self.outputs.colmena;
       myHelper = import ./lib/helpers/default.nix {
         inherit inputs;
         lib = inputs.nixpkgs.lib;
@@ -107,5 +108,10 @@
       };
 
     };
+
+  hydraJobs = {
+    deployment = hive.toplevel;
+  };
+    
   };
 }
