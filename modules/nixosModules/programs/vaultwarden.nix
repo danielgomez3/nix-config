@@ -1,6 +1,6 @@
 {pkgs,...}:{
   
-  vaultwarden = {
+  services.vaultwarden = {
     enable = true;
   };
 
