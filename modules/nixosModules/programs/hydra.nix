@@ -1,8 +1,9 @@
 {config, pkgs,lib,...}:{
 
-  users.users.hydra = {
+  users.users.hydra = (lib.mkIf config.services.hydra.enable {
     hashedPasswordFile = config.sops.secrets.user_password.path;  
-  };
+  });
+
   services.hydra = {
     enable = true;
     hydraURL = "http://localhost:3000"; # externally visible URL
