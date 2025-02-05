@@ -6,6 +6,9 @@ let
   playNotificationSound = pkgs.writeShellScript "play-notification-sound" ''
       ${pkgs.pulseaudio}/bin/paplay --volume 30000 ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/complete.oga
     '';
+  playNotificationSound2 = pkgs.writeShellScript "play-notification-sound" ''
+      ${pkgs.pulseaudio}/bin/paplay --volume 30000 ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/message.oga
+    '';
 in
 {
   home.packages = with pkgs; [
@@ -34,6 +37,7 @@ in
 
       base16_critical = {
         msg_urgency = "critical";
+        script = "${playNotificationSound2}";
       };
 
       play_sound = {

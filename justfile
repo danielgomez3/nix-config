@@ -43,7 +43,6 @@ _commit_successful_changes default_message:
 _colmena_apply target:
     #!/usr/bin/env bash
     if ! colmena apply -p 3 --on @{{target}}; then  # If apply fails, erase default commit mesage
-        just _notify_targets {{target}} "normal"
         git reset --soft HEAD~1
     else
         just _notify_targets {{target}} "critical"
