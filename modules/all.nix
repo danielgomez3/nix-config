@@ -21,6 +21,14 @@ in
   # A custom 'service' called 'all'. If a system has this enabled, it will inherit the following settings!:
   config = lib.mkIf cfg.enable {
 
+      nix.settings.allowed-uris = [
+        "github:"
+        "git+https://github.com/"
+        "git+ssh://github.com/"
+        "git+ssh://git@github.com/"  # My secrets repository
+        "git+ssh://git@github.com/danielgomez3/nix-secrets.git"
+      ];
+
     nixpkgs.config.allowUnfree = true;
     environment.variables.GITHUB_TOKEN = config.sops.secrets.github_token.path;
     sops = {
