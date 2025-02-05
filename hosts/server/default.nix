@@ -15,12 +15,15 @@ in
   users.users.${username} = {
     description = "server";
   };
+
   myNixOS = {
+    bundles.server-programs.enable = true;
     bundles.base-system.enable = true;
     netboot.enable = true;
     hydra.enable = true;
     borg-backup.enable = true;
   };
+
   home-manager.users.${username}.myHomeManager = {
     cli-apps.enable = true;
   };
@@ -45,26 +48,6 @@ in
   services = {
     tailscale = {
       useRoutingFeatures = "server";
-    };
-    plex = {
-      enable = true;
-      openFirewall = true;
-      user = "${username}";
-      # dataDir = "/home/${username}/plex";
-    };
-    vaultwarden = {
-      enable = true;
-    };
-    nginx = {
-      enable = true;
-      recommendedGzipSettings = true;
-      virtualHosts."server.tail1b372c.ts.net" = {
-        enableACME = false;  # Disable Let's Encrypt
-        forceSSL = false;    # Skip HTTPS enforcement (Tailscale already encrypts traffic)
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:8000";  # Forward to Vaultwarden
-        };
-      };
     };
     # DELETME:
     syncthing = {

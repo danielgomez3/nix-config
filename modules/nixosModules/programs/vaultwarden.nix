@@ -1,0 +1,7 @@
+{pkgs,...}:{
+  
+  vaultwarden = {
+    enable = true;
+  };
+
+}
