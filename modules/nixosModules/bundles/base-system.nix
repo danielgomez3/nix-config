@@ -28,6 +28,7 @@ in
     "github:cachix/"
     "github:nix-community/"
     "github:zhaofengli/"
+     "github:zhaofengli/colmena/a6b51f5feae9bfb145daa37fd0220595acb7871e?narHash=sha256-LLpiqfOGBippRax9F33kSJ/Imt8gJXb6o0JwSBiNHCk%3D"
   ];
   
 
