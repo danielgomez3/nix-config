@@ -20,10 +20,14 @@ in
   system.stateVersion = "24.05"; 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.allowed-uris = [
-    "github:"
-    "github:zhaofengli/colmena"
-    "git+https://github.com/"
-    "git+ssh://github.com/"
+    "https://"
+    "github:NixOS/"
+    "github:nixos/"
+    "github:hercules-ci/"
+    "github:numtide/"
+    "github:cachix/"
+    "github:colmena/"
+    "github:nix-community/"
   ];
   
 
