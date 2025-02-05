@@ -34,6 +34,7 @@ in
 
       base16_critical = {
         msg_urgency = "critical";
+        script = "${playNotificationSound "message"}";
       };
 
       urgency_normal = {

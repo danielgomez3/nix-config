@@ -46,7 +46,7 @@ _colmena_apply target:
         just _notify_targets {{target}} "normal"
         git reset --soft HEAD~1
     else
-        just _notify_targets {{target}} "urgent"
+        just _notify_targets {{target}} "critical"
         just _commit_successful_changes "{{msg_apply_success}}"
     fi
 
