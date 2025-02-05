@@ -24,6 +24,8 @@ in
     "git+https://github.com/"
     "git+ssh://github.com/"
     "git+ssh://git@github.com/"  # My secrets repository
+    "git+ssh://git@github.com/danielgomez3/nix-secrets.git"
+    "git+ssh://git@github.com/danielgomez3/nix-secrets.git?ref=main&shallow=1"
   ];
   
 
