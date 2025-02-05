@@ -21,6 +21,7 @@ in
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.allowed-uris = [
     "github:"
+    "github:zhaofengli/colmena"
     "git+https://github.com/"
     "git+ssh://github.com/"
   ];

@@ -112,6 +112,7 @@
   hydraJobs = {
     # inherit (self) packages;
     deployment = hive.toplevel;
+    # hydraJobs.deployment = (colmena.lib.makeHive self.colmena).toplevel;
   };
     
   };
