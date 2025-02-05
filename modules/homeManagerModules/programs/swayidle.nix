@@ -1,5 +1,7 @@
 { osConfig, pkgs, lib, ... }: {
 
+  # For debugging:
+  # systemctl --user status swayidle
   services.swayidle = {
     enable = true;
     timeouts = lib.mkMerge [  # Command to run after 'timeout-seconds' of inactivity

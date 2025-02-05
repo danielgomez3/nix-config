@@ -6,7 +6,7 @@ in
   
   environment.systemPackages = [
     pkgs.adwaita-icon-theme
-    pkgs.gnomeExtensions.appindicator  # For systray icons
+    # pkgs.gnomeExtensions.appindicator  # For systray icons
     pkgs.dconf-editor
   ];
 
