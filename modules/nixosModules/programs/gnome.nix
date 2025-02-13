@@ -9,7 +9,7 @@
 
 
   ## Extensions
-  systemd.services.NetworkManager-wait-online.enable = false;  # This is giving me problems for some reason..
+  systemd.services.NetworkManager-wait-online.enable = false;  # HACK: This is giving me problems for some reason..
   environment.systemPackages = with pkgs.gnomeExtensions; [
     blur-my-shell
     pop-shell
