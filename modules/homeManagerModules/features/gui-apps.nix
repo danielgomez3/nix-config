@@ -7,7 +7,7 @@
     zathura.enable = true;
     obs-studio.enable = true;
     emacs.enable = false;
-    doom-emacs.enable = true;
+    doom-emacs.enable = false;
     kdeconnect.enable = true;
   };
 
