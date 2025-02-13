@@ -7,12 +7,12 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.xkb.options = "caps:swapescape";
 
-
-  ## Extensions
   systemd.services.NetworkManager-wait-online.enable = false;  # HACK: This is giving me problems for some reason..
-  environment.systemPackages = with pkgs.gnomeExtensions; [
-    blur-my-shell
-    pop-shell
+
+  environment.systemPackages = with pkgs; [
+    xclip
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.pop-shell
   ];
   home-manager.users.${config.myVars.username} = {
     dconf.enable = true; 
