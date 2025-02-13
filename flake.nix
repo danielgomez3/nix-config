@@ -101,7 +101,8 @@
       desktop = {name, node, pkgs, ... }:{
         deployment = {
           tags = ["${name}" "all"];
-          targetHost = "${name}";
+          targetHost = "localhost";
+          targetPort = 22;
         };
         imports = commonImports "${name}";
       };
