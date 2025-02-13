@@ -17,14 +17,12 @@
       ;;(global-undo-tree-mode)
 
       ;; Vanity
-      (load-theme 'dracula t)
       (menu-bar-mode -1)
       (scroll-bar-mode -1)
       (tool-bar-mode -1)
     '';
 
     extraPackages = epkgs: [
-        epkgs.dracula-theme
         epkgs.pdf-tools
         #epkgs.undo-tree
         epkgs.markdown-mode

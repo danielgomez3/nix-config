@@ -2,10 +2,12 @@
 {
   stylix = {
     enable = true;
+
     # TODO: Maybe make a new dir? Or maybe make this path more pure with a variable.
-    image = "${self.outPath}/modules/nixosModules/additional/wallpapers/white.jpg";
-    # image = ../additional/wallpapers/white.jpg;
+    image = "${self.outPath}/modules/nixosModules/additional/wallpapers/hogwarts.jpg";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/terracotta-dark.yaml";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox.yaml";
     # cursor = { 
     #   package = pkgs.bibata-cursors; 
