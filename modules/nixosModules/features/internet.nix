@@ -7,7 +7,6 @@ in
 {
   # Set your time zone.
   time.timeZone = "America/New_York";
-  systemd.services.NetworkManager-wait-online.enable = false;
   networking = {
     hostName = name;  # Define your hostname.
     # nameservers = [ "8.8.8.8" "8.8.4.4" ];

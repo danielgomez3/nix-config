@@ -9,9 +9,10 @@
 
 
   ## Extensions
+  systemd.services.NetworkManager-wait-online.enable = false;  # This is giving me problems for some reason..
   environment.systemPackages = with pkgs.gnomeExtensions; [
     blur-my-shell
-    tiling-shell
+    pop-shell
   ];
   home-manager.users.${config.myVars.username} = {
     dconf.enable = true; 
@@ -21,7 +22,7 @@
         disable-user-extensions = false; # enables user extensions
         enabled-extensions = [
           pkgs.gnomeExtensions.blur-my-shell.extensionUuid
-          pkgs.gnomeExtensions.tiling-shell.extensionUuid
+          pkgs.gnomeExtensions.pop-shell.extensionUuid
         ];
       };
       
