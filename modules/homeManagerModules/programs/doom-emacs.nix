@@ -6,6 +6,7 @@
     coreutils
     findutils
     fd
+    ripgrep
   ];
   programs.doom-emacs = {
     enable = true;
