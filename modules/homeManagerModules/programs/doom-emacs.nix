@@ -1,6 +1,10 @@
-{inputs,self,...}:{
+{inputs,self,pkgs,...}:{
   imports = [
     inputs.nix-doom-emacs-unstraightened.hmModule
+  ];
+  home.packages = with pkgs; [
+    coreutils
+    findutils
   ];
   programs.doom-emacs = {
     enable = true;
