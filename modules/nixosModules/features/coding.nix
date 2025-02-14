@@ -29,6 +29,7 @@ in
       users.${username} = {
         myHomeManager = {
           doom-emacs.enable = true;
+          # helix.enable = true;
         };
         home.packages = with pkgs; [
         # dev
