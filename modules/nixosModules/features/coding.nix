@@ -27,6 +27,9 @@ in
     home-manager = { 
       useGlobalPkgs = true;
       users.${username} = {
+        myHomeManager = {
+          doom-emacs.enable = true;
+        };
         home.packages = with pkgs; [
         # dev
         shellcheck exercism csvkit sshx fzf 
