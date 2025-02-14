@@ -5,6 +5,7 @@
   home.packages = with pkgs; [
     coreutils
     findutils
+    fd
   ];
   programs.doom-emacs = {
     enable = true;
