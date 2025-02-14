@@ -7,6 +7,8 @@
     findutils
     fd
     ripgrep
+    rsync
+    openssh
   ];
   programs.doom-emacs = {
     enable = true;
