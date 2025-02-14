@@ -10,7 +10,6 @@
   systemd.services.NetworkManager-wait-online.enable = false;  # HACK: This is giving me problems for some reason..
 
   environment.systemPackages = with pkgs; [
-    xclip
     gnomeExtensions.blur-my-shell
     gnomeExtensions.pop-shell
   ];
