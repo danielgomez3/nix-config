@@ -12,11 +12,8 @@
   ];
   programs.doom-emacs = {
     enable = true;
-    doomDir = "${self.outPath}/extra/doom.d"; # Directory containing your config.el, init.el and packages.el files
-    # services.emacs.enable = true;
-    # extraPackages = epkgs: [
-    #   pkgs.emacsPackages.org-attach-screenshot
-    # ];
+    doomDir = "${self.outPath}/extra/doom.d"; # Directory containing your config.el, init.el
+                               # and packages.el files
   };
 
 }
