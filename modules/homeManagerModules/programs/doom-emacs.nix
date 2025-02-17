@@ -9,6 +9,7 @@
     ripgrep
     rsync
     openssh
+    scrot
   ];
   programs.doom-emacs = {
     enable = true;
