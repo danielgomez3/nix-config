@@ -10,7 +10,8 @@
     rsync
     openssh
     scrot
-    hunspell
+    hunspell 
+    aspell  # To do actuall spell correction with z =
   ];
   programs.doom-emacs = {
     enable = true;
