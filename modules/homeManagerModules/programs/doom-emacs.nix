@@ -10,6 +10,7 @@
     rsync
     openssh
     scrot
+    hunspell
   ];
   programs.doom-emacs = {
     enable = true;
