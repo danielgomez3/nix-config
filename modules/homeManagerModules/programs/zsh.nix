@@ -15,8 +15,8 @@
     shellAliases = {
       # f = "fg";
       # j = "jobs";
-      # l = "eza --icons --color=always --group-directories-first";
-      # la = "eza -a --icons --color=always --group-directories-first";
+      ls = "eza --icons --color=always --group-directories-first";
+      la = "eza -a --icons --color=always --group-directories-first";
       # lt = "eza --icons --color=always --tree --level 2 --group-directories-first";
       # lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
       # grep = "grep --color=always -IrnE --exclude-dir='.*'";
