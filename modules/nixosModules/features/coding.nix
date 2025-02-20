@@ -1,4 +1,3 @@
-
 { config, pkgs, pkgsUnstable, lib, inputs,  ... }:
 let 
 #   cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
@@ -31,6 +30,9 @@ in
           doom-emacs.enable = true;
           # helix.enable = true;
         };
+        home.file.".ghc/ghci.conf".text = ''
+          :set prompt "\ESC[34m\STX%s > \ESC[m\STX"
+        '';
         home.packages = with pkgs; [
         # dev
         shellcheck exercism csvkit sshx fzf 
