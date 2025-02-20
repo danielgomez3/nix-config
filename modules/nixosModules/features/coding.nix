@@ -32,6 +32,7 @@ in
         };
         home.file.".ghc/ghci.conf".text = ''
           :set prompt "\ESC[34m\STX%s > \ESC[m\STX"
+          :set stop :list
         '';
         home.packages = with pkgs; [
         # dev
