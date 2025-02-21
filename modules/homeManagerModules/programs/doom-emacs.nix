@@ -17,7 +17,10 @@
   programs.doom-emacs = {
     enable = true;
     doomDir = "${self.outPath}/extra/doom.d"; # Directory containing your config.el, init. and packages.el files
-    extraPackages = epkgs: [ epkgs.vterm epkgs.treesit-grammars.with-all-grammars ];
+    extraPackages = epkgs: [
+      # epkgs.vterm epkgs.treesit-grammars.with-all-grammars
+      epkgs.lsp-haskell
+    ];
   };
 
 }
