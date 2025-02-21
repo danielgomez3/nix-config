@@ -10,6 +10,7 @@
     rsync
     openssh
     scrot
+    emacsPackages.lsp-haskell
 
     # hunspell 
     # aspell  # To do actuall spell correction with z =
