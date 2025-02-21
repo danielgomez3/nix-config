@@ -7,4 +7,4 @@
 ;; Haskell Dev.
 (after! lsp-haskell
   (setq lsp-haskell-formatting-provider "brittany"))
-; (setq haskell-process-type 'cabal-new-repl)
+(setq haskell-process-type 'cabal-new-repl)
