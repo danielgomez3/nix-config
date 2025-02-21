@@ -10,6 +10,7 @@
     rsync
     openssh
     scrot
+    ormolu
     emacsPackages.lsp-haskell
     # haskellPackages.ghc-mod
     # haskellPackages.brittany

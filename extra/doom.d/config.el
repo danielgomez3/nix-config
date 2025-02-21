@@ -6,5 +6,5 @@
 
 ;; Haskell Dev.
 (after! lsp-haskell
-  (setq lsp-haskell-formatting-provider "brittany"))
+  (setq lsp-haskell-formatting-provider "ormolu"))
 (setq haskell-process-type 'cabal-new-repl)
