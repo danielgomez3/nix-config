@@ -39,7 +39,10 @@ in
     device = "/swapfile";
     size = 16 * 1024; # 16GB
   }];
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowBroken = true;
+  };
 
 
 

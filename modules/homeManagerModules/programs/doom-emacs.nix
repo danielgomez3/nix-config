@@ -11,6 +11,8 @@
     openssh
     scrot
     emacsPackages.lsp-haskell
+    # haskellPackages.ghc-mod
+    # haskellPackages.brittany
 
     # hunspell 
     # aspell  # To do actuall spell correction with z =
