@@ -9,20 +9,19 @@ in
       inputs.quickemu.packages.${system}.default
     ];
 
-    virtualisation = {
-      docker = {
-        enable = true;
-        rootless = {
-          enable = true;
-          setSocketVariable = true;
-        };
-      }; 
-      # virtualbox = {
-      #   host = {
-      #     enable = true;
-      #     enableExtensionPack = true;
-      #   };
-      # };
-    };
+    # virtualisation = {
+    #   docker = {
+    #     enable = true;
+    #     rootless = {
+    #       enable = true;
+    #       setSocketVariable = true;
+    #     };
+    #   }; 
+
+    virtualisation.virtualbox.host.enable = true;
+    virtualisation.virtualbox.host.enableExtensionPack = true;
+    virtualisation.virtualbox.guest.enable = true;
+    virtualisation.virtualbox.guest.dragAndDrop = true;
+
     
   }
