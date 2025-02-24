@@ -31,6 +31,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nix-doom-emacs-unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened";
+    quickemu.url = "https://flakehub.com/f/quickemu-project/quickemu/4.9.7";
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, disko, colmena, stylix, wayland-pipewire-idle-inhibit, nix-doom-emacs-unstraightened, ... }: 
