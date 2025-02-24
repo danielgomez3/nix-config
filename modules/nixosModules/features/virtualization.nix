@@ -1,10 +1,13 @@
-{ config, lib, ...}:
+{ config, lib, pkgs, ...}:
 let
   username = config.myVars.username;
 in
   {
     # users.extraGroups.vboxusers.members = [ "daniel" ];
     users.users.${username}.extraGroups = [ "docker" ];
+    environment.systemPackages = with pkgs; [
+      quickemu
+    ];
 
     virtualisation = {
       docker = {
