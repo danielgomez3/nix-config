@@ -19,9 +19,9 @@
   (setq org-download-screenshot-method "flameshot gui -p %s")
 )
 (require 'org-download)
-(map! :leader
-      :desc "Insert a screenshot"
-      "i s" 'org-download-screenshot
-      :desc "Insert image from clipboard"
-      "i p" 'org-download-clipboard
-      "i P" 'org-download-clipboard-basename)
+; (map! :leader
+;       :desc "Insert a screenshot"
+;       "i s" 'org-download-screenshot
+;       :desc "Insert image from clipboard"
+;       "i p" 'org-download-clipboard
+;       "i P" 'org-download-clipboard-basename)
