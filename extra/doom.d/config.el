@@ -14,10 +14,10 @@
 (add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
 
 ;; Org-download (for screenshots?)
-(if (string= system-wm-type "wayland")
-  (setq org-download-screenshot-method "grim -g \"$(slurp)\" %s")
-  (setq org-download-screenshot-method "flameshot gui -p %s")
-)
+; (if (string= system-wm-type "wayland")
+;   (setq org-download-screenshot-method "grim -g \"$(slurp)\" %s")
+;   (setq org-download-screenshot-method "flameshot gui -p %s")
+; )
 (require 'org-download)
 ; (map! :leader
 ;       :desc "Insert a screenshot"
@@ -25,3 +25,6 @@
 ;       :desc "Insert image from clipboard"
 ;       "i p" 'org-download-clipboard
 ;       "i P" 'org-download-clipboard-basename)
+
+
+(setq org-download-screenshot-method "flameshot gui -p %s")
