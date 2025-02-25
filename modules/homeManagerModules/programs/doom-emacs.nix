@@ -29,6 +29,7 @@
       epkgs.lsp-haskell
       epkgs.org-modern
       epkgs.org-ros
+      epkgs.org-download
     ];
   };
 
