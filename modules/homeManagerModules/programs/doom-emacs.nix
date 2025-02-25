@@ -20,6 +20,9 @@
 
     # For Org mode. For inline LaTeX previews, latex and dvipng is needed.
     texliveFull gnuplot
+
+    # For org-download
+    flameshot
   ];
   programs.doom-emacs = {
     enable = true;
@@ -28,7 +31,6 @@
       epkgs.vterm epkgs.treesit-grammars.with-all-grammars
       epkgs.lsp-haskell
       epkgs.org-modern
-      epkgs.org-ros
       epkgs.org-download
     ];
   };
