@@ -22,7 +22,8 @@
     texliveFull gnuplot
 
     # For org-download
-    flameshot
+    # flameshot
+    grim
   ];
   programs.doom-emacs = {
     enable = true;
