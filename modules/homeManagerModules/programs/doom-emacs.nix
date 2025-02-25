@@ -34,7 +34,7 @@
       epkgs.lsp-haskell
       epkgs.org-modern
       epkgs.org-download
-      epkgs.flyspell-lazy epkgs.flyspell-correct epkgs.flyspell-correct-helm
+      # epkgs.flyspell-lazy epkgs.flyspell-correct epkgs.flyspell-correct-helm
     ];
   };
 
