@@ -11,8 +11,10 @@ Via this repository, one may to accomplish the following:
 - Deployment on computer hardware via a network connection. Instant SSH access to each deployed machine using any of the following tools:
   - Deploying via PXE boot using `netboot.xyz`.
   - Deploying instantly on a cloud platform resource (like GCP, Azure, etc.) using `terrraform`.
-- Doing so in parallel using a deployment module called `colmena`.
+- System closures built in parallel using a deployment module called `colmena`.
 - Optional passwordless login via Yuibikey.
+- Automated system backup using `borgbackup`.
+- Automatic additions to a Mesh VPN (tailscale) upon newly deployed systems, facilitating automatic ssh access.
 
 
 # Structure
