@@ -27,5 +27,5 @@
 ;       "i P" 'org-download-clipboard-basename)
 
 
-; (setq org-download-screenshot-method "flameshot gui -p %s")
-(setq org-download-screenshot-method "grim -g \"$(slurp)\" %s")
+(setq org-download-screenshot-method "flameshot gui -p %s")
+; (setq org-download-screenshot-method "grim -g \"$(slurp)\" %s")
