@@ -17,6 +17,9 @@
 
     # hunspell 
     # aspell  # To do actuall spell correction with z =
+
+    # For Org mode. For inline LaTeX previews, latex and dvipng is needed.
+    texliveFull gnuplot
   ];
   programs.doom-emacs = {
     enable = true;
