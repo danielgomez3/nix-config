@@ -28,6 +28,7 @@
       epkgs.vterm epkgs.treesit-grammars.with-all-grammars
       epkgs.lsp-haskell
       epkgs.org-modern
+      epkgs.org-ros
     ];
   };
 
