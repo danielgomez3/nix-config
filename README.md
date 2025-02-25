@@ -7,6 +7,7 @@ What this repository is:
 
 Via this repository, one may to accomplish the following:
 - A fully automated, declarative, and remote install of a Linux machine.
+- CI/CD for all system builds using `hydra` hosted at localhost:3000.
 - Pulling from a separate and private git repository of encrypted secrets (e.g <https://github.com/ficticioususer/my-nix-secrets>) (using `age` for encryption, and edited on host environment with `sops`). This private repository would store the user passwords, hostnames, even online credentials that would be ready on a new undeployed Linux system.
 - Deployment on computer hardware via a network connection. Instant SSH access to each deployed machine using any of the following tools:
   - Deploying via PXE boot using `netboot.xyz`.
