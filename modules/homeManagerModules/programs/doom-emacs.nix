@@ -22,7 +22,7 @@
     texliveFull gnuplot
 
     # For org-download
-    flameshot
+    gnome-screenshot
   ];
   programs.doom-emacs = {
     enable = true;
