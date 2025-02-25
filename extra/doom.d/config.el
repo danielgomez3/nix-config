@@ -28,4 +28,4 @@
 
 
 (setq-default org-download-screenshot-method "gnome-screenshot -a -f %s")
-(setq-default org-download-image-dir "./pic"))
+(setq-default org-download-image-dir "./.screenshots"))
