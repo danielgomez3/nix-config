@@ -90,7 +90,7 @@ in
       # linux linux-firmware
       efibootmgr  # for forcing dual-boot in cli 
       rclone  # DELETEME:
-      lm_sensors 
+      lm_sensors cmatrix
       vim
       alsa-utils jmtpfs  # For interfacing with my OP-1 Field.
       git wget curl pigz 
