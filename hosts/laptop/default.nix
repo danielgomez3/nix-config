@@ -11,7 +11,6 @@ in
   myVars.username = "daniel";  # Specific username for this machine
   myVars.isHardwareLimited = true;
   myVars.isSyncthingClient = true;
-
   users.users.${username} = {
     description = "laptop";
   };
@@ -19,6 +18,10 @@ in
   myNixOS = {
     bundles.desktop-environment.enable = true;
     bundles.base-system.enable = true;
+  };
+  home-manager.users.${username}.myHomeManager = {
+      bundles.desktop-environment.enable = true;
+      bundles.coding-environment.enable = true;
   };
 
   services = {
@@ -50,10 +53,4 @@ in
   services.xserver = {
    xkb.options = "caps:swapescape";
   };
-
-
-  home-manager.users.${username}.myHomeManager = {
-        bundles.desktop-environment.enable = true;
-  };
-
 }

@@ -11,11 +11,17 @@ in
   users.users.${username} = {
     description = "desktop";
   };
+
   myNixOS = {
     bundles.desktop-environment.enable = true;
     bundles.base-system.enable = true;
     virtualization.enable = true;
   };
+  home-manager.users.${username}.myHomeManager = {
+      bundles.desktop-environment.enable = true;
+      bundles.coding-environment.enable = true;
+  };
+
   time.hardwareClockInLocalTime = true;
   hardware.keyboard.zsa.enable = true;
 
@@ -44,22 +50,4 @@ in
   };
 
 
-  home-manager.users.${username} = {
-    myHomeManager = {
-      # gui-apps.enable = true;
-      # cli-apps.enable = true;
-      bundles.desktop-environment.enable = true;
-    };
-    wayland.windowManager.sway = {
-      extraConfig = ''
-      output HDMI-A-1 scale 2
-      '';
-      config = {
-        startup = [
-          { command = "kdeconnect-sms"; }
-          { command = "plexamp"; }
-        ];
-      };
-    };
-  };
 }
