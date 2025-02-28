@@ -4,23 +4,23 @@
     enable = true;
     package = pkgsUnstable.helix;
     defaultEditor = true;
-    extraPackages = with pkgs; [
-      vscode-langservers-extracted
-      gopls gotools
+    extraPackages = [
+      pkgs.vscode-langservers-extracted
+      pkgs.gopls pkgs.gotools
       #typescript typescript-language-server
-      marksman ltex-ls  # Writing
-      nil nixfmt-classic
-      astyle clang-tools  # C
+      pkgs.marksman pkgsUnstable.ltex-ls-plus  # Writing
+      pkgs.nil pkgs.nixfmt-classic
+      pkgs.astyle pkgs.clang-tools  # C
     
-      lua-language-server
-      rust-analyzer
+      pkgs.lua-language-server
+      pkgs.rust-analyzer
       # bash-language-server
-      haskell-language-server
-      omnisharp-roslyn netcoredbg  # C-sharp
-      python312Packages.python-lsp-server 
+      pkgs.haskell-language-server
+      pkgs.omnisharp-roslyn pkgs.netcoredbg  # C-sharp
+      pkgs.python312Packages.python-lsp-server 
     ];
     settings = {
-        # theme = "catppuccin_macchiato";
+
         editor = {
           # shell = ["/usr/bin/env" "zsh"];
           end-of-line-diagnostics = "hint";
@@ -63,14 +63,46 @@
           };
         };
 
-    };
-    languages = {
-      language-server.pyright = {
-        command = "${pkgs.pyright}/bin/pyright-langserver";
-        args = [
-          "--stdio"
-        ];
+      keys = {
+        normal = {
+          space = {
+            t = ":toggle soft-wrap.enable";
+          };
+        };
+    
       };
+
+    };
+
+    languages = {
+
+      language-server = {
+
+        pyright = {
+          command = "${pkgs.pyright}/bin/pyright-langserver";
+          args = [
+            "--stdio"
+          ];
+        };
+
+        # ltex-ls-plus = {
+        #   config = {
+        #     ltex = {
+        #       diagnosticSeverity = "warning";
+        #       disabledRules = {
+        #         "en-US" = [ "PROFANITY" ];
+        #         "en-GB" = [ "PROFANITY" ];
+        #       };
+        #       dictionary = {
+        #         "en-US" = [ "builtin" ];
+        #         "en-GB" = [ "builtin" ];
+        #       };
+        #     };
+        #   };
+        # };
+
+      };
+
       language = [
         {
           name = "nix";
@@ -79,7 +111,7 @@
         }
         {
           name = "markdown";
-          language-servers = ["marksman" "ltex-ls"];
+          language-servers = ["marksman" "ltex-ls-plus"];
           text-width = 80;
           soft-wrap.enable = true;
           soft-wrap.wrap-at-text-width = true;
@@ -99,9 +131,14 @@
             {
               name = "pyright";
             }
+            {
+              name = "ltex-ls";
+            }
           ];
         }
       ];
     };
+
+
   };
 }
