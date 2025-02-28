@@ -115,6 +115,15 @@
           text-width = 80;
           soft-wrap.enable = true;
           soft-wrap.wrap-at-text-width = true;
+          formatter = {
+            command = "${pkgs.nodePackages.prettier}/bin/prettier";
+            args = [
+              "--parser"
+              "markdown"
+              "--prose-wrap"
+              "never" # <always|never|preserve>
+            ];
+          };
         }
         {
           name = "python";
