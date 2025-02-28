@@ -1,0 +1,107 @@
+{pkgs, pkgsUnstable, ...}:{
+
+  programs.helix = {
+    enable = true;
+    package = pkgsUnstable.helix;
+    defaultEditor = true;
+    extraPackages = with pkgs; [
+      vscode-langservers-extracted
+      gopls gotools
+      #typescript typescript-language-server
+      marksman ltex-ls  # Writing
+      nil nixfmt-classic
+      astyle clang-tools  # C
+    
+      lua-language-server
+      rust-analyzer
+      # bash-language-server
+      haskell-language-server
+      omnisharp-roslyn netcoredbg  # C-sharp
+      python312Packages.python-lsp-server 
+    ];
+    settings = {
+        # theme = "catppuccin_macchiato";
+        editor = {
+          # shell = ["/usr/bin/env" "zsh"];
+          end-of-line-diagnostics = "hint";
+          inline-diagnostics = {
+            cursor-line = "error";
+            other-lines = "error";
+          };
+          shell = [
+            "zsh"
+            "-c"
+          ];
+          # shell = [
+          #   "/usr/bin/env"
+          #   "zsh"
+          #   "-c"
+          # ];
+          # shell = ["zsh" "-c"];
+          true-color = true;
+          mouse = true;
+          bufferline = "multiple";
+          # whitespace.characters = {
+          #   newline = "⏎";
+          # };
+          soft-wrap = {
+            enable = true;
+            wrap-indicator = "";  # Make the car empty. Looks ugly, and there's already a symbol at the end of the line.
+          };
+          # line-number = "relative";
+          # gutters = [
+          # "diagnostics"
+          #  "spacer"
+          #  "diff"
+          # ];
+          gutters = [
+          ];
+          cursor-shape = {
+            insert = "bar";
+            normal = "block";
+            select = "underline";
+          };
+        };
+
+    };
+    languages = {
+      language-server.pyright = {
+        command = "${pkgs.pyright}/bin/pyright-langserver";
+        args = [
+          "--stdio"
+        ];
+      };
+      language = [
+        {
+          name = "nix";
+          auto-format = true;
+          formatter.command = "${pkgs.nixfmt-classic}/bin/nixfmt-classic";
+        }
+        {
+          name = "markdown";
+          language-servers = ["marksman" "ltex-ls"];
+          text-width = 80;
+          soft-wrap.enable = true;
+          soft-wrap.wrap-at-text-width = true;
+        }
+        {
+          name = "python";
+          auto-format = true;
+          formatter = {
+            command = "${pkgs.ruff}/bin/ruff";
+            args = [
+              "format"
+              "--silent"
+              "-"
+            ];
+          };
+          language-servers = [
+            {
+              name = "pyright";
+            }
+          ];
+        }
+      ];
+    };
+  };
+}

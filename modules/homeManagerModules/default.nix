@@ -6,6 +6,7 @@
   lib,
   myHelper,
   self,
+  pkgsUnstable,
   ...
 }: let
   cfg = config.home-manager.users.${username}.myHomeManager;
@@ -50,7 +51,7 @@
 in {
   home-manager = {
     backupFileExtension = "hm-backup";
-    extraSpecialArgs = { inherit inputs self; };
+    extraSpecialArgs = { inherit inputs self pkgsUnstable; };
     users.${username} = {
       home = {
         stateVersion = "24.05";
