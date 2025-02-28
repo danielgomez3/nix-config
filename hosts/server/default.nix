@@ -22,7 +22,9 @@ in
   };
 
   home-manager.users.${username}.myHomeManager = {
-    cli-apps.enable = true;
+    bundles.desktop-environment.enable = true;
+    bundles.coding-environment.enable = true;
+    cli-apps.enable = true;  # NOTE: Has to be enabled here, we don't inherit it anywhere in bundles.
   };
   environment = {
     # sessionVariables = {
