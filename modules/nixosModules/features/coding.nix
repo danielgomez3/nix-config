@@ -28,7 +28,6 @@ in
       users.${username} = {
         myHomeManager = {
           doom-emacs.enable = false;
-          # helix.enable = true;
         };
         home.file.".ghc/ghci.conf".text = ''
           :set prompt "\ESC[34m\STX%s > \ESC[m\STX"
