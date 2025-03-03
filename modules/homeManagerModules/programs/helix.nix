@@ -1,5 +1,8 @@
 {pkgs, pkgsUnstable, ...}:{
 
+  home.packages = with pkgs; [
+    haskell-language-server
+  ];
   programs.helix = {
     enable = true;
     package = pkgsUnstable.helix;
