@@ -27,7 +27,7 @@ in
       useGlobalPkgs = true;
       users.${username} = {
         myHomeManager = {
-          doom-emacs.enable = true;
+          doom-emacs.enable = false;
           # helix.enable = true;
         };
         home.file.".ghc/ghci.conf".text = ''
