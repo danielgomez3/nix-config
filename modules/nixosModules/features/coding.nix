@@ -43,14 +43,14 @@ in
         # Fun
         toilet fortune lolcat krabby cowsay figlet hollywood
         # coding
-        cabal-install stack ghc
         sqlint
         nixpkgs-fmt
         # Hacking
         openvpn nmap gobuster nikto thc-hydra dirb steghide wpscan chisel
         python3 cargo
         # Haskell Dev
-        ghcid
+        ghciwatch  # A simple and effective IDE
+        cabal-install stack ghc
         ];
 
         programs = {
