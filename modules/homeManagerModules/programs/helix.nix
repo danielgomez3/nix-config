@@ -46,7 +46,7 @@
           # };
           soft-wrap = {
             enable = true;
-            wrap-indicator = "";  # Make the car empty. Looks ugly, and there's already a symbol at the end of the line.
+            #wrap-indicator = "";  # Make the car empty. Looks ugly, and there's already a symbol at the end of the line.
           };
           # line-number = "relative";
           # gutters = [
