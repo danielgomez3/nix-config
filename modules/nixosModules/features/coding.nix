@@ -49,6 +49,8 @@ in
         # Hacking
         openvpn nmap gobuster nikto thc-hydra dirb steghide wpscan chisel
         python3 cargo
+        # Haskell Dev
+        ghcid
         ];
 
         programs = {
