@@ -143,6 +143,9 @@
             {
               name = "ltex-ls";
             }
+            {
+              name = "haskell-language-server";
+            }
           ];
         }
       ];
