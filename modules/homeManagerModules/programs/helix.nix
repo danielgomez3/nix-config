@@ -26,11 +26,11 @@
 
         editor = {
           # shell = ["/usr/bin/env" "zsh"];
-          end-of-line-diagnostics = "hint";
-          inline-diagnostics = {
-            cursor-line = "error";
-            other-lines = "error";
-          };
+          # end-of-line-diagnostics = "hint";
+          # inline-diagnostics = {
+          #   cursor-line = "error";
+          #   other-lines = "error";
+          # };
           shell = [
             "zsh"
             "-c"
