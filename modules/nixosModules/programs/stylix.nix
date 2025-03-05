@@ -6,7 +6,7 @@
     # TODO: Maybe make a new dir? Or maybe make this path more pure with a variable.
     image = "${self.outPath}/modules/nixosModules/additional/wallpapers/hogwarts.jpg";
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/terracotta-dark.yaml";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/bespin.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/woodland.yaml";
 
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox.yaml";
     # cursor = { 
