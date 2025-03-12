@@ -1,0 +1,3 @@
+from: markdown+hard_line_breaks
+to: docx
+toc: true

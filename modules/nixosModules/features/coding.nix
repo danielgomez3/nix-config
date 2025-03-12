@@ -75,14 +75,6 @@ in
             enableBashIntegration = false;
             enableZshIntegration = true;
           };
-          pandoc = {
-            enable = true;
-            # templates = {
-            #   "default.latex" = ../extra/pandoc-templates/eisvogel/eisvogel.latex;
-            #   "default.markdown" = ../extra/pandoc-templates/eisvogel/eisvogel.latex;
-            #   "default.pdf" = ../extra/pandoc-templates/eisvogel/eisvogel.latex;
-            # };
-          };
         };
       };
     };
