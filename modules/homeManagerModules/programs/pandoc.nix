@@ -1,7 +1,9 @@
 {self, ...}:{
   programs.pandoc = {
     enable = true;
-    defaultsFile = "${self.outPath}/extra/pandoc/pandoc-defaults.yaml";
+    defaults = {
+      toc = true;
+    };
     # templates = {
     #   "default.latex" = ../extra/pandoc-templates/eisvogel/eisvogel.latex;
     #   "default.markdown" = ../extra/pandoc-templates/eisvogel/eisvogel.latex;
