@@ -23,6 +23,11 @@
           pkgs.gnomeExtensions.blur-my-shell.extensionUuid
           pkgs.gnomeExtensions.pop-shell.extensionUuid
         ];
+
+        favorite-apps = [
+          "org.kde.okular.desktop"      # Okular
+        ];
+
       };
       
 
