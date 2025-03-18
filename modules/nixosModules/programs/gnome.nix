@@ -25,7 +25,8 @@
         ];
 
         favorite-apps = [
-          "org.kde.okular.desktop"      # Okular
+          "org.kde.okular.desktop"     
+          "org.gnome.Nautilus.desktop"  # File manager
         ];
 
       };
