@@ -1,4 +1,8 @@
 {pkgs,lib,...}:{ 
+  home.packages = with pkgs; [
+    fira-code
+  ];
+
   programs.wezterm = {
     enable = true;
     # package = inputs.wezterm.packages.${pkgs.system}.default;
@@ -7,6 +11,7 @@
         -- HACKME: see if can remove in future NixOS version or patch
         front_end = "WebGpu",  
         hide_tab_bar_if_only_one_tab = true,
+        font = wezterm.font("Fira Code"),
       }
     '';
   };
