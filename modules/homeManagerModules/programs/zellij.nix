@@ -24,6 +24,10 @@
             SwitchToMode = ["renametab"];
             TabNameInput = [0];
           };
+          "bind \"Alt z\"" = {
+            FocusNextPane = [];
+          };
+          
           # "bind \"Alt r\"" = {
           #   NewTab = [];
           #   SwitchToMode = ["renametab"];
