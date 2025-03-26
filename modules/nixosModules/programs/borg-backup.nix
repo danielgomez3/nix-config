@@ -4,6 +4,10 @@ let
 in
 {
   # FIXME: This requires initial ssh -i access. Make this pure..
+
+  # NOTE:
+  # to check on it, systemctl status borgbackup-job-borgbase.service
+  # Also, root is the one that needs to give its key to manage borgbackup.
   services.borgbackup.jobs."borgbase" = {
     paths = [
       "/home/${username}/Documents"

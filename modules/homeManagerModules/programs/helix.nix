@@ -1,8 +1,8 @@
 {pkgs, pkgsUnstable, ...}:{
 
-  home.packages = with pkgs; [
-    haskell-language-server
-  ];
+  # home.packages = with pkgs; [
+  #   haskell-language-server
+  # ];
   programs.helix = {
     enable = true;
     package = pkgsUnstable.helix;
@@ -18,7 +18,9 @@
       pkgs.lua-language-server
       pkgs.rust-analyzer
       # bash-language-server
-      pkgs.haskell-language-server
+      # pkgs.haskell-language-server
+      pkgsUnstable.haskell-language-server
+      # (pkgs.haskell-language-server.override { supportedGhcVersions = [ "HEAD" ]; }) 
       pkgs.omnisharp-roslyn pkgs.netcoredbg  # C-sharp
       pkgs.python312Packages.python-lsp-server 
     ];
