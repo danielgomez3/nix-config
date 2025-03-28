@@ -48,7 +48,7 @@
           bufferline = "multiple";
           whitespace = {
             render = {
-              newline = "all";
+              newline = "none";
             };
             characters = {
               newline = "⏎";
@@ -56,7 +56,8 @@
           };
           soft-wrap = {
             enable = true;
-            wrap-indicator = " ";
+            # wrap-indicator = " ";
+            wrap-indicator = "·";
           };
           # line-number = "relative";
           # gutters = [
