@@ -46,8 +46,13 @@
           true-color = true;
           mouse = true;
           bufferline = "multiple";
-          whitespace.characters = {
-            newline = "⏎";
+          whitespace = {
+            render = {
+              newline = "all";
+            };
+            characters = {
+              newline = "⏎";
+            };
           };
           soft-wrap = {
             enable = true;
