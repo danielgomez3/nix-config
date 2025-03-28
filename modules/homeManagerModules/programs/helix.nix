@@ -57,7 +57,7 @@
           soft-wrap = {
             enable = true;
             # wrap-indicator = " ";
-            wrap-indicator = "·";
+            wrap-indicator = "· ";
           };
           # line-number = "relative";
           # gutters = [
