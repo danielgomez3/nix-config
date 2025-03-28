@@ -46,12 +46,12 @@
           true-color = true;
           mouse = true;
           bufferline = "multiple";
-          # whitespace.characters = {
-          #   newline = "⏎";
-          # };
+          whitespace.characters = {
+            newline = "⏎";
+          };
           soft-wrap = {
             enable = true;
-            #wrap-indicator = "";  # Make the car empty. Looks ugly, and there's already a symbol at the end of the line.
+            wrap-indicator = " ";
           };
           # line-number = "relative";
           # gutters = [

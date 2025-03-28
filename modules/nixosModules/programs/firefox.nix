@@ -1,4 +1,5 @@
 { config, pkgs, ... }: {
+
   # Force Firefox to use Wayland and set scaling
   # environment.sessionVariables = {
   #   MOZ_ENABLE_WAYLAND = "1";
@@ -12,4 +13,5 @@
       "layout.css.devPixelsPerPx" = "0.9"; # Your preferred scaling
     };
   };
+
 }
