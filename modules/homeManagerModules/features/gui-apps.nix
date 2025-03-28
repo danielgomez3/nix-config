@@ -8,6 +8,7 @@
     obs-studio.enable = true;
     emacs.enable = false;
     kdeconnect.enable = true;
+    firefox.enable = true;
   };
 
 }

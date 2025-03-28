@@ -3,6 +3,10 @@ let
   username = config.myVars.username;
 in
 {
+ 
+  myNixOS = {
+    firefox.enable = true;
+  };
 
   environment.systemPackages = with pkgs; [
     xorg.xauth  # for X11 forwarding.
@@ -17,7 +21,7 @@ in
         # hyprland
         waybar eww wofi
         # gui apps
-        firefox zoom-us slack spotify okular plexamp
+        zoom-us slack spotify okular plexamp
         libreoffice hunspell hunspellDicts.uk_UA hunspellDicts.th_TH
         cmus xournalpp 
         feh ardour audacity vlc evince
