@@ -1,7 +1,6 @@
 {pkgs,lib,...}:{ 
   home.packages = with pkgs; [
-    fira-code
-    hackgen-nf-font
+    fira-code-nerdfont
   ];
 
   programs.wezterm = {
@@ -13,11 +12,13 @@
         front_end = "WebGpu",  
         hide_tab_bar_if_only_one_tab = true,
         -- font = wezterm.font("Fira Code"),
-        font = wezterm.font_with_fallback({
-          { family = "Fira Code", style = "Normal" },
-          { family = "Hack Nerd Font", style = "Normal" },
-          { family = "Cambria Math" },
-        }),
+        -- font = wezterm.font_with_fallback({
+        --   -- { family = "Fira Code", style = "Normal" },
+        --   { family = "Fira Code Nerd Font Mono", style = "Normal" },
+        --   { family = "Hack Nerd Font", style = "Normal" },
+        --   { family = "Cambria Math" },
+        -- }),
+        font = wezterm.font_with_fallback({'Firacode Nerd Font Mono','Droid Sans Fallback'})
 
       }
     '';
