@@ -11,6 +11,7 @@
         -- HACKME: see if can remove in future NixOS version or patch
         front_end = "WebGpu",  
         hide_tab_bar_if_only_one_tab = true,
+        warn_about_missing_glyphs = false,  -- Disables missing glyph warnings
         -- font = wezterm.font("Fira Code"),
         -- font = wezterm.font_with_fallback({
         --   -- { family = "Fira Code", style = "Normal" },
