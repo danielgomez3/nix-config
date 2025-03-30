@@ -12,6 +12,7 @@
   environment.systemPackages = with pkgs; [
     gnomeExtensions.blur-my-shell
     gnomeExtensions.pop-shell
+    gnomeExtensions.hide-top-bar
   ];
   home-manager.users.${config.myVars.username} = {
     dconf.enable = true; 
@@ -22,8 +23,10 @@
         enabled-extensions = [
           pkgs.gnomeExtensions.blur-my-shell.extensionUuid
           pkgs.gnomeExtensions.pop-shell.extensionUuid
+          pkgs.gnomeExtensions.hide-top-bar.extensionUuid
         ];
 
+        # Pressing super key will show shortcut for the following:
         favorite-apps = [
           "org.kde.okular.desktop"     
           "org.gnome.Nautilus.desktop"  # File manager
