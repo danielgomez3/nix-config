@@ -1,6 +1,7 @@
 {pkgs,lib,...}:{ 
   home.packages = with pkgs; [
     fira-code
+    hackgen-nf-font
   ];
 
   programs.wezterm = {
@@ -12,11 +13,11 @@
         front_end = "WebGpu",  
         hide_tab_bar_if_only_one_tab = true,
         -- font = wezterm.font("Fira Code"),
-
-        local font = wezterm.font_with_fallback({
-          { family = "Hack Nerd Font", style = "Normal", scale = 1 },
-          { family = "Cambria Math", scale = 1.0 },
-        })
+        font = wezterm.font_with_fallback({
+          { family = "Fira Code", style = "Normal" },
+          { family = "Hack Nerd Font", style = "Normal" },
+          { family = "Cambria Math" },
+        }),
 
       }
     '';
