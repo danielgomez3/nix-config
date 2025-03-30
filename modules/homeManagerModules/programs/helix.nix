@@ -1,8 +1,9 @@
 {pkgs, pkgsUnstable, ...}:{
 
-  # home.packages = with pkgs; [
-  #   haskell-language-server
-  # ];
+  home.packages = with pkgs; [
+    python312Packages.grip
+  ];
+
   programs.helix = {
     enable = true;
     package = pkgsUnstable.helix;
