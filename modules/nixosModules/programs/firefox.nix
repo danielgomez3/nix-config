@@ -10,7 +10,8 @@
   programs.firefox = {
     enable = true;
     preferences = {
-      "layout.css.devPixelsPerPx" = "0.9"; # Your preferred scaling
+      "layout.css.devPixelsPerPx" = "0.9";  # Your preferred scaling
+      "accessibility.typeaheadfind.enablesound" = false;  # Audible bell in ctrl-f
     };
   };
 
