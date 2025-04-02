@@ -1,6 +1,6 @@
 host := "`hostname`"
 msg_default := "No commit message given, commit possibly broken!"
-msg_success := "No commit message given, commit possibly broken!"
+msg_success := "Successful system build and applly!"
 
 [confirm("This will possibly break configuration, do not use lightly.. (y/n)")]
 update:
