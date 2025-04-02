@@ -1,5 +1,5 @@
 host := "`hostname`"
-default_commit_message := "No commit message given, commit possibly broken!"
+msg_default := "No commit message given, commit possibly broken!"
 
 [confirm("This will possibly break configuration, do not use lightly.. (y/n)")]
 update:
@@ -11,11 +11,14 @@ _update_secrets:
 
 apply target=(host):
     just _update_secrets
-    @read -p "(optional) Enter commit msg: " commit_message ; default_commit_message=${default_commit_message:-"{{default_commit_message}}"} 
-    @git add -A :/; git commit -m "$default_commit_message"
+    @read -p "(optional) Enter commit msg: " msg_possible_success ; msg_default=${msg:-"{{msg_default}}"} ; 
+    @msg_default="$${msg_possible_success:-Default commit message}" && \
+        git add -A :/ && \
+        git commit -m "$$msg_default"
     @colmena apply --on @{{target}}
-    @read -t 20 -p "(optional) Amend commit msg: " amended_commit_message || amended_commit_message=${msg:-"$commit_message"} 
-    @git add -A:/; git commit --amend -m "$amended_commit_message"
+    @read -t 20 -p "(optional) Amend commit msg: " amended_msg || amended_msg=${msg:-"$msg_possible_success"}; 
+    @git add -A :/
+    @git commit --amend -m "$amended_msg"
 
 
 # #
