@@ -12,7 +12,7 @@ _update_secrets:
 [confirm("Ammend git message? (default is 'No') ")]
 ammend_message:
     @read -p "(optional) Amend commit msg: " amended_msg ;  amended_msg=${msg:-"$msg_possible_success"} && \
-        git add -A :/ && \
+        git add --all && \
         git commit --amend -m "$amended_msg"
     
     
@@ -20,7 +20,7 @@ apply target=(host):
     just _update_secrets
     @read -p "(optional) Enter commit msg: " msg_possible_success ; msg_default=${msg:-"{{msg_default}}"} ; 
     @msg_default="$${msg_possible_success:-Default commit message}" && \
-        git add -A :/ && \
+        git add --all && \
         git commit -m "$$msg_default"
     @colmena apply --on @{{target}}
 
