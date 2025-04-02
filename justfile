@@ -16,9 +16,10 @@ apply target=(host):
         git add -A :/ && \
         git commit -m "$$msg_default"
     @colmena apply --on @{{target}}
-    @read -t 20 -p "(optional) Amend commit msg: " amended_msg || amended_msg=${msg:-"$msg_possible_success"}; 
-    @git add -A :/
-    @git commit --amend -m "$amended_msg"
+    [confirm("Ammend git message? (entr for yes)")]
+    @read -t 20 -p "(optional) Amend commit msg: " amended_msg ;  amended_msg=${msg:-"$msg_possible_success"} && \
+        git add -A :/ && \
+        git commit --amend -m "$amended_msg"
 
 
 # #
