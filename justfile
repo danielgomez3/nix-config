@@ -9,6 +9,13 @@ update:
 _update_secrets:
     @-nix flake update mysecrets
 
+[confirm("Ammend git message? (default is 'No') ")]
+ammend_message:
+    @read -p "(optional) Amend commit msg: " amended_msg ;  amended_msg=${msg:-"$msg_possible_success"} && \
+        git add -A :/ && \
+        git commit --amend -m "$amended_msg"
+    
+    
 apply target=(host):
     just _update_secrets
     @read -p "(optional) Enter commit msg: " msg_possible_success ; msg_default=${msg:-"{{msg_default}}"} ; 
@@ -16,10 +23,6 @@ apply target=(host):
         git add -A :/ && \
         git commit -m "$$msg_default"
     @colmena apply --on @{{target}}
-    [confirm("Ammend git message? (entr for yes)")]
-    @read -t 20 -p "(optional) Amend commit msg: " amended_msg ;  amended_msg=${msg:-"$msg_possible_success"} && \
-        git add -A :/ && \
-        git commit --amend -m "$amended_msg"
 
 
 # #
