@@ -10,7 +10,7 @@ update:
 _update_secrets:
     @-nix flake update mysecrets
 
-[confirm("Ammend git message? (default is 'No') ")]
+[confirm("Ammend git message? (default is 'No', and recipe will 'fail') ")]
 _ammend_commit:
     @read -p "(optional) Amend commit msg: " amended_msg ; \
     amended_msg=${msg:-"{{msg_default}}"}; \
