@@ -106,11 +106,11 @@ in
             autoAccept = true;
             id = "Productivity";
           };
-          "Misc" = {
-            path = "/home/${username}/Documents/misc";
-            autoAccept = true;
-            id = "Misc";
-          };
+          # "Misc" = {
+          #   path = "/home/${username}/Documents/misc";
+          #   autoAccept = true;
+          #   id = "Misc";
+          # };
           "Notes" = {
             path = "/home/${username}/Documents/notes";
             autoAccept = true;
