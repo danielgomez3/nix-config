@@ -1,7 +1,7 @@
 
 host := "`hostname`"
 msg_default := "No commit message given, commit possibly broken!"
-msg_success := "Successful system build and applly!"
+msg_success := "Successful system build and apply (No commit message given)."
 
 [confirm("This will possibly break configuration, do not use lightly.. (y/n)")]
 update:
@@ -14,7 +14,7 @@ _update_secrets:
 [confirm("Ammend git message? (default is 'No', and recipe will 'fail', but is done) ")]
 _ammend_commit:
     @read -p "(optional) Amend commit msg: " amended_msg ; \
-    amended_msg=${msg:-"{{msg_default}}"}; \
+    amended_msg=${msg:-"{{msg_success}}"}; \
     git add --all; \
     git commit --amend -m "$amended_msg"
     
@@ -22,7 +22,7 @@ _ammend_commit:
 apply target=(host):
     just _update_secrets
     @read -p "(optional) Enter commit msg: " msg_possible_success ; \
-    msg_default="${msg_possible_success:-"{{msg_success}}"}"; \
+    msg_default="${msg_possible_success:-"{{msg_default}}"}"; \
     git add --all; \
     git commit -m "$msg_default"
     @colmena apply --on @{{target}}
