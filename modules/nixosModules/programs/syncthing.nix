@@ -57,13 +57,19 @@ in
             devices = [ "desktop" "laptop" "phone" ];
           };
           "Notes" = {
-            devices = [ "desktop" "laptop" ];
+            devices = [ "desktop" "laptop" "phone" ];
           };
-          "Misc" = {
-            devices = [ "desktop" "laptop" ];
+          "Misc Files" = {
+            devices = [ "desktop" "laptop" "phone" ];
           };
           "Projects" = {
             devices = [ "desktop" "laptop" ];
+          };
+          "Pdfs/sheet-music" = {
+            devices = [ "desktop" "laptop" "phone" ];
+          };
+          "Pdfs/books-and-articles" = {
+            devices = [ "desktop" "laptop" "phone" ];
           };
 
         })
@@ -79,10 +85,16 @@ in
           "Notes" = {
             devices = [ "server" ];
           };
-          "Misc" = {
+          "Misc Files" = {
             devices = [ "server" ];
           };
           "Downloads" = {
+            devices = [ "server" ];
+          };
+          "Pdfs/sheet-music" = {
+            devices = [ "server" ];
+          };
+          "Pdfs/books-and-articles" = {
             devices = [ "server" ];
           };
 
@@ -90,15 +102,20 @@ in
 
         {  # Hopefully, control will go here as default regardless of condition
 
+          "Downloads" = {
+            path = "/home/${username}/Downloads";
+            autoAccept = true;
+            id = "Downloads";
+          };
           "Productivity" = {
             path = "/home/${username}/Documents/productivity";
             autoAccept = true;
             id = "Productivity";
           };
-          "Misc" = {
-            path = "/home/${username}/Documents/misc";
+          "Misc Files" = {
+            path = "/home/${username}/Documents/misc-files";
             autoAccept = true;
-            id = "Misc";
+            id = "Misc Files";
           };
           "Notes" = {
             path = "/home/${username}/Documents/notes";
@@ -110,10 +127,15 @@ in
             autoAccept = true;
             id = "Projects";
           };
-          "Downloads" = {
-            path = "/home/${username}/Downloads";
+          "Pdfs/sheet-music" = {
+            path = "/home/${username}/Documents/pdfs/sheet-music";
             autoAccept = true;
-            id = "Downloads";
+            id = "Pdfs/sheet-music";
+          };
+          "Pdfs/books-and-articles" = {
+            path = "/home/${username}/Documents/pdfs/books-and-articles";
+            autoAccept = true;
+            id = "Pdfs/books-and-articles";
           };
 
         }

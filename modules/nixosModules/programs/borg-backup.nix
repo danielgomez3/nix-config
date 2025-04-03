@@ -1,5 +1,6 @@
 { config, pkgs, lib, ... }:
 let
+  # Inspiration from  https://github.com/jnsgruk/nixos-config/blob/263eb07e8de01047aa1faa63f0fc2322e855cf9e/host/common/services/backup/default.nix#L32
   username = config.myVars.username;
   hostname = config.myVars.hostname;
   borgExcludes = [
@@ -20,8 +21,6 @@ let
 in
 {
   sops.secrets."private_ssh_keys/${hostname}_root" = {};
-  # FIXME: This requires initial ssh -i access. Make this pure..
-
   # NOTE:
   # to check on it, systemctl status borgbackup-job-borgbase.service
   # Also, root is the one that needs to give its key to manage borgbackup.
@@ -30,9 +29,7 @@ in
       "/home/${username}/Documents"
     ];
     exclude = borgExcludes;
-    # FIXME use pure sops nix path:
-    # BORG_RSH = "ssh -i ${config.age.secrets.borg-ssh-key.path}";
-    # NOTE: Stable, working:
+    # NOTE: Stable, was working:
     # environment.BORG_RSH = "ssh -i /root/.ssh/id_ed25519";  
     environment.BORG = "ssh -i ${config.sops.secrets."private_ssh_keys/${hostname}_root".path}";
     repo = "ssh://q4mtob1t@q4mtob1t.repo.borgbase.com/./repo";
