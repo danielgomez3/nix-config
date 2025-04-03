@@ -9,7 +9,7 @@ in
       syncthing.environment.STNODEFAULTFOLDER = "true";  
     };
   services.syncthing = {
-    enable = false;
+    enable = true;
     user = username;
     key = config.sops.secrets."syncthing/${name}/key_pem".path;
     cert = config.sops.secrets."syncthing/${name}/cert_pem".path;
