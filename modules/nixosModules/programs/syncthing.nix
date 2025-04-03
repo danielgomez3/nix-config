@@ -59,6 +59,9 @@ in
           "Notes" = {
             devices = [ "desktop" "laptop" "phone" ];
           };
+          # "Downloads" = {
+          #   devices = [ "desktop" "laptop" ];
+          # };
           "Misc" = {
             devices = [ "desktop" "laptop" ];
           };
@@ -85,9 +88,9 @@ in
           "Misc" = {
             devices = [ "server" ];
           };
-          "Downloads" = {
-            devices = [ "server" ];
-          };
+          # "Downloads" = {
+          #   devices = [ "server" ];
+          # };
           "Shareable-pdfs" = {
             devices = [ "server" ];
           };
@@ -96,11 +99,11 @@ in
 
         {  # Hopefully, control will go here as default regardless of condition
 
-          "Downloads" = {
-            path = "/home/${username}/Downloads";
-            autoAccept = true;
-            id = "Downloads";
-          };
+          # "Downloads" = {
+          #   path = "/home/${username}/Downloads";
+          #   autoAccept = true;
+          #   id = "Downloads";
+          # };
           "Productivity" = {
             path = "/home/${username}/Documents/productivity";
             autoAccept = true;
