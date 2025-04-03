@@ -15,7 +15,7 @@ in
   myNixOS = {
     bundles.desktop-environment.enable = true;
     bundles.base-system.enable = true;
-    virtualization.enable = true;
+    virtualization.enable = false;
   };
   home-manager.users.${username}.myHomeManager = {
       bundles.desktop-environment.enable = true;
