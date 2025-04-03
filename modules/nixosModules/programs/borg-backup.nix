@@ -1,6 +1,18 @@
 { config, pkgs, lib, ... }:
 let
   username = config.myVars.username;
+  borgExcludes = [
+    "*.log"
+    "*.db"
+    "*.sqlite"
+    "*.cache"
+    "*/.cache/*"
+    "*/node_modules/*"
+    "*.tmp"
+    "*.qcow2"
+    "*.vdi"
+    "*.iso"
+  ];
 in
 {
   # FIXME: This requires initial ssh -i access. Make this pure..
@@ -12,6 +24,7 @@ in
     paths = [
       "/home/${username}/Documents"
     ];
+    exclude = borgExcludes;
     environment.BORG_RSH = "ssh -i /root/.ssh/id_ed25519";  # FIXME use pure sops nix path
     repo = "ssh://q4mtob1t@q4mtob1t.repo.borgbase.com/./repo";
     compression = "auto,zstd";
