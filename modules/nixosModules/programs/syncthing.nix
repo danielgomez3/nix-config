@@ -59,9 +59,9 @@ in
           "Notes" = {
             devices = [ "desktop" "laptop" "phone" ];
           };
-          "Misc" = {
-            devices = [ "desktop" "laptop" ];
-          };
+          # "Misc" = {
+          #   devices = [ "desktop" "laptop" ];
+          # };
           "Projects" = {
             devices = [ "desktop" "laptop" ];
           };
@@ -82,9 +82,9 @@ in
           "Notes" = {
             devices = [ "server" ];
           };
-          "Misc" = {
-            devices = [ "server" ];
-          };
+          # "Misc" = {
+          #   devices = [ "server" ];
+          # };
           "Downloads" = {
             devices = [ "server" ];
           };
