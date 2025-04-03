@@ -19,7 +19,7 @@ let
   ];
 in
 {
-  sops.secrets."private_ssh_keys/${hostname}" = {};
+  sops.secrets."private_ssh_keys/${hostname}_root" = {};
   # FIXME: This requires initial ssh -i access. Make this pure..
 
   # NOTE:
