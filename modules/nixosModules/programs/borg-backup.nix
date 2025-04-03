@@ -18,7 +18,7 @@ let
   ];
 in
 {
-  sops.secrets."private_ssh_keys/${username}_root" = {};
+  sops.secrets."private_ssh_keys/server_root" = {};
   # FIXME: This requires initial ssh -i access. Make this pure..
 
   # NOTE:
@@ -33,7 +33,7 @@ in
     # BORG_RSH = "ssh -i ${config.age.secrets.borg-ssh-key.path}";
     # NOTE: Stable, working:
     # environment.BORG_RSH = "ssh -i /root/.ssh/id_ed25519";  
-    environment.BORG_RSH = "ssh -i ${config.sops.secrets."private_ssh_keys/server_root".path}";
+    environment.BORG = "ssh -i ${config.sops.secrets."private_ssh_keys/server_root".path}";
     repo = "ssh://q4mtob1t@q4mtob1t.repo.borgbase.com/./repo";
     compression = "auto,zstd";
     startAt = "daily";
