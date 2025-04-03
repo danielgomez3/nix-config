@@ -59,16 +59,13 @@ in
           "Notes" = {
             devices = [ "desktop" "laptop" "phone" ];
           };
-          "Misc Files" = {
-            devices = [ "desktop" "laptop" "phone" ];
+          "Misc" = {
+            devices = [ "desktop" "laptop" ];
           };
           "Projects" = {
             devices = [ "desktop" "laptop" ];
           };
-          "Pdfs/sheet-music" = {
-            devices = [ "desktop" "laptop" "phone" ];
-          };
-          "Pdfs/books-and-articles" = {
+          "Shareable-pdfs" = {
             devices = [ "desktop" "laptop" "phone" ];
           };
 
@@ -85,16 +82,13 @@ in
           "Notes" = {
             devices = [ "server" ];
           };
-          "Misc Files" = {
+          "Misc" = {
             devices = [ "server" ];
           };
           "Downloads" = {
             devices = [ "server" ];
           };
-          "Pdfs/sheet-music" = {
-            devices = [ "server" ];
-          };
-          "Pdfs/books-and-articles" = {
+          "Shareable-pdfs" = {
             devices = [ "server" ];
           };
 
@@ -112,10 +106,10 @@ in
             autoAccept = true;
             id = "Productivity";
           };
-          "Misc Files" = {
-            path = "/home/${username}/Documents/misc-files";
+          "Misc" = {
+            path = "/home/${username}/Documents/misc";
             autoAccept = true;
-            id = "Misc Files";
+            id = "Misc";
           };
           "Notes" = {
             path = "/home/${username}/Documents/notes";
@@ -127,15 +121,10 @@ in
             autoAccept = true;
             id = "Projects";
           };
-          "Pdfs/sheet-music" = {
-            path = "/home/${username}/Documents/pdfs/sheet-music";
+          "Shareable-pdfs" = {
+            path = "/home/${username}/Documents/shareable-pdfs";
             autoAccept = true;
-            id = "Pdfs/sheet-music";
-          };
-          "Pdfs/books-and-articles" = {
-            path = "/home/${username}/Documents/pdfs/books-and-articles";
-            autoAccept = true;
-            id = "Pdfs/books-and-articles";
+            id = "Shareable-pdfs";
           };
 
         }
