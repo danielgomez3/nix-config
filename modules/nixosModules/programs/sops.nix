@@ -29,16 +29,17 @@ in
         "google_drive/secret" = {};
         "syncthing/gui_password" = {}; 
       }
-      # (lib.mkIf config.myNixOS.syncthing.enable {
-      #   "syncthing/${name}/key_pem" = {
-      #     owner = config.users.users.${username}.name;
-      #     mode = "0700"; # Restrict read and write access to user only
-      #   };
-      #   "syncthing/${name}/cert_pem" = {
-      #     owner = config.users.users.${username}.name;
-      #     mode = "0700"; # Restrict read and write access to user only
-      #   };
-      # })
+      # FIXME: maybe put this in sops.nix
+      (lib.mkIf config.myNixOS.syncthing.enable {
+        "syncthing/${name}/key_pem" = {
+          owner = config.users.users.${username}.name;
+          mode = "0700"; # Restrict read and write access to user only
+        };
+        "syncthing/${name}/cert_pem" = {
+          owner = config.users.users.${username}.name;
+          mode = "0700"; # Restrict read and write access to user only
+        };
+      })
     ];
   };
 
