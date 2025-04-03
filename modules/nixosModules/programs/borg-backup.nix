@@ -2,6 +2,9 @@
 let
   username = config.myVars.username;
   borgExcludes = [
+    "/nix"
+    "/tmp"
+    "/usr"
     "*.log"
     "*.db"
     "*.sqlite"
