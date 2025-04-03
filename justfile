@@ -1,3 +1,4 @@
+
 host := "`hostname`"
 msg_default := "No commit message given, commit possibly broken!"
 msg_success := "Successful system build and applly!"
@@ -10,7 +11,7 @@ update:
 _update_secrets:
     @-nix flake update mysecrets
 
-[confirm("Ammend git message? (default is 'No', and recipe will 'fail') ")]
+[confirm("Ammend git message? (default is 'No', and recipe will 'fail', but is done) ")]
 _ammend_commit:
     @read -p "(optional) Amend commit msg: " amended_msg ; \
     amended_msg=${msg:-"{{msg_default}}"}; \
