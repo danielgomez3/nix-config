@@ -22,7 +22,6 @@
       lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
       # grep = "grep --color=always -IrnE --exclude-dir='.*'";
       # less = "less -FR";
-      productivity = "cd ~/Documents/productivity/files && hx todo.md credentials.md";
       conf = "cd ~/Projects/repos-personal/flakes/flake/ && hx modules/coding.nix modules/all.nix";
       notes = "cd ~/Documents/notes/files && hx .";
       zrf = "zellij run floating";

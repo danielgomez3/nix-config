@@ -26,10 +26,6 @@ apply target=(host):
     git add --all; \
     git commit -m "$msg_default"
     @colmena apply --on @{{target}}
-    just _ammend_commit
-
-
-
 
 
 
