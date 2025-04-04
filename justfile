@@ -1,3 +1,7 @@
+# #
+# NOTE:
+# Lines with @ supress justfile printing executed line to standard output, not supress standard output altogether.
+# #
 
 host := "`hostname`"
 msg_default := "No commit message given, commit possibly broken!"
@@ -9,7 +13,7 @@ update:
   nix flake lock
 
 _update_secrets:
-    @-nix flake update mysecrets
+    @nix flake update mysecrets
 
 [confirm("Ammend git message? (default is 'No', and recipe will 'fail', but is done) ")]
 amend:
@@ -20,7 +24,7 @@ amend:
     
     
 apply target=(host):
-    just _update_secrets
+    @just _update_secrets
     @read -p "(optional) Enter commit msg: " msg_possible_success ; \
     msg_default="${msg_possible_success:-"{{msg_default}}"}"; \
     git add --all; \
@@ -28,7 +32,10 @@ apply target=(host):
     @colmena apply --on @{{target}}
 
 
-
+build target=(host):
+    @just _update_secrets
+    @colmena build --on target
+    
 
 
 
