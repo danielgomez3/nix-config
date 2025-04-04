@@ -5,6 +5,7 @@
 
 host := "`hostname`"
 msg_default := "No commit message given, commit possibly broken!"
+msg_build := "No commit message given, building system, commit possibly broken!"
 msg_success := "Successful system build and apply (No commit message given)."
 
 [confirm("This will possibly break configuration, do not use lightly.. (y/n)")]
@@ -23,7 +24,7 @@ amend:
     git commit --amend -m "$amended_msg"
     
     
-apply target=(host):
+apply target=(host):  # both the hostname and your argument are processed
     @just _update_secrets
     @read -p "(optional) Enter commit msg: " msg_possible_success ; \
     msg_default="${msg_possible_success:-"{{msg_default}}"}"; \
@@ -34,7 +35,9 @@ apply target=(host):
 
 build target=(host):
     @just _update_secrets
-    @colmena build --on target
+    git add --all; \
+    git commit -m "{{msg_build}}"
+    @colmena build --on @{{target}}
     
 
 
