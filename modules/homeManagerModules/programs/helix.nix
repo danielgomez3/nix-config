@@ -64,7 +64,7 @@
           # Diagnostics
           end-of-line-diagnostics = "hint";
           inline-diagnostics = {
-            cursor-line = "hint";
+            cursor-line = "disable";
             other-lines = "disable";
           };
         };
