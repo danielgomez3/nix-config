@@ -29,6 +29,7 @@
 
         editor = {
           text-width = 80;
+          rulers = [80];
           shell = [
             "zsh"
             "-c"
@@ -54,8 +55,7 @@
           #  "spacer"
           #  "diff"
           # ];
-          gutters = [
-          ];
+          gutters = [];
           cursor-shape = {
             insert = "bar";
             normal = "block";
@@ -111,11 +111,11 @@
         }
         {
           name = "haskell";
-          editor.rulers = [80];
         }
         {
           name = "markdown";
           language-servers = ["marksman" "ltex-ls-plus"];
+          rulers = [];
           soft-wrap.wrap-at-text-width = true;
           formatter = {
             command = "${pkgs.nodePackages.prettier}/bin/prettier";
