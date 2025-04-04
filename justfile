@@ -33,7 +33,7 @@ apply target=(host):  # both the hostname and your argument are processed
     @colmena apply --on @{{target}}
 
 
-build target=(host):
+@build target=(host):
     @just _update_secrets
     @-git add --all; \
     git commit -m "{{msg_build}}"
