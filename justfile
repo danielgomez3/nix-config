@@ -1,6 +1,7 @@
 # #
 # NOTE:
 # Lines with @ supress justfile printing executed line to standard output, not supress standard output altogether.
+# Lines with @- do that and run regardless of command success
 # #
 
 host := "`hostname`"
