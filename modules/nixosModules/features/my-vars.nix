@@ -16,7 +16,7 @@
     isHardwareLimited = lib.mkOption {
       type = lib.types.bool;
       default = false; # optional default
-      description = "Is the machine hardware limited? Do we desire to save energy?";
+      description = "Is the machine hardware limited? Do we desire to save energy? Does scaling need to change?";
     };
     isSyncthingServer = lib.mkOption {
       type = lib.types.bool;

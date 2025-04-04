@@ -34,6 +34,7 @@
           #   cursor-line = "error";
           #   other-lines = "error";
           # };
+          text-width = 80;
           shell = [
             "zsh"
             "-c"
@@ -125,7 +126,7 @@
         {
           name = "markdown";
           language-servers = ["marksman" "ltex-ls-plus"];
-          text-width = 80;
+          # text-width = 80;
           soft-wrap.enable = true;
           soft-wrap.wrap-at-text-width = true;
           formatter = {
