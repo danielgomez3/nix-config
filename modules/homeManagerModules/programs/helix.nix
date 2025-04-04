@@ -28,6 +28,7 @@
     settings = {
 
         editor = {
+          text-width = 80;
           shell = [
             "zsh"
             "-c"
@@ -110,10 +111,7 @@
         }
         {
           name = "haskell";
-          editor = {
-            text-width = 80;
-            rulers = [80];
-          };
+          soft-wrap.wrap-at-text-width = true;
         }
         {
           name = "markdown";
