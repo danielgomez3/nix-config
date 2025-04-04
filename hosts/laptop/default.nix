@@ -51,6 +51,6 @@ in
   };
 
   services.xserver = {
-   xkb.options = "caps:swapescape";
+    xkb.options = "caps:swapescape";
   };
 }

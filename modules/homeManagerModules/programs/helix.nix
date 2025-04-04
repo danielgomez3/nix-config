@@ -35,6 +35,7 @@
           #   other-lines = "error";
           # };
           text-width = 80;
+          rulers = [80];
           shell = [
             "zsh"
             "-c"
