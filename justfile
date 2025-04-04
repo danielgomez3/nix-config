@@ -26,7 +26,7 @@ amend:
     
 apply target=(host):  # both the hostname and your argument are processed
     @just _update_secrets
-    @read -p "(optional) Enter commit msg: " msg_possible_success ; \
+    @-read -p "(optional) Enter commit msg: " msg_possible_success ; \
     msg_default="${msg_possible_success:-"{{msg_default}}"}"; \
     git add --all; \
     git commit -m "$msg_default"
