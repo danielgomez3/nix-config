@@ -28,24 +28,10 @@
     settings = {
 
         editor = {
-          # shell = ["/usr/bin/env" "zsh"];
-          # end-of-line-diagnostics = "hint";
-          # inline-diagnostics = {
-          #   cursor-line = "error";
-          #   other-lines = "error";
-          # };
-          text-width = 80;
-          rulers = [80];
           shell = [
             "zsh"
             "-c"
           ];
-          # shell = [
-          #   "/usr/bin/env"
-          #   "zsh"
-          #   "-c"
-          # ];
-          # shell = ["zsh" "-c"];
           true-color = true;
           mouse = true;
           bufferline = "multiple";
@@ -59,9 +45,7 @@
           };
           soft-wrap = {
             enable = true;
-            # wrap-indicator = " ";
             wrap-indicator = "‧ ";
-            # wrap-indicator = "⸽ ";
           };
           # line-number = "relative";
           # gutters = [
@@ -125,10 +109,15 @@
           formatter.command = "${pkgs.nixfmt-classic}/bin/nixfmt-classic";
         }
         {
+          name = "haskell";
+          editor = {
+            text-width = 80;
+            rulers = [80];
+          };
+        }
+        {
           name = "markdown";
           language-servers = ["marksman" "ltex-ls-plus"];
-          # text-width = 80;
-          soft-wrap.enable = true;
           soft-wrap.wrap-at-text-width = true;
           formatter = {
             command = "${pkgs.nodePackages.prettier}/bin/prettier";
