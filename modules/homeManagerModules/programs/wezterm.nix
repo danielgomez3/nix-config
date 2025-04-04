@@ -13,6 +13,7 @@
         hide_tab_bar_if_only_one_tab = true,
         warn_about_missing_glyphs = false,  -- Disables missing glyph warnings
         font = wezterm.font_with_fallback({'Firacode Nerd Font Mono','Droid Sans Fallback'})
+        window_decorations = "NONE"
 
       }
     '';
