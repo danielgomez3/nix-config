@@ -1,4 +1,15 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+let
+  basePreferences = {
+    "accessibility.typeaheadfind.enablesound" = false; # Disable bell in ctrl-f
+    # Other universal preferences...
+  };
+
+  limitedHardwarePrefs = basePreferences // {
+    "layout.css.devPixelsPerPx" = "0.9";
+  };
+in 
+{
 
   # Force Firefox to use Wayland and set scaling
   # environment.sessionVariables = {
@@ -9,10 +20,9 @@
 
   programs.firefox = {
     enable = true;
-    preferences = {
-      "layout.css.devPixelsPerPx" = "0.9";  # Your preferred scaling
-      "accessibility.typeaheadfind.enablesound" = false;  # Audible bell in ctrl-f
-    };
+    preferences = if config.myVars.isHardwareLimited or false
+                 then limitedHardwarePrefs
+                 else basePreferences;
   };
 
 }
