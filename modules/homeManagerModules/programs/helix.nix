@@ -111,7 +111,7 @@
         }
         {
           name = "haskell";
-          soft-wrap.wrap-at-text-width = true;
+          editor.rulers = [80];
         }
         {
           name = "markdown";
