@@ -34,9 +34,9 @@
 
       };
 
-      # "org/gnome/desktop/peripherals/touchpad" = {
-      #   speed = 0.9;
-      # };
+      "org/gnome/desktop/peripherals/touchpad" = {
+        speed = 0.9;
+      };
 
       # "org/gnome/shell/extensions/paperwm" = {
       #   default-focus-mode = 1;
