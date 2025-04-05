@@ -1,4 +1,4 @@
-{config,inputs,pkgs,...}:
+{config,inputs,pkgs,lib,...}:
 
 {
 
@@ -34,9 +34,14 @@
 
       };
 
-      "org/gnome/desktop/peripherals/touchpad" = {
-        speed = 0.9;
+      "org/gnome/desktop/peripherals/touchpad" =
+        lib.mkIf config.myVars.isHardwareLimited {
+          speed = 0.8;
       };
+
+      # "org/gnome/desktop/peripherals/touchpad" = {
+      #   speed = 0.9;
+      # };
 
       # "org/gnome/shell/extensions/paperwm" = {
       #   default-focus-mode = 1;
