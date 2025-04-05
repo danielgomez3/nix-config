@@ -65,9 +65,9 @@ in
           "Misc" = {
             devices = [ "desktop" "laptop" ];
           };
-          "Projects" = {
-            devices = [ "desktop" "laptop" ];
-          };
+          # "Projects" = {
+          #   devices = [ "desktop" "laptop" ];
+          # };
           "Shareable-pdfs" = {
             devices = [ "desktop" "laptop" "phone" ];
           };
@@ -79,9 +79,9 @@ in
           "Productivity" = {
             devices = [ "server" ];
           };
-          "Projects" = {
-            devices = [ "server" ];
-          };
+          # "Projects" = {
+          #   devices = [ "server" ];
+          # };
           "Notes" = {
             devices = [ "server" ];
           };
@@ -119,11 +119,11 @@ in
             autoAccept = true;
             id = "Notes";
           };
-          "Projects" = {
-            path = "/home/${username}/Documents/projects";
-            autoAccept = true;
-            id = "Projects";
-          };
+          # "Projects" = {
+          #   path = "/home/${username}/Documents/projects";
+          #   autoAccept = true;
+          #   id = "Projects";
+          # };
           "Shareable-pdfs" = {
             path = "/home/${username}/Documents/shareable-pdfs";
             autoAccept = true;
