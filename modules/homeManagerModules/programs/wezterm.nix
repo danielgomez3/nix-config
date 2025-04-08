@@ -10,6 +10,7 @@
       return {
 
         window_decorations = "NONE",
+        audible_bell = "Disabled",
 
         -- HACKME: see if can remove in future NixOS version or patch
         -- front_end = "WebGpu",  
