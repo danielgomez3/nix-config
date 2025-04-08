@@ -33,7 +33,7 @@ apply target=(host):  # both the hostname and your argument are processed
     git commit -m "$msg_default"; \
     colmena apply --on @{{target}} && \
     msg_default="${msg_default:-"{{msg_success}}"}"; \
-    git commit --amend -m "$amended_msg"
+    git commit --amend -m "$msg_default"
 
 
 build target=(host):
