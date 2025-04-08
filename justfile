@@ -31,7 +31,7 @@ apply target=(host):  # both the hostname and your argument are processed
     msg_default="${msg_possible_success:-"{{msg_default}}"}"; \
     git add --all; \
     git commit -m "$msg_default"; \
-    @colmena apply --on @{{target}} && \
+    colmena apply --on @{{target}} && \
     msg_default="${msg_default:-"{{msg_success}}"}"; \
     git commit --amend -m "$amended_msg"
 
