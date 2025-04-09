@@ -32,9 +32,13 @@
     };
     nix-doom-emacs-unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened";
     quickemu.url = "https://flakehub.com/f/quickemu-project/quickemu/4.9.7";
+    nix-on-droid = {
+      url = "github:nix-community/nix-on-droid/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, disko, colmena, stylix, wayland-pipewire-idle-inhibit, nix-doom-emacs-unstraightened, ... }: 
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, disko, colmena, stylix, wayland-pipewire-idle-inhibit, nix-doom-emacs-unstraightened, nix-on-droid, ... }: 
     let 
       system = "x86_64-linux";
       pkgsUnstable = import nixpkgs-unstable { inherit system; };
@@ -50,6 +54,10 @@
       ];
     in 
     {
+    nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
+      pkgs = import nixpkgs { system = "aarch64-linux"; };
+      modules = [ ./nix-on-droid.nix ];
+    };
     colmena = {
       meta = {
         nixpkgs = import nixpkgs {
