@@ -5,9 +5,9 @@
 # #
 
 host := "`hostname`"
-msg_default := "No commit message given, commit possibly broken!"
+msg_default := "System build failed, commit broken!"
 msg_build := "No commit message given, building system, commit possibly broken!"
-msg_success := "Successful system build and apply (No commit message given)."
+msg_success := "Successful system build and/or apply (No commit message given)."
 
 [confirm("This will possibly break configuration, do not use lightly.. (y/n)")]
 update:
@@ -37,10 +37,14 @@ apply target=(host):  # both the hostname and your argument are processed
 
 
 build target=(host):
-    @just _update_secrets
-    @git add --all; \
-    git commit -m "{{msg_build}}"
-    @colmena build --on @{{target}}
+    @-just _update_secrets
+    @-git add --all; \
+    msg_default="{{msg_build}}"; \
+    git commit -m "$msg_default"; \
+    colmena build --on @{{target}} && \
+    read -p "(optional) Enter commit msg: " msg_default ; \
+    msg_default="${msg_default:-"{{msg_success}}"}"; \
+    git commit --amend -m "$msg_default"
     
 
 

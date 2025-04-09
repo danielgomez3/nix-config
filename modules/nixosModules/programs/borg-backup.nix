@@ -20,6 +20,7 @@ let
   ];
 in
 {
+  # NOTE: Kind of naive. This line means whatever device has this module enabled (assuming server only here), will search for their key in the remote secrets.yaml. So the key would be private_ssh_keys: server_root
   sops.secrets."private_ssh_keys/${hostname}_root" = {};
   # NOTE:
   # to check on it, systemctl status borgbackup-job-borgbase.service

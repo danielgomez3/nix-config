@@ -7,6 +7,7 @@
     borg-backup.enable = true;
     plex.enable = true;
     password-manager.enable = true;
+    remoteDeployment-nix-on-droid.enable = true;
   };
 
 }

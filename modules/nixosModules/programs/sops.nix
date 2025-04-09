@@ -29,7 +29,7 @@ in
         "google_drive/secret" = {};
         "syncthing/gui_password" = {}; 
       }
-      # FIXME: maybe put this in sops.nix
+      # FIXME: maybe put this in only syncthing.nix
       (lib.mkIf config.myNixOS.syncthing.enable {
         "syncthing/${name}/key_pem" = {
           owner = config.users.users.${username}.name;
