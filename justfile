@@ -7,7 +7,7 @@
 host := "`hostname`"
 msg_default := "System build failed, commit broken!"
 msg_build := "No commit message given, building system, commit possibly broken!"
-msg_success := "Successful system build and/or apply (No commit message given)."
+msg_success := "Successful system build and/or apply to targets:" 
 
 [confirm("This will possibly break configuration, do not use lightly.. (y/n)")]
 update:
@@ -17,8 +17,16 @@ update:
 _update_secrets:
     @nix flake update mysecrets
 
-[confirm("Ammend git message? (default is 'No', and recipe will 'fail', but is done) ")]
-amend:
+# DELTEME:
+# [confirm("Amend git message? (default is 'No', and recipe will 'fail', but is done) ")]
+# amend:
+#     @read -p "(optional) Amend commit msg: " amended_msg ; \
+#     amended_msg=${msg:-"{{msg_success}}"}; \
+#     git add --all; \
+#     git commit --amend -m "$amended_msg"
+    
+[confirm("WARNING: commiting without testing. Not a good idea. Continue?")]
+commit:
     @read -p "(optional) Amend commit msg: " amended_msg ; \
     amended_msg=${msg:-"{{msg_success}}"}; \
     git add --all; \
@@ -32,7 +40,7 @@ apply target=(host):  # both the hostname and your argument are processed
     git commit -m "$msg_default"; \
     colmena apply --on @{{target}} && \
     read -p "(optional) Enter commit msg: " msg_default ; \
-    msg_default="${msg_default:-"{{msg_success}}"}"; \
+    msg_default="${msg_default:-"{{msg_success}} {{target}}"}"; \
     git commit --amend -m "$msg_default"
 
 
