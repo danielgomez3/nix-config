@@ -19,7 +19,19 @@ b.) We need to execute the github repo nix flake code, build the system closure 
 # Instructions
 
 ## Establish server → android ssh connection 
+Normally, this be done declaratively, and would be automated by nixos-anywhere or terraform-nixos. But this must be done imperatively for now.
 
+Option 1: Imperative, generic.
+1. Enable ssh access on android device <https://github.com/nix-community/nix-on-droid/issues/32>.
+1. Establish ssh connection imperatively by adding android devices keys to server's *.nix code.
+1. Enable remote building on server device with code: <https://github.com/nix-community/nix-on-droid/wiki/Simple-remote-building>.
+
+Option 2: Imperative w/nixos-option, slightly more declarative.
+1. WIP: <https://github.com/nix-community/nix-on-droid/pull/203>
+
+
+## Build and deploy config from server
+- `--impure` flag needs to be used, because as of now the nix store paths are hardcoded on nix-on-droid (?).
 
 # Optional: Syncthing
 1. Imperatively install syncthing. Add keys imperatively to flake repo code.
