@@ -26,12 +26,12 @@ amend:
     
     
 apply target=(host):  # both the hostname and your argument are processed
-    @just _update_secrets
-    @-read -p "(optional) Enter commit msg: " msg_possible_success ; \
-    msg_default="${msg_possible_success:-"{{msg_default}}"}"; \
-    git add --all; \
+    @-just _update_secrets
+    @-git add --all; \
+    msg_default="{{msg_default}}"; \
     git commit -m "$msg_default"; \
     colmena apply --on @{{target}} && \
+    read -p "(optional) Enter commit msg: " msg_default ; \
     msg_default="${msg_default:-"{{msg_success}}"}"; \
     git commit --amend -m "$msg_default"
 
