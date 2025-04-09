@@ -26,6 +26,7 @@ in
         80
         443
         64172 
+        8787
       ];
       allowPing = true;     # Optional: Allow ICMP (ping)
       # Set default policies to 'accept' for both incoming and outgoing traffic
