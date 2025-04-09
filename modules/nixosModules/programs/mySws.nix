@@ -3,9 +3,10 @@
 {config,pkgs,lib,...}:{
 
   # NOTE: By default, this will start SWS on [::]:8787
+  # sudo systemctl status static-web-server.service
   services.static-web-server = {
     enable = true;
-    root = "/home/${config.myVars.username}/my-http-server-root-dir";
+    root = "/var/www";
   };
 
 }
