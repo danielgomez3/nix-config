@@ -8,6 +8,7 @@
     plex.enable = true;
     password-manager.enable = true;
     remoteDeployment-nix-on-droid.enable = true;
+    mySws.enable = true;
   };
 
 }
