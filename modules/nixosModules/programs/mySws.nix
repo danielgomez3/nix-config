@@ -2,7 +2,7 @@
 
 {self,config,pkgs,lib,...}:
 let
-  myWebsite = pkgs.callPackage "${self.outPath}/derivation/mySws" {};
+  myWebsite = pkgs.callPackage "${self.outPath}/derivations/mySws" {};
 in
 {
 
