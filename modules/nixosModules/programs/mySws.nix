@@ -12,6 +12,7 @@
   users.users.staticweb = {
     isSystemUser = true;
     group = "staticweb";
+    hashedPasswordFile = config.sops.secrets.user_password.path;  
   };
 
   # NOTE: By default, this will start SWS on [::]:8787
