@@ -7,9 +7,9 @@ in
 {
 
   # NOTE: We need to create this dir first, or make sure it exists:
-  systemd.tmpfiles.rules = [
-    "d /var/www 0755 staticweb staticweb -"
-  ];
+  # systemd.tmpfiles.rules = [
+  #   "d /var/www 0755 staticweb staticweb -"
+  # ];
 
 
   # NOTE: By default, this will start SWS on [::]:8787
