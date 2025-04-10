@@ -19,7 +19,7 @@ in
   myNixOS = {
     # bundles.server-programs.enable = true;
     bundles.base-system.enable = true;
-    features.caching.enable = true;
+    caching.enable = true;
 
     nix-netboot-serve.enable = true;
     hydra.enable = true;
