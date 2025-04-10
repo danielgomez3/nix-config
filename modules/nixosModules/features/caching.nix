@@ -1,6 +1,6 @@
 {pkgs,lib,...}:{
 
-  nix.setting.substituters = [
+  nix.settings.substituters = [
     "https://cachix.cachix.org"
   ];
 
