@@ -17,7 +17,7 @@ in
   services.static-web-server = {
     enable = true;
     # root = "/var/www";  # FIXME: let's do the nix store instead
-    root = "${myWebsite}";  
+    root = "${myWebsite}";  # Serve directly from the Nix store
   };
 
 }
