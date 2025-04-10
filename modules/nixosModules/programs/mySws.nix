@@ -19,8 +19,9 @@ in
     # root = "/var/www";  # FIXME: let's do the nix store instead
     root = "${myWebsite}";  # Serve directly from the Nix store
     configuration = {
-      directory-listing = true;
-      log-level = "error";
+      general = {
+        directory-listing = true;
+        log-level = "error"; };
     };
   };
 
