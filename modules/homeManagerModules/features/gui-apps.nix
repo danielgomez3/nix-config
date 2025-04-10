@@ -9,6 +9,7 @@
     emacs.enable = false;
     kdeconnect.enable = true;
     firefox.enable = true;
+    mangoHud.enable = true;
   };
 
 }
