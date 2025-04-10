@@ -7,6 +7,8 @@
     "d /var/www 0755 staticweb staticweb -"
   ];
   # NOTE: And create a user with limited permissions:
+  # users.users.staticweb.extraGroups = [ "staticweb" ];
+  users.groups.staticweb = {};
   users.users.staticweb = {
     isSystemUser = true;
     group = "staticweb";
