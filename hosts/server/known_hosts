@@ -1,0 +1,9 @@
+# rc12y91q.repo.borgbase.com:22 SSH-2.0-OpenSSH_8.7
+rc12y91q.repo.borgbase.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC6r8zHXR11Xja/o7HLIlrfo1L9i6RR1NDJUQB93hsVcD0Vh+rZB2yqHPt3xpgEGbKfxBaELcENms/GB1QgBJXLBSNwk7+0xaGTTYJWasyy9KMP6W51KkM97pCy3INzdZBT5jpY5awbSuns6ekcl5UALGroAkXnDMzgWLE7DyAp1ZNdcRYGzT7lPFFxfyczDkTeNBoNwFdqheZLO+LcX80Ds4H2Maj/04lfzVXDWShdvEPH04pazzcxidUysqNOc5MNMCqTmzLw8aiUZuc4k7MubpQ/soRPSVOq6iPB+Aw47fBzzpB0/I5Z6cAANNY0pRYbjyFZHIPcMKYIZLgbcWuj
+# rc12y91q.repo.borgbase.com:22 SSH-2.0-OpenSSH_8.7
+rc12y91q.repo.borgbase.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBHYDOAh9uJnuVsYEZHDORpMbLHPWUoNSFTA84/Q4U/d99rDp2LE4Kr+kHHpuR6IXOSpoiTAg500CX+Q6IWJybHE=
+# rc12y91q.repo.borgbase.com:22 SSH-2.0-OpenSSH_8.7
+rc12y91q.repo.borgbase.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGU0mISTyHBw9tBs6SuhSq8tvNM8m9eifQxM+88TowPO
+# rc12y91q.repo.borgbase.com:22 SSH-2.0-OpenSSH_8.7
+# rc12y91q.repo.borgbase.com:22 SSH-2.0-OpenSSH_8.7
+
