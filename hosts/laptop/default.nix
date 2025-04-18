@@ -4,13 +4,12 @@
 { config, pkgs, inputs, host, lib, ... }:
 
 let 
-  modKey = "Mod4";
   username = config.myVars.username;
   hostname = config.myVars.hostname;
 in
 {
   myVars.username = "daniel";  # Specific username for this machine
-  myVars.hostname = "laptop";  # Specific username for this machine
+  myVars.hostname = "laptop";  # Specific hostname for this machine
   myVars.isHardwareLimited = true;
   myVars.isSyncthingClient = true;
   users.users.${username} = {
