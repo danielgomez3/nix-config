@@ -48,6 +48,10 @@
         "${self.outPath}/modules/nixosModules"
         "${self.outPath}/modules/homeManagerModules"
       ];
+      myHelper = import ./lib/helpers/default.nix {
+        inherit inputs;
+        lib = inputs.nixpkgs.lib;
+      };
     in {
       devShells.x86_64-linux.default = pkgs.mkShell { 
         buildInputs = [ pkgs.deploy-rs pkgs.pfetch ];  # deps needed at runtime.
@@ -55,15 +59,19 @@
       nixosConfigurations.laptop = inputs.nixpkgs.lib.nixosSystem {
         modules = commonImports "laptop";
         specialArgs = {
-          myHelper = import ./lib/helpers/default.nix {
-            inherit inputs;
-            lib = inputs.nixpkgs.lib;
-          };
-          inherit inputs self pkgsUnstable;
-
+          inherit inputs self pkgsUnstable myHelper;
         };
       };
 
+      # deploy.nodes.example = {
+      #     hostname = "example";
+      #     sshUser = "root";  # Who wil deploy-rs use to connect?
+      #     fastConnection = true;  # Enable pipelined copying
+      #     profiles.system = {  # TODO explain
+      #       user = "root";  # The user that the profile will be deployed to
+      #       path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.example;
+      #     };
+      # };
       deploy.nodes.laptop = {
           hostname = "laptop";
           sshUser = "root";
