@@ -1,5 +1,0 @@
-xkb_symbols "daniel" {
-    key <ESC>  {[ quoteleft,    asciitilde      ]       };
-    key <TLDE> {[ escape      ]       };
-};
-

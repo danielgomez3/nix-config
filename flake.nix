@@ -59,6 +59,8 @@
             inherit inputs;
             lib = inputs.nixpkgs.lib;
           };
+          inherit inputs self pkgsUnstable;
+
         };
       };
 

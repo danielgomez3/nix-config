@@ -1,14 +1,16 @@
-{ self, config, pkgs, lib, inputs, name, ... }:
+{ self, config, pkgs, lib, inputs, ... }:
 let 
   # nvChad = import ./derivations/nvchad.nix { inherit pkgs; };
   # cutefetch = import ./derivations/cutefetch.nix { inherit pkgs; };  # FIX attempting w/home-manager
   username = config.myVars.username;
+  hostname = config.myVars.hostname;
+  
 in
 {
   # Set your time zone.
   time.timeZone = "America/New_York";
   networking = {
-    hostName = name;  # Define your hostname.
+    hostName = hostname;  # Define your hostname.
     # nameservers = [ "8.8.8.8" "8.8.4.4" ];
     dhcpcd.enable = true;
     # domain = "home";
