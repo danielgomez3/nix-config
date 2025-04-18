@@ -1,0 +1,161 @@
+{pkgs, pkgsUnstable, ...}:{
+
+  home.packages = with pkgs; [
+    python312Packages.grip
+  ];
+
+  programs.helix = {
+    enable = true;
+    package = pkgsUnstable.helix;
+    defaultEditor = true;
+    extraPackages = [
+      pkgs.vscode-langservers-extracted
+      pkgs.gopls pkgs.gotools
+      #typescript typescript-language-server
+      pkgs.marksman pkgsUnstable.ltex-ls-plus  # Writing
+      pkgs.nil pkgs.nixfmt-classic
+      pkgs.astyle pkgs.clang-tools  # C
+    
+      pkgs.lua-language-server
+      pkgs.rust-analyzer
+      # bash-language-server
+      # pkgs.haskell-language-server
+      pkgsUnstable.haskell-language-server
+      # (pkgs.haskell-language-server.override { supportedGhcVersions = [ "HEAD" ]; }) 
+      pkgs.omnisharp-roslyn pkgs.netcoredbg  # C-sharp
+      pkgs.python312Packages.python-lsp-server 
+    ];
+    settings = {
+
+        editor = {
+          text-width = 80;
+          rulers = [80];
+          shell = [
+            "zsh"
+            "-c"
+          ];
+          true-color = true;
+          mouse = true;
+          bufferline = "multiple";
+          whitespace = {
+            render = {
+              newline = "none";
+            };
+            characters = {
+              newline = "⏎";
+            };
+          };
+          soft-wrap = {
+            enable = true;
+            wrap-indicator = "‧ ";
+          };
+          # line-number = "relative";
+          # gutters = [
+          # "diagnostics"
+          #  "spacer"
+          #  "diff"
+          # ];
+          gutters = [];
+          cursor-shape = {
+            insert = "bar";
+            normal = "block";
+            select = "underline";
+          };
+          # Diagnostics
+          end-of-line-diagnostics = "hint";
+          inline-diagnostics = {
+            cursor-line = "disable";
+            other-lines = "disable";
+          };
+        };
+
+      keys = {
+        normal = {
+          space = {
+            t = ":toggle soft-wrap.enable";
+          };
+        };
+    
+      };
+
+    };
+
+    languages = {
+
+      language-server = {
+
+        pyright = {
+          command = "${pkgs.pyright}/bin/pyright-langserver";
+          args = [
+            "--stdio"
+          ];
+        };
+
+        # ltex-ls-plus = {
+        #   config = {
+        #     ltex = {
+        #       diagnosticSeverity = "warning";
+        #       disabledRules = {
+        #         "en-US" = [ "PROFANITY" ];
+        #         "en-GB" = [ "PROFANITY" ];
+        #       };
+        #       dictionary = {
+        #         "en-US" = [ "builtin" ];
+        #         "en-GB" = [ "builtin" ];
+        #       };
+        #     };
+        #   };
+        # };
+
+      };
+
+      language = [
+        {
+          name = "nix";
+          auto-format = true;
+          formatter.command = "${pkgs.nixfmt-classic}/bin/nixfmt-classic";
+        }
+        {
+          name = "haskell";
+        }
+        {
+          name = "markdown";
+          language-servers = ["marksman" "ltex-ls-plus"];
+          rulers = [];
+          soft-wrap.wrap-at-text-width = true;
+          formatter = {
+            command = "${pkgs.nodePackages.prettier}/bin/prettier";
+            args = [
+              "--parser"
+              "markdown"
+              "--prose-wrap"
+              "never" # <always|never|preserve>
+            ];
+          };
+        }
+        {
+          name = "python";
+          auto-format = true;
+          formatter = {
+            command = "${pkgs.ruff}/bin/ruff";
+            args = [
+              "format"
+              "--silent"
+              "-"
+            ];
+          };
+          language-servers = [
+            {
+              name = "pyright";
+            }
+            {
+              name = "ltex-ls";
+            }
+          ];
+        }
+      ];
+    };
+
+
+  };
+}

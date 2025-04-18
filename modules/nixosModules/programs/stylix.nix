@@ -1,0 +1,42 @@
+{ config, lib, pkgs, self, ... }:
+{
+  stylix = {
+    enable = true;
+
+    # TODO: Maybe make a new dir? Or maybe make this path more pure with a variable.
+    # NOTE: Hogwarts
+    # image = "${self.outPath}/modules/nixosModules/additional/wallpapers/hogwarts.jpg";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/woodland.yaml";
+    # NOTE: Nord
+    image = "${self.outPath}/modules/nixosModules/additional/wallpapers/nord-purple.jpg";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox.yaml";
+    # cursor = { 
+    #   package = pkgs.bibata-cursors; 
+    #   name = "Bibata-Modern-Ice";
+    #   # size = 50;
+    # };
+    # targets.nixvim.enable = false;
+    # fonts = {
+    #   monospace = {
+    #     package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
+    #     name = "JetBrainsMono Nerd Font Mono";
+    #   };
+    #   sansSerif = {
+    #     package = pkgs.dejavu_fonts;
+    #     name = "DejaVu Sans";
+    #   };
+    #   serif = {
+    #     package = pkgs.dejavu_fonts;
+    #     name = "DejaVu Serif";
+    #   };
+    # };
+    # targets = {
+    #   helix.enable = true;
+    #   sway.enable = true;
+    #   swaylock.enable = true;
+    #   wezterm.enable = true;
+    # };
+  };
+}
