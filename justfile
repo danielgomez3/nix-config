@@ -70,8 +70,8 @@ garbage:
 
 # NOTE: You can run this in any directory with the desired .nix file(s) in the invocation dir.
 repl:
-    # nix repl --file ./lib/nix-expressions/learning-testing-examples/helpers.nix
-    cd {{invocation_directory()}}; nix repl --extra-experimental-features 'flakes' --file {{justfile_directory()}}/testing/learning-testing-examples/helpers.nix
+    nix repl --expr "builtins.getFlake \"$PWD\""
+
 
 debug $RUST_BACKTRACE="1":
     just build
