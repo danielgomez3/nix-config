@@ -33,7 +33,7 @@
         darwinAmd = "aarch64-darwin"; 
         android = "aarch64-linux"; 
       };
-      pkgs.
+      pkgs = inputs.nixpkgs.legacyPackages.${supportedSystems.linux};  # FIXME Specify pkgs elsewhere if you can so we can have multi-profile setups
       pkgsUnstable = import inputs.nixpkgs-unstable { inherit (supportedSystems) linux;  };
       myHelper = import ./lib/helpers/default.nix {
         inherit inputs;
@@ -51,6 +51,20 @@
         "${self.outPath}/modules/homeManagerModules"
       ];
     in {
+      devShells.x86_64-linux.default = pkgs.mkShell { 
+        buildInputs = [ pkgs.deploy-rs pkgs.pfetch ];  # deps needed at runtime.
+      };
+      nixosConfigurations.laptop = inputs.nixpkgs.lib.nixosSystem {
+        modules = commonImports "laptop";
+      };
+
+      deploy.nodes.laptop = {
+          hostname = "laptop";
+          profiles.system = {
+            user = "root";
+            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.some-random-system;
+          };
+      };
       
   };
 }
