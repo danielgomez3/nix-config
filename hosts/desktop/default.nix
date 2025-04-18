@@ -4,7 +4,6 @@
 { pkgs, inputs, config, host, ... }:
 let
   username = config.myVars.username;
-  hostname = config.myVars.hostname;
 in
 {
   myVars.username = "daniel";  # Specific username for this machine
@@ -26,26 +25,10 @@ in
 
   time.hardwareClockInLocalTime = true;
   hardware.keyboard.zsa.enable = true;
-
-  # NOTE: I bought a dedicated GPU
-  # boot.blacklistedKernelModules = [
-  #   # "iwlwifi"
-  #   "rtw88_8821ce"
-  # ];
-  # NOTE: for brightness
-  # boot.kernelParams = [
-  #   "acpi_backlight=video"
-  # ];
-
   services = {
     xserver = {
       xkb = {
         options = "caps:swapescape";
-        # extraLayouts.${username} = {
-        #   description = "Daniel's remapped keys";
-        #   languages = ["eng"];
-        #   symbolsFile = ./custom_symbols;
-        # };
       };
     };
     syncthing.guiAddress = "127.0.0.1:8385";

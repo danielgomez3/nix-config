@@ -38,11 +38,18 @@ apply target=(host):  # both the hostname and your argument are processed
     @-git add --all; \
     msg_default="{{msg_default}}"; \
     git commit -m "$msg_default"; \
-    colmena apply --on @{{target}} && \
+    nix run github:serokell/deploy-rs -- ".#{{target}}" && \
     read -p "(optional) Enter commit msg: " msg_default ; \
     msg_default="${msg_default:-"{{msg_success}} {{target}}"}"; \
     git commit --amend -m "$msg_default"
 
+# Validates syntax and module structure, no build or result.
+eval target=(host):
+    nix eval ".#nixosConfigurations.{{target}}.config.system.build.toplevel.drvPath"
+
+# Same as eval, but for all configurations
+check:
+    nix flake check 
 
 build target=(host):
     @-just _update_secrets
