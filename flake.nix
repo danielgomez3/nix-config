@@ -66,7 +66,7 @@
 
       deploy.nodes.laptop = {
           hostname = "laptop";
-          sshUser = "daniel";   # Explicit username
+          sshUser = "root";
           fastConnection = true;  # Enable pipelined copying
           profiles.system = {  # TODO explain
             user = "root";
