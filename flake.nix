@@ -66,7 +66,9 @@
 
       deploy.nodes.laptop = {
           hostname = "laptop";
-          profiles.system = {
+          sshUser = "daniel";   # Explicit username
+          fastConnection = true;  # Enable pipelined copying
+          profiles.system = {  # TODO explain
             user = "root";
             path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.laptop;
           };
