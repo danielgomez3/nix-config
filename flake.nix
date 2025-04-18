@@ -77,6 +77,13 @@
         };
       };
 
+      nixosConfigurations.server = inputs.nixpkgs.lib.nixosSystem {
+        modules = commonImports "server";
+        specialArgs = {
+          inherit inputs self pkgsUnstable myHelper;
+        };
+      };
+
       # deploy.nodes.example = {
       #     hostname = "example";
       #     sshUser = "root";  # Who wil deploy-rs use to connect?
@@ -104,6 +111,15 @@
           profiles.system = {  # TODO explain
             user = "root";
             path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.laptop;
+          };
+
+      deploy.nodes.server = {
+          hostname = "server";
+          sshUser = "root";
+          fastConnection = true;  # Enable pipelined copying
+          profiles.system = {  # TODO explain
+            user = "root";
+            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.server;
           };
       };
       

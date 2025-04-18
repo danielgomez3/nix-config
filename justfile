@@ -17,14 +17,6 @@ update:
 _update_secrets:
     @nix flake update mysecrets
 
-# DELTEME:
-# [confirm("Amend git message? (default is 'No', and recipe will 'fail', but is done) ")]
-# amend:
-#     @read -p "(optional) Amend commit msg: " amended_msg ; \
-#     amended_msg=${msg:-"{{msg_success}}"}; \
-#     git add --all; \
-#     git commit --amend -m "$amended_msg"
-    
 [confirm("WARNING: commiting without testing. Not a good idea. Continue?")]
 commit:
     @read -p "(optional) Amend commit msg: " amended_msg ; \
@@ -51,15 +43,9 @@ eval target=(host):
 check:
     nix flake check 
 
+# eval and build, result is stored in ./result symlink
 build target=(host):
-    @-just _update_secrets
-    @-git add --all; \
-    msg_default="{{msg_build}}"; \
-    git commit -m "$msg_default"; \
-    colmena build --on @{{target}} && \
-    read -p "(optional) Enter commit msg: " msg_default ; \
-    msg_default="${msg_default:-"{{msg_success}}"}"; \
-    git commit --amend -m "$msg_default"
+    nixos-rebuild build --flake ".#{{target}}" 
     
 
 
