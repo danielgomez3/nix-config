@@ -27,8 +27,14 @@
 
   outputs = inputs@{ self, ... }: 
     let 
-      system = "x86_64-linux";
-      pkgsUnstable = import inputs.nixpkgs-unstable { inherit system; };
+      supportedSystems = {
+        linux = "x86_64-linux";
+        darwinIntel = "x86_64-darwin"; 
+        darwinAmd = "aarch64-darwin"; 
+        android = "aarch64-linux"; 
+      };
+      pkgs.
+      pkgsUnstable = import inputs.nixpkgs-unstable { inherit (supportedSystems) linux;  };
       myHelper = import ./lib/helpers/default.nix {
         inherit inputs;
         lib = inputs.nixpkgs.lib;
@@ -44,31 +50,7 @@
         "${self.outPath}/modules/nixosModules"
         "${self.outPath}/modules/homeManagerModules"
       ];
-    in 
-    {
-    nixosConfigurations = {
-      laptop = inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs; };
-        system = system;
-        modules = commonImports "laptop";
-      };
-    };
-    nixOnDroidConfigurations.default = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
-      pkgs = import inputs.nixpkgs { system = "aarch64-linux"; };
-      modules = [ ./nix-on-droid.nix ];
-    };
-
-    # Deployments:
-    deploy.nodes.laptop = {
-      hostname = "laptop";
-      profiles.system = {
-        user = "root";
-        path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.laptop;
-      };
-    };
-
-    # This is highly advised, and will prevent many possible mistakes
-    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
-
+    in {
+      
   };
 }
