@@ -1,4 +1,4 @@
-{pkgs,lib,config,name,...}:
+{pkgs,lib,config, ...}:
 let
   username = config.myVars.username;
 in

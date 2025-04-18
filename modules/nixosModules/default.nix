@@ -1,5 +1,5 @@
 # imports = [ ./username.nix ./coding.nix ./gui.nix ./all.nix ./virtualization.nix ];
-{ myHelper, config, pkgs, lib, inputs,  name, ... }:
+{ myHelper, config, pkgs, lib, inputs, ... }:
 let
   # cfg = config.services.all;  # My custom service called 'all'
   cfg = config.myNixOS;

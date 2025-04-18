@@ -1,7 +1,9 @@
-{ self, config, pkgs, lib, inputs,  name, ... }:
+{ self, config, pkgs, lib, inputs, ... }:
 let 
   secretspath = builtins.toString inputs.mysecrets;
   username = config.myVars.username;
+  hostname = config.myVars.hostname;
+
 in
 {
   environment.variables.GITHUB_TOKEN = config.sops.secrets.github_token.path;
@@ -31,11 +33,11 @@ in
       }
       # FIXME: maybe put this in only syncthing.nix
       (lib.mkIf config.myNixOS.syncthing.enable {
-        "syncthing/${name}/key_pem" = {
+        "syncthing/${hostname}/key_pem" = {
           owner = config.users.users.${username}.name;
           mode = "0700"; # Restrict read and write access to user only
         };
-        "syncthing/${name}/cert_pem" = {
+        "syncthing/${hostname}/cert_pem" = {
           owner = config.users.users.${username}.name;
           mode = "0700"; # Restrict read and write access to user only
         };

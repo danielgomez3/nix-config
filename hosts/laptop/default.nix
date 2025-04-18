@@ -1,7 +1,7 @@
 # laptop.nix
 # NOTE: This contains all common features I want only my laptop to have!
 
-{ config, pkgs, inputs, host, lib, name, ... }:
+{ config, pkgs, inputs, host, lib, ... }:
 
 let 
   modKey = "Mod4";

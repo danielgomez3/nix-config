@@ -1,6 +1,7 @@
-{ config, lib, pkgs, name, self, ... }:
+{ config, lib, pkgs, self, ... }:
 let
   username = config.myVars.username;
+  hostname = config.myVars.hostname;
 in
 {
   # https://wiki.nixos.org/wiki/Syncthing#tips
@@ -11,8 +12,8 @@ in
   services.syncthing = {
     enable = true;
     user = username;
-    key = config.sops.secrets."syncthing/${name}/key_pem".path;
-    cert = config.sops.secrets."syncthing/${name}/cert_pem".path;
+    key = config.sops.secrets."syncthing/${hostname}/key_pem".path;
+    cert = config.sops.secrets."syncthing/${hostname}/cert_pem".path;
     # dataDir = "/home/${username}/.config/data";
     # configDir = "/home/${username}/.config/syncthing";  # Folder for Syncthing's settings and keys
     overrideDevices = true;     # overrides any devices added or deleted through the WebUI

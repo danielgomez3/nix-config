@@ -2,14 +2,16 @@
 # server.nix
 # NOTE: This contains all common features I want only my server to have!
 
-{ config, pkgs, lib, inputs, host, name, ... }:
+{ config, pkgs, lib, inputs, host, ... }:
 
 let 
   username = config.myVars.username;
+  hostname = config.myVars.hostname;
+
 in
 {
   myVars.username = "danielgomez3";  # Specific username for this machine
-  myVars.hostname = "${name}";  # Specific username for this machine
+  myVars.hostname = "${hostname}";  # Specific username for this machine
   myVars.isSyncthingServer = true;
 
   users.users.${username} = {

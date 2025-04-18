@@ -34,11 +34,9 @@
         android = "aarch64-linux"; 
       };
       pkgs = inputs.nixpkgs.legacyPackages.${supportedSystems.linux};  # FIXME Specify pkgs elsewhere if you can so we can have multi-profile setups
-      pkgsUnstable = import inputs.nixpkgs-unstable { inherit (supportedSystems) linux;  };
-      myHelper = import ./lib/helpers/default.nix {
-        inherit inputs;
-        lib = inputs.nixpkgs.lib;
-        };
+      pkgsUnstable = import inputs.nixpkgs-unstable {
+        system = supportedSystems.linux;
+      };
       commonImports = h: [  # Every host dir may contain the following:
         "${self.outPath}/hosts/${h}"
         "${self.outPath}/hosts/${h}/hardware-configuration.nix"
@@ -56,13 +54,19 @@
       };
       nixosConfigurations.laptop = inputs.nixpkgs.lib.nixosSystem {
         modules = commonImports "laptop";
+        specialArgs = {
+          myHelper = import ./lib/helpers/default.nix {
+            inherit inputs;
+            lib = inputs.nixpkgs.lib;
+          };
+        };
       };
 
       deploy.nodes.laptop = {
           hostname = "laptop";
           profiles.system = {
             user = "root";
-            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.some-random-system;
+            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.laptop;
           };
       };
       

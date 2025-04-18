@@ -2,7 +2,7 @@
 # server.nix
 # NOTE: This contains all common features I want only my server to have!
 
-{ config, pkgs, lib, inputs, host, name, ... }:
+{ config, pkgs, lib, inputs, host, ... }:
 
 let 
   username = config.myVars.username;
