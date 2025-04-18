@@ -5,7 +5,7 @@
 
 let 
   username = config.myVars.username;
-  hostname = config.myVars.hostname;
+  # hostname = config.myVars.hostname;
 in
 {
   myVars.username = "daniel";  # Specific username for this machine
