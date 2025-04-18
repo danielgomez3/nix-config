@@ -34,23 +34,23 @@ in
           :set stop :list
         '';
         home.packages = with pkgs; [
-        # dev
-        shellcheck exercism csvkit sshx fzf 
-        pandoc-include poppler_utils graphviz librsvg 
-        git-filter-repo 
-        # texliveTeTeX
-        texliveFull
-        # Fun
-        toilet fortune lolcat krabby cowsay figlet hollywood
-        # coding
-        sqlint
-        nixpkgs-fmt
-        # Hacking
-        openvpn nmap gobuster nikto thc-hydra dirb steghide wpscan chisel
-        python3 cargo
-        # Haskell Dev
-        ghciwatch  # A simple and effective IDE
-        cabal-install stack ghc
+          # dev
+          shellcheck pay-respects exercism csvkit sshx fzf 
+          pandoc-include poppler_utils graphviz librsvg 
+          git-filter-repo 
+          # texliveTeTeX
+          texliveFull
+          # Fun
+          toilet fortune lolcat krabby cowsay figlet hollywood
+          # coding
+          sqlint
+          nixpkgs-fmt
+          # Hacking
+          openvpn nmap gobuster nikto thc-hydra dirb steghide wpscan chisel
+          python3 cargo
+          # Haskell Dev
+          ghciwatch  # A simple and effective IDE
+          cabal-install stack ghc
         ];
 
         programs = {

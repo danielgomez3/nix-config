@@ -20,8 +20,7 @@ in
     # bundles.server-programs.enable = true;
     bundles.base-system.enable = true;
     caching.enable = true;
-
-    nix-netboot-serve.enable = true;
+    nix-netboot-serve.enable = false;
     hydra.enable = true;
     borg-backup.enable = true;
     plex.enable = true;
