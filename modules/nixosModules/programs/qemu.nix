@@ -3,7 +3,7 @@
     systemPackages = [ pkgs.qemu ];
   };
 
-  virtualisation.qemu = {
-    enable = true;
-  };
+  # virtualisation.qemu = {
+  #   enable = true;
+  # };
 }

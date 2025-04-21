@@ -18,10 +18,11 @@ in
   myNixOS = {
     bundles.desktop-environment.enable = true;
     bundles.base-system.enable = true;
+    qemu.enable = true;
   };
   home-manager.users.${username}.myHomeManager = {
-      bundles.desktop-environment.enable = true;
-      bundles.coding-environment.enable = true;
+    bundles.desktop-environment.enable = true;
+    bundles.coding-environment.enable = true;
   };
 
   services = {
