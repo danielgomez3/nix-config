@@ -21,7 +21,7 @@ in
         # hyprland
         waybar eww wofi
         # gui apps
-        zoom-us slack spotify okular plexamp
+        zoom-us slack spotify kdePackages.okular plexamp
         libreoffice hunspell hunspellDicts.uk_UA hunspellDicts.th_TH
         cmus xournalpp 
         feh ardour audacity vlc evince

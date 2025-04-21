@@ -17,7 +17,7 @@ in
     # dataDir = "/home/${username}/.config/data";
     # configDir = "/home/${username}/.config/syncthing";  # Folder for Syncthing's settings and keys
     overrideDevices = true;     # overrides any devices added or deleted through the WebUI
-    overrideFolders = true;     # overrides any folders added or deleted through the WebUI
+    # overrideFolders = true;     # overrides any folders added or deleted through the WebUI
     settings = {
       options.urAccepted = -1;
       devices = lib.mkMerge [

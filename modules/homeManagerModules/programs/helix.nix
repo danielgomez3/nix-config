@@ -9,7 +9,7 @@
     package = pkgsUnstable.helix;
     defaultEditor = true;
     extraPackages = [
-      pkgs.vscode-langservers-extracted
+      # pkgs.vscode-langservers-extracted
       pkgs.gopls pkgs.gotools
       #typescript typescript-language-server
       pkgs.marksman pkgsUnstable.ltex-ls-plus  # Writing

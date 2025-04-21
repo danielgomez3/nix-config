@@ -2,7 +2,7 @@
 
 {
     programs.zed-editor = {
-        enable = true;
+        enable = false;
         extensions = ["nix" "toml" "elixir" "make"];
 
         ## everything inside of these brackets are Zed options.
