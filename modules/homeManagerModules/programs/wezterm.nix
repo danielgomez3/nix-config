@@ -1,6 +1,7 @@
 {pkgs,lib,...}:{ 
   home.packages = with pkgs; [
-    nerd-fonts.fira-code
+    fira-code-nerdfont
+    # nerd-fonts.fira-code
   ];
 
   programs.wezterm = {

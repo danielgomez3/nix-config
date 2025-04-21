@@ -70,7 +70,7 @@ in {
       };
       imports =
         [
-          (inputs.home-manager-unstable + "/modules/programs/zsh.nix")  # This wouldn't work, maybe with a simpler package it will. It's unstable for a reason
+          # (inputs.home-manager-unstable + "/modules/programs/pay-respects.nix")  # This wouldn't work, maybe with a simpler package it will. It's unstable for a reason
         ]
         ++ features ++ programs ++ bundles;
     };

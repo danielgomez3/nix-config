@@ -10,14 +10,14 @@ in
     syncthing.environment.STNODEFAULTFOLDER = "true";  
   };
   services.syncthing = {
-    enable = true;
+    enable = false;
     user = username;
     key = config.sops.secrets."syncthing/${hostname}/key_pem".path;
     cert = config.sops.secrets."syncthing/${hostname}/cert_pem".path;
     # dataDir = "/home/${username}/.config/data";
     # configDir = "/home/${username}/.config/syncthing";  # Folder for Syncthing's settings and keys
     overrideDevices = true;     # overrides any devices added or deleted through the WebUI
-    # overrideFolders = true;     # overrides any folders added or deleted through the WebUI
+    overrideFolders = true;     # overrides any folders added or deleted through the WebUI
     settings = {
       options.urAccepted = -1;
       devices = lib.mkMerge [
