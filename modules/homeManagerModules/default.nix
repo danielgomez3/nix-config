@@ -70,19 +70,9 @@ in {
       };
       imports =
         [
-          # (inputs.home-manager-unstable + "/modules/programs/pay-respects.nix")  # This wouldn't work, maybe with a simpler package it will. It's unstable for a reason
+          (inputs.home-manager-unstable + "/modules/programs/zsh.nix")  # This wouldn't work, maybe with a simpler package it will. It's unstable for a reason
         ]
         ++ features ++ programs ++ bundles;
-      # myHomeManager = {
-      #   kitty.enable = true; # Enable the kitty module
-      #   zsh.enable = true; 
-      #   bash.enable = false;
-      #   vim.enable = true; 
-      #   neovim.enable = true; 
-      #   ssh.enable = true; 
-      #   git.enable = true;
-      #   starship.enable = true;
-      # };
     };
   };
 }
