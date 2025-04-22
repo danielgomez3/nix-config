@@ -39,6 +39,18 @@
           speed = 0.8;
       };
 
+      "org/gnome/shell/extensions/pop-shell" = {
+          tile-by-default = true;
+      };
+
+      "org/gnome/settings-daemon/plugins/power" = {
+        power-button-action = "hibernate";
+        # Hibernate after 900 seconds running only battery
+        sleep-inactive-battery-timeout = 900;
+        sleep-inactive-battery-type = "hibernate";
+      };
+
+
       # "org/gnome/desktop/peripherals/touchpad" = {
       #   speed = 0.9;
       # };
