@@ -78,8 +78,10 @@ repl-flake:
 
 [confirm("Are you sure you want to potentially erase target machine's disk and deploy?")]
 deploy host ip_address:
-    # nix run github:nix-community/nixos-anywhere -- --extra-files ~/.config/sops/age --generate-hardware-config nixos-generate-config ./hosts/{{host}}/hardware-configuration.nix root@{{ip_address}} --flake .#{{host}}
-    nix run github:nix-community/nixos-anywhere -- --disk-encryption-keys /root/.config/sops/age/keys.txt ~/.config/sops/age/keys.txt --generate-hardware-config nixos-generate-config ./hosts/{{host}}/hardware-configuration.nix root@{{ip_address}} --flake .#{{host}}
+    root_dir=$(mktemp -d) && \
+    mkdir -p "${root_dir}/root/.config/sops/age" && \
+    cp ~/.config/sops/age/keys.txt "${root_dir}/root/.config/sops/age/keys.txt" && \
+    nix run github:nix-community/nixos-anywhere -- --extra-files "$root_dir" --generate-hardware-config nixos-generate-config ./hosts/{{host}}/hardware-configuration.nix root@{{ip_address}} --flake .#{{host}}
 
 netboot:
     nix build -f ./lib/nix-expressions/netboot/system.nix -o /tmp/run-pixiecore

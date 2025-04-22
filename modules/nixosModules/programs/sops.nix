@@ -12,7 +12,7 @@ in
     defaultSopsFormat = "yaml";
     age = {
       keyFile = "/root/.config/sops/age/keys.txt";
-      generateKey = true;
+      # generateKey = true;
     };
     secrets = lib.mkMerge [
       {

@@ -109,7 +109,7 @@
       };
 
       deploy.nodes.laptop = {
-          hostname = "192.168.1.157";
+          hostname = "laptop";
           sshUser = "root";
           fastConnection = true;  # Enable pipelined copying
           profiles.system = {  # TODO explain
