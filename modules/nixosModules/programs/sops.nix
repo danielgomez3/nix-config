@@ -8,6 +8,13 @@ in
 {
   environment.variables.GITHUB_TOKEN = config.sops.secrets.github_token.path;
   sops = {
+    templates = {
+      u2fMappings = {
+        content = ''
+          ${config.myVars.username}:${config.sops.placeholder."yubikey/personal"}
+        '';
+      };
+    };
     defaultSopsFile = "${secretspath}/secrets.yaml";
     defaultSopsFormat = "yaml";
     age = {
@@ -20,6 +27,7 @@ in
         user_password = {
           neededForUsers = true;
         };
+        "yubikey/personal" = {};
         "wireless.env" = {};
         "tailscale" = {};
         "borgbase/repo" = {};

@@ -17,6 +17,7 @@ in
     bundles.desktop-environment.enable = true;
     bundles.base-system.enable = true;
     virtualization.enable = false;
+    yubikey-functionality.enable = true;
   };
   home-manager.users.${username}.myHomeManager = {
       bundles.desktop-environment.enable = true;

@@ -10,9 +10,11 @@
       # username: <KeyHandle1>,<UserKey1>,<CoseType1>,<Options1>
       # username: <KeyHandle2>,<UserKey1>,<CoseType1>,<Options1>
       authfile = pkgs.writeText "u2f-mappings" (lib.concatStrings [
-        "${config.myVars.username}"
-        ":KwmuBGPZKMri0FD+47e8LylPHZTCUCJs80eXqHMGpNFVHpXAPdSA28KDwQA11jDLnPd35T3zZC/qzlR9r05c8Q==,mCJZMRISCeD9hAl3VX22MiGBk6USQ8ju54mxNOtQKqwqDy2IN0a/20XzWIVIO0OeRZ+i5KIEHueyBTORG69szQ==,es256,+presence"
+      "${config.myVars.username}"
+      #   ":${config.sops.secrets."yubikey/personal".path}"
+      ":K0m6BGPZkMMi0FD+47e8LylPHZTCUCJs80eXqHMGpNFVHpXAPdSA28KDwQA11jDLnPd35T3zZC/qz5R9r05c8Q==,mCJZMRISCeD9hAl3VX22MiGBk6USQ8ju54mxNOtQKqwqDy2IN0a/20XzWIVIO0OeRZ+i5KIEHueyBTORG69szQ==,es256,+presence"
       ]);
+      # authfile = config.sops.templates.u2fMappings.path;
     };
   };
 
