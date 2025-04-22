@@ -6,7 +6,7 @@ in
 
   myNixOS = {
     systemd-boot.enable = lib.mkDefault true;
-    yubikey.enable = lib.mkDefault false;
+    yubikey-functionality.enable = lib.mkDefault false;
     internet.enable = lib.mkDefault true;
     sops.enable = lib.mkDefault true;
     syncthing.enable = lib.mkDefault false;

@@ -20,6 +20,7 @@ in
     bundles.base-system.enable = true;
     qemu.enable = true;
     osx-kvm.enable = true;
+    yubikey-functionality.enable = true;
   };
   home-manager.users.${username}.myHomeManager = {
     bundles.desktop-environment.enable = true;
