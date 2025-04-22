@@ -1,8 +1,8 @@
 # https://nixos.wiki/wiki/OSX-KVM
-{pkgs,...}:
+{config, pkgs,...}:
 {
   virtualisation.libvirtd.enable = true;
-  users.extraUsers.youruser.extraGroups = [ "libvirtd" ];
+  users.extraUsers.${config.myVars.username}.extraGroups = [ "libvirtd" ];
 
   boot.extraModprobeConfig = ''
     options kvm_intel nested=1

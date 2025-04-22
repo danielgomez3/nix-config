@@ -19,6 +19,7 @@ in
     bundles.desktop-environment.enable = true;
     bundles.base-system.enable = true;
     qemu.enable = true;
+    osx-kvm.enable = true;
   };
   home-manager.users.${username}.myHomeManager = {
     bundles.desktop-environment.enable = true;
