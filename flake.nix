@@ -20,11 +20,13 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     nix-netboot-serve.url = "github:determinatesystems/nix-netboot-serve";
-    nur.url = "github:nix-community/NUR";
+    nur.url = "github:nix-community/NUR";  # Haven't used yet
     nix-doom-emacs-unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened";
     quickemu.url = "https://flakehub.com/f/quickemu-project/quickemu/4.9.7";
     nix-on-droid.url = "github:nix-community/nix-on-droid/release-24.05";
     nix-on-droid.inputs.nixpkgs.follows = "nixpkgs";
+    # MacOS emu
+    # nixtheplanet.url = "github:matthewcroughan/nixtheplanet";
   };
 
   outputs = inputs@{ self, ... }: 

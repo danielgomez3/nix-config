@@ -28,13 +28,6 @@ in
   ];
   
 
-  systemd.sleep.extraConfig = ''
-    AllowSuspend=yes
-    AllowHibernation=yes
-    AllowHybridSleep=yes
-    AllowSuspendThenHibernate=yes
-  '';
-
   swapDevices = [{
     device = "/swapfile";
     size = 16 * 1024; # 16GB

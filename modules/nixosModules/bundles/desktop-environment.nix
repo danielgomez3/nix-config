@@ -13,6 +13,7 @@
     printing.enable = lib.mkDefault true;
     sound.enable = lib.mkDefault false;
     logind.enable = lib.mkDefault false;
+    allow-sleep-then-hibernate.enable = lib.mkDefault true;
   };
 
 }
