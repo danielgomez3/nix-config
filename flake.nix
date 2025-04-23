@@ -92,7 +92,10 @@
       };
 
       darwinConfigurations.workLaptop = inputs.nix-darwin.lib.darwinSystem {
-          modules = [ "${self.outPath}/hosts/workLaptop" ];
+          modules = [
+            "${self.outPath}/hosts/workLaptop"
+            inputs.home-manager.darwinModules.home-manager
+          ];
           specialArgs = {
             inherit inputs self;
           };
@@ -103,7 +106,7 @@
 
       # deploy.nodes.example = {
       #     hostname = "example";
-      #     sshUser = "root";  # Who wil deploy-rs use to connect?
+      #     sshUser = "root";  # Target machine's username
       #     fastConnection = true;  # Enable pipelined copying
       #     profiles.system = {  # TODO explain
       #       user = "root";  # The user that the profile will be deployed to
@@ -113,7 +116,7 @@
 
       deploy.nodes.desktop = {
           hostname = "desktop";
-          sshUser = "root";  # Who wil deploy-rs use to connect?
+          sshUser = "root";  # username of the target machine
           fastConnection = true;  # Enable pipelined copying
           profiles.system = {  # TODO explain
             user = "root";  # The user that the profile will be deployed to
@@ -138,6 +141,19 @@
           profiles.system = {  # TODO explain
             user = "root";
             path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.server;
+          };
+      };
+
+      deploy.nodes.workLaptop = {
+          hostname = "admins-imac-pro";
+          sshUser = "admin";
+          fastConnection = true;  # Enable pipelined copying
+          remoteBuild = true;  # 
+          profiles.system = {  # TODO explain
+            user = "admin";
+            path = inputs.deploy-rs.lib.${supportedSystems.darwinIntel}.activate.darwin self.darwinConfigurations.workLaptop;
+            sudo = "sudo";
+
           };
       };
       

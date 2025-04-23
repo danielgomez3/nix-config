@@ -1,6 +1,12 @@
 {pkgs, self,...}:{
+
+  networking.hostName = "workLaptop";
+  users.users."normalUser" = {
+    description = "My work macOS Laptop";
+  };
+
   environment.systemPackages =
-    [ pkgs.vim
+    [ pkgs.vim pkgs.lolcat
     ];
 
   # Auto upgrade nix package 
@@ -18,8 +24,15 @@
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
-  system.stateVersion = 4;
+  system.stateVersion = 5;
+  ids.gids.nixbld = 350;
 
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "x86_64-darwin";  
+  home-manager = {
+    extraSpecialArgs = { inherit self; };
+  };
+
+
+
 }

@@ -92,3 +92,4 @@ netboot:
 
 # To test my nix-darwin machine:
 # nix eval ".#darwinConfigurations.workLaptop.config.system.build.toplevel.drvPath"
+# nix eval ".#darwinConfigurations.workLaptop"
