@@ -20,15 +20,16 @@ in
       trustedInterfaces = [ "tailscale0"];
       # Open the necessary UDP ports for PXE boot
       allowedUDPPorts = [ 
-        67 69 4011 config.services.tailscale.port
+        67 69 4011
+        41641  # tailscale UDP port
       ];
       # Open the necessary TCP port for Pixiecore
       allowedTCPPorts = [ 
         22
         80
-        443
         64172 
         8787
+        443  # tailscale TCP port
       ];
       allowPing = true;     # Optional: Allow ICMP (ping)
       # Set default policies to 'accept' for both incoming and outgoing traffic
