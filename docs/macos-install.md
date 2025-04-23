@@ -1,4 +1,5 @@
 # Introduction
+Based off of <https://nixcademy.com/posts/nix-on-macos/>.
 Assuming there are no provisions for a macOS NixOS machine, meaning no nix code, and only a fresh installation of macOS:
 
 # Preparing the macOS device
@@ -15,3 +16,5 @@ nix run nixpkgs#hello
 ```
 
 # Preparing flake
+
+

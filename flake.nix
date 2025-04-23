@@ -27,6 +27,8 @@
     nix-on-droid.inputs.nixpkgs.follows = "nixpkgs";
     # MacOS emu
     nixtheplanet.url = "github:matthewcroughan/nixtheplanet";
+    # nix-darwin
+    nix-darwin.url = "github:LnL7/nix-darwin";
   };
 
   outputs = inputs@{ self, ... }: 
@@ -87,6 +89,10 @@
           inherit inputs self pkgsUnstable myHelper;
         };
       };
+
+      darwinConfigurations.workLaptop = nix-darwin.lib.darwinSystem {
+        modules = [ "${self.outPath}/hosts/workLaptop" ];
+      }
 
       # deploy.nodes.example = {
       #     hostname = "example";

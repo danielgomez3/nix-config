@@ -4,6 +4,6 @@
     pandoc.enable = true;
     zed.enable = true;
     # pay-respects.enable = true;
-    vnc-viewing = true;
+    vnc-viewing.enable = true;
   };
 }
