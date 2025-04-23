@@ -26,7 +26,7 @@
     nix-on-droid.url = "github:nix-community/nix-on-droid/release-24.05";
     nix-on-droid.inputs.nixpkgs.follows = "nixpkgs";
     # MacOS emu
-    # nixtheplanet.url = "github:matthewcroughan/nixtheplanet";
+    nixtheplanet.url = "github:matthewcroughan/nixtheplanet";
   };
 
   outputs = inputs@{ self, ... }: 

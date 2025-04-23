@@ -27,7 +27,7 @@ in
     password-manager.enable = true;
     remoteDeployment-nix-on-droid.enable = true;
     mySws.enable = true;
-    
+    macos-emulation.enable = true;    
   };
 
   home-manager.users.${username}.myHomeManager = {
