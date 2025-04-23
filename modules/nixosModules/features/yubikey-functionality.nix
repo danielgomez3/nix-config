@@ -2,8 +2,8 @@
 
   security.pam.u2f = {
     enable = true;
-    origin = "pam://yubi";
     settings = {
+      origin = "pam://yubi";
       interactive = true;
       cue = true;
       # With this nix BIF wiserdry all new keys will have your username prepended:
