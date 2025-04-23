@@ -1,6 +1,6 @@
-{inputs, self,...}:{
+{pkgs, self,...}:{
   environment.systemPackages =
-    [ inputs.pkgs.vim
+    [ pkgs.vim
     ];
 
   # Auto upgrade nix package 

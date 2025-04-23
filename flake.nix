@@ -29,6 +29,7 @@
     nixtheplanet.url = "github:matthewcroughan/nixtheplanet";
     # nix-darwin
     nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";  # Add this to your flake inputs
   };
 
   outputs = inputs@{ self, ... }: 
@@ -90,9 +91,15 @@
         };
       };
 
-      darwinConfigurations.workLaptop = nix-darwin.lib.darwinSystem {
-        modules = [ "${self.outPath}/hosts/workLaptop" ];
-      }
+      darwinConfigurations.workLaptop = inputs.nix-darwin.lib.darwinSystem {
+          modules = [ "${self.outPath}/hosts/workLaptop" ];
+          specialArgs = {
+            inherit inputs self;
+          };
+          pkgs = import inputs.nixpkgs-unstable {
+            system = "x86_64-darwin";
+        };
+      };
 
       # deploy.nodes.example = {
       #     hostname = "example";
