@@ -147,12 +147,13 @@
       deploy.nodes.workLaptop = {
           hostname = "admins-imac-pro";
           sshUser = "admin";
-          fastConnection = true;  # Enable pipelined copying
+          # fastConnection = true;  # Enable pipelined copying
           remoteBuild = true;  # 
+          autoRollback = false;
+          magicRollback = false;
           profiles.system = {  # TODO explain
             user = "admin";
             path = inputs.deploy-rs.lib.${supportedSystems.darwinIntel}.activate.darwin self.darwinConfigurations.workLaptop;
-            sudo = "sudo";
 
           };
       };
