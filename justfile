@@ -79,6 +79,7 @@ repl-flake:
 [confirm("Are you sure you want to potentially erase target machine's disk and deploy?")]
 deploy host ip_address:
     root_dir=$(mktemp -d) && \
+    trap 'rm -rf "$root_dir"' EXIT && \
     mkdir -p "${root_dir}/root/.config/sops/age" && \
     cp ~/.config/sops/age/keys.txt "${root_dir}/root/.config/sops/age/keys.txt" && \
     nix run github:nix-community/nixos-anywhere -- --extra-files "$root_dir" --generate-hardware-config nixos-generate-config ./hosts/{{host}}/hardware-configuration.nix root@{{ip_address}} --flake .#{{host}}
