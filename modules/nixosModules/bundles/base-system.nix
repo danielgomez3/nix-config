@@ -13,7 +13,6 @@ in
     openssh.enable = lib.mkDefault true;
     tailscale.enable = lib.mkDefault true;
     stylix.enable = lib.mkDefault true;
-    coding.enable = lib.mkDefault true;
     virtualization.enable = lib.mkDefault false;
   };
 
