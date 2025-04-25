@@ -35,6 +35,30 @@ apply target=(host):  # both the hostname and your argument are processed
     msg_default="${msg_default:-"{{msg_success}} {{target}}"}"; \
     git commit --amend -m "$msg_default"
 
+# target examples:
+# desktop,server
+# laptop,server,desktop
+newapply target=(host):
+    #!/usr/bin/env bash
+    just _update_secrets
+    git add --all
+    msg_default="{{msg_default}}"
+    git commit -m "$msg_default"
+
+    input="{{target}}"
+    IFS=',' read -r -a devices <<< "$input"
+    for i in "${devices[@]}"; do
+      just _apply_targets "$i"
+    done
+
+    read -p "(optional) Enter commit msg: " msg_default
+    msg_default="${msg_default:-"{{msg_success}} {{target}}"}"
+    git commit --amend -m "$msg_default"
+
+_apply_targets target:
+    nix run github:serokell/deploy-rs -- --skip-checks ".#{{target}}"
+    
+
 # Validates syntax and module structure, no build or result.
 eval target=(host):
     nix eval ".#nixosConfigurations.{{target}}.config.system.build.toplevel.drvPath"
