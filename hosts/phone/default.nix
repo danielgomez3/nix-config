@@ -25,8 +25,9 @@
     # xz
     # zip
     # unzip
-    # openssh
+    openssh
     iproute2
+    unixtools.ping
   ];
 
   # Backup etc files instead of failing to activate generation if a file already exists in /etc
