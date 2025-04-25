@@ -92,6 +92,7 @@
       };
 
       # nix-on-droid switch --flake "github:danielgomez3/nix-config/deploy-rs#phone"
+      # nix-on-droid switch --flake "github:danielgomez3/nix-config/tree/deploy-rs#phone"
       nixOnDroidConfigurations.phone = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
         modules = [ "${self.outPath}"/hosts/phone ];
         pkgs = import inputs.nixpkgs { system = supportedSystems.android; };
