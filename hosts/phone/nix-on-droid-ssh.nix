@@ -5,8 +5,7 @@ let
   sshdTmpDirectory = "${config.user.home}/sshd-tmp";
   sshdDirectory = "${config.user.home}/sshd";
   # pathToPubKey = "..."; 
-  pathToPubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAfIEr/ppknhpMfpGAMvMnm8bWQjB57KPy72qgUDz8u danielgomez3@server
-";  # NOTE: this should be the server's public key
+  pathToPubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAfIEr/ppknhpMfpGAMvMnm8bWQjB57KPy72qgUDz8u danielgomez3@server";  # NOTE: this should be the server's public key
   port = 8022;
 in
 {
