@@ -25,20 +25,20 @@ commit:
     git commit --amend -m "$amended_msg"
     
     
-apply target=(host):  # both the hostname and your argument are processed
-    @-just _update_secrets
-    @-git add --all; \
-    msg_default="{{msg_default}}"; \
-    git commit -m "$msg_default"; \
-    nix run github:serokell/deploy-rs -- ".#{{target}}" && \
-    read -p "(optional) Enter commit msg: " msg_default ; \
-    msg_default="${msg_default:-"{{msg_success}} {{target}}"}"; \
-    git commit --amend -m "$msg_default"
+# apply target=(host):  # both the hostname and your argument are processed
+#     @-just _update_secrets
+#     @-git add --all; \
+#     msg_default="{{msg_default}}"; \
+#     git commit -m "$msg_default"; \
+#     nix run github:serokell/deploy-rs -- ".#{{target}}" && \
+#     read -p "(optional) Enter commit msg: " msg_default ; \
+#     msg_default="${msg_default:-"{{msg_success}} {{target}}"}"; \
+#     git commit --amend -m "$msg_default"
 
 # target examples:
 # desktop,server
 # laptop,server,desktop
-newapply target=(host):
+apply target=(host):
     #!/usr/bin/env bash
     just _update_secrets
     git add --all
