@@ -2,7 +2,7 @@
 
 {
   # Simply install just the packages
-  # modules = [ ./nix-on-droid-ssh.nix ];
+  modules = [ ./nix-on-droid-ssh.nix ];
   environment.packages = with pkgs; [
     # User-facing stuff that you really really want to have
     vim # or some other editor, e.g. nano or neovim
@@ -25,7 +25,7 @@
     # xz
     # zip
     # unzip
-    # ssh
+    ssh
   ];
 
   # Backup etc files instead of failing to activate generation if a file already exists in /etc

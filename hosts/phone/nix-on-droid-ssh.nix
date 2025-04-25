@@ -1,11 +1,11 @@
 # https://github.com/nix-community/nix-on-droid/wiki/SSH-access
 # File used to automatically setup ssh access to android phone.
-{ config, pkgs, self, ...}:
+{ config, pkgs, ...}:
 let
   sshdTmpDirectory = "${config.user.home}/sshd-tmp";
   sshdDirectory = "${config.user.home}/sshd";
   # pathToPubKey = "..."; 
-  pathToPubKey = "${self.outPath}/hosts/server/key.pub";  # NOTE: this should be the server's public key
+  pathToPubKey = "../../hosts/server/key.pub";  # NOTE: this should be the server's public key
   port = 8022;
 in
 {
