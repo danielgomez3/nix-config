@@ -44,6 +44,7 @@ apply target=(host):
     git add --all
     msg_default="{{msg_default}}"
     git commit -m "$msg_default"
+    just check
 
     input="{{target}}"
     IFS=',' read -r -a devices <<< "$input"
@@ -60,6 +61,7 @@ _apply_targets target:
     
 
 # Validates syntax and module structure, no build or result.
+# TODO: make dynamic for android and darwin
 eval target=(host):
     nix eval ".#nixosConfigurations.{{target}}.config.system.build.toplevel.drvPath"
 
