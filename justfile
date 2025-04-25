@@ -25,17 +25,7 @@ commit:
     git commit --amend -m "$amended_msg"
     
     
-# apply target=(host):  # both the hostname and your argument are processed
-#     @-just _update_secrets
-#     @-git add --all; \
-#     msg_default="{{msg_default}}"; \
-#     git commit -m "$msg_default"; \
-#     nix run github:serokell/deploy-rs -- ".#{{target}}" && \
-#     read -p "(optional) Enter commit msg: " msg_default ; \
-#     msg_default="${msg_default:-"{{msg_success}} {{target}}"}"; \
-#     git commit --amend -m "$msg_default"
-
-# target examples:
+# target examples (default: your hostname):
 # desktop,server
 # laptop,server,desktop
 apply target=(host):
@@ -49,14 +39,14 @@ apply target=(host):
     input="{{target}}"
     IFS=',' read -r -a devices <<< "$input"
     for i in "${devices[@]}"; do
-      just _apply_targets "$i"
+      just _apply_target "$i"
     done
 
     read -p "(optional) Enter commit msg: " msg_default
     msg_default="${msg_default:-"{{msg_success}} {{target}}"}"
     git commit --amend -m "$msg_default"
 
-_apply_targets target:
+_apply_target target:
     nix run github:serokell/deploy-rs -- --skip-checks ".#{{target}}"
     
 
