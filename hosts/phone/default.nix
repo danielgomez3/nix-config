@@ -6,26 +6,26 @@
   environment.packages = with pkgs; [
     # User-facing stuff that you really really want to have
     vim # or some other editor, e.g. nano or neovim
-
+    git
     # Some common stuff that people expect to have
-    procps
-    killall
-    diffutils
-    findutils
-    utillinux
-    tzdata
-    hostname
-    man
-    gnugrep
-    gnupg
-    gnused
-    gnutar
-    bzip2
-    gzip
-    xz
-    zip
-    unzip
-    ssh
+    # procps
+    # killall
+    # diffutils
+    # findutils
+    # utillinux
+    # tzdata
+    # hostname
+    # man
+    # gnugrep
+    # gnupg
+    # gnused
+    # gnutar
+    # bzip2
+    # gzip
+    # xz
+    # zip
+    # unzip
+    # ssh
   ];
 
   # Backup etc files instead of failing to activate generation if a file already exists in /etc
@@ -43,9 +43,9 @@
   #time.timeZone = "Europe/Berlin";
 
   # Configure home-manager
-  home-manager = {
-    # config = ./home.nix;
-    backupFileExtension = "hm-bak";
-    useGlobalPkgs = true;
-  };
+  # home-manager = {
+  #   # config = ./home.nix;
+  #   backupFileExtension = "hm-bak";
+  #   useGlobalPkgs = true;
+  # };
 }
