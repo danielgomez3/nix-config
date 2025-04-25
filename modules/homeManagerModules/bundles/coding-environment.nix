@@ -27,7 +27,7 @@
     sqlint
     nixpkgs-fmt
     # Hacking
-    openvpn nmap gobuster nikto thc-hydra dirb steghide wpscan chisel
+    openvpn nmap gobuster nikto thc-hydra dirb steghide chisel
     python3 cargo
     # Haskell Dev
     ghciwatch  # A simple and effective IDE
