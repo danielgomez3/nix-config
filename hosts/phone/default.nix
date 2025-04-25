@@ -26,7 +26,7 @@
     # zip
     # unzip
     # openssh
-    ifconfig
+    iproute2
   ];
 
   # Backup etc files instead of failing to activate generation if a file already exists in /etc
