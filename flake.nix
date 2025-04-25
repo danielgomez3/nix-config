@@ -93,7 +93,7 @@
 
       # nix-on-droid switch --flake "github:danielgomez3/nix-config/deploy-rs#phone"
       nixOnDroidConfigurations.phone = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
-        modules = [ "${self.outPath}"/hosts/phone ];
+        modules = [ ./hosts/phone ];
         pkgs = import inputs.nixpkgs { system = supportedSystems.android; };
         # specialArgs = {
         #   inherit inputs self pkgsUnstable myHelper;
