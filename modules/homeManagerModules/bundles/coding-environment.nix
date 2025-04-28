@@ -10,10 +10,10 @@
     fzf.enable = true;
   };
 
-  home.file.".ghc/ghci.conf".text = ''
-    :set prompt "\ESC[34m\STX%s > \ESC[m\STX"
-    :set stop :list
-  '';
+  # home.file.".ghc/ghci.conf".text = ''
+  #   :set prompt "\ESC[34m\STX%s > \ESC[m\STX"
+  #   :set stop :list
+  # '';
   home.packages = with pkgs; [
     # dev
     shellcheck pay-respects exercism csvkit sshx fzf 
@@ -30,8 +30,8 @@
     openvpn nmap gobuster nikto thc-hydra dirb steghide chisel
     python3 cargo
     # Haskell Dev
-    ghciwatch  # A simple and effective IDE
-    cabal-install stack ghc
+    # ghciwatch  # A simple and effective IDE
+    # cabal-install stack ghc
   ];
 
 }
