@@ -15,8 +15,10 @@
   #   :set stop :list
   # '';
   home.packages = with pkgs; [
+    # Utils
+    reptyr
     # dev
-    shellcheck pay-respects exercism csvkit sshx fzf 
+    shellcheck exercism csvkit sshx fzf 
     pandoc-include poppler_utils graphviz librsvg 
     git-filter-repo 
     # texliveTeTeX
