@@ -7,6 +7,6 @@
       path = toString ./.;
     in
       [
-        "repl=${inputs.self.outPath}/repl.nix" "nixpkgs=${inputs.nixpkgs}"
+        "repl=${path}/repl.nix" "nixpkgs=${inputs.nixpkgs}"
       ];
 }
