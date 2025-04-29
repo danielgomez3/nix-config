@@ -19,6 +19,11 @@
         warn_about_missing_glyphs = false,  -- Disables missing glyph warnings
         font = wezterm.font_with_fallback({'Firacode Nerd Font Mono','Droid Sans Fallback'})
 
+        keys = {
+          -- Disable Alt+Enter (fullscreen toggle)
+          { key = "Enter", mods = "ALT", action = wezterm.action.DisableDefaultAssignment },
+        },
+
       }
     '';
   };
