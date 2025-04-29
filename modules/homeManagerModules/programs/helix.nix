@@ -75,7 +75,9 @@
             t = ":toggle soft-wrap.enable";
           };
         };
-    
+        insert = {
+          "A-ret" = ["insert_newline" "delete_word_backward"];
+        };
       };
 
     };
