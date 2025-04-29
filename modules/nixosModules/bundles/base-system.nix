@@ -14,6 +14,7 @@ in
     tailscale.enable = lib.mkDefault true;
     stylix.enable = lib.mkDefault true;
     virtualization.enable = lib.mkDefault false;
+    good-repl-access.enable = lib.mkDefault true;
   };
 
   system.stateVersion = "24.05"; 

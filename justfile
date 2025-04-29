@@ -57,7 +57,8 @@ eval target=(host):
 
 # Same as eval, but for all configurations
 check:
-    nix flake check 
+    @git add -A :/
+    @nix flake check 
 
 # eval and build, result is stored in ./result symlink
 build target=(host):
@@ -80,6 +81,7 @@ garbage:
 # NOTE: You can run this in any directory with the desired .nix file(s) in the invocation dir.
 repl:
     nix repl --expr "builtins.getFlake \"$PWD\""
+    # nix repl -f '<nixpkgs>'
 
 
 debug $RUST_BACKTRACE="1":
