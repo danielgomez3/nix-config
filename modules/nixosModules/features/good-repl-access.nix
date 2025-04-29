@@ -4,8 +4,8 @@
 {inputs,...}:{
   nix.nixPath =
     let
-      # path = toString ./.;
-      path = "${inputs.self.outPath}";
+      path = toString ./.;
+      # path = "${inputs.self.outPath}";
     in
       [
         "repl=${path}/repl.nix" "nixpkgs=${inputs.nixpkgs}"
