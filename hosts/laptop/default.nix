@@ -7,7 +7,7 @@ let
   username = config.myVars.username;
 in
 {
-  myVars.username = "${inputs.config.sops.secrets."username/default"}";  # Specific username for this machine
+  myVars.username = "${config.sops.secrets."username/default".path}";  # Specific username for this machine
   myVars.hostname = "laptop";  # Specific hostname for this machine
   myVars.isHardwareLimited = true;
   myVars.isSyncthingClient = true;
