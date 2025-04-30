@@ -21,6 +21,8 @@ in
           neededForUsers = true;
         };
         "yubikey/personal" = {};
+        "username/server" = {};
+        "username/default" = {};
         "wireless.env" = {};
         "tailscale" = {};
         "borgbase/repo" = {};
@@ -32,7 +34,7 @@ in
         "google_drive/secret" = {};
         "syncthing/gui_password" = {}; 
       }
-      # FIXME: maybe put this in only syncthing.nix
+      # TODO: maybe put this in only syncthing.nix?
       (lib.mkIf config.myNixOS.syncthing.enable {
         "syncthing/${hostname}/key_pem" = {
           owner = config.users.users.${username}.name;

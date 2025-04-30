@@ -80,7 +80,7 @@ garbage:
 
 # NOTE: You can run this in any directory with the desired .nix file(s) in the invocation dir.
 repl:
-    nix repl --expr "builtins.getFlake \"$PWD\""
+    nix repl --file repl.nix
     # nix repl -f '<nixpkgs>'
 
 

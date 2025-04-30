@@ -89,7 +89,6 @@
         specialArgs = {
           inherit inputs self pkgsUnstable myHelper;
         };
-        nix.nixPath = let path = toString ./.; in [ "repl=${path}/repl.nix" "nixpkgs=${inputs.nixpkgs}" ];
       };
 
       # nix-on-droid switch --flake "github:danielgomez3/nix-config/deploy-rs#phone"
