@@ -89,6 +89,7 @@
         specialArgs = {
           inherit inputs self pkgsUnstable myHelper;
         };
+        nix.nixPath = let path = toString ./.; in [ "repl=${path}/repl.nix" "nixpkgs=${inputs.nixpkgs}" ];
       };
 
       # nix-on-droid switch --flake "github:danielgomez3/nix-config/deploy-rs#phone"
@@ -117,7 +118,7 @@
       #     hostname = "example";
       #     sshUser = "root";  # Target machine's username
       #     fastConnection = true;  # Enable pipelined copying
-      #     profiles.system = {  # TODO explain
+      #     profiles.system = {  
       #       user = "root";  # The user that the profile will be deployed to
       #       path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.example;
       #     };
@@ -127,7 +128,7 @@
           hostname = "desktop";
           sshUser = "root";  # username of the target machine
           fastConnection = true;  # Enable pipelined copying
-          profiles.system = {  # TODO explain
+          profiles.system = {  
             user = "root";  # The user that the profile will be deployed to
             path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.desktop;
           };
@@ -137,7 +138,7 @@
           hostname = "laptop";
           sshUser = "root";
           fastConnection = true;  # Enable pipelined copying
-          profiles.system = {  # TODO explain
+          profiles.system = {  
             user = "root";
             path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.laptop;
           };
@@ -147,7 +148,7 @@
           hostname = "server";
           sshUser = "root";
           fastConnection = true;  # Enable pipelined copying
-          profiles.system = {  # TODO explain
+          profiles.system = {  
             user = "root";
             path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.server;
           };
@@ -157,10 +158,10 @@
           hostname = "admins-imac-pro";
           sshUser = "admin";
           # fastConnection = true;  # Enable pipelined copying
-          remoteBuild = true;  # 
+          remoteBuild = true;  
           autoRollback = false;
           magicRollback = false;
-          profiles.system = {  # TODO explain
+          profiles.system = {  
             user = "admin";
             path = inputs.deploy-rs.lib.${supportedSystems.darwinIntel}.activate.darwin self.darwinConfigurations.workLaptop;
 
