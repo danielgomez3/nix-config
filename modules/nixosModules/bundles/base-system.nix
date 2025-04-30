@@ -66,7 +66,6 @@ in
     users.${username} = {
       isNormalUser = true;
       hashedPasswordFile = config.sops.secrets.user_password.path;  # Shoutout to sops baby.
-      # password = "123";
       extraGroups = [ "wheel" ];
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
