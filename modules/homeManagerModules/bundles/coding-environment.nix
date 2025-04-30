@@ -16,7 +16,7 @@
   # '';
   home.packages = with pkgs; [
     # Utils
-    reptyr
+    reptyr bat
     # dev
     shellcheck exercism csvkit sshx fzf 
     pandoc-include poppler_utils graphviz librsvg 
