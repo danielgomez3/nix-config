@@ -20,9 +20,7 @@ in
         user_password = {
           neededForUsers = true;
         };
-        "yubikey/personal" = {};
-        "username/server" = {};
-        "username/default" = {};
+        "yubikey" = {};
         "wireless.env" = {};
         "tailscale" = {};
         "borgbase/repo" = {};
