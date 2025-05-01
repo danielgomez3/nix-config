@@ -9,7 +9,7 @@ config,
     userName = "danielgomez3";
     userEmail = "danielgomezcoder@gmail.com";  # FIXME: use sops nix, but doesn't seem to work:     defaults.email = "${toString config.sops.secrets.email}";
     signing = {
-      key = "6D55D3035B3FE40402D8E8AE480228117EAA56B7";
+      key = "480228117EAA56B7";  # FIXME: put in sops
       signByDefault = true;
     };
 
