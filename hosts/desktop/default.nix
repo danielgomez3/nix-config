@@ -26,7 +26,14 @@ in
 
   time.hardwareClockInLocalTime = true;
   hardware.keyboard.zsa.enable = true;
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+     enable = true;
+     pinentryFlavor = "curses";
+     enableSSHSupport = true;
+  };
   services = {
+  
     xserver = {
       xkb = {
         options = "caps:swapescape";

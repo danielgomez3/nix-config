@@ -26,7 +26,6 @@
     # Fun
     toilet fortune lolcat krabby cowsay figlet hollywood
     # coding
-    sqlint
     nixpkgs-fmt
     # Hacking
     openvpn nmap gobuster nikto thc-hydra dirb steghide chisel
