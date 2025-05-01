@@ -17,7 +17,7 @@ config,
     userName = "danielgomez3";
     userEmail = "danielgomezcoder@gmail.com";  # FIXME: use sops nix, but doesn't seem to work:     defaults.email = "${toString config.sops.secrets.email}";
     signing = {
-      key = "480228117EAA56B7";  # FIXME: put in sops
+      key = "B3A4F8E40987390C";  # FIXME: put in sops
       signByDefault = true;
     };
 
