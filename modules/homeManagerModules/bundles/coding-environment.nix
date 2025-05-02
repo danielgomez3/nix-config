@@ -2,9 +2,9 @@
   myHomeManager = {
     helix.enable = true;
     pandoc.enable = true;
-    zed.enable = true;
-    # pay-respects.enable = true;
-    vnc-viewing.enable = true;
+    #zed.enable = true;
+    #pay-respects.enable = true;
+    #vnc-viewing.enable = true;
     zoxide.enable = true;
     direnv.enable = true;
     fzf.enable = true;
@@ -19,13 +19,14 @@
     #reptyr  # FIXME darwin allow unfree
     bat
     # dev
-    shellcheck exercism csvkit sshx fzf 
-    pandoc-include poppler_utils graphviz librsvg 
-    git-filter-repo 
-    # texliveTeTeX
+    #shellcheck exercism csvkit sshx fzf 
+    #pandoc-include poppler_utils graphviz librsvg 
+    #git-filter-repo 
+    #texliveTeTeX
     texliveFull
     # Fun
-    toilet fortune lolcat krabby cowsay figlet hollywood
+    toilet fortune lolcat krabby cowsay figlet 
+    #hollywood
     # coding
     nixpkgs-fmt
     # Hacking

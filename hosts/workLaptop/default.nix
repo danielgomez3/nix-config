@@ -39,7 +39,8 @@
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "x86_64-darwin";  
   nixpkgs.config.allowBroken = true; 
-  #nixpkgs.config.allowUnfreePredicate = _: true; 
+  nixpkgs.config.allowUnfree = true; 
+  nixpkgs.config.allowUnsupportedSystem = true; 
 
   home-manager = {
     extraSpecialArgs = { inherit self; };
@@ -48,6 +49,8 @@
     users.${config.myVars.username} = {
       myHomeManager = {
 	bundles.coding-environment.enable = true;
+	#helix.enable = true;
+	#wezterm.enable = true;
       };
       home = {
         stateVersion = "24.05";

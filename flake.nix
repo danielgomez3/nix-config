@@ -101,19 +101,19 @@
       };
 
       darwinConfigurations.workLaptop = inputs.nix-darwin.lib.darwinSystem {
-          modules = [
-            "${self.outPath}/hosts/workLaptop"
-	    "${self.outPath}/modules/homeManagerModules"
-	    ./modules/nixosModules/features/my-vars.nix
-            inputs.home-manager-unstable.darwinModules.home-manager
-          ];
-          specialArgs = {
-            inherit inputs self myHelper pkgsUnstable;
-          };
-          pkgs = import inputs.nixpkgs-unstable {
-            system = "aarch64-darwin";
-    	    config.allowBroken = true; 
+        modules = [
+          "${self.outPath}/hosts/workLaptop"
+	  "${self.outPath}/modules/homeManagerModules"
+	  ./modules/nixosModules/features/my-vars.nix
+          inputs.home-manager-unstable.darwinModules.home-manager
+        ];
+        specialArgs = {
+          inherit inputs self myHelper pkgsUnstable;
         };
+        #pkgs = import inputs.nixpkgs-unstable {
+        #  system = "aarch64-darwin";
+    	#  config.allowBroken = true; 
+        #};
       };
 
       # deploy.nodes.example = {

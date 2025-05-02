@@ -1,12 +1,12 @@
 {pkgs, pkgsUnstable, ...}:{
 
-  home.packages = with pkgs; [
-    python312Packages.grip
-  ];
+  #home.packages = with pkgs; [
+  #  python312Packages.grip
+  #];
 
   programs.helix = {
     enable = true;
-    package = pkgsUnstable.helix;
+    #package = pkgsUnstable.helix;
     defaultEditor = true;
     extraPackages = [
       # pkgs.vscode-langservers-extracted
