@@ -24,8 +24,6 @@ config,
 
     extraConfig = {
       credential.helper = "store";
-      # gpg.format = "ssh";
-      # gpg.format = "opengpg";
     };
   };
 
