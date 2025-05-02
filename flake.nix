@@ -28,7 +28,7 @@
     # MacOS emu
     nixtheplanet.url = "github:matthewcroughan/nixtheplanet";
     # nix-darwin
-    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";  # Add this to your flake inputs
   };
 
@@ -103,13 +103,16 @@
       darwinConfigurations.workLaptop = inputs.nix-darwin.lib.darwinSystem {
           modules = [
             "${self.outPath}/hosts/workLaptop"
-            inputs.home-manager.darwinModules.home-manager
+	    "${self.outPath}/modules/homeManagerModules"
+	    ./modules/nixosModules/features/my-vars.nix
+            inputs.home-manager-unstable.darwinModules.home-manager
           ];
           specialArgs = {
-            inherit inputs self;
+            inherit inputs self myHelper pkgsUnstable;
           };
           pkgs = import inputs.nixpkgs-unstable {
             system = "aarch64-darwin";
+    	    config.allowBroken = true; 
         };
       };
 

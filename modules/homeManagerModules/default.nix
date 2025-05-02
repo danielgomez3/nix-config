@@ -56,16 +56,20 @@ in {
       home = {
         stateVersion = "24.05";
         packages = with pkgs; [
-          dig dmidecode 
+          dig unzip ffmpeg 
+	  #dmidecode   # FIXME: nix-darwin doesn't like this
           eza entr tldr bc tree zip
           pciutils usbutils 
-          cifs-utils samba
+          #cifs-utils  # FIXME: same
+ 	  samba
           # cli apps
-          yt-dlp beets spotdl protonvpn-cli_2
+          yt-dlp beets spotdl 
+	  #protonvpn-cli_2  # FIXME: same
           tesseract ocrmypdf
-          android-tools adb-sync unzip android-tools ffmpeg ventoy
+          #android-tools adb-sync android-tools ventoy  # FIXME: same, but allowUnfree for darwin
           # Nix
-          sops  just nixos-anywhere ssh-to-age colmena disko
+          sops  just nixos-anywhere ssh-to-age colmena 
+	  #disko  # FIXME: allow unfree for darwin
         ];
       };
       imports =

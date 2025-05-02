@@ -1,5 +1,14 @@
-{pkgs, self,...}:{
+{pkgs, self, config, ...}:{
 
+  myVars.username = "dgomez";
+  myVars.hostname = "laptop";  # Specific hostname for this machine
+  myVars.isHardwareLimited = true;
+  myVars.isSyncthingClient = true;
+
+  users.users.${config.myVars.username} = {
+    description = "macOS work laptop";
+    home = "/Users/${config.myVars.username}";
+  };
   networking.hostName = "workLaptop";
   users.users."normalUser" = {
     description = "My work macOS Laptop";
@@ -29,9 +38,26 @@
 
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "x86_64-darwin";  
+  nixpkgs.config.allowBroken = true; 
+  #nixpkgs.config.allowUnfreePredicate = _: true; 
+
   home-manager = {
     extraSpecialArgs = { inherit self; };
+    useGlobalPkgs = true;
+    useUserPackages = true; 
+    users.${config.myVars.username} = {
+      myHomeManager = {
+	bundles.coding-environment.enable = true;
+      };
+      home = {
+        stateVersion = "24.05";
+
+    #    username = config.myVars.username;
+    #    homeDirectory = "/Users/${config.myVars.username}";  
+      };
+    };
   };
+    
 
 
 
