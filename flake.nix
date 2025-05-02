@@ -109,7 +109,7 @@
             inherit inputs self;
           };
           pkgs = import inputs.nixpkgs-unstable {
-            system = "x86_64-darwin";
+            system = "aarch64-darwin";
         };
       };
 
@@ -162,7 +162,7 @@
           magicRollback = false;
           profiles.system = {  
             user = "admin";
-            path = inputs.deploy-rs.lib.${supportedSystems.darwinIntel}.activate.darwin self.darwinConfigurations.workLaptop;
+            path = inputs.deploy-rs.lib.${supportedSystems.darwinAmd}.activate.darwin self.darwinConfigurations.workLaptop;
 
           };
       };
