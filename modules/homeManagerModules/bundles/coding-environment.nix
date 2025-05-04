@@ -19,7 +19,8 @@
     #reptyr  # FIXME darwin allow unfree
     bat
     # dev
-    #shellcheck exercism csvkit sshx fzf 
+    #shellcheck csvkit sshx fzf 
+    exercism 
     #pandoc-include poppler_utils graphviz librsvg 
     #git-filter-repo 
     #texliveTeTeX
