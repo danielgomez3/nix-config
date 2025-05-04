@@ -33,7 +33,7 @@ apply target=(host):
     just _update_secrets
     git add --all
     msg_default="{{msg_default}}"
-    git commit -m "$msg_default"
+    # git commit -m "$msg_default"
     just check
 
     input="{{target}}"
@@ -44,7 +44,7 @@ apply target=(host):
 
     read -p "(optional) Enter commit msg: " msg_default
     msg_default="${msg_default:-"{{msg_success}} {{target}}"}"
-    git commit --amend -m "$msg_default"
+    git commit -m "$msg_default"
 
 _apply_target target:
     nix run github:serokell/deploy-rs -- --skip-checks ".#{{target}}"
