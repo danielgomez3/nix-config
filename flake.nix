@@ -157,14 +157,14 @@
       };
 
       deploy.nodes.workLaptop = {
-          hostname = "admins-imac-pro";
-          sshUser = "admin";
+          hostname = "workLaptop";
+          sshUser = "dgomez";
           # fastConnection = true;  # Enable pipelined copying
           remoteBuild = true;  
-          autoRollback = false;
-          magicRollback = false;
+          # autoRollback = false;
+          # magicRollback = false;
           profiles.system = {  
-            user = "admin";
+            # user = "admin";
             path = inputs.deploy-rs.lib.${supportedSystems.darwinAmd}.activate.darwin self.darwinConfigurations.workLaptop;
 
           };
