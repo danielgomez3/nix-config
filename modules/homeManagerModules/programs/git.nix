@@ -3,7 +3,7 @@ pkgs,
 config,
 ...
 }: {
-
+  # 
   services.gpg-agent = {
     enable = true;
     defaultCacheTtl = 1800; # Cache passphrase for 30 minutes
@@ -12,18 +12,23 @@ config,
   };
 
   programs.gpg.enable = true;
+  
 
   programs.git = {
     enable = true;
     userName = "danielgomez3";
-    userEmail = "danielgomezcoder@gmail.com";  # FIXME: use sops nix, but doesn't seem to work:     defaults.email = "${toString config.sops.secrets.email}";
+    userEmail = "danielgomezcoder@gmail.com";
     signing = {
-      key = "B3A4F8E40987390C";  # FIXME: put in sops
+      # gpg --list-secret-keys --keyid-format=long
+      key = "B3A4F8E40987390C";  # FIXME: put in sops, or put private key somewhere??
       signByDefault = true;
     };
 
     extraConfig = {
-      credential.helper = "store";
+      # https://jeppesen.io/git-commit-sign-nix-home-manager-ssh/
+      commit.gpgsign = true;
+      gpg.format = "ssh";
+      user.signingkey = "~/.ssh/id_ed25519.pub";
     };
   };
 
