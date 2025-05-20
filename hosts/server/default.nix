@@ -28,6 +28,7 @@ in
     remoteDeployment-nix-on-droid.enable = true;
     mySws.enable = true;
     macos-emulation.enable = true;    
+    docker.enable = true;
   };
 
   home-manager.users.${username}.myHomeManager = {
