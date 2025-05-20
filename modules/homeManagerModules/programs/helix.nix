@@ -49,7 +49,7 @@
             enable = true;
             wrap-indicator = "‧ ";
           };
-          # line-number = "relative";
+          line-number = "absolute";
           # gutters = [
           # "diagnostics"
           #  "spacer"

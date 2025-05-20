@@ -17,7 +17,7 @@
   home.packages = with pkgs; [
     # Utils
     #reptyr  # FIXME darwin allow unfree
-    bat
+    bat jq
     # dev
     #shellcheck csvkit sshx fzf 
     exercism 
@@ -29,7 +29,7 @@
     toilet fortune lolcat krabby cowsay figlet 
     #hollywood
     # coding
-    nixpkgs-fmt
+    nixpkgs-fmt devenv
     # Hacking
     openvpn nmap gobuster nikto thc-hydra dirb steghide chisel
     python3 cargo
