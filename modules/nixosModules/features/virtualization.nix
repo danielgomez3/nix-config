@@ -10,17 +10,6 @@ in
       inputs.quickemu.packages.${system}.default
     ];
 
-    ## NOTE: For Docker
-    users.users.${username}.extraGroups = [ "docker" ];
-    # virtualisation = {
-    #   docker = {
-    #     enable = true;
-    #     rootless = {
-    #       enable = true;
-    #       setSocketVariable = true;
-    #     };
-    #   }; 
-
     ## NOTE: For Virtualbox
     users.extraGroups.vboxusers.members = [ "${config.myVars.username}" ];
     virtualisation.virtualbox.host.enable = true;
