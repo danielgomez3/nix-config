@@ -1,180 +1,157 @@
-{pkgs, pkgsUnstable, lib, ...}:{
+{
+  lib,
+  pkgs,
+  ...
+}: {
 
-  #home.packages = with pkgs; [
-  #  python312Packages.grip
-  #];
+  programs.helix.languages = {
+    language = [
+      {
+        name = "bash";
+        auto-format = true;
+        formatter = {
+          command = lib.getExe pkgs.shfmt;
+          args = ["-i" "2"];
+        };
+      }
 
-  programs.helix = {
-    enable = true;
-    #package = pkgsUnstable.helix;
-    defaultEditor = true;
-    extraPackages = [
-      # pkgs.vscode-langservers-extracted
-      pkgs.gopls pkgs.gotools
-      #typescript typescript-language-server
-      pkgs.marksman pkgsUnstable.ltex-ls-plus  # Writing
-      pkgs.nil pkgs.nixfmt-classic
-      pkgs.astyle pkgs.clang-tools  # C
-    
-      pkgs.lua-language-server
-      pkgs.rust-analyzer
-      # bash-language-server
-      # pkgs.haskell-language-server
-      pkgsUnstable.haskell-language-server
-      # (pkgs.haskell-language-server.override { supportedGhcVersions = [ "HEAD" ]; }) 
-      pkgs.omnisharp-roslyn pkgs.netcoredbg  # C-sharp
-      pkgs.python312Packages.python-lsp-server 
+      {
+        name = "css";
+        auto-format = true;
+        formatter = {
+          command = lib.getExe pkgs.nodePackages.prettier;
+          args = ["--parser" "css"];
+        };
+      }
 
-      pkgs.sqls
+      {
+        name = "git-commit";
+        language-servers = ["ltex"];
+      }
+
+      {
+        name = "go";
+        auto-format = true;
+      }
+
+      {
+        name = "html";
+        formatter = {
+          command = lib.getExe pkgs.nodePackages.prettier;
+          args = ["--parser" "html"];
+        };
+      }
+
+      {
+        name = "markdown";
+        auto-format = true;
+        soft-wrap.enable = true;
+        formatter = {
+          command = lib.getExe pkgs.nodePackages.prettier;
+          args = ["--parser" "markdown"];
+        };
+        language-servers = ["marksman" "ltex"];
+      }
+
+      {
+        name = "nix";
+        auto-format = true;
+        language-servers = ["nixd"];
+      }
+
+      {
+        name = "python";
+        language-servers = ["basedpyright" "ruff"];
+        auto-format = true;
+        formatter = {
+          command = lib.getExe pkgs.ruff;
+          args = ["format" "--line-length=80" "-"];
+        };
+      }
+
+      {
+        name = "sql";
+        language-servers = ["sqls"];
+      }
+
+      {
+        name = "xml";
+        language-servers = ["lemminx"];
+      }
     ];
-    settings = {
 
-        editor = {
-          text-width = 80;
-          rulers = [80];
-          shell = [
-            "zsh"
-            "-c"
-          ];
-          true-color = true;
-          mouse = true;
-          bufferline = "multiple";
-          whitespace = {
-            render = {
-              newline = "none";
-            };
-            characters = {
-              newline = "⏎";
-            };
-          };
-          soft-wrap = {
-            enable = true;
-            wrap-indicator = "‧ ";
-          };
-          line-number = "absolute";
-          # gutters = [
-          # "diagnostics"
-          #  "spacer"
-          #  "diff"
-          # ];
-          gutters = [];
-          cursor-shape = {
-            insert = "bar";
-            normal = "block";
-            select = "underline";
-          };
-          # Diagnostics
-          end-of-line-diagnostics = "hint";
-          inline-diagnostics = {
-            cursor-line = "disable";
-            other-lines = "disable";
-          };
-        };
+    language-server = {
+      basedpyright = {
+        command = "${pkgs.basedpyright}/bin/basedpyright-langserver";
+        args = ["--stdio"];
+      };
 
-      keys = {
-        normal = {
-          space = {
-            t = ":toggle soft-wrap.enable";
-          };
-        };
-        insert = {
-          "A-ret" = ["insert_newline" "delete_word_backward"];
+      bash-language-server = {
+        command = lib.getExe pkgs.bash-language-server;
+      };
+
+      docker-compose-langserver = {
+        command = "${pkgs.docker-compose-language-service}/bin/docker-compose-langserver";
+      };
+
+      golangci-lint = {
+        command = lib.getExe pkgs.golangci-lint;
+      };
+
+      gopls = {
+        command = lib.getExe pkgs.gopls;
+      };
+
+      lemminx = {
+        command = lib.getExe pkgs.lemminx;
+      };
+
+      ltex = {
+        command = "${pkgs.ltex-ls}/bin/ltex-ls";
+      };
+
+      marksman = {
+        command = lib.getExe pkgs.marksman;
+      };
+
+      nixd = {
+        command = lib.getExe pkgs.nixd;
+        config.nixd = {
+          formatting.command = ["${lib.getExe pkgs.alejandra}"];
         };
       };
 
-    };
-
-    languages = {
-
-      language-server = {
-
-        pyright = {
-          command = "${pkgs.pyright}/bin/pyright-langserver";
-          args = [
-            "--stdio"
-          ];
-        };
-      
-        # XXX: be careful, this could break
-        bash-language-server = {
-          command = lib.getExe pkgs.bash-language-server;
-        };
-
-        ## XXX:
-        docker-compose-langserver = {
-          command = "${pkgs.docker-compose-language-service}/bin/docker-compose-langserver";
-        };
-
-
-        # ltex-ls-plus = {
-        #   config = {
-        #     ltex = {
-        #       diagnosticSeverity = "warning";
-        #       disabledRules = {
-        #         "en-US" = [ "PROFANITY" ];
-        #         "en-GB" = [ "PROFANITY" ];
-        #       };
-        #       dictionary = {
-        #         "en-US" = [ "builtin" ];
-        #         "en-GB" = [ "builtin" ];
-        #       };
-        #     };
-        #   };
-        # };
-
+      ruff = {
+        command = lib.getExe pkgs.ruff;
       };
 
-      language = [
-        {
-          name = "nix";
-          auto-format = true;
-          formatter.command = "${pkgs.nixfmt-classic}/bin/nixfmt-classic";
-        }
-        {
-          name = "haskell";
-        }
-        {
-          name = "sql";
-          language-servers = ["sqls"];
-        }
-        {
-          name = "markdown";
-          language-servers = ["marksman" "ltex-ls-plus"];
-          rulers = [];
-          soft-wrap.wrap-at-text-width = true;
-          formatter = {
-            command = "${pkgs.nodePackages.prettier}/bin/prettier";
-            args = [
-              "--parser"
-              "markdown"
-              "--prose-wrap"
-              "never" # <always|never|preserve>
-            ];
-          };
-        }
-        {
-          name = "python";
-          auto-format = true;
-          formatter = {
-            command = "${pkgs.ruff}/bin/ruff";
-            args = [
-              "format"
-              "--silent"
-              "-"
-            ];
-          };
-          language-servers = [
-            {
-              name = "pyright";
-            }
-            {
-              name = "ltex-ls";
-            }
-          ];
-        }
-      ];
+      superhtml = {
+        command = lib.getExe pkgs.superhtml;
+      };
+
+      sqls = {
+        command = pkgs.sqls;
+      };
+
+      taplo = {
+        command = lib.getExe pkgs.taplo;
+      };
+
+      vscode-css-language-server = {
+        command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-css-language-server";
+      };
+
+      vscode-html-language-server = {
+        command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-html-language-server";
+      };
+
+      vscode-json-language-server = {
+        command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-json-language-server";
+      };
+
+      yaml-language-server = {
+        command = lib.getExe pkgs.yaml-language-server;
+      };
     };
-
-
   };
 }
