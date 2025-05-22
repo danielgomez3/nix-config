@@ -1,4 +1,4 @@
-{pkgs, pkgsUnstable, ...}:{
+{pkgs, pkgsUnstable, lib, ...}:{
 
   #home.packages = with pkgs; [
   #  python312Packages.grip
@@ -24,6 +24,8 @@
       # (pkgs.haskell-language-server.override { supportedGhcVersions = [ "HEAD" ]; }) 
       pkgs.omnisharp-roslyn pkgs.netcoredbg  # C-sharp
       pkgs.python312Packages.python-lsp-server 
+
+      pkgs.sqls
     ];
     settings = {
 
@@ -92,6 +94,17 @@
             "--stdio"
           ];
         };
+      
+        # XXX: be careful, this could break
+        bash-language-server = {
+          command = lib.getExe pkgs.bash-language-server;
+        };
+
+        ## XXX:
+        docker-compose-langserver = {
+          command = "${pkgs.docker-compose-language-service}/bin/docker-compose-langserver";
+        };
+
 
         # ltex-ls-plus = {
         #   config = {
@@ -119,6 +132,10 @@
         }
         {
           name = "haskell";
+        }
+        {
+          name = "sql";
+          language-servers = ["sqls"];
         }
         {
           name = "markdown";
