@@ -15,18 +15,18 @@
       #   "-c"
       # ];
       #   bufferline = "multiple";
-      #   whitespace = {
-      #     render = {
-      #       newline = "none";
-      #     };
-      #     characters = {
-      #       newline = "⏎";
-      #     };
-      #   };
-      #   soft-wrap = {
-      #     enable = true;
-      #     wrap-indicator = "‧ ";
-      #   };
+      whitespace = {
+        render = {
+          newline = "none";
+        };
+        characters = {
+          newline = "⏎";
+        };
+      };
+      soft-wrap = {
+        enable = true;
+        wrap-indicator = "‧ ";
+      };
       #   line-number = "absolute";
       #   # gutters = [
       #   # "diagnostics"
