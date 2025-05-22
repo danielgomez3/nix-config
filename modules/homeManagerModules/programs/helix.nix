@@ -47,7 +47,7 @@
         #     cursor-line = "disable";
         #     other-lines = "disable";
         #   };
-        # };
+        };
 
       keys = {
         normal = {
