@@ -34,11 +34,11 @@
       #   #  "diff"
       #   # ];
       #   gutters = [];
-      #   cursor-shape = {
-      #     insert = "bar";
-      #     normal = "block";
-      #     select = "underline";
-      #   };
+      cursor-shape = {
+        insert = "bar";
+        normal = "block";
+        select = "underline";
+      };
       #   # Diagnostics
       #   end-of-line-diagnostics = "hint";
       #   inline-diagnostics = {
