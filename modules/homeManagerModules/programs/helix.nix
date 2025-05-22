@@ -4,6 +4,7 @@
   ...
 }: {
 
+  programs.helix.enable = true;
   programs.helix.languages = {
     language = [
       {
