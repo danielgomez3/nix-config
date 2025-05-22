@@ -5,6 +5,63 @@
 }: {
 
   programs.helix.enable = true;
+  programs.helix.settings = {
+
+        editor = {
+          true-color = true;
+          text-width = 80;
+          rulers = [80];
+          mouse = true;
+          # shell = [
+          #   "zsh"
+          #   "-c"
+          # ];
+        #   bufferline = "multiple";
+        #   whitespace = {
+        #     render = {
+        #       newline = "none";
+        #     };
+        #     characters = {
+        #       newline = "⏎";
+        #     };
+        #   };
+        #   soft-wrap = {
+        #     enable = true;
+        #     wrap-indicator = "‧ ";
+        #   };
+        #   line-number = "absolute";
+        #   # gutters = [
+        #   # "diagnostics"
+        #   #  "spacer"
+        #   #  "diff"
+        #   # ];
+        #   gutters = [];
+        #   cursor-shape = {
+        #     insert = "bar";
+        #     normal = "block";
+        #     select = "underline";
+        #   };
+        #   # Diagnostics
+        #   end-of-line-diagnostics = "hint";
+        #   inline-diagnostics = {
+        #     cursor-line = "disable";
+        #     other-lines = "disable";
+        #   };
+        # };
+
+      keys = {
+        normal = {
+          space = {
+            t = ":toggle soft-wrap.enable";
+          };
+        };
+        insert = {
+          "A-ret" = ["insert_newline" "delete_word_backward"];
+        };
+      };
+
+  };
+
   programs.helix.languages = {
     language = [
       {
