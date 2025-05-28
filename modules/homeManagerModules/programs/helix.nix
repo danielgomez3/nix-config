@@ -62,6 +62,18 @@
   programs.helix.languages = {
     language = [
       {
+        name = "javascript";
+        language-servers = [
+          {
+            name = "typescript-language-server";
+            except-features = ["format"];
+          }
+          "biome"
+          "gpt"
+        ];
+        auto-format = true;
+      }
+      {
         name = "bash";
         auto-format = true;
         formatter = {
@@ -139,6 +151,10 @@
       basedpyright = {
         command = "${pkgs.basedpyright}/bin/basedpyright-langserver";
         args = ["--stdio"];
+      };
+
+      typescript-language-server.config.tsserver = {
+        path = "${pkgs.typescript}/lib/node_modules/typescript/lib/tsserver.js";
       };
 
       bash-language-server = {
