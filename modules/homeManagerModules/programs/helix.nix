@@ -125,7 +125,22 @@
         auto-format = true;
         language-servers = ["nixd"];
       }
-
+      {
+        name = "typescript";
+        language-servers = [
+          {
+            name = "typescript-language-server";
+            except-features = ["format"];
+          }
+          "biome"
+          "gpt"
+        ];
+        formatter = {
+          command = "biome";
+          args = ["format" "--indent-style" "space" "--stdin-file-path" "file.ts"];
+        };
+        auto-format = true;
+      }
       {
         name = "python";
         language-servers = ["basedpyright" "ruff"];
