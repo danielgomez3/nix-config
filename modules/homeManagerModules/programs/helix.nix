@@ -127,19 +127,18 @@
       }
       {
         name = "typescript";
+        auto-format = true;
         language-servers = [
           {
-            name = "typescript-language-server";
-            except-features = ["format"];
+            name = "efm";
+            only-features = ["format" "diagnostics"];
           }
-          "biome"
-          "gpt"
+          {
+            name = "typescript-language-server";
+            except-features = ["format" "diagnostics"];
+          }
+          {name = "eslint";}
         ];
-        formatter = {
-          command = "biome";
-          args = ["format" "--indent-style" "space" "--stdin-file-path" "file.ts"];
-        };
-        auto-format = true;
       }
       {
         name = "python";
@@ -168,8 +167,12 @@
         args = ["--stdio"];
       };
 
-      typescript-language-server.config.tsserver = {
-        path = "${pkgs.typescript}/lib/node_modules/typescript/lib/tsserver.js";
+      typescript = {
+        command = "typescript-language-server";
+        args = ["--stdio"];
+        config = {
+          hostInfo = "helix";
+        };
       };
 
       bash-language-server = {
