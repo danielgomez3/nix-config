@@ -63,15 +63,21 @@
     language = [
       {
         name = "javascript";
-        language-servers = [
-          {
-            name = "typescript-language-server";
-            except-features = ["format"];
-          }
-          "biome"
-          "gpt"
-        ];
         auto-format = true;
+        formatter = {
+          command = lib.getExe pkgs.nodePackages.prettier;
+          args = ["--parser" "babel"];
+        };
+        language-servers = ["typescript-language-server"];
+      }
+      {
+        name = "typescript";
+        auto-format = true;
+        formatter = {
+          command = lib.getExe pkgs.nodePackages.prettier;
+          args = ["--parser" "typescript"];
+        };
+        language-servers = ["typescript-language-server"];
       }
       {
         name = "bash";
@@ -126,21 +132,6 @@
         language-servers = ["nixd"];
       }
       {
-        name = "typescript";
-        auto-format = true;
-        language-servers = [
-          {
-            name = "efm";
-            only-features = ["format" "diagnostics"];
-          }
-          {
-            name = "typescript-language-server";
-            except-features = ["format" "diagnostics"];
-          }
-          {name = "eslint";}
-        ];
-      }
-      {
         name = "python";
         language-servers = ["basedpyright" "ruff"];
         auto-format = true;
@@ -165,14 +156,6 @@
       basedpyright = {
         command = "${pkgs.basedpyright}/bin/basedpyright-langserver";
         args = ["--stdio"];
-      };
-
-      typescript = {
-        command = "typescript-language-server";
-        args = ["--stdio"];
-        config = {
-          hostInfo = "helix";
-        };
       };
 
       bash-language-server = {
@@ -236,6 +219,11 @@
 
       vscode-json-language-server = {
         command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-json-language-server";
+      };
+
+      typescript-language-server = {
+        command = lib.getExe pkgs.nodePackages.typescript-language-server;
+        args = ["--stdio"];
       };
 
       yaml-language-server = {
