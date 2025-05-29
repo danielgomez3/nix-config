@@ -1,13 +1,17 @@
-{ config, lib, pkgs, self, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  self,
+  ...
+}: let
   username = config.myVars.username;
   hostname = config.myVars.hostname;
-in
-{
+in {
   # https://wiki.nixos.org/wiki/Syncthing#tips
   # Don't create default ~/Sync folder
   systemd.services = {
-    syncthing.environment.STNODEFAULTFOLDER = "true";  
+    syncthing.environment.STNODEFAULTFOLDER = "true";
   };
   services.syncthing = {
     enable = true;
@@ -16,89 +20,89 @@ in
     cert = config.sops.secrets."syncthing/${hostname}/cert_pem".path;
     # dataDir = "/home/${username}/.config/data";
     # configDir = "/home/${username}/.config/syncthing";  # Folder for Syncthing's settings and keys
-    overrideDevices = true;     # overrides any devices added or deleted through the WebUI
-    overrideFolders = true;     # overrides any folders added or deleted through the WebUI
+    overrideDevices = true; # overrides any devices added or deleted through the WebUI
+    # overrideFolders = true;     # overrides any folders added or deleted through the WebUI
     settings = {
       options.urAccepted = -1;
       devices = lib.mkMerge [
-
-        (lib.mkIf config.myVars.isSyncthingServer{  # Condition
-          "desktop" = { 
-            id = "WCI6FZO-QIWS4TH-IHIQIVM-O7QUE4O-DT2L4JM-BCCXKNM-FOSYHFB-BZSKNQW"; 
+        (lib.mkIf config.myVars.isSyncthingServer {
+          # Condition
+          "desktop" = {
+            id = "WCI6FZO-QIWS4TH-IHIQIVM-O7QUE4O-DT2L4JM-BCCXKNM-FOSYHFB-BZSKNQW";
             autoAcceptFolders = true;
           };
-          "phone" = { 
-            id = "TSV6QDP-T6LBRW4-XKE6S2R-ETAYRSU-B2WHSCK-P3R62AX-3KZDTW4-GWSCZA2"; 
+          "phone" = {
+            id = "TSV6QDP-T6LBRW4-XKE6S2R-ETAYRSU-B2WHSCK-P3R62AX-3KZDTW4-GWSCZA2";
             autoAcceptFolders = true;
           };
-          "server" = { 
-            id = "WDBCNRM-YJOKGOJ-FMABWTI-4UNDU2P-SKR3VP7-TEWBA3M-NKCT65Y-JHMVKQ3"; 
+          "server" = {
+            id = "WDBCNRM-YJOKGOJ-FMABWTI-4UNDU2P-SKR3VP7-TEWBA3M-NKCT65Y-JHMVKQ3";
             autoAcceptFolders = true;
           };
-          "laptop" = { 
-            id = "KENW57K-IHEFCFB-36STV55-62K3EMI-AX5HGSV-IKHWLX3-MULG6CZ-6DIEZAS"; 
-            autoAcceptFolders = true;
-          };
-        })
-
-        (lib.mkIf config.myVars.isSyncthingClient{  # Condition
-          "server" = { 
-            id = "WDBCNRM-YJOKGOJ-FMABWTI-4UNDU2P-SKR3VP7-TEWBA3M-NKCT65Y-JHMVKQ3"; 
+          "laptop" = {
+            id = "KENW57K-IHEFCFB-36STV55-62K3EMI-AX5HGSV-IKHWLX3-MULG6CZ-6DIEZAS";
             autoAcceptFolders = true;
           };
         })
 
+        (lib.mkIf config.myVars.isSyncthingClient {
+          # Condition
+          "server" = {
+            id = "WDBCNRM-YJOKGOJ-FMABWTI-4UNDU2P-SKR3VP7-TEWBA3M-NKCT65Y-JHMVKQ3";
+            autoAcceptFolders = true;
+          };
+        })
       ];
 
-      folders = lib.mkMerge [ 
-
-        (lib.mkIf config.myVars.isSyncthingServer{  # Condition
+      folders = lib.mkMerge [
+        (lib.mkIf config.myVars.isSyncthingServer {
+          # Condition
 
           "Productivity" = {
-            devices = [ "desktop" "laptop" "phone" ];
+            devices = ["desktop" "laptop" "phone"];
           };
           "Notes" = {
-            devices = [ "desktop" "laptop" "phone" ];
+            devices = ["desktop" "laptop" "phone"];
           };
           "Downloads" = {
-            devices = [ "desktop" "laptop" ];
+            devices = ["desktop" "laptop"];
           };
           "Misc" = {
-            devices = [ "desktop" "laptop" ];
+            devices = ["desktop" "laptop"];
           };
           # "Projects" = {
           #   devices = [ "desktop" "laptop" ];
           # };
           "Shareable-pdfs" = {
-            devices = [ "desktop" "laptop" "phone" ];
+            devices = ["desktop" "laptop" "phone"];
           };
-
         })
 
-        (lib.mkIf config.myVars.isSyncthingClient{  # Condition
+        (lib.mkIf config.myVars.isSyncthingClient {
+          # Condition
 
           "Productivity" = {
-            devices = [ "server" ];
+            devices = ["server"];
           };
           # "Projects" = {
           #   devices = [ "server" ];
           # };
           "Notes" = {
-            devices = [ "server" ];
+            devices = ["server"];
           };
           "Misc" = {
-            devices = [ "server" ];
+            devices = ["server"];
           };
           "Downloads" = {
-            devices = [ "server" ];
+            devices = ["server"];
           };
           "Shareable-pdfs" = {
-            devices = [ "server" ];
+            devices = ["server"];
           };
-
         })
 
-        {  # Hopefully, control will go here as default regardless of condition
+        {
+          # Hopefully, control will go here as default regardless of condition
 
           "Downloads" = {
             path = "/home/${username}/Downloads";
@@ -130,12 +134,8 @@ in
             autoAccept = true;
             id = "Shareable-pdfs";
           };
-
         }
-
       ];
-
-
     };
   };
 }

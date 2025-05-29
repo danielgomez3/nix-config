@@ -1,14 +1,11 @@
 {
-pkgs,
-config,
-...
+  pkgs,
+  config,
+  ...
 }: {
-
   programs.starship = {
-    enable = true;
+    enable = false;
     enableBashIntegration = false;
     enableZshIntegration = true;
   };
-
 }
-

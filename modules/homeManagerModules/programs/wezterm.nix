@@ -1,6 +1,10 @@
-{pkgs,lib,...}:{ 
+{
+  pkgs,
+  lib,
+  ...
+}: {
   home.packages = with pkgs; [
-    fira-code-nerdfont
+    nerd-fonts.fira-code
     # nerd-fonts.fira-code
   ];
 
@@ -19,7 +23,7 @@
         keys = {
           -- Disable Alt+Enter (fullscreen toggle)
           { key = "Enter", mods = "ALT", action = wezterm.action.DisableDefaultAssignment },
-          
+
         },
 
       }

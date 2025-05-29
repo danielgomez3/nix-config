@@ -4,8 +4,6 @@
   pkgs,
   ...
 }: {
-
-
   programs.zsh = {
     enable = true;
     package = pkgsUnstable.zsh;
@@ -31,13 +29,17 @@
       # send_desktop_downloads_to_server = "${pkgs.rsync}/bin/rsync --remove-source-files -avz desktop:~/Downloads/* server:~/Downloads/";
       # send_desktop_downloads_to_server_cwd = "${pkgs.rsync}/bin/rsync --remove-source-files -avz desktop:~/Downloads/* server:~/Downloads/";
     };
-    initExtra = ''
+    initContent = ''
       d=$HOME/Downloads
     '';
     zplug = {
       enable = true;
       plugins = [
         {name = "hlissner/zsh-autopair";}
+        {
+          name = "romkatv/powerlevel10k";
+          tags = [as:theme depth:1];
+        } # Installations with additional options. For the list of options, please refer to Zplug README.
       ];
     };
   };
