@@ -5,6 +5,7 @@
 }: {
   programs.helix.enable = true;
   programs.helix.settings = {
+    # theme = "nord-night";
     editor = {
       true-color = true;
       text-width = 80;
