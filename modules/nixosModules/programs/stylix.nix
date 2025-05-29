@@ -1,5 +1,10 @@
-{ config, lib, pkgs, self, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  self,
+  ...
+}: {
   stylix = {
     enable = true;
 
@@ -9,11 +14,11 @@
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/woodland.yaml";
     # NOTE: Nord
     image = "${self.outPath}/modules/nixosModules/additional/wallpapers/nord-purple.jpg";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
 
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox.yaml";
-    # cursor = { 
-    #   package = pkgs.bibata-cursors; 
+    # cursor = {
+    #   package = pkgs.bibata-cursors;
     #   name = "Bibata-Modern-Ice";
     #   # size = 50;
     # };
