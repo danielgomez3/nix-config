@@ -8,7 +8,7 @@
 }: let
   username = config.myVars.username;
 in {
-  environment.variables.EDITOR = "${pkgs.helix}";
+  environment.variables.EDITOR = "hx";
   # TODO: make sql crap as HM module sql.nix instead
   # services.mysql = {
   #   enable = true;
