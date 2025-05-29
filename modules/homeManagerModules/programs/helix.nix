@@ -4,6 +4,7 @@
   ...
 }: {
   programs.helix.enable = true;
+  programs.helix.defaultEditor = true;
   programs.helix.settings = {
     # theme = "nord-night";
     editor = {
