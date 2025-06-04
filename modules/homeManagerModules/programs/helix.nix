@@ -16,7 +16,7 @@
       #   "zsh"
       #   "-c"
       # ];
-      #   bufferline = "multiple";
+      bufferline = "multiple";
       whitespace = {
         render = {
           newline = "none";
