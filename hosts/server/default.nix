@@ -23,7 +23,7 @@ in {
     bundles.base-system.enable = true;
     caching.enable = true;
     nix-netboot-serve.enable = false;
-    hydra.enable = true;
+    hydra.enable = false;
     borg-backup.enable = true;
     plex.enable = true;
     password-manager.enable = true;
