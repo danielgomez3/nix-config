@@ -17,7 +17,6 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/monokai.yaml";
 
     targets = {
-      helix.enable = true;
       sway.enable = true;
       swaylock.enable = true;
       wezterm.enable = true;
