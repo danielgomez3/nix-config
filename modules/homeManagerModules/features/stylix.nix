@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  stylix.targets.helix.enable = true;
+  # stylix.targets.helix.enable = true;
 }

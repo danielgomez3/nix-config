@@ -1,9 +1,12 @@
-{pkgs, lib, config, self, ...}:
-let 
-  username = config.myVars.username;
-in
 {
-
+  pkgs,
+  lib,
+  config,
+  self,
+  ...
+}: let
+  username = config.myVars.username;
+in {
   myNixOS = {
     systemd-boot.enable = lib.mkDefault true;
     yubikey-functionality.enable = lib.mkDefault false;
@@ -17,27 +20,25 @@ in
     good-repl-access.enable = lib.mkDefault true;
   };
 
-  system.stateVersion = "24.05"; 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  system.stateVersion = "24.05";
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.allowed-uris = [
     "github:"
     "git+https://github.com/"
     "git+ssh://github.com/"
-    "git+ssh://git@github.com/"  # My secrets repository
+    "git+ssh://git@github.com/" # My secrets repository
     "git+ssh://git@github.com/danielgomez3/nix-secrets.git"
   ];
-  
 
-  swapDevices = [{
-    device = "/swapfile";
-    size = 16 * 1024; # 16GB
-  }];
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 16 * 1024; # 16GB
+    }
+  ];
   nixpkgs.config = {
     allowUnfree = true;
   };
-
-
-
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -54,20 +55,18 @@ in
     LC_TIME = "en_US.UTF-8";
   };
 
-
-
   users = {
     # Define a user account. Don't forget to set a password with ‘passwd’.
-    mutableUsers = false;  # Required for a password 'passwd' to be set via sops during system activation (over anything done imperatively)!
+    mutableUsers = false; # Required for a password 'passwd' to be set via sops during system activation (over anything done imperatively)!
     users.root = {
-      hashedPasswordFile = config.sops.secrets.user_password.path;  
+      hashedPasswordFile = config.sops.secrets.user_password.path;
     };
 
     users.${username} = {
       isNormalUser = true;
-      hashedPasswordFile = config.sops.secrets.user_password.path;  # Shoutout to sops baby.
+      hashedPasswordFile = config.sops.secrets.user_password.path; # Shoutout to sops baby.
       # password = "123";
-      extraGroups = [ "wheel" ];
+      extraGroups = ["wheel"];
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
     };
@@ -76,28 +75,31 @@ in
   # $ nix search wget
   environment = {
     # sessionVariables = {
-    #   GITHUB_TOKEN = config.sops.secrets.github_token.path;  
+    #   GITHUB_TOKEN = config.sops.secrets.github_token.path;
     #   GITHUB_TOKEN = "$(cat ${config.sops.secrets.github_token.path})";
     # };
     systemPackages = with pkgs; [
       # linux linux-firmware
-      efibootmgr  # for forcing dual-boot in cli 
-      rclone  # DELETEME:
-      lm_sensors cmatrix
+      efibootmgr # for forcing dual-boot in cli
+      rclone # DELETEME:
+      lm_sensors
+      cmatrix
       vim
-      alsa-utils jmtpfs  # For interfacing with my OP-1 Field.
-      git wget curl pigz 
-      woeusb ntfs3g 
-      iptables nftables file toybox 
+      alsa-utils
+      jmtpfs # For interfacing with my OP-1 Field.
+      git
+      wget
+      curl
+      pigz
+      woeusb
+      ntfs3g
+      iptables
+      nftables
+      file
+      toybox
       waypipe # x11 forwarding alternative:
       # Security
-      age 
+      age
     ];
   };
-
-
-
-
-
-
 }
