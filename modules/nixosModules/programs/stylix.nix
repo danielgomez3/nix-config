@@ -13,7 +13,7 @@
     # image = "${self.outPath}/modules/nixosModules/additional/wallpapers/hogwarts.jpg";
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/woodland.yaml";
     # NOTE: Nord
-    image = "${self.outPath}/modules/nixosModules/additional/wallpapers/nord-purple.jpg";
+    image = "${self.outPath}/modules/nixosModules/additional/wallpapers/monokai-desktop-wallpaper.png";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/monokai.yaml";
   };
 }
