@@ -15,11 +15,5 @@
     # NOTE: Nord
     image = "${self.outPath}/modules/nixosModules/additional/wallpapers/nord-purple.jpg";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/monokai.yaml";
-
-    targets = {
-      sway.enable = true;
-      swaylock.enable = true;
-      wezterm.enable = true;
-    };
   };
 }
