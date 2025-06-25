@@ -36,6 +36,7 @@
       enable = true;
       plugins = [
         {name = "hlissner/zsh-autopair";}
+        {name = "p1r473/zsh-hist-delete-fzf";}
         # {name = "spaceship-prompt/spaceship-prompt";}
       ];
     };
