@@ -36,6 +36,7 @@
       enable = true;
       plugins = [
         {name = "hlissner/zsh-autopair";}
+        {name = "marlonrichert/zsh-hist";}
         # {name = "spaceship-prompt/spaceship-prompt";}
       ];
     };
