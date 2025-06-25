@@ -1,9 +1,14 @@
-{pkgs,config,lib,...}:{
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   myHomeManager = {
     helix.enable = true;
     pandoc.enable = true;
     #zed.enable = true;
-    #pay-respects.enable = true;
+    pay-respects.enable = true;
     #vnc-viewing.enable = true;
     zoxide.enable = true;
     direnv.enable = true;
@@ -17,25 +22,39 @@
   home.packages = with pkgs; [
     # Utils
     #reptyr  # FIXME darwin allow unfree
-    bat jq
+    bat
+    jq
     # dev
-    #shellcheck csvkit sshx fzf 
-    exercism 
-    #pandoc-include poppler_utils graphviz librsvg 
-    #git-filter-repo 
+    #shellcheck csvkit sshx fzf
+    exercism
+    #pandoc-include poppler_utils graphviz librsvg
+    #git-filter-repo
     #texliveTeTeX
     texliveFull
     # Fun
-    toilet fortune lolcat krabby cowsay figlet 
+    toilet
+    fortune
+    lolcat
+    krabby
+    cowsay
+    figlet
     #hollywood
     # coding
-    nixpkgs-fmt devenv
+    nixpkgs-fmt
+    devenv
     # Hacking
-    openvpn nmap gobuster nikto thc-hydra dirb steghide chisel
-    python3 cargo
+    openvpn
+    nmap
+    gobuster
+    nikto
+    thc-hydra
+    dirb
+    steghide
+    chisel
+    python3
+    cargo
     # Haskell Dev
     # ghciwatch  # A simple and effective IDE
     # cabal-install stack ghc
   ];
-
 }
