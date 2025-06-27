@@ -13,7 +13,7 @@
         locked = {
           # "bind \"Alt i\"" = {
           # };
-          "bind \"Alt o\"" = {
+          "bind \"Alt j\"" = {
             EditScrollback = [];
           };
           "bind \"Alt \\\\\"" = {

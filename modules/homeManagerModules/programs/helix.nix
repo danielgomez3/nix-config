@@ -54,6 +54,11 @@
         space = {
           t = ":toggle soft-wrap.enable";
         };
+        # shift-ZZ equivalent
+        Z = {
+          Q = ":quit!";
+          Z = ":write-quit!";
+        };
       };
       insert = {
         "A-ret" = ["insert_newline" "delete_word_backward"];
