@@ -1,5 +1,8 @@
-{pkgs,lib,...}:{
-
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.zellij = {
     enable = true;
     settings = {
@@ -8,6 +11,14 @@
       pane_frames = false;
       keybinds = {
         locked = {
+          # "bind \"Alt i\"" = {
+          # };
+          "bind \"Alt o\"" = {
+            EditScrollback = [];
+          };
+          "bind \"Alt \\\\\"" = {
+            ToggleFloatingPanes = [];
+          };
           "bind \"Alt ]\"" = {
             MoveTab = ["Right"];
           };
@@ -27,7 +38,7 @@
           "bind \"Alt z\"" = {
             FocusNextPane = [];
           };
-          
+
           # "bind \"Alt r\"" = {
           #   NewTab = [];
           #   SwitchToMode = ["renametab"];
