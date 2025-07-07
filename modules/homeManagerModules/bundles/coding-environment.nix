@@ -38,6 +38,7 @@
     krabby
     cowsay
     figlet
+    slides
     #hollywood
     # coding
     nixpkgs-fmt
