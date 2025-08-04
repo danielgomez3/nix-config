@@ -3,12 +3,14 @@
 {
   lib,
   pkgs,
+  pkgsUnstable,
   ...
 }: {
   imports = [./scls.nix];
   programs.helix.enable = true;
   programs.helix.defaultEditor = true;
   programs.helix.extraPackages = [pkgs.simple-completion-language-server];
+  programs.helix.package = pkgsUnstable.helix;
   programs.helix.settings = {
     # theme = "nord-night";
     editor = {
@@ -142,7 +144,7 @@
       {
         name = "nix";
         auto-format = true;
-        language-servers = ["nixd"];
+        language-servers = ["nixd" "scls"];
       }
       {
         name = "python";
@@ -167,7 +169,6 @@
 
     language-server = {
       scls = {
-        command = lib.getExe pkgs.simple-completion-language-server;
         config = {
           max_completion_items = 20; # set max completion results len for each group: words, snippets, unicode-input
           snippets_first = true;
