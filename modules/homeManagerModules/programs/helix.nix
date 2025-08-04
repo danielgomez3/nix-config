@@ -169,7 +169,7 @@
       scls = {
         command = lib.getExe pkgs.simple-completion-language-server;
         config = {
-          max_completion_items = 100; # set max completion results len for each group: words, snippets, unicode-input
+          max_completion_items = 20; # set max completion results len for each group: words, snippets, unicode-input
           snippets_first = true;
           feature_words = false;
           feature_snippets = true;
