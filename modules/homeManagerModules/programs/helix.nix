@@ -1,3 +1,5 @@
+# helix.nix
+# author: danielgomez3
 {
   lib,
   pkgs,
@@ -5,12 +7,14 @@
 }: {
   programs.helix.enable = true;
   programs.helix.defaultEditor = true;
+  programs.helix.extraPackages = [pkgs.simple-completion-language-server];
   programs.helix.settings = {
     # theme = "nord-night";
     editor = {
       true-color = true;
       text-width = 80;
       rulers = [80];
+      snippet-tab = true; # smart tab jumping to snippet placeholders
       mouse = true;
       # shell = [
       #   "zsh"
@@ -130,7 +134,7 @@
           command = lib.getExe pkgs.nodePackages.prettier;
           args = ["--parser" "markdown"];
         };
-        language-servers = ["marksman" "ltex"];
+        language-servers = ["marksman" "ltex" "scls"];
       }
 
       {
@@ -160,6 +164,10 @@
     ];
 
     language-server = {
+      scls = {
+        command = lib.getExe pkgs.simple-completion-language-server;
+      };
+
       basedpyright = {
         command = "${pkgs.basedpyright}/bin/basedpyright-langserver";
         args = ["--stdio"];
