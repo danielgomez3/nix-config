@@ -14,6 +14,7 @@
       true-color = true;
       text-width = 80;
       rulers = [80];
+      auto-pairs = false;
       # snippet-tab = true; # smart tab jumping to snippet placeholders
       mouse = true;
       # shell = [
