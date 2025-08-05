@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  pkgsUnstable,
+  ...
+}: {
   imports = [./languages.nix ./scls.nix];
   home = {
     packages = with pkgs; [
@@ -10,6 +14,8 @@
     };
   };
   programs.helix = {
+    package = pkgsUnstable.helix;
+
     enable = true;
     settings = {
       editor = {
