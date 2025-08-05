@@ -29,6 +29,9 @@
       # send_desktop_downloads_to_server = "${pkgs.rsync}/bin/rsync --remove-source-files -avz desktop:~/Downloads/* server:~/Downloads/";
       # send_desktop_downloads_to_server_cwd = "${pkgs.rsync}/bin/rsync --remove-source-files -avz desktop:~/Downloads/* server:~/Downloads/";
     };
+    sessionVariables = {
+      WORDCHARS = "*?[]~=&;!#$%^(){}<>";
+    };
     initContent = ''
       d=$HOME/Downloads
     '';
