@@ -77,6 +77,11 @@
   programs.helix.languages = {
     language = [
       {
+        name = "typst";
+        auto-format = true;
+        language-servers = ["tinymist"];
+      }
+      {
         name = "javascript";
         auto-format = true;
         formatter = {
