@@ -26,12 +26,11 @@
     jq
     # dev
     #shellcheck csvkit sshx fzf
-    exercism
-    #pandoc-include poppler_utils graphviz librsvg
-    #git-filter-repo
-    #texliveTeTeX
+    # Documentation
     texliveFull
+    typst
     # Fun
+    exercism
     toilet
     fortune
     lolcat
