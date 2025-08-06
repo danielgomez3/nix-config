@@ -184,6 +184,16 @@
         };
       };
 
+      tinymist = {
+        command = lib.getExe pkgs.tinymist;
+        config = {
+          exportPdf = "onType";
+          outputPath = "$root/target/$dir/$name";
+          formatterMode = "typstyle";
+          formatterPrintWidth = 80;
+        };
+      };
+
       basedpyright = {
         command = "${pkgs.basedpyright}/bin/basedpyright-langserver";
         args = ["--stdio"];
