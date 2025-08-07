@@ -29,6 +29,7 @@
     # Documentation
     texliveFull
     typst
+    typst-live
     # Fun
     exercism
     toilet
