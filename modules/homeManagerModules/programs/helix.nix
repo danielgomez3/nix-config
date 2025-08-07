@@ -137,7 +137,7 @@
 
       {
         name = "markdown";
-        auto-format = true;
+        auto-format = false;
         soft-wrap.enable = true;
         formatter = {
           command = lib.getExe pkgs.nodePackages.prettier;
