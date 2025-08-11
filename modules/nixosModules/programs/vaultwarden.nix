@@ -3,8 +3,13 @@
   config,
   ...
 }: {
+  sops.secrets."vaultwarden-env" = {
+    owner = "vaultwarden";
+    group = "vaultwarden";
+  };
+
   services.vaultwarden = {
-    enable = false;
+    enable = true;
     backupDir = "/var/lib/vaultwarden/backup";
     # in order to avoid having  ADMIN_TOKEN in the nix store it can be also set with the help of an environment file
     # be aware that this file must be created by hand (or via secrets management like sops)
@@ -24,7 +29,7 @@
       #   https://github.com/dani-garcia/vaultwarden/wiki/SMTP-configuration
       SMTP_HOST = "smtp.gmail.com";
       SMTP_PORT = 465;
-      SMTP_SSL = true;
+      # SMTP_SECURITY = "force_SSL";
 
       # SMTP_FROM = "admin@bitwarden.example.com";
       SMTP_FROM_NAME = "My Password Manager";

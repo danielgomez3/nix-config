@@ -39,8 +39,6 @@ in {
           # sopsFile = ./vaultwarden.env; # Point to the dedicated file
           sopsFile = "${secretspath}/vaultwarden.env";
           format = "dotenv"; # Parse as .env file (optional but clean)
-          owner = "vaultwarden";
-          group = "vaultwarden";
           mode = "0400";
         };
       }
