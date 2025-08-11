@@ -56,20 +56,20 @@
     };
   };
   # Reverse Proxy
-  # services.caddy.virtualHosts."vault.danielgomezcoder.org".extraConfig = ''
-  #   encode zstd gzip
+  services.caddy.virtualHosts."vault.danielgomezcoder.org".extraConfig = ''
+    encode zstd gzip
 
-  #   reverse_proxy :${toString config.services.vaultwarden.config.ROCKET_PORT} {
-  #       header_up X-Real-IP {remote_host}
-  #   }
-  # '';
-  services.nginx.virtualHosts."danielgomezcoder.org".acmeRoot = null;
-  services.nginx.enable = true;
-  services.nginx.virtualHosts."danielgomezcoder@gmail.com" = {
-    enableACME = true;
-    forceSSL = true;
-    locations."/" = {
-      proxyPass = "http://localhost:${toString config.services.vaultwarden.config.ROCKET_PORT}";
-    };
-  };
+    reverse_proxy :${toString config.services.vaultwarden.config.ROCKET_PORT} {
+        header_up X-Real-IP {remote_host}
+    }
+  '';
+  # services.nginx.virtualHosts."danielgomezcoder.org".acmeRoot = null;
+  # services.nginx.enable = true;
+  # services.nginx.virtualHosts."danielgomezcoder@gmail.com" = {
+  #   enableACME = true;
+  #   forceSSL = true;
+  #   locations."/" = {
+  #     proxyPass = "http://localhost:${toString config.services.vaultwarden.config.ROCKET_PORT}";
+  #   };
+  # };
 }
