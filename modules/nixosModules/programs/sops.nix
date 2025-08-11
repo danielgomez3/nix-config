@@ -1,11 +1,15 @@
-{ self, config, pkgs, lib, inputs, ... }:
-let 
+{
+  self,
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: let
   secretspath = builtins.toString inputs.mysecrets;
   username = config.myVars.username;
   hostname = config.myVars.hostname;
-
-in
-{
+in {
   environment.variables.GITHUB_TOKEN = config.sops.secrets.github_token.path;
   sops = {
     defaultSopsFile = "${secretspath}/secrets.yaml";
@@ -20,7 +24,7 @@ in
         user_password = {
           neededForUsers = true;
         };
-       # "yubikey" = {};
+        # "yubikey" = {};
         "wireless.env" = {};
         "tailscale" = {};
         "borgbase/repo" = {};
@@ -30,7 +34,14 @@ in
         };
         "google_drive/id" = {};
         "google_drive/secret" = {};
-        "syncthing/gui_password" = {}; 
+        "syncthing/gui_password" = {};
+        "vaultwarden-env" = {
+          # sopsFile = ./vaultwarden.env; # Point to the dedicated file
+          sopsFile = "${secretspath}/vaultwarden.env";
+          format = "dotenv"; # Parse as .env file (optional but clean)
+          owner = "vaultwarden";
+          mode = "0400";
+        };
       }
       # TODO: maybe put this in only syncthing.nix?
       (lib.mkIf config.myNixOS.syncthing.enable {
@@ -45,5 +56,4 @@ in
       })
     ];
   };
-
 }
