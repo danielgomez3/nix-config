@@ -26,7 +26,7 @@ in {
     hydra.enable = false;
     borg-backup.enable = true;
     plex.enable = true;
-    password-manager.enable = true;
+    vaultwarden.enable = true;
     remoteDeployment-nix-on-droid.enable = true;
     mySws.enable = true;
     macos-emulation.enable = false;

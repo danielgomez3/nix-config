@@ -1,5 +1,9 @@
-{pkgs, lib, config, ...}:{
-
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   security.pam.u2f = {
     enable = true;
     settings = {
@@ -10,9 +14,9 @@
       # username: <KeyHandle1>,<UserKey1>,<CoseType1>,<Options1>
       # username: <KeyHandle2>,<UserKey1>,<CoseType1>,<Options1>
       authfile = pkgs.writeText "u2f-mappings" (lib.concatStrings [
-      "${config.myVars.username}"
-      #   ":${config.sops.secrets."yubikey/personal".path}"
-      ":3EDoEBuJjlkzt4BoWXwgJmIyJNM4CqZ9jz9zugkwwvEyoN17sbs7SI6DHLOugn9R4wP45C7b/MPepQJbqc4wWw==,Bkt0pgykIRBt0ctjF9PFvecrUdAcMrTz2KBSVMLZYHp+SLmyYbN0ovsgaf0YrwPO8HzeSyn6n+ZxrKzlFK2o2Q==,es256,+presence"
+        "${config.myVars.username}"
+        #   ":${config.sops.secrets."yubikey/personal".path}"
+        ":3EDoEBuJjlkzt4BoWXwgJmIyJNM4CqZ9jz9zugkwwvEyoN17sbs7SI6DHLOugn9R4wP45C7b/MPepQJbqc4wWw==,Bkt0pgykIRBt0ctjF9PFvecrUdAcMrTz2KBSVMLZYHp+SLmyYbN0ovsgaf0YrwPO8HzeSyn6n+ZxrKzlFK2o2Q==,es256,+presence"
       ]);
       # authfile = config.sops.templates.u2fMappings.path;
     };
@@ -23,5 +27,4 @@
     login.u2fAuth = true;
     sudo.u2fAuth = true;
   };
-
 }
