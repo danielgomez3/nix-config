@@ -1,15 +1,18 @@
-{ config, pkgs, lib, inputs, ... }:
 {
-
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: {
   myHomeManager = {
     wezterm.enable = true;
     kitty.enable = true;
     zathura.enable = true;
     obs-studio.enable = true;
-    emacs.enable = false;
+    emacs.enable = true;
     kdeconnect.enable = true;
     firefox.enable = true;
     mangoHud.enable = true;
   };
-
 }

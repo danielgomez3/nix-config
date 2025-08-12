@@ -1,4 +1,9 @@
-{ config, lib, pkgs,  ... }:{
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.emacs = {
     enable = true;
     # package = emacsPackages.doom;
@@ -9,7 +14,7 @@
       ;;(setq recentf-max-saved-items 25)
       (global-set-key "\C-x\ \C-r" 'recentf-open-files)
       ;; No sound
-      (setq visible-bell t) 
+      (setq visible-bell t)
       (setq ring-bell-function 'ignore)
       ;;(set-face-attribute 'default nil :font "DejaVu Sans Mono-12")
 
@@ -25,11 +30,11 @@
     '';
 
     extraPackages = epkgs: [
-        epkgs.pdf-tools
-        #epkgs.undo-tree
-        epkgs.markdown-mode
-        epkgs.nix-mode
-        epkgs.chatgpt-shell
+      epkgs.pdf-tools
+      #epkgs.undo-tree
+      epkgs.markdown-mode
+      epkgs.nix-mode
+      epkgs.chatgpt-shell
     ];
   };
 }
