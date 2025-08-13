@@ -10,6 +10,7 @@
     #zed.enable = true;
     pay-respects.enable = true;
     #vnc-viewing.enable = true;
+    emacs.enable = true;
     zoxide.enable = true;
     direnv.enable = true;
     fzf.enable = true;
