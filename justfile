@@ -32,23 +32,19 @@ apply target=(host):
     #!/usr/bin/env bash
     just _update_secrets
     git add --all
-    msg_default="{{msg_default}}"
-    # git commit -m "$msg_default"
-    just check
+    # nix flake check
 
     input="{{target}}"
     IFS=',' read -r -a devices <<< "$input"
     for i in "${devices[@]}"; do
-      just _apply_target "$i"
+      nix run github:serokell/deploy-rs -- --skip-checks ".#$i"
     done
 
-    read -p "(optional) Enter commit msg: " msg_default
     msg_default="${msg_default:-"{{msg_success}} {{target}}"}"
+    read -p "(optional) Enter commit msg: " msg_default
     git commit -m "$msg_default"
 
-_apply_target target:
-    nix run github:serokell/deploy-rs -- --skip-checks ".#{{target}}"
-    
+
 
 # Validates syntax and module structure, no build or result.
 # TODO: make dynamic for android and darwin
@@ -56,9 +52,6 @@ eval target=(host):
     nix eval ".#nixosConfigurations.{{target}}.config.system.build.toplevel.drvPath"
 
 # Same as eval, but for all configurations
-check:
-    @git add -A :/
-    @nix flake check 
 
 # eval and build, result is stored in ./result symlink
 build target=(host):
