@@ -35,12 +35,12 @@ in {
         "google_drive/id" = {};
         "google_drive/secret" = {};
         "syncthing/gui_password" = {};
-        "vaultwarden-env" = {
-          # sopsFile = ./vaultwarden.env; # Point to the dedicated file
-          sopsFile = "${secretspath}/vaultwarden.env";
-          format = "dotenv"; # Parse as .env file (optional but clean)
-          mode = "0400";
-        };
+        # "vaultwarden-env" = {
+        #   # sopsFile = ./vaultwarden.env; # Point to the dedicated file
+        #   sopsFile = "${secretspath}/vaultwarden.env";
+        #   format = "dotenv"; # Parse as .env file (optional but clean)
+        #   mode = "0400";
+        # };
       }
       # TODO: maybe put this in only syncthing.nix?
       (lib.mkIf config.myNixOS.syncthing.enable {

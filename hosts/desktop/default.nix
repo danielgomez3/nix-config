@@ -1,13 +1,16 @@
 # desktop.nix
 # NOTE: This contains all common features I want only my desktop to have!
-
-{ pkgs, inputs, config, host, ... }:
-let
-  username = config.myVars.username;
-in
 {
-  myVars.username = "daniel";  # Specific username for this machine
-  myVars.hostname = "desktop";  # Specific hostname for this machine
+  pkgs,
+  inputs,
+  config,
+  host,
+  ...
+}: let
+  username = config.myVars.username;
+in {
+  myVars.username = "daniel"; # Specific username for this machine
+  myVars.hostname = "desktop"; # Specific hostname for this machine
   myVars.isSyncthingClient = true;
   users.users.${username} = {
     description = "desktop";
@@ -18,6 +21,7 @@ in
     bundles.base-system.enable = true;
     virtualization.enable = false;
     yubikey-functionality.enable = true;
+    bundles.embedded-dev-environment.enable = true;
   };
   home-manager.users.${username}.myHomeManager = {
     bundles.desktop-environment.enable = true;
@@ -34,6 +38,4 @@ in
     };
     syncthing.guiAddress = "127.0.0.1:8385";
   };
-
-
 }

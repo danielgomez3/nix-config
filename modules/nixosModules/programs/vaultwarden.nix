@@ -3,14 +3,14 @@
   config,
   ...
 }: {
-  sops.secrets = {
-    "vaultwarden-env" = {
-      owner = "vaultwarden";
-      group = "vaultwarden";
-    };
-    CLOUDFLARE_API_KEY = {};
-    CLOUDFLARE_EMAIL = {};
-  };
+  # sops.secrets = {
+  #   "vaultwarden-env" = {
+  #     owner = "vaultwarden";
+  #     group = "vaultwarden";
+  #   };
+  #   CLOUDFLARE_API_KEY = {};
+  #   CLOUDFLARE_EMAIL = {};
+  # };
 
   services.vaultwarden = {
     enable = false;

@@ -1,14 +1,17 @@
 # laptop.nix
 # NOTE: This contains all common features I want only my laptop to have!
-
-{ config, pkgs, inputs, host, lib, ... }:
-
-let 
-  username = config.myVars.username;
-in
 {
+  config,
+  pkgs,
+  inputs,
+  host,
+  lib,
+  ...
+}: let
+  username = config.myVars.username;
+in {
   myVars.username = "daniel";
-  myVars.hostname = "laptop";  # Specific hostname for this machine
+  myVars.hostname = "laptop"; # Specific hostname for this machine
   myVars.isHardwareLimited = true;
   myVars.isSyncthingClient = true;
   users.users.${username} = {
@@ -22,6 +25,7 @@ in
     osx-kvm.enable = true;
     yubikey-functionality.enable = true;
     gpg.enable = true;
+    # gameboy-emuluation = true;
   };
   home-manager.users.${username}.myHomeManager = {
     bundles.desktop-environment.enable = true;
