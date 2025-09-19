@@ -37,13 +37,13 @@
         enable = true;
         wrap-indicator = "‧ ";
       };
-      #   line-number = "absolute";
-      #   # gutters = [
-      #   # "diagnostics"
-      #   #  "spacer"
-      #   #  "diff"
-      #   # ];
-      #   gutters = [];
+      line-number = "relative";
+      # gutters = [
+      # "diagnostics"
+      #  "spacer"
+      #  "diff"
+      # ];
+      gutters = [];
       cursor-shape = {
         insert = "bar";
         normal = "block";
@@ -76,6 +76,30 @@
 
   programs.helix.languages = {
     language = [
+      {
+        name = "haskell";
+        auto-format = true;
+        # language-servers = [
+        #   "haskell-language-server"
+        # ];
+        formatter = {
+          command = "${pkgs.ormolu}/bin/ormolu";
+          args = ["--no-cabal"];
+        };
+        scope = "source.haskell";
+        injection-regex = "hs|haskell";
+        file-types = ["hs" "hs-boot"];
+        roots = ["Setup.hs" "stack.yaml" "cabal.project"];
+        comment-token = "--";
+        block-comment-tokens = {
+          start = "{-";
+          end = "-}";
+        };
+        indent = {
+          tab-width = 2;
+          unit = "  ";
+        };
+      }
       {
         name = "typst";
         auto-format = true;
@@ -143,13 +167,15 @@
           command = lib.getExe pkgs.nodePackages.prettier;
           args = ["--parser" "markdown"];
         };
-        language-servers = ["marksman" "ltex" "scls"];
+        # language-servers = ["marksman" "ltex" "scls"];
+        language-servers = ["marksman" "ltex"];
       }
 
       {
         name = "nix";
         auto-format = true;
-        language-servers = ["nixd" "scls"];
+        # language-servers = ["nixd" "scls"];
+        language-servers = ["nixd"];
       }
       {
         name = "python";
@@ -194,6 +220,9 @@
         };
       };
 
+      fsharp = {
+        command = "${pkgs.fsautocomplete}/bin/fsautocomplete";
+      };
       basedpyright = {
         command = "${pkgs.basedpyright}/bin/basedpyright-langserver";
         args = ["--stdio"];
@@ -248,6 +277,13 @@
 
       taplo = {
         command = lib.getExe pkgs.taplo;
+      };
+
+      haskell-language-server = {
+        command = "haskell-language-server-wrapper";
+        # command = "${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper";
+        # args = ["--lsp"];
+        # rootpatterns = ["*.cabal" "stack.yaml" "cabal.project" "package.yaml" "hie.yaml"];
       };
 
       vscode-css-language-server = {

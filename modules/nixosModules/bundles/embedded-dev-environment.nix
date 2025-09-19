@@ -4,6 +4,7 @@
   lib,
   ...
 }: let
-    username = config.myVars.username;
-  in {
+  username = config.myVars.username;
+in {
+  environment.systemPackages = [pkgs.platformio-core pkgs.openocd];
 }

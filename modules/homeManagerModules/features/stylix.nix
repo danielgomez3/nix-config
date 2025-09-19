@@ -1,3 +1,9 @@
 {pkgs, ...}: {
-  # stylix.targets.helix.enable = true;
+  stylix.targets.firefox.enable = true;
+  stylix.targets.firefox.profileNames = ["daniel"]; # Apply to ALL profiles
+  stylix.targets.qt.platform = "qtct";
+  stylix.targets.qt.enable = true;
+  stylix.targets.gtk.enable = true;
+  # stylix.targets.firefox.firefoxGnomeTheme.enable = true;
+  # stylix.targets.firefox.colorTheme.enable = true;
 }

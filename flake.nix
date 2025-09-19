@@ -12,6 +12,8 @@
     deploy-rs.url = "github:serokell/deploy-rs";
     stylix.url = "github:danth/stylix/release-25.05";
     # stylix.inputs.nixpkgs.follows = "nixpkgs";
+    # DELTEME
+    # stylix.inputs.home-manager.follows = "home-manager";
     mysecrets.url = "git+ssh://git@github.com/danielgomez3/nix-secrets.git?ref=main&shallow=1";
     mysecrets.flake = false;
     disko.url = "github:nix-community/disko";

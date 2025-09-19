@@ -13,11 +13,11 @@
   systemd.services.NetworkManager-wait-online.enable = false; # HACK: This is giving me problems for some reason..
 
   environment.systemPackages = with pkgs; [
-    # gnomeExtensions.blur-my-shell
+    gnomeExtensions.blur-my-shell
     gnomeExtensions.pop-shell
-    # gnomeExtensions.hide-top-bar
+    gnomeExtensions.hide-top-bar
     # gnomeExtensions.pano
-    gnomeExtensions.clipboard-indicator
+    # gnomeExtensions.clipboard-indicator
   ];
   home-manager.users.${config.myVars.username} = {
     dconf.enable = true;
@@ -27,9 +27,9 @@
         enabled-extensions = [
           pkgs.gnomeExtensions.blur-my-shell.extensionUuid
           pkgs.gnomeExtensions.pop-shell.extensionUuid
-          # pkgs.gnomeExtensions.hide-top-bar.extensionUuid
+          pkgs.gnomeExtensions.hide-top-bar.extensionUuid
           # pkgs.gnomeExtensions.pano.extensionUuid
-          pkgs.gnomeExtensions.clipboard-indicator.extensionUuid
+          # pkgs.gnomeExtensions.clipboard-indicator.extensionUuid
         ];
 
         # Pressing super key will show shortcut for the following:
@@ -43,15 +43,15 @@
         speed = 0.8;
       };
 
-      "org/gnome/shell/extensions/clipboard-indicator" = {
-        clear-on-boot = true;
-        confirm-clear = false;
-        # display-mode = 0;
-        # enable-keybindings = false;
-        # history-size = 10;
-        # strip-text = true;
-        toggle-menu = ["<Super>c"];
-      };
+      # "org/gnome/shell/extensions/clipboard-indicator" = {
+      #   clear-on-boot = true;
+      #   confirm-clear = false;
+      #   # display-mode = 0;
+      #   # enable-keybindings = false;
+      #   # history-size = 10;
+      #   # strip-text = true;
+      #   toggle-menu = ["<Super>c"];
+      # };
 
       "org/gnome/shell/extensions/pop-shell" = {
         tile-by-default = true;
@@ -60,6 +60,11 @@
       "org/gnome/desktop/wm/preferences" = {
         focus-mode = "mouse";
         # resize-with-right-button = true;
+      };
+
+      "org/gnome/shell/extensions/hidetopbar" = {
+        enable-active-window = false;
+        enable-intellihide = false;
       };
 
       # "org/gnome/settings-daemon/plugins/power" = {

@@ -20,6 +20,10 @@ in {
     good-repl-access.enable = lib.mkDefault true;
   };
 
+  home-manager.users.${username}.myHomeManager = {
+    stylix.enable = true;
+  };
+
   system.stateVersion = "24.05";
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.allowed-uris = [
