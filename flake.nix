@@ -32,6 +32,10 @@
     nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs-unstable"; # Add this to your flake inputs
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+    cosmic-manager.url = "github:HeitorAugustoLN/cosmic-manager";
+    cosmic-manager.inputs.nixpkgs.follows = "nixpkgs";
+    cosmic-manager.inputs.home-manager.follows = "home-manager";
   };
 
   outputs = inputs @ {self, ...}: let

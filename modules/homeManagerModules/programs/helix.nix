@@ -14,6 +14,9 @@
   programs.helix.settings = {
     # theme = "nord-night";
     editor = {
+      lsp = {
+        display-inlay-hints = false;
+      };
       true-color = true;
       text-width = 80;
       rulers = [80];
@@ -281,9 +284,6 @@
 
       haskell-language-server = {
         command = "haskell-language-server-wrapper";
-        # command = "${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper";
-        # args = ["--lsp"];
-        # rootpatterns = ["*.cabal" "stack.yaml" "cabal.project" "package.yaml" "hie.yaml"];
       };
 
       vscode-css-language-server = {

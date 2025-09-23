@@ -34,6 +34,7 @@ in {
         };
         "google_drive/id" = {};
         "google_drive/secret" = {};
+        "google_drive/token" = {};
         "syncthing/gui_password" = {};
         # "vaultwarden-env" = {
         #   # sopsFile = ./vaultwarden.env; # Point to the dedicated file

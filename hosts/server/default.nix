@@ -39,6 +39,7 @@ in {
     bundles.coding-environment.enable = true;
     cli-apps.enable = true; # NOTE: Has to be enabled here, we don't inherit it anywhere in bundles.
     stylix.enable = true;
+    rclone.enable = true;
   };
   environment = {
     # sessionVariables = {
