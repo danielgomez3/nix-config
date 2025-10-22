@@ -37,12 +37,9 @@ apply target=(host):
     input="{{target}}"
     IFS=',' read -r -a devices <<< "$input"
     for i in "${devices[@]}"; do
-      nix run github:serokell/deploy-rs -- --skip-checks ".#$i"
+      nix run github:serokell/deploy-rs --show-trace -- --skip-checks ".#$i"
     done
 
-    msg_default="${msg_default:-"{{msg_success}} {{target}}"}"
-    read -p "(optional) Enter commit msg: " msg_default
-    git commit -m "$msg_default"
 
 
 

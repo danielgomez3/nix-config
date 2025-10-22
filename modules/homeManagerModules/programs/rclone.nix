@@ -2,17 +2,20 @@
   pkgs,
   lib,
   config,
+  osConfig,
+  inputs,
   ...
 }: {
   programs.rclone = {
     enable = true;
-    remotes.gdrive = {
+    remotes.daniel-new-remote = {
       config = {
         type = "drive";
         # drive_type = "business";
       };
       secrets = {
-        token = config.age.secrets."google_drive/token".path;
+        # FIXME: the secret isn't deploying
+        token = osConfig.sops.secrets."google_drive/token".path;
       };
     };
   };

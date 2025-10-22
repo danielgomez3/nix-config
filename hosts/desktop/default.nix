@@ -16,9 +16,12 @@ in {
     description = "desktop";
   };
 
+  services.xserver.enable = true;
+  boot.initrd.kernelModules = ["amdgpu"];
+
   myNixOS = {
-    bundles.desktop-environment.enable = true;
     bundles.base-system.enable = true;
+    bundles.desktop-environment.enable = true;
     virtualization.enable = false;
     yubikey-functionality.enable = true;
     bundles.embedded-dev-environment.enable = true;

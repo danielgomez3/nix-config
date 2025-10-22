@@ -19,14 +19,15 @@ in {
   };
 
   myNixOS = {
-    # bundles.server-programs.enable = true;
     bundles.base-system.enable = true;
     caching.enable = true;
     nix-netboot-serve.enable = false;
     hydra.enable = false;
     borg-backup.enable = true;
-    plex.enable = true;
+    # plex.enable = true;
     vaultwarden.enable = true;
+    nextcloud.enable = true;
+    immich.enable = true;
     remoteDeployment-nix-on-droid.enable = true;
     mySws.enable = true;
     macos-emulation.enable = false;
@@ -51,10 +52,10 @@ in {
     ];
   };
 
-  security.acme = {
-    defaults.email = "${toString config.sops.secrets.email}";
-    acceptTerms = true;
-  };
+  # security.acme = {
+  #   defaults.email = "${toString config.sops.secrets.email}";
+  #   acceptTerms = true;
+  # };
 
   services = {
     tailscale = {

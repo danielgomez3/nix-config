@@ -1,4 +1,3 @@
-# Configuration for Helix's simple-completion-language-server
 {
   pkgs,
   lib,

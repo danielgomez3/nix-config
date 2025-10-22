@@ -18,6 +18,8 @@ in {
     stylix.enable = lib.mkDefault true;
     virtualization.enable = lib.mkDefault false;
     good-repl-access.enable = lib.mkDefault true;
+    fonts.enable = lib.mkDefault true; # TODO change where fonts go, this could be too big
+    gnupg.enable = lib.mkDefault true;
   };
 
   home-manager.users.${username}.myHomeManager = {

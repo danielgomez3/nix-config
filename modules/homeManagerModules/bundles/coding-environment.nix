@@ -31,6 +31,7 @@
     texliveFull
     typst
     typst-live
+    typstPackages.fontawesome_0_5_0
     # Fun
     exercism
     toilet

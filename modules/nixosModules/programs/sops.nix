@@ -1,3 +1,4 @@
+# sops.nix
 {
   self,
   config,
@@ -25,6 +26,15 @@ in {
           neededForUsers = true;
         };
         # "yubikey" = {};
+        "vaultwarden-env" = {
+          # path = "/var/lib/vaultwarden/vaultwarden.env";
+          # owner = "vaultwarden";
+          # group = "vaultwarden";
+          # mode = "0400"; # Read-only for vaultwarden user
+        };
+        "CLOUDFLARE_API_KEY" = {};
+        "CLOUDFLARE_EMAIL" = {};
+        "nextcloud-secret-pass" = {};
         "wireless.env" = {};
         "tailscale" = {};
         "borgbase/repo" = {};
@@ -36,12 +46,6 @@ in {
         "google_drive/secret" = {};
         "google_drive/token" = {};
         "syncthing/gui_password" = {};
-        # "vaultwarden-env" = {
-        #   # sopsFile = ./vaultwarden.env; # Point to the dedicated file
-        #   sopsFile = "${secretspath}/vaultwarden.env";
-        #   format = "dotenv"; # Parse as .env file (optional but clean)
-        #   mode = "0400";
-        # };
       }
       # TODO: maybe put this in only syncthing.nix?
       (lib.mkIf config.myNixOS.syncthing.enable {

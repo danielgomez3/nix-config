@@ -5,9 +5,10 @@
   lib,
   ...
 }: {
-  services.xserver.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
+  services.displayManager.gdm = {
+    enable = true;
+  };
   services.xserver.xkb.options = "caps:swapescape";
 
   systemd.services.NetworkManager-wait-online.enable = false; # HACK: This is giving me problems for some reason..
@@ -16,8 +17,7 @@
     gnomeExtensions.blur-my-shell
     gnomeExtensions.pop-shell
     gnomeExtensions.hide-top-bar
-    # gnomeExtensions.pano
-    # gnomeExtensions.clipboard-indicator
+    # gnomeExtensions.arc-menu
   ];
   home-manager.users.${config.myVars.username} = {
     dconf.enable = true;
@@ -28,8 +28,7 @@
           pkgs.gnomeExtensions.blur-my-shell.extensionUuid
           pkgs.gnomeExtensions.pop-shell.extensionUuid
           pkgs.gnomeExtensions.hide-top-bar.extensionUuid
-          # pkgs.gnomeExtensions.pano.extensionUuid
-          # pkgs.gnomeExtensions.clipboard-indicator.extensionUuid
+          # pkgs.gnomeExtensions.arc-menu.extensionUuid
         ];
 
         # Pressing super key will show shortcut for the following:
@@ -37,6 +36,10 @@
           "org.kde.okular.desktop"
           "org.gnome.Nautilus.desktop" # File manager
         ];
+      };
+
+      "org/gnome/desktop/session" = {
+        idle-delay = "uint32 900";
       };
 
       "org/gnome/desktop/peripherals/touchpad" = lib.mkIf config.myVars.isHardwareLimited {
@@ -53,13 +56,13 @@
       #   toggle-menu = ["<Super>c"];
       # };
 
-      "org/gnome/shell/extensions/pop-shell" = {
-        tile-by-default = true;
-      };
-
       "org/gnome/desktop/wm/preferences" = {
         focus-mode = "mouse";
         # resize-with-right-button = true;
+      };
+
+      "org/gnome/shell/extensions/pop-shell" = {
+        tile-by-default = true;
       };
 
       "org/gnome/shell/extensions/hidetopbar" = {
@@ -67,12 +70,14 @@
         enable-intellihide = false;
       };
 
-      # "org/gnome/settings-daemon/plugins/power" = {
-      #   power-button-action = "hibernate";
-      #   # Hibernate after 900 seconds running only battery
-      #   sleep-inactive-battery-timeout = 900;
-      #   sleep-inactive-battery-type = "hibernate";
-      # };
+      # TODO: change conditionaly for laptop and desktop
+      "org/gnome/settings-daemon/plugins/power" = {
+        power-mode = "performance";
+        power-button-action = "hibernate";
+        # Hibernate after 900 seconds running only battery
+        sleep-inactive-battery-timeout = 900;
+        sleep-inactive-battery-type = "hibernate";
+      };
 
       # "org/gnome/shell/extensions/pano" = {
       #   # TODO: declaratively enable 'paste on select'. You did so imperatively.
@@ -87,6 +92,28 @@
       # "org/gnome/desktop/peripherals/touchpad" = {
       #   speed = 0.9;
       # };
+    };
+  };
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        # Shows battery charge of connected devices on supported
+        # Bluetooth adapters. Defaults to 'false'.
+        Experimental = true;
+        # When enabled other devices can connect faster to us, however
+        # the tradeoff is increased power consumption. Defaults to
+        # 'false'.
+        FastConnectable = true;
+      };
+      Policy = {
+        # Enable all controllers when they are found. This includes
+        # adapters present on start as well as adapters that are plugged
+        # in later on. Defaults to 'true'.
+        AutoEnable = true;
+      };
     };
   };
 }

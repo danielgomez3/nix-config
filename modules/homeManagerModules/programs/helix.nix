@@ -171,7 +171,7 @@
           args = ["--parser" "markdown"];
         };
         # language-servers = ["marksman" "ltex" "scls"];
-        language-servers = ["marksman" "ltex"];
+        language-servers = ["marksman" "ltex" "scls"];
       }
 
       {

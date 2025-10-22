@@ -1,16 +1,18 @@
 # flake.nix
+# Author: danielgomezcoder@gmail.com
 {
   description = "danielgomez3's NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05"; # Nix Options version as well
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Nix Options version as well
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/release-25.05"; # hm-stable
+    home-manager.url = "github:nix-community/home-manager"; # hm-stable
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager-unstable.url = "github:nix-community/home-manager"; # hm-unstable
     home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs-unstable";
     deploy-rs.url = "github:serokell/deploy-rs";
-    stylix.url = "github:danth/stylix/release-25.05";
+    stylix.url = "github:nix-community/stylix";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
     # stylix.inputs.nixpkgs.follows = "nixpkgs";
     # DELTEME
     # stylix.inputs.home-manager.follows = "home-manager";
@@ -30,12 +32,14 @@
     nixtheplanet.url = "github:matthewcroughan/nixtheplanet";
     # nix-darwin
     nix-darwin.url = "github:nix-darwin/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs-unstable"; # Add this to your flake inputs
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs"; # Add this to your flake inputs
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     cosmic-manager.url = "github:HeitorAugustoLN/cosmic-manager";
     cosmic-manager.inputs.nixpkgs.follows = "nixpkgs";
     cosmic-manager.inputs.home-manager.follows = "home-manager";
+    nvf.url = "github:notashelf/nvf";
+    nvf.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ {self, ...}: let
@@ -110,7 +114,7 @@
         "${self.outPath}/hosts/workLaptop"
         "${self.outPath}/modules/homeManagerModules"
         ./modules/nixosModules/features/my-vars.nix
-        inputs.home-manager-unstable.darwinModules.home-manager
+        inputs.home-manager.darwinModules.home-manager
       ];
       specialArgs = {
         inherit inputs self myHelper pkgsUnstable;

@@ -30,7 +30,6 @@ in {
       sway-contrib.grimshot
       wlprop
       pw-volume
-      # adwaita-icon-theme adwaita-qt
       brightnessctl
       swappy
       dmenu
@@ -39,7 +38,8 @@ in {
       eww
       wofi
       # gui apps
-      qutebrowser-qt5
+      #qutebrowser-qt5
+      #google-chrome
       zoom-us
       slack
       spotify

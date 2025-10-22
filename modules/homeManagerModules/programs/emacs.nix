@@ -5,7 +5,7 @@
   ...
 }: {
   programs.emacs = {
-    enable = true;
+    enable = false;
     # package = emacsPackages.doom;
     extraConfig = ''
       (pdf-tools-install) ; Standard activation command

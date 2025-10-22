@@ -33,7 +33,7 @@
     # };
     initContent = ''
       d=$HOME/Downloads
-      WORDCHARS='*?[]~=&;!$%^(){}<>'
+      WORDCHARS='*?[]~=&;!$%^(){}<>"'
     '';
     zplug = {
       enable = true;

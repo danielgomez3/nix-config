@@ -1,8 +1,14 @@
-{self,osConfig,pkgs,config,...}:{
-
+{
+  self,
+  osConfig,
+  pkgs,
+  config,
+  ...
+}: {
   programs.ssh = {
     enable = true;
     # userKnownHostsFile = "${self.outPath}/hosts/${osConfig.myVars.hostname}/known_hosts";
+    enableDefaultConfig = false;
     matchBlocks = {
       "server-hosts" = {
         host = "github.com gitlab.com";
@@ -11,15 +17,15 @@
       "server" = {
         # hostname = "server.danielgomezcoder.org";
         hostname = "server";
-        user = "danielgomez3";  # FIXME: use sops nix
+        user = "danielgomez3"; # FIXME: use sops nix
       };
       "desktop" = {
         hostname = "desktop";
-        user = "daniel";  # FIXME: use sops nix
+        user = "daniel"; # FIXME: use sops nix
       };
       "laptop" = {
         hostname = "laptop";
-        user = "daniel";  # FIXME: use sops nix
+        user = "daniel"; # FIXME: use sops nix
       };
       # "laptop" = {
       #   host = "deploy";
@@ -28,8 +34,4 @@
       # };
     };
   };
-
-  # home.file.".ssh.id_ed25519".text = ''
-  # '';
 }
-
