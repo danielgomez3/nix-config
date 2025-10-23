@@ -19,26 +19,18 @@ in {
   };
 
   myNixOS = {
-    bundles.base-system.enable = true;
+    # bundles.base-system.enable = true;
+    sops.enable = true;
+    openssh.enable = true;
   };
 
   home-manager.users.${username}.myHomeManager = {
-    bundles.coding-environment.enable = true;
-    cli-apps.enable = true; # NOTE: Has to be enabled here, we don't inherit it anywhere in bundles.
+    helix.enable = true;
+    git.enable = true;
+    zellij.enable = true;
+    zsh.enable = true;
+    starship.enable = true;
+    # cli-apps.enable = true; # NOTE: Has to be enabled here, we don't inherit it anywhere in bundles.
     rclone.enable = true;
   };
-  environment = {
-    # sessionVariables = {
-    #   GITHUB_TOKEN = config.sops.secrets.github_token.path;
-    #   GITHUB_TOKEN = "$(cat ${config.sops.secrets.github_token.path})";
-    # };
-    systemPackages = with pkgs; [
-      kitty # Make SSHing into this pretty.
-    ];
-  };
-
-  # security.acme = {
-  #   defaults.email = "${toString config.sops.secrets.email}";
-  #   acceptTerms = true;
-  # };
 }

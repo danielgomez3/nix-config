@@ -1,38 +1,37 @@
+# hosts/hetzner-vps/disko-config.nix
+# NOTE: deprecated, if this breaks, use new example on disko repo
 {
   disko.devices = {
     disk = {
       main = {
-        device = "/dev/sda";
         type = "disk";
+        device = "/dev/sda";
         content = {
-          type = "table";
-          format = "gpt";
-          partitions = [
-            {
-              name = "ESP";
-              start = "1M";
-              end = "500M";
-              bootable = true;
+          type = "gpt";
+          partitions = {
+            boot = {
+              size = "1M";
+              type = "EF02"; # for grub MBR
+            };
+            ESP = {
+              size = "512M";
+              type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
                 mountOptions = ["umask=0077"];
               };
-            }
-            {
-              name = "root";
-              start = "500M";
-              end = "100%";
-              part-type = "primary";
-              bootable = true;
+            };
+            root = {
+              size = "100%";
               content = {
                 type = "filesystem";
                 format = "ext4";
                 mountpoint = "/";
               };
-            }
-          ];
+            };
+          };
         };
       };
     };
