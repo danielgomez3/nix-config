@@ -12,7 +12,7 @@ in {
     yubikey-functionality.enable = lib.mkDefault false;
     internet.enable = lib.mkDefault true;
     sops.enable = lib.mkDefault true;
-    syncthing.enable = lib.mkDefault true;
+    syncthing.enable = lib.mkDefault false;
     openssh.enable = lib.mkDefault true;
     tailscale.enable = lib.mkDefault true;
     stylix.enable = lib.mkDefault true;

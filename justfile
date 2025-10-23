@@ -84,7 +84,7 @@ debug-with-repl:
 repl-flake:
     cd {{invocation_directory()}}; nix repl --extra-experimental-features 'flakes' --expr "import \"{{justfile_directory()}}/testing/learning-testing-examples/withSelf.nix\""
 
-[confirm("Are you sure you want to potentially erase target machine's disk and deploy?")]
+# [confirm("Are you sure you want to potentially erase target machine's disk and deploy?")]
 deploy host ip_address:
     root_dir=$(mktemp -d) && \
     trap 'rm -rf "$root_dir"' EXIT && \

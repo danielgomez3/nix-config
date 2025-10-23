@@ -165,6 +165,16 @@
       };
     };
 
+    deploy.nodes.hetzner-vps = {
+      hostname = "5.161.110.156";
+      sshUser = "root";
+      fastConnection = true; # Enable pipelined copying
+      profiles.system = {
+        user = "root";
+        path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.hetzner-vps;
+      };
+    };
+
     deploy.nodes.workLaptop = {
       hostname = "workLaptop";
       sshUser = "dgomez";

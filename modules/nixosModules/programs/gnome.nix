@@ -23,6 +23,7 @@
     dconf.enable = true;
     dconf.settings = {
       "org/gnome/shell" = {
+        last-selected-power-profile = "performance";
         disable-user-extensions = false; # enables user extensions
         enabled-extensions = [
           pkgs.gnomeExtensions.blur-my-shell.extensionUuid
@@ -71,13 +72,13 @@
       };
 
       # TODO: change conditionaly for laptop and desktop
-      "org/gnome/settings-daemon/plugins/power" = {
-        power-mode = "performance";
-        power-button-action = "hibernate";
-        # Hibernate after 900 seconds running only battery
-        sleep-inactive-battery-timeout = 900;
-        sleep-inactive-battery-type = "hibernate";
-      };
+      # "org/gnome/settings-daemon/plugins/power" = {
+      #   power-mode = "performance";
+      #   power-button-action = "hibernate";
+      #   # Hibernate after 900 seconds running only battery
+      #   sleep-inactive-battery-timeout = 900;
+      #   sleep-inactive-battery-type = "hibernate";
+      # };
 
       # "org/gnome/shell/extensions/pano" = {
       #   # TODO: declaratively enable 'paste on select'. You did so imperatively.

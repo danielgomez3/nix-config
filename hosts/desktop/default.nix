@@ -16,15 +16,18 @@ in {
     description = "desktop";
   };
 
+  # for gnome desktop on my desktop graphics
   services.xserver.enable = true;
   boot.initrd.kernelModules = ["amdgpu"];
 
   myNixOS = {
     bundles.base-system.enable = true;
     bundles.desktop-environment.enable = true;
+    bundles.embedded-dev-environment.enable = true;
     virtualization.enable = false;
     yubikey-functionality.enable = true;
-    bundles.embedded-dev-environment.enable = true;
+    steam.enable = true;
+    discord.enable = true;
   };
   home-manager.users.${username}.myHomeManager = {
     bundles.desktop-environment.enable = true;
@@ -34,11 +37,6 @@ in {
   time.hardwareClockInLocalTime = true;
   hardware.keyboard.zsa.enable = true;
   services = {
-    xserver = {
-      xkb = {
-        options = "caps:swapescape";
-      };
-    };
     syncthing.guiAddress = "127.0.0.1:8385";
   };
 }
