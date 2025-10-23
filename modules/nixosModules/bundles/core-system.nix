@@ -4,6 +4,16 @@
   ...
 }: {
   # Select internationalisation properties.
+  system.stateVersion = "24.05";
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.allowed-uris = [
+    "github:"
+    "git+https://github.com/"
+    "git+ssh://github.com/"
+    "git+ssh://git@github.com/" # My secrets repository
+    "git+ssh://git@github.com/danielgomez3/nix-secrets.git"
+  ];
+
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -36,31 +46,4 @@
   };
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment = {
-    # sessionVariables = {
-    #   GITHUB_TOKEN = config.sops.secrets.github_token.path;
-    #   GITHUB_TOKEN = "$(cat ${config.sops.secrets.github_token.path})";
-    # };
-    systemPackages = with pkgs; [
-      # linux linux-firmware
-      efibootmgr # for forcing dual-boot in cli
-      lm_sensors
-      cmatrix
-      vim
-      jmtpfs # For interfacing with my OP-1 Field.
-      git
-      wget
-      curl
-      pigz
-      woeusb
-      ntfs3g
-      iptables
-      nftables
-      file
-      toybox
-      waypipe # x11 forwarding alternative:
-      # Security
-      age
-    ];
-  };
 }

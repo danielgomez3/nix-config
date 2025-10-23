@@ -8,7 +8,7 @@
   username = config.myVars.username;
 in {
   myNixOS = {
-    core-system.enable = lib.mkDefault true;
+    bundles.core-system.enable = lib.mkDefault true;
     systemd-boot.enable = lib.mkDefault true;
     yubikey-functionality.enable = lib.mkDefault false;
     internet.enable = lib.mkDefault true;
@@ -27,16 +27,6 @@ in {
     stylix.enable = true;
   };
 
-  system.stateVersion = "24.05";
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-  nix.settings.allowed-uris = [
-    "github:"
-    "git+https://github.com/"
-    "git+ssh://github.com/"
-    "git+ssh://git@github.com/" # My secrets repository
-    "git+ssh://git@github.com/danielgomez3/nix-secrets.git"
-  ];
-
   swapDevices = [
     {
       device = "/swapfile";
@@ -45,5 +35,28 @@ in {
   ];
   nixpkgs.config = {
     allowUnfree = true;
+  };
+  environment = {
+    systemPackages = with pkgs; [
+      # linux linux-firmware
+      efibootmgr # for forcing dual-boot in cli
+      lm_sensors
+      cmatrix
+      vim
+      jmtpfs # For interfacing with my OP-1 Field.
+      git
+      wget
+      curl
+      pigz
+      woeusb
+      ntfs3g
+      iptables
+      nftables
+      file
+      toybox
+      waypipe # x11 forwarding alternative:
+      # Security
+      age
+    ];
   };
 }
