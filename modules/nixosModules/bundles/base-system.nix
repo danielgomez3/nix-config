@@ -1,3 +1,5 @@
+# base-system.nix
+# NOTE: different than core-system because this only should be inherited by personal, powerful, headed machines.
 {
   pkgs,
   lib,

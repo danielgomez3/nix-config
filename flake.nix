@@ -173,7 +173,7 @@
     };
 
     deploy.nodes.hetzner-vps = {
-      hostname = "5.161.110.156";
+      hostname = "danielgomezcoder.org";
       sshUser = "root";
       fastConnection = true; # Enable pipelined copying
       profiles.system = {

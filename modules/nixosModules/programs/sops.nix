@@ -58,6 +58,23 @@ in {
           mode = "0700"; # Restrict read and write access to user only
         };
       })
+
+      # TODO Maybe put this in wireguard.nix files?
+      # TODO OR condition for clients..
+      # (lib.mkIf config.myNixOS.wireguard-server.enable
+      #   or config.myNixOS.wireguard-client.enable {
+      #     "wireguard-private-key-file/${hostname}" = {
+      #       owner = config.users.users.${username}.name;
+      #       mode = "0700"; # Restrict read and write access to user only
+      #     };
+      #   })
+
+      (lib.mkIf (config.myNixOS.wireguard-server.enable or false || config.myNixOS.wireguard-client.enable or false) {
+        "wireguard-private-key-file/${hostname}" = {
+          owner = config.users.users.${username}.name;
+          mode = "0700";
+        };
+      })
     ];
   };
 }

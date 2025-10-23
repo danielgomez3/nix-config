@@ -1,4 +1,4 @@
-# server.nix
+# hosts/server/default.nix
 # NOTE: This contains all common features I want only my server to have!
 {
   config,
@@ -33,6 +33,7 @@ in {
     macos-emulation.enable = false;
     docker.enable = true;
     ollama.enable = true;
+    wireguard-client.enable = true; # Maybe add to base-system.nix
   };
 
   home-manager.users.${username}.myHomeManager = {

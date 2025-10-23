@@ -1,3 +1,5 @@
+# core-system.nix
+# NOTE: EVERY device should inherit this, without exception
 {
   config,
   pkgs,

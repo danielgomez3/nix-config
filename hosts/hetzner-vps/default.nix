@@ -27,7 +27,7 @@ in {
   myNixOS = {
     bundles.core-system.enable = true;
     sops.enable = true;
-    # openssh.enable = true;
+    wireguard-server.enable = true;
   };
 
   home-manager.users.${username}.myHomeManager = {
@@ -45,7 +45,6 @@ in {
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
       # X11Forwarding = true;
-      # PermitRootLogin = "yes";        # Allow root login with password
     };
   };
 

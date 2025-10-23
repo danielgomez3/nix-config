@@ -19,6 +19,11 @@
         hostname = "server";
         user = "danielgomez3"; # FIXME: use sops nix
       };
+      "hetzner-vps" = {
+        # hostname = "server.danielgomezcoder.org";
+        hostname = "danielgomezcoder.org";
+        user = "root"; # FIXME: use sops nix
+      };
       "desktop" = {
         hostname = "desktop";
         user = "daniel"; # FIXME: use sops nix
