@@ -46,6 +46,7 @@ in {
         "google_drive/secret" = {};
         "google_drive/token" = {};
         "syncthing/gui_password" = {};
+        "generic-pass" = {};
       }
       # TODO: maybe put this in only syncthing.nix?
       (lib.mkIf config.myNixOS.syncthing.enable {

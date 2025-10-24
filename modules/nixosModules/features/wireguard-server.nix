@@ -8,36 +8,66 @@
 }: let
   username = config.myVars.username;
   hostname = config.myVars.hostname;
+  ports = config.myVars.ports;
 in {
-  # environment.systemPackages = [pkgs.wg];
-
-  # Enable NAT for routing Minecraft traffic
-  networking.nat.enable = true;
-  networking.nat.externalInterface = "eth0"; # Change if different
-  networking.nat.internalInterfaces = ["wg0"];
-
-  networking.firewall = {
-    allowedUDPPorts = [51820 25565]; # WireGuard + Minecraft
-    allowedTCPPorts = [25565]; # Minecraft
-  };
-
-  # "wg0" is the network interface name. You can name the interface arbitrarily.
+  # Keep your existing WireGuard server config
   networking.wireguard.interfaces.wg0 = {
-    ips = ["10.100.0.1/24"]; # Determines the IP address and subnet of the server's end of the tunnel interface.
-    listenPort = 51820; # The port that WireGuard listens to. Must be accessible by the client.
-
-    # Path to the private key you generated
+    ips = ["10.100.0.1/24"];
+    listenPort = 51820;
     privateKeyFile = config.sops.secrets."wireguard-private-key-file/${hostname}".path;
-
     peers = [
-      # List of allowed peers (clients)
       {
-        publicKey = "XAek67dqDTUuk94381DYI2bCHEdbC9l26tNH58FIUD8="; # home server's public key
-        allowedIPs = ["10.100.0.2/32"]; # List of IPs assigned to this peer within the tunnel subnet.  Used to configure routing.
-
-        # This keeps the connection alive through NAT
+        publicKey = "XAek67dqDTUuk94381DYI2bCHEdbC9l26tNH58FIUD8=";
+        allowedIPs = ["10.100.0.2/32"];
         persistentKeepalive = 25;
       }
     ];
+  };
+
+  # ADD this for port forwarding
+  networking.nat = {
+    enable = true;
+    externalInterface = "eth0";
+    internalInterfaces = ["wg0"];
+    forwardPorts = [
+      {
+        sourcePort = 25565;
+        destination = "10.100.0.2:25565";
+        proto = "tcp";
+      }
+    ];
+  };
+
+  services.nginx = {
+    enable = true;
+
+    # HTTP/HTTPS virtual hosts
+    virtualHosts."danielgomezcoder.org" = {
+      locations."/" = {
+        proxyPass = "http://10.100.0.2:80";
+        proxyWebsockets = true;
+      };
+    };
+
+    # TCP/UDP proxy for Minecraft
+    streamConfig = ''
+      upstream minecraft_backend {
+          server 10.100.0.2:25565;
+      }
+
+      server {
+          listen 25565;
+          proxy_pass minecraft_backend;
+          proxy_timeout 1h;
+      }
+    '';
+  };
+
+  # NOTE: None of these ports will work unless you free them up!
+  networking.firewall = {
+    allowedUDPPorts = [51820];
+    allowedTCPPorts = [80 443 22 25565]; # ← ADD 25565 HERE!
+    checkReversePath = "loose";
+    # allowForwardedTraffic = true;
   };
 }

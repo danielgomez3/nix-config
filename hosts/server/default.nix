@@ -34,6 +34,7 @@ in {
     docker.enable = true;
     ollama.enable = true;
     wireguard-client.enable = true; # Maybe add to base-system.nix
+    minecraft-server.enable = true;
   };
 
   home-manager.users.${username}.myHomeManager = {

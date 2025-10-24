@@ -1,7 +1,10 @@
 # modules/username.nix
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   options.myVars = {
     username = lib.mkOption {
       type = lib.types.str;
@@ -28,6 +31,9 @@
       default = false; # optional default
       description = "Is the machine a Syncthing Client?";
     };
+
+    ports = {
+      mc = 25565;
+    };
   };
 }
-

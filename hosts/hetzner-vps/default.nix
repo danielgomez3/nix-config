@@ -12,6 +12,7 @@
 in {
   myVars.username = "danielgomezcoder"; # Specific username for this machine
   myVars.hostname = "hetzner-vps"; # Specific hostname for this machine
+  networking.hostName = "${config.myVars.hostname}";
 
   users.users.${username} = {
     description = "danielgomezcoder's hetzner cloud vps server";
@@ -35,7 +36,7 @@ in {
     git.enable = true;
     # zellij.enable = true;
     zsh.enable = true; # careful, this may break
-    # starship.enable = true;
+    starship.enable = true;
     # rclone.enable = true;
   };
 
@@ -72,14 +73,4 @@ in {
   #     signByDefault = true;
   #   };
   # };
-
-  environment = {
-    systemPackages = with pkgs; [
-      vim
-      git
-      wget
-      curl
-      pigz
-    ];
-  };
 }

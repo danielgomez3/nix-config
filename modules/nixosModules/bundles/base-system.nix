@@ -44,18 +44,10 @@ in {
       efibootmgr # for forcing dual-boot in cli
       lm_sensors
       cmatrix
-      vim
       jmtpfs # For interfacing with my OP-1 Field.
-      git
-      wget
-      curl
-      pigz
       woeusb
       ntfs3g
-      iptables
-      nftables
       file
-      toybox
       waypipe # x11 forwarding alternative:
       # Security
       age

@@ -27,6 +27,7 @@ in {
     virtualization.enable = false;
     yubikey-functionality.enable = true;
     steam.enable = true;
+    minecraft.enable = true;
     discord.enable = true;
   };
   home-manager.users.${username}.myHomeManager = {
