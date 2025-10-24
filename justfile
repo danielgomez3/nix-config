@@ -44,9 +44,14 @@ apply target=(host):
 
 
 # Validates syntax and module structure, no build or result.
-# TODO: make dynamic for android and darwin
 eval target=(host):
     nix eval ".#nixosConfigurations.{{target}}.config.system.build.toplevel.drvPath"
+    # #!/usr/bin/env bash
+    # input="{{target}}"
+    # IFS=',' read -r -a devices <<< "$input"
+    # for i in "${devices[@]}"; do
+    #   nix eval '.#nixosConfigurations.".#$i".config.system.build.toplevel.drvPath'
+    # done
 
 # Same as eval, but for all configurations
 

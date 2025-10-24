@@ -7,6 +7,7 @@
 }: let
   username = config.myVars.username;
   hostname = config.myVars.hostname;
+  ports = config.myVars.ports;
   ipMap = {
     "server" = "10.100.0.2";
     "laptop" = "10.100.0.3";
@@ -17,7 +18,7 @@
 in {
   networking.firewall = {
     allowedUDPPorts = [51820];
-    allowedTCPPorts = [25565]; # Minecraft port
+    allowedTCPPorts = [ports.mc]; # Minecraft port
   };
 
   networking.wireguard.interfaces.wg0 = {
@@ -29,7 +30,7 @@ in {
       {
         # VPS's public key
         publicKey = "qXKphez8ANTJVcYEdk8rAPc6ypif1WzNjNEm369YPQo="; # This can stay the same across all clients!
-        allowedIPs = ["10.100.0.0/24"]; # ONLY route traffic meant for the VPS subnet through WireGuard. FIXME?
+        allowedIPs = ["10.100.0.0/24"]; # ONLY route traffic meant for the VPS subnet through WireGuard.
 
         # Your VPS public IP and port
         endpoint = "danielgomezcoder.org:51820";

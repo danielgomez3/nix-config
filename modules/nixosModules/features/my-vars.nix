@@ -1,4 +1,4 @@
-# modules/username.nix
+# my-vars.nix
 {
   config,
   pkgs,
@@ -32,8 +32,13 @@
       description = "Is the machine a Syncthing Client?";
     };
 
-    ports = {
-      mc = 25565;
+    # ports = {
+    #   mc = 25565; # minecraft
+    # };
+    ports.mc = lib.mkOption {
+      type = lib.types.port; # or lib.types.int
+      default = 25565;
+      description = "Minecraft server port";
     };
   };
 }

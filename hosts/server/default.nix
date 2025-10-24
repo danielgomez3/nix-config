@@ -35,6 +35,7 @@ in {
     ollama.enable = true;
     wireguard-client.enable = true; # Maybe add to base-system.nix
     minecraft-server.enable = true;
+    plg-stack.enable = true;
   };
 
   home-manager.users.${username}.myHomeManager = {
