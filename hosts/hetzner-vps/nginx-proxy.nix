@@ -12,7 +12,7 @@ in {
     # HTTP/HTTPS virtual hosts
     virtualHosts."danielgomezcoder.org" = {
       locations."/" = {
-        proxyPass = "http://10.100.0.2:80";
+        proxyPass = "http://10.100.0.2:8787";
         proxyWebsockets = true;
       };
     };

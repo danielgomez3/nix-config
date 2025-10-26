@@ -1,5 +1,6 @@
 # base-system.nix
 # NOTE: different than core-system because this only should be inherited by personal, powerful, headed machines.
+# This is insecure and casual because we implement a password login. DO NO INHERIT if you expose your server to the internet!!!
 {
   pkgs,
   lib,
@@ -28,6 +29,9 @@ in {
   home-manager.users.${username}.myHomeManager = {
     stylix.enable = true;
   };
+
+  users.users.${config.myVars.username}.hashedPasswordFile = config.sops.secrets.user_password.path;
+  users.users.root.hashedPasswordFile = config.sops.secrets.user_password.path;
 
   swapDevices = [
     {

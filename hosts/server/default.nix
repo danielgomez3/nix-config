@@ -34,8 +34,10 @@ in {
     docker.enable = true;
     ollama.enable = true;
     wireguard-client.enable = true; # Maybe add to base-system.nix
-    minecraft-server.enable = true;
+    minecraft-server.enable = false; # vanilla server
+    nix-minecraft.enable = true; # flexible parallel minecraft servers
     plg-stack.enable = true;
+    web-server.enable = true;
   };
 
   home-manager.users.${username}.myHomeManager = {

@@ -11,7 +11,8 @@
     zathura.enable = true;
     obs-studio.enable = true;
     kdeconnect.enable = true;
-    firefox.enable = true;
+    # firefox.enable = false;
     mangoHud.enable = true;
+    thunderbird.enable = true;
   };
 }

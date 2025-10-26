@@ -18,7 +18,7 @@
 in {
   networking.firewall = {
     allowedUDPPorts = [51820];
-    allowedTCPPorts = [ports.mc]; # Minecraft port
+    allowedTCPPorts = [ports.mc 8787]; # Minecraft port
   };
 
   networking.wireguard.interfaces.wg0 = {

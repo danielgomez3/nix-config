@@ -40,6 +40,7 @@
     cosmic-manager.inputs.home-manager.follows = "home-manager";
     nvf.url = "github:notashelf/nvf";
     nvf.inputs.nixpkgs.follows = "nixpkgs";
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
   };
 
   outputs = inputs @ {self, ...}: let

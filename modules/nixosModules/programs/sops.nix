@@ -22,10 +22,17 @@ in {
     secrets = lib.mkMerge [
       {
         email = {};
+        email_password = {
+          # owner = "maddy";
+          # group = "maddy";
+          # mode = "0400"; # Read-only by maddy
+        };
         user_password = {
           neededForUsers = true;
         };
+        "dkim/private_key" = {};
         # "yubikey" = {};
+        "gmail_app_password" = {};
         "vaultwarden-env" = {
           # path = "/var/lib/vaultwarden/vaultwarden.env";
           # owner = "vaultwarden";

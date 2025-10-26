@@ -1,4 +1,4 @@
-# server.nix
+# heztner-vps/default.nix
 # NOTE: This contains all common features I want only my server to have!
 {
   config,
@@ -7,18 +7,16 @@
   inputs,
   host,
   ...
-}: let
-  username = config.myVars.username;
-in {
+}: {
   imports = [
     ./firewall.nix
     ./nginx-proxy.nix
   ];
   myVars.username = "danielgomezcoder"; # Specific username for this machine
   myVars.hostname = "hetzner-vps"; # Specific hostname for this machine
-  networking.hostName = "${config.myVars.hostname}";
+  networking.hostName = config.myVars.hostname;
 
-  users.users.${username} = {
+  users.users.${config.myVars.username} = {
     description = "danielgomezcoder's hetzner cloud vps server";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAfIEr/ppknhpMfpGAMvMnm8bWQjB57KPy72qgUDz8u danielgomez3@server"
@@ -33,9 +31,10 @@ in {
     bundles.core-system.enable = true;
     sops.enable = true;
     wireguard-server.enable = true;
+    mail-server.enable = true;
   };
 
-  home-manager.users.${username}.myHomeManager = {
+  home-manager.users.${config.myVars.username}.myHomeManager = {
     # helix.enable = true;
     git.enable = true;
     # zellij.enable = true;

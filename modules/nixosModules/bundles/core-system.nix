@@ -1,5 +1,6 @@
 # core-system.nix
-# NOTE: EVERY device should inherit this, without exception
+# NOTE: EVERY device should inherit this, without exception.
+# Headless servers, all secure devices. Secure devices SHOULD NOT inherit base-system.nix
 {
   config,
   pkgs,
@@ -33,14 +34,8 @@
   users = {
     # Define a user account. Don't forget to set a password with ‘passwd’.
     mutableUsers = false; # Required for a password 'passwd' to be set via sops during system activation (over anything done imperatively)!
-    users.root = {
-      hashedPasswordFile = config.sops.secrets.user_password.path;
-    };
-
     users.${config.myVars.username} = {
       isNormalUser = true;
-      hashedPasswordFile = config.sops.secrets.user_password.path; # Shoutout to sops baby.
-      # password = "123";
       extraGroups = ["wheel"];
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
@@ -60,6 +55,10 @@
       unixtools.netstat
       btop
       toybox
+      busybox # telnet,
+      openssl
+      dig # check dns records
+      mailutils # send mail via 'mail' # send mail via 'mail'
     ];
   };
 }
