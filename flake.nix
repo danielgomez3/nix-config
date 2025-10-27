@@ -41,6 +41,8 @@
     nvf.url = "github:notashelf/nvf";
     nvf.inputs.nixpkgs.follows = "nixpkgs";
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+    nixcraft.url = "github:loystonpais/nixcraft";
+    nixcraft.inputs.nixpkgs.follows = "nixpkgs"; # Set correct nixpkgs name
   };
 
   outputs = inputs @ {self, ...}: let

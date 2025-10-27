@@ -29,23 +29,31 @@ in {
     nextcloud.enable = true;
     immich.enable = true;
     remoteDeployment-nix-on-droid.enable = true;
-    mySws.enable = true;
+    # mySws.enable = true;
     macos-emulation.enable = false;
     docker.enable = true;
     ollama.enable = true;
     wireguard-client.enable = true; # Maybe add to base-system.nix
     minecraft-server.enable = false; # vanilla server
-    nix-minecraft.enable = true; # flexible parallel minecraft servers
+    nix-minecraft.enable = false; # flexible parallel minecraft servers
     plg-stack.enable = true;
-    web-server.enable = true;
+    web-server.enable = false;
+    myNginxWebserver.enable = true;
   };
 
-  home-manager.users.${username}.myHomeManager = {
-    # bundles.desktop-environment.enable = true;
-    bundles.coding-environment.enable = true;
-    cli-apps.enable = true; # NOTE: Has to be enabled here, we don't inherit it anywhere in bundles.
-    rclone.enable = true;
+  home-manager.users.${username} = {
+    imports = [
+      ./nixcraft.nix # Direct import here
+    ];
+
+    myHomeManager = {
+      bundles.coding-environment.enable = true;
+      cli-apps.enable = true;
+      rclone.enable = true;
+      # Remove nixcraft.enable from here since we're importing directly
+    };
   };
+
   environment = {
     # sessionVariables = {
     #   GITHUB_TOKEN = config.sops.secrets.github_token.path;

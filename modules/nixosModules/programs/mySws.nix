@@ -1,3 +1,6 @@
+# mySws.nix
+# TODO: SSL certificatation
+# TODO: an alternative would be a download hash, just to learn about those!
 # https://nixos.wiki/wiki/Static_Web_Server
 {
   self,
