@@ -6,6 +6,7 @@
   ...
 }: let
 in {
+  # NOTE: Standard minecraft server:
   services.minecraft-server = {
     enable = true;
     package = pkgs.minecraftServers.vanilla-1-21;
@@ -30,7 +31,6 @@ in {
       # username2 = "yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy";
     };
   };
-
   # Or manually open the port if not using the minecraft-server module
   # networking.firewall.allowedTCPPorts = [25565 80 443];
 }

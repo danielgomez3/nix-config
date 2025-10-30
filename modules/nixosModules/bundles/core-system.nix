@@ -58,7 +58,9 @@
       busybox # telnet,
       openssl
       dig # check dns records
-      mailutils # send mail via 'mail' # send mail via 'mail'
+      mailutils # send mail via 'mail'
+      sysz
+      wireguard-tools
     ];
   };
 }

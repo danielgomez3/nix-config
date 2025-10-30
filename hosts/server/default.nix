@@ -31,20 +31,20 @@ in {
     remoteDeployment-nix-on-droid.enable = true;
     # mySws.enable = true;
     macos-emulation.enable = false;
-    docker.enable = true;
+    docker.enable = false;
     ollama.enable = true;
     wireguard-client.enable = true; # Maybe add to base-system.nix
-    minecraft-server.enable = false; # vanilla server
-    nix-minecraft.enable = false; # flexible parallel minecraft servers
+    minecraft-server.enable = false;
+    minecraft-server-docker.enable = true;
     plg-stack.enable = true;
     web-server.enable = false;
     myNginxWebserver.enable = true;
   };
 
   home-manager.users.${username} = {
-    imports = [
-      ./nixcraft.nix # Direct import here
-    ];
+    # imports = [
+    #   ./nixcraft.nix # Direct import here
+    # ];
 
     myHomeManager = {
       bundles.coding-environment.enable = true;
