@@ -123,5 +123,6 @@ in {
     fd
     hapless # This now uses the overridden version from the overlay
     procps
+    nushell
   ];
 }

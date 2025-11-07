@@ -31,6 +31,13 @@
     settings = {
       user.name = "danielgomez3";
       user.email = "danielgomezcoder@gmail.com";
+      # my mail server
+      sendemail."user1@danielgomezcoder.org" = {
+        smtpuser = "user1@danielgomezcoder.org";
+        smtpserver = "mail.danielgomezcoder.org";
+        smtpserverport = 465;
+        smtpencryption = "ssl";
+      };
     };
     # user = {
     #   name = "danielgomez3";
@@ -48,14 +55,6 @@
       # gpg --list-secret-keys --keyid-format=long
       key = "5E8044D0F8A9F629"; # FIXME: put in sops, or put private key somewhere??
       signByDefault = true;
-    };
-    extraConfig = {
-      sendemail."user1@danielgomezcoder.org" = {
-        smtpuser = "user1@danielgomezcoder.org";
-        smtpserver = "mail.danielgomezcoder.org";
-        smtpserverport = 465;
-        smtpencryption = "ssl";
-      };
     };
   };
 }

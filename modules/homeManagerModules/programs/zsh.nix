@@ -12,6 +12,8 @@
     syntaxHighlighting.enable = true;
     history = {
       size = 10000;
+      ignorePatterns = ["rm *" "pkill *" "cp *"];
+      ignoreAllDups = true;
     };
     shellAliases = {
       # f = "fg";
@@ -34,6 +36,7 @@
     initContent = ''
       d=$HOME/Downloads
       WORDCHARS='*?[]~=&;!$%^(){}<>"'
+      run(){ hap run --check "$@" > /dev/null & }
     '';
     zplug = {
       enable = true;

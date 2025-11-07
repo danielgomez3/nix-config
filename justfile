@@ -25,22 +25,24 @@ commit:
     git commit --amend -m "$amended_msg"
     
     
-# target examples (default: your hostname):
-# desktop,server
-# laptop,server,desktop
-apply target=(host):
-    #!/usr/bin/env bash
-    just _update_secrets
-    git add --all
-    # nix flake check
+# # target examples (default: your hostname):
+# # desktop,server
+# # laptop,server,desktop
+# apply target=(host):
+#     #!/usr/bin/env bash
+#     just _update_secrets
+#     git add --all
+#     # nix flake check
 
-    input="{{target}}"
-    IFS=',' read -r -a devices <<< "$input"
-    for i in "${devices[@]}"; do
-      nix run github:serokell/deploy-rs --show-trace -- --skip-checks ".#$i"
-    done
+#     input="{{target}}"
+#     IFS=',' read -r -a devices <<< "$input"
+#     for i in "${devices[@]}"; do
+#       nix run github:serokell/deploy-rs --show-trace -- --skip-checks ".#$i"
+#     done
 
 
+deploy-rs target:
+      nix run github:serokell/deploy-rs --show-trace -- --skip-checks ".#{{target}}"
 
 
 # Validates syntax and module structure, no build or result.
