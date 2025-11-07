@@ -1,4 +1,5 @@
 # minecraft-server-docker.nix
+# NOTE check if new API key config with sops actually works.
 {
   config,
   pkgs,
@@ -25,7 +26,8 @@
     environment = {
       EULA = "true";
       TYPE = "AUTO_CURSEFORGE";
-      CF_API_KEY = "$2a$10$2SWjY9ditvIAUbdZuX93WeENk3rfXKSBlJea1g3U2UC41fTjtwoky";
+      # NOTE fill if necessary..
+      # CF_API_KEY = "";
       CF_SLUG = "rlcraft"; # The modpack slug from CurseForge URL
       CF_PAGE_URL = "https://www.curseforge.com/minecraft/modpacks/rlcraft";
       OVERRIDE_SERVER_PROPERTIES = "true";
@@ -40,6 +42,10 @@
       RCON_CMDS_STARTUP = "gamerule keepInventory true";
       # WORLD = "http://danielgomezcoder.org/minecraft/world-saves/rlcraft/rlcraft-cdb_2025-10-30/World.zip"; # XXX: this is impure! Server depends on itself to already exist! Invest in blob storage for now or smth idk
     };
+    # FIXME: check if this is actually working/reproducible..
+    environmentFiles = [
+      config.sops.secrets."minecraft/CF_API_KEY".path
+    ];
 
     ports = ["25565:25565"];
   };

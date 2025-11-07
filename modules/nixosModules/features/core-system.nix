@@ -4,6 +4,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }: let
   hapless = import "${inputs.self.outPath}/derivations/hapless.nix" {
@@ -11,6 +12,16 @@
     python3 = pkgs.python312; # or python311
   };
 in {
+  myNixOS = {
+    openssh.enable = lib.mkDefault true;
+    sops.enable = lib.mkDefault true;
+  };
+  home-manager.users.${config.myVars.username}.myHomeManager = {
+    bundles.coding-environment.enable = true;
+    cli-apps.enable = true;
+    rclone.enable = true;
+  };
+
   nixpkgs.overlays = [
     (final: prev: {
       # Create hapless with patched dependencies

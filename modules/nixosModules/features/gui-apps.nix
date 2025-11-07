@@ -23,20 +23,10 @@ in {
       wl-clipboard
       xclip
       xorg.xrandr
-      swayidle
-      swaylock
-      flashfocus
-      autotiling
-      sway-contrib.grimshot
       wlprop
       pw-volume
       brightnessctl
       swappy
-      dmenu
-      # hyprland
-      waybar
-      eww
-      wofi
       # gui apps
       #qutebrowser-qt5
       #google-chrome

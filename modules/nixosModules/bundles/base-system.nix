@@ -15,9 +15,7 @@ in {
     systemd-boot.enable = lib.mkDefault true;
     yubikey-functionality.enable = lib.mkDefault false;
     internet.enable = lib.mkDefault true;
-    sops.enable = lib.mkDefault true;
     syncthing.enable = lib.mkDefault false;
-    openssh.enable = lib.mkDefault true;
     tailscale.enable = lib.mkDefault true;
     stylix.enable = lib.mkDefault true;
     virtualization.enable = lib.mkDefault false;
@@ -26,11 +24,11 @@ in {
     gnupg.enable = lib.mkDefault true;
   };
 
-  home-manager.users.${username}.myHomeManager = {
-    bundles.coding-environment.enable = true;
-    cli-apps.enable = true;
-    rclone.enable = true;
-  };
+  # home-manager.users.${username}.myHomeManager = {
+  #   bundles.coding-environment.enable = true;
+  #   cli-apps.enable = true;
+  #   rclone.enable = true;
+  # };
 
   users.users.${config.myVars.username}.hashedPasswordFile = config.sops.secrets.user_password.path;
   users.users.root.hashedPasswordFile = config.sops.secrets.user_password.path;

@@ -111,6 +111,13 @@
       };
     };
 
+    nixosConfigurations.living-room = inputs.nixpkgs.lib.nixosSystem {
+      modules = commonImports "living-room";
+      specialArgs = {
+        inherit inputs self pkgsUnstable myHelper;
+      };
+    };
+
     # nix-on-droid switch --flake "github:danielgomez3/nix-config/deploy-rs#phone"
     # nixOnDroidConfigurations.phone = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
     #   modules = [./hosts/phone]; # HACK 'self' does NOT work
@@ -183,6 +190,16 @@
       profiles.system = {
         user = "root";
         path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.hetzner-vps;
+      };
+    };
+
+    deploy.nodes.living-room = {
+      hostname = "living-room";
+      sshUser = "root";
+      fastConnection = true; # Enable pipelined copying
+      profiles.system = {
+        user = "root";
+        path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.living-room;
       };
     };
 
