@@ -4,8 +4,8 @@
   ...
 }: {
   myHomeManager = {
-    zsh.enable = false;
-    nushell.enable = true;
+    zsh.enable = true;
+    nushell.enable = false;
     starship.enable = true;
     ssh.enable = true;
     git.enable = true;

@@ -28,19 +28,14 @@
   ];
 
   myNixOS = {
-    bundles.core-system.enable = true;
+    core-system.enable = true;
     sops.enable = true;
     wireguard-server.enable = true;
     mail-server.enable = true;
   };
 
   home-manager.users.${config.myVars.username}.myHomeManager = {
-    # helix.enable = true;
-    git.enable = true;
-    # zellij.enable = true;
-    zsh.enable = true; # careful, this may break
-    starship.enable = true;
-    # rclone.enable = true;
+    cli-apps.enable = true;
   };
 
   services.openssh = {

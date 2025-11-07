@@ -41,18 +41,15 @@ in {
     myNginxWebserver.enable = true;
   };
 
-  home-manager.users.${username} = {
-    # imports = [
-    #   ./nixcraft.nix # Direct import here
-    # ];
+  # home-manager.users.${username} = {
+  #   # imports = [
+  #   #   ./nixcraft.nix # Direct import here
+  #   # ];
 
-    myHomeManager = {
-      bundles.coding-environment.enable = true;
-      cli-apps.enable = true;
-      rclone.enable = true;
-      # Remove nixcraft.enable from here since we're importing directly
-    };
-  };
+  #   myHomeManager = {
+  #     # Remove nixcraft.enable from here since we're importing directly
+  #   };
+  # };
 
   environment = {
     # sessionVariables = {

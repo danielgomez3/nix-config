@@ -96,7 +96,7 @@ in {
     users.${config.myVars.username} = {
       isNormalUser = true;
       extraGroups = ["wheel"];
-      shell = pkgs.nushell;
+      shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
     };
   };

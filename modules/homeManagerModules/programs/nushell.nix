@@ -1,10 +1,14 @@
-{...}: {
+{pkgs,...}: {
   programs = {
     nushell = {
       enable = true;
       # The config.nu can be anywhere you want if you like to edit your Nushell with Nu
       # configFile.source = ./.../config.nu;
       # for editing directly to config.nu
+      shellAliases = {
+        l = "ls";
+        # date' = "date now | format date '%Y-%m-%d'";
+      };
       envFile.text = ''
       '';
       configFile.text = ''
@@ -43,6 +47,9 @@
         vim = "hx";
         nano = "hx";
       };
+      plugins = [
+        pkgs.nushellPlugins.skim
+      ];
     };
     carapace.enable = true;
     carapace.enableNushellIntegration = true;

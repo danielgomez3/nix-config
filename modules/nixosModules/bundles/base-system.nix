@@ -11,7 +11,7 @@
   username = config.myVars.username;
 in {
   myNixOS = {
-    bundles.core-system.enable = lib.mkDefault true;
+    core-system.enable = lib.mkDefault true;
     systemd-boot.enable = lib.mkDefault true;
     yubikey-functionality.enable = lib.mkDefault false;
     internet.enable = lib.mkDefault true;
@@ -27,7 +27,9 @@ in {
   };
 
   home-manager.users.${username}.myHomeManager = {
-    stylix.enable = true;
+    bundles.coding-environment.enable = true;
+    cli-apps.enable = true;
+    rclone.enable = true;
   };
 
   users.users.${config.myVars.username}.hashedPasswordFile = config.sops.secrets.user_password.path;
