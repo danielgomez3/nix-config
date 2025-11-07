@@ -43,6 +43,7 @@
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     nixcraft.url = "github:loystonpais/nixcraft";
     nixcraft.inputs.nixpkgs.follows = "nixpkgs"; # Set correct nixpkgs name
+    # poetry2nix.url = "github:nix-community/poetry2nix";
   };
 
   outputs = inputs @ {self, ...}: let

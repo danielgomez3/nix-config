@@ -35,7 +35,8 @@
       ENABLE_COMMAND_BLOCK = "true";
       VIEW_DISTANCE = "25";
       MEMORY = "8G";
-      OPS = "LittleBee_\njodango2814\nWorthyDragoon94";
+      OPS = "LittleBee_\njodango2814\nWorthyDragoon94\nYBG_Dong1";
+      # ENABLE_RCON = "true"; # XXX: doesn't belong here
       RCON_CMDS_STARTUP = "gamerule keepInventory true";
       # WORLD = "http://danielgomezcoder.org/minecraft/world-saves/rlcraft/rlcraft-cdb_2025-10-30/World.zip"; # XXX: this is impure! Server depends on itself to already exist! Invest in blob storage for now or smth idk
     };

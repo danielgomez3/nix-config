@@ -24,10 +24,9 @@ in {
     bundles.base-system.enable = true;
     bundles.desktop-environment.enable = true;
     bundles.embedded-dev-environment.enable = true;
+    bundles.desktop-gaming.enable = true;
     virtualization.enable = false;
     yubikey-functionality.enable = true;
-    steam.enable = true;
-    minecraft-client.enable = true;
     discord.enable = true;
   };
   home-manager.users.${username}.myHomeManager = {

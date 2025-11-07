@@ -9,5 +9,6 @@
     sway-desktop.enable = lib.mkDefault true;
     speech-recognition.enable = lib.mkDefault false;
     cosmic-desktop.enable = lib.mkDefault false;
+    zed.enable = lib.mkDefault true;
   };
 }

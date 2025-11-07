@@ -7,7 +7,6 @@
   myHomeManager = {
     helix.enable = true;
     pandoc.enable = true;
-    #zed.enable = true;
     pay-respects.enable = true;
     #vnc-viewing.enable = true;
     emacs.enable = true;

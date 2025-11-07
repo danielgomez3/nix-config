@@ -1,7 +1,11 @@
-{pkgs,lib,...}:{
-
-  myHomeManager ={
-    zsh.enable = true;
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  myHomeManager = {
+    zsh.enable = false;
+    nushell.enable = true;
     starship.enable = true;
     ssh.enable = true;
     git.enable = true;
@@ -9,4 +13,3 @@
     zellij.enable = true;
   };
 }
-

@@ -12,7 +12,7 @@
     obs-studio.enable = true;
     kdeconnect.enable = true;
     # firefox.enable = false;
-    mangoHud.enable = true;
+    mangohud.enable = true;
     thunderbird.enable = true;
   };
 }
