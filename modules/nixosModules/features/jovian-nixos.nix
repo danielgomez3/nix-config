@@ -1,6 +1,6 @@
 #
 # jovian.nix -- Gaming
-#
+# https://ciarandegroot.com/archive/nixos-steam-box/
 {
   config,
   pkgs,
@@ -11,6 +11,13 @@
   # Separate and distinct from Steam login
   # Can be any name you like
 in {
+  myNixOS = {
+    kde-desktop.enable = false;
+  };
+
+  #
+  # Dependencies
+  #
   networking.networkmanager.enable = true;
   nixpkgs.config.allowUnfree = true;
 
@@ -47,9 +54,10 @@ in {
     steam = {
       enable = true;
       autoStart = true;
-      updater.splash = "vendor";
+      updater.splash = "steamos";
       user = "${config.myVars.username}";
-      desktopSession = "gamescope-wayland";
+      # desktopSession = "gamescope-wayland";
+      desktopSession = "plasma";
     };
   };
 
