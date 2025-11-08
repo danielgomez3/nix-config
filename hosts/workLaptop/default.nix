@@ -24,10 +24,6 @@
     description = "My work macOS Laptop";
   };
 
-  home-manager.users.${config.myVars.username}.myHomeManager = {
-    bundles.coding-environment.enable = true;
-  };
-
   # environment.systemPackages = with pkgs; [
   #   kdePackages.kdeconnect-kde
   # ];

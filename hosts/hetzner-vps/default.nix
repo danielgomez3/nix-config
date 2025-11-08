@@ -18,34 +18,17 @@
 
   users.users.${config.myVars.username} = {
     description = "danielgomezcoder's hetzner cloud vps server";
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAfIEr/ppknhpMfpGAMvMnm8bWQjB57KPy72qgUDz8u danielgomez3@server"
-    ];
   };
-
-  users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAfIEr/ppknhpMfpGAMvMnm8bWQjB57KPy72qgUDz8u danielgomez3@server"
-  ];
 
   myNixOS = {
     core-system.enable = true;
-    sops.enable = true;
     wireguard-server.enable = true;
     mail-server.enable = true;
   };
 
-  home-manager.users.${config.myVars.username}.myHomeManager = {
-    cli-apps.enable = true;
-  };
-
-  services.openssh = {
-    enable = true;
-    settings = {
-      PasswordAuthentication = false;
-      KbdInteractiveAuthentication = false;
-      # X11Forwarding = true;
-    };
-  };
+  # home-manager.users.${config.myVars.username}.myHomeManager = {
+  #   cli-apps.enable = true;
+  # };
 
   # programs.git = {
   #   enable = true;

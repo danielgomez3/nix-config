@@ -33,7 +33,7 @@
       OVERRIDE_SERVER_PROPERTIES = "true";
       DIFFICULTY = "hard";
       MAX_TICK_TIME = "-1";
-      ALLOW_FLIGHT = "false";
+      ALLOW_FLIGHT = "true";
       ENABLE_COMMAND_BLOCK = "true";
       VIEW_DISTANCE = "25";
       MEMORY = "8G";

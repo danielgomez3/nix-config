@@ -29,7 +29,6 @@ in {
   };
   home-manager.users.${username}.myHomeManager = {
     bundles.desktop-environment.enable = true;
-    bundles.coding-environment.enable = true;
   };
 
   services = {

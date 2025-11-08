@@ -44,6 +44,8 @@
     nixcraft.url = "github:loystonpais/nixcraft";
     nixcraft.inputs.nixpkgs.follows = "nixpkgs"; # Set correct nixpkgs name
     # poetry2nix.url = "github:nix-community/poetry2nix";
+    jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
+    jovian.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs = inputs @ {self, ...}: let

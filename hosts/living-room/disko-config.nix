@@ -1,21 +1,16 @@
-# hosts/hetzner-vps/disko-config.nix
-# NOTE: deprecated, if this breaks, use new example on disko repo
+# disko-config.nix
 {
   disko.devices = {
     disk = {
       main = {
+        device = "/dev/nvme0n1";
         type = "disk";
-        device = "/dev/sda";
         content = {
           type = "gpt";
           partitions = {
-            boot = {
-              size = "1M";
-              type = "EF02"; # for grub MBR
-            };
             ESP = {
-              size = "512M";
               type = "EF00";
+              size = "500M";
               content = {
                 type = "filesystem";
                 format = "vfat";

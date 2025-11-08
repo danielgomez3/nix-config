@@ -11,5 +11,6 @@
     git.enable = true;
     neovim.enable = true;
     zellij.enable = true;
+    rclone.enable = true;
   };
 }

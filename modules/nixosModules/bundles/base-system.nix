@@ -12,7 +12,7 @@
 in {
   myNixOS = {
     core-system.enable = lib.mkDefault true;
-    systemd-boot.enable = lib.mkDefault true;
+    systemd-boot.enable = lib.mkDefault true; # FIXME: does a base system need this? Or anyone at all?
     yubikey-functionality.enable = lib.mkDefault false;
     internet.enable = lib.mkDefault true;
     syncthing.enable = lib.mkDefault false;
@@ -23,15 +23,6 @@ in {
     fonts.enable = lib.mkDefault true; # TODO change where fonts go, this could be too big
     gnupg.enable = lib.mkDefault true;
   };
-
-  # home-manager.users.${username}.myHomeManager = {
-  #   bundles.coding-environment.enable = true;
-  #   cli-apps.enable = true;
-  #   rclone.enable = true;
-  # };
-
-  users.users.${config.myVars.username}.hashedPasswordFile = config.sops.secrets.user_password.path;
-  users.users.root.hashedPasswordFile = config.sops.secrets.user_password.path;
 
   swapDevices = [
     {
