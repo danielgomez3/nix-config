@@ -11,6 +11,7 @@
 in {
   myVars.username = "daniel"; # Specific username for this machine
   myVars.hostname = "desktop"; # Specific hostname for this machine
+  myVars.isAMD = true;
   myVars.isSyncthingClient = true;
   users.users.${username} = {
     description = "desktop";

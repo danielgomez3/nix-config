@@ -10,6 +10,7 @@
 }: {
   myVars.username = "gamer"; # Specific username for this machine
   myVars.hostname = "living-room"; # Specific hostname for this machine
+  myVars.isAMD = true;
   networking.hostName = config.myVars.hostname;
 
   users.users.${config.myVars.username} = {

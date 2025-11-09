@@ -12,5 +12,6 @@
     neovim.enable = true;
     zellij.enable = true;
     rclone.enable = true;
+    btop.enable = true;
   };
 }

@@ -35,7 +35,6 @@ in {
   };
   environment = {
     systemPackages = with pkgs; [
-      # linux linux-firmware
       efibootmgr # for forcing dual-boot in cli
       lm_sensors
       cmatrix

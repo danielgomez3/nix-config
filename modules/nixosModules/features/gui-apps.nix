@@ -16,6 +16,9 @@ in {
   ];
 
   home-manager.users.${username} = {
+    myHomeManager = {
+      zed.enable = true;
+    };
     home.packages = with pkgs; [
       # Sway/Wayland/Hyprland
       grim

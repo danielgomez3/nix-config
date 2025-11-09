@@ -40,5 +40,20 @@
       default = 25565;
       description = "Minecraft server port";
     };
+    isAMD = lib.mkOption {
+      type = lib.types.bool;
+      default = false; # optional default
+      description = "Does the machine have an AMD GPU?";
+    };
+    isINTEL = lib.mkOption {
+      type = lib.types.bool;
+      default = false; # optional default
+      description = "Does the machine have an INTEL GPU?";
+    };
+    isNVIDIA = lib.mkOption {
+      type = lib.types.bool;
+      default = false; # optional default
+      description = "Does the machine have an NVIDIA GPU?";
+    };
   };
 }

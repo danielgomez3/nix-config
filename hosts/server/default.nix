@@ -12,6 +12,7 @@
 in {
   myVars.username = "danielgomez3"; # Specific username for this machine
   myVars.hostname = "server"; # Specific hostname for this machine
+  myVars.isINTEL = true;
   myVars.isSyncthingServer = true;
 
   users.users.${username} = {
@@ -41,30 +42,14 @@ in {
     myNginxWebserver.enable = true;
   };
 
-  # home-manager.users.${username} = {
-  #   # imports = [
-  #   #   ./nixcraft.nix # Direct import here
-  #   # ];
-
-  #   myHomeManager = {
-  #     # Remove nixcraft.enable from here since we're importing directly
-  #   };
+  # home-manager.users.${username}.myHomeManager = {
   # };
 
   environment = {
-    # sessionVariables = {
-    #   GITHUB_TOKEN = config.sops.secrets.github_token.path;
-    #   GITHUB_TOKEN = "$(cat ${config.sops.secrets.github_token.path})";
-    # };
     systemPackages = with pkgs; [
       kitty # Make SSHing into this pretty.
     ];
   };
-
-  # security.acme = {
-  #   defaults.email = "${toString config.sops.secrets.email}";
-  #   acceptTerms = true;
-  # };
 
   services = {
     tailscale = {

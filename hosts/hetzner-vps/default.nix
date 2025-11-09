@@ -26,10 +26,6 @@
     mail-server.enable = true;
   };
 
-  # home-manager.users.${config.myVars.username}.myHomeManager = {
-  #   cli-apps.enable = true;
-  # };
-
   # programs.git = {
   #   enable = true;
   #   settings = {

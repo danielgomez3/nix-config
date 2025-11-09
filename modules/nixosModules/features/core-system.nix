@@ -124,7 +124,6 @@ in {
     nftables
     iptables
     unixtools.netstat
-    btop
     toybox
     busybox # telnet,
     openssl
@@ -136,5 +135,6 @@ in {
     hapless # This now uses the overridden version from the overlay
     procps
     nushell
+    nvtopPackages.amd
   ];
 }
