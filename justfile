@@ -96,18 +96,18 @@ repl-flake:
 _new host username description:
     # echo "hey"
     [ ! -d "./hosts/{{host}}" ] && scp -r ./lib/deployment/templateHost ./hosts/{{host}} || false
+    sed -i -E 's/\bxxusernamexx\b/{{username}}/g' ./hosts/{{host}}/*.nix
+    sed -i -E 's/\bxxhostnamexx\b/{{host}}/g' ./hosts/{{host}}/*.nix
+    sed -i -E 's/\bxxdescriptionxx\b/{{description}}/g' ./hosts/{{host}}/*.nix
 
-# TODO: implement _new
 [confirm("Are you sure you want to potentially erase target machine's disk and deploy?")]
 deploy host username ip_address description:
-    # create a new host, very minimal settings
     just _new {{host}} {{username}} {{description}}
     # create buffer to migrate age keys
     root_dir=$(mktemp -d) && \
     trap 'rm -rf "$root_dir"' EXIT && \
     mkdir -p "${root_dir}/root/.config/sops/age" && \
     cp ~/.config/sops/age/keys.txt "${root_dir}/root/.config/sops/age/keys.txt" && \
-    # deploy system
     nix run github:nix-community/nixos-anywhere -- --extra-files "$root_dir" --generate-hardware-config nixos-generate-config ./hosts/{{host}}/hardware-configuration.nix root@{{ip_address}} --flake .#{{host}}
 
 netboot:
