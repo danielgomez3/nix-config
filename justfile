@@ -63,8 +63,7 @@ build target=(host):
     nixos-rebuild build --flake ".#{{target}}" 
     
 
-
-
+    
 
 
 
@@ -94,12 +93,21 @@ repl-flake:
     git add -A :/
     cd {{invocation_directory()}}; nix repl --extra-experimental-features 'flakes' --expr "import \"{{justfile_directory()}}/lib/learning-nix/learning-nix.nix\""
 
+_new host username description:
+    # echo "hey"
+    [ ! -d "./hosts/{{host}}" ] && scp -r ./lib/deployment/templateHost ./hosts/{{host}} || false
+
+# TODO: implement _new
 [confirm("Are you sure you want to potentially erase target machine's disk and deploy?")]
-deploy host ip_address:
+deploy host username ip_address description:
+    # create a new host, very minimal settings
+    just _new {{host}} {{username}} {{description}}
+    # create buffer to migrate age keys
     root_dir=$(mktemp -d) && \
     trap 'rm -rf "$root_dir"' EXIT && \
     mkdir -p "${root_dir}/root/.config/sops/age" && \
     cp ~/.config/sops/age/keys.txt "${root_dir}/root/.config/sops/age/keys.txt" && \
+    # deploy system
     nix run github:nix-community/nixos-anywhere -- --extra-files "$root_dir" --generate-hardware-config nixos-generate-config ./hosts/{{host}}/hardware-configuration.nix root@{{ip_address}} --flake .#{{host}}
 
 netboot:
