@@ -14,7 +14,6 @@ in {
     core-system.enable = lib.mkDefault true;
     systemd-boot.enable = lib.mkDefault true; # FIXME: does a base system need this? Or anyone at all?
     yubikey-functionality.enable = lib.mkDefault false;
-    hardware-examination.enable = lib.mkDefault true;
     internet.enable = lib.mkDefault true;
     syncthing.enable = lib.mkDefault false;
     tailscale.enable = lib.mkDefault true;
