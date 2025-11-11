@@ -16,6 +16,7 @@ in {
     coding-environment.enable = lib.mkDefault true;
     openssh.enable = lib.mkDefault true;
     sops.enable = lib.mkDefault true;
+    hardware-examination.enable = lib.mkDefault true;
   };
   home-manager.users.${config.myVars.username}.myHomeManager = {
     cli-apps.enable = lib.mkDefault true;
@@ -135,6 +136,5 @@ in {
     hapless # This now uses the overridden version from the overlay
     procps
     nushell
-    nvtopPackages.amd
   ];
 }

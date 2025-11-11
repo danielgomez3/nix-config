@@ -12,7 +12,6 @@
   cfg = config.home-manager.users.${username}.myHomeManager;
   username = config.myVars.username;
 
-
   # Taking all modules in ./features and adding enables to them
   features =
     myHelper.extendModules
@@ -47,29 +46,42 @@
       configExtension = config: (lib.mkIf cfg.bundles.${name}.enable config);
     })
     (myHelper.filesIn ./bundles);
-
 in {
   home-manager = {
     backupFileExtension = "hm-backup";
-    extraSpecialArgs = { inherit inputs self pkgsUnstable; };
+    extraSpecialArgs = {inherit inputs self pkgsUnstable;};
     users.${username} = {
       home = {
         stateVersion = "24.05";
         packages = with pkgs; [
-          dig unzip ffmpeg 
-	  #dmidecode   # FIXME: nix-darwin doesn't like this
-          eza entr tldr bc tree zip
-          pciutils usbutils 
+          dig
+          unzip
+          ffmpeg
+          eza
+          entr
+          tldr
+          bc
+          tree
+          zip
+          pciutils
+          usbutils
           #cifs-utils  # FIXME: same
- 	  samba
+          samba
           # cli apps
-          yt-dlp beets spotdl 
-	  #protonvpn-cli_2  # FIXME: same
-          tesseract ocrmypdf
+          yt-dlp
+          beets
+          spotdl
+          #protonvpn-cli_2  # FIXME: same
+          tesseract
+          ocrmypdf
           #android-tools adb-sync android-tools ventoy  # FIXME: same, but allowUnfree for darwin
           # Nix
-          sops  just nixos-anywhere ssh-to-age colmena 
-	  #disko  # FIXME: allow unfree for darwin
+          sops
+          just
+          nixos-anywhere
+          ssh-to-age
+          colmena
+          #disko  # FIXME: allow unfree for darwin
         ];
       };
       imports =
@@ -80,4 +92,3 @@ in {
     };
   };
 }
-
