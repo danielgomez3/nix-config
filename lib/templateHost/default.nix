@@ -1,4 +1,4 @@
-# heztner-vps/default.nix
+# xxhostnamexx/default.nix
 # NOTE: This contains all common features I want only my server to have!
 {
   config,
@@ -10,12 +10,12 @@
 }: {
   imports = [
   ];
-  myVars.username = "xxxxxxxxxxxxxx"; # Specific username for this machine
-  myVars.hostname = "xxxxxxxxxxxxxx"; # Specific hostname for this machine
+  myVars.username = "xxusernamexx"; # Specific username for this machine
+  myVars.hostname = "xxhostnamexx"; # Specific hostname for this machine
   networking.hostName = config.myVars.hostname;
 
   users.users.${config.myVars.username} = {
-    description = "xxxxxxxxxxxxxx";
+    description = "xxdescriptionxx";
   };
 
   myNixOS = {
