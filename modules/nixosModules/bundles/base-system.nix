@@ -5,20 +5,77 @@
   pkgs,
   lib,
   config,
+  inputs,
   self,
   ...
 }: let
+  hapless = import "${inputs.self.outPath}/derivations/hapless.nix" {
+    inherit (pkgs) lib fetchFromGitHub;
+    python3 = pkgs.python312; # or python311
+  };
   username = config.myVars.username;
 in {
+  nixpkgs.overlays = [
+    (final: prev: {
+      # Create hapless with patched dependencies
+      hapless = prev.python3.pkgs.buildPythonPackage rec {
+        pname = "hapless";
+        version = "0.14.0";
+
+        src = prev.fetchFromGitHub {
+          owner = "bmwant";
+          repo = "hapless";
+          rev = "v${version}";
+          hash = "sha256-ivTW9epMHMpS41LWE+hsAF/m3OC+oIXKuFhkJki4EAg=";
+        };
+
+        format = "pyproject";
+
+        nativeBuildInputs = with prev.python3.pkgs; [
+          setuptools
+          poetry-core
+        ];
+
+        propagatedBuildInputs = with prev.python3.pkgs; [
+          click
+          django-environ
+          humanize
+          psutil
+          rich
+          structlog
+          typing-extensions
+        ];
+
+        # Patch the version requirements in pyproject.toml
+        prePatch = ''
+          substituteInPlace pyproject.toml \
+            --replace 'psutil = "^6.1.0"' 'psutil = ">=6.1.0"' \
+            --replace 'rich = "^13.5.2"' 'rich = ">=13.5.2"' \
+            --replace 'typing-extensions = "4.0.0"' 'typing-extensions = ">=4.0.0"'
+        '';
+
+        # Skip the runtime dependency check that's failing
+        # pythonRuntimeDepsCheck = false;
+
+        pythonImportsCheck = ["hapless"];
+
+        meta = with prev.lib; {
+          description = "A Linux CLI tool called hapless";
+          homepage = "https://github.com/hapless/hapless";
+          license = licenses.mit;
+          maintainers = with maintainers; [];
+          mainProgram = "hapless";
+        };
+      };
+    })
+  ];
   myNixOS = {
     core-system.enable = lib.mkDefault true;
     systemd-boot.enable = lib.mkDefault true; # FIXME: does a base system need this? Or anyone at all?
     yubikey-functionality.enable = lib.mkDefault false;
     internet.enable = lib.mkDefault true;
-    syncthing.enable = lib.mkDefault false;
     tailscale.enable = lib.mkDefault true;
     stylix.enable = lib.mkDefault true;
-    virtualization.enable = lib.mkDefault false;
     good-repl-access.enable = lib.mkDefault true;
     fonts.enable = lib.mkDefault true; # TODO change where fonts go, this could be too big
     gnupg.enable = lib.mkDefault true;
@@ -35,15 +92,13 @@ in {
   };
   environment = {
     systemPackages = with pkgs; [
-      efibootmgr # for forcing dual-boot in cli
-      lm_sensors
+      hapless # This now uses the overridden version from the overlay
       cmatrix
       jmtpfs # For interfacing with my OP-1 Field.
       woeusb
       ntfs3g
-      file
+      nushell
       waypipe # x11 forwarding alternative:
-      # Security
       age
     ];
   };

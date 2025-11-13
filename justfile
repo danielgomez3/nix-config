@@ -93,22 +93,34 @@ repl-flake:
     git add -A :/
     cd {{invocation_directory()}}; nix repl --extra-experimental-features 'flakes' --expr "import \"{{justfile_directory()}}/lib/learning-nix/learning-nix.nix\""
 
-_new host username description:
-    # echo "hey"
+[confirm("This might potentially erase a directory/host with the same name. Continue?")]
+new host username block_device description:
     [ ! -d "./hosts/{{host}}" ] && scp -r ./lib/deployment/templateHost ./hosts/{{host}} || false
     sed -i -E 's/\bxxusernamexx\b/{{username}}/g' ./hosts/{{host}}/*.nix
     sed -i -E 's/\bxxhostnamexx\b/{{host}}/g' ./hosts/{{host}}/*.nix
     sed -i -E 's/\bxxdescriptionxx\b/{{description}}/g' ./hosts/{{host}}/*.nix
+    sed -i -E 's|\bxxblock_devicexx\b|{{block_device}}|g' ./hosts/{{host}}/*.nix
+    git add -A :/
+
+# [confirm("Are you sure you want to potentially erase target machine's disk and deploy?")]
+# deploy host ip_address:
+#     # create buffer to migrate age keys
+#     root_dir=$(mktemp -d) && \
+#     trap 'rm -rf "$root_dir"' EXIT && \
+#     mkdir -p "${root_dir}/root/.config/sops/age" && \
+#     cp ~/.config/sops/age/keys.txt "${root_dir}/root/.config/sops/age/keys.txt" && \
+#     nix run github:nix-community/nixos-anywhere -- --extra-files "$root_dir" --generate-hardware-config nixos-generate-config ./hosts/{{host}}/hardware-configuration.nix root@{{ip_address}} --flake .#{{host}}
 
 [confirm("Are you sure you want to potentially erase target machine's disk and deploy?")]
-deploy host username ip_address description:
-    just _new {{host}} {{username}} {{description}}
+deploy host ip_address:
+    # Create a custom kexec tarball for nixos-anywhere to use
+    # nix build .#custom-kexec
     # create buffer to migrate age keys
     root_dir=$(mktemp -d) && \
     trap 'rm -rf "$root_dir"' EXIT && \
     mkdir -p "${root_dir}/root/.config/sops/age" && \
     cp ~/.config/sops/age/keys.txt "${root_dir}/root/.config/sops/age/keys.txt" && \
-    nix run github:nix-community/nixos-anywhere -- --extra-files "$root_dir" --generate-hardware-config nixos-generate-config ./hosts/{{host}}/hardware-configuration.nix root@{{ip_address}} --flake .#{{host}}
+    nix run github:nix-community/nixos-anywhere/main -- --extra-files "$root_dir" --generate-hardware-config nixos-facter ./hosts/{{host}}/facter.json --kexec ./result/nixos-kexec-installer-noninteractive-x86_64-linux.tar.gz root@{{ip_address}} --flake .#{{host}}
 
 netboot:
     nix build -f ./lib/nix-expressions/netboot/system.nix -o /tmp/run-pixiecore

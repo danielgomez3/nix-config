@@ -1,21 +1,24 @@
 # flake.nix
 # Author: danielgomezcoder@gmail.com
+# TODO: generate facter.nix for all machines, remove hardware-configuration
+# TODO: refactor and remove boilerplate code.
+# TODO: remove specialArgs?
+# TODO: make shell that can be fetched from anywhere regardless of linux machine
 {
-  description = "danielgomez3's NixOS configuration";
+  description = "danielgomezcoder's NixOS configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Nix Options version as well
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-kexec.url = "github:NixOS/nixpkgs/b81d4ded7076a39af7edfb1b50f024ef5fbb8b3f";
     home-manager.url = "github:nix-community/home-manager"; # hm-stable
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager-unstable.url = "github:nix-community/home-manager"; # hm-unstable
     home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs-unstable";
     deploy-rs.url = "github:serokell/deploy-rs";
+    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     stylix.url = "github:nix-community/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
-    # stylix.inputs.nixpkgs.follows = "nixpkgs";
-    # DELTEME
-    # stylix.inputs.home-manager.follows = "home-manager";
     mysecrets.url = "git+ssh://git@github.com/danielgomez3/nix-secrets.git?ref=main&shallow=1";
     mysecrets.flake = false;
     disko.url = "github:nix-community/disko";
@@ -43,9 +46,11 @@
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     nixcraft.url = "github:loystonpais/nixcraft";
     nixcraft.inputs.nixpkgs.follows = "nixpkgs"; # Set correct nixpkgs name
-    # poetry2nix.url = "github:nix-community/poetry2nix";
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
     jovian.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    alga.url = "github:Tenzer/alga"; # turn on TV's with WebOS
+    # nixos-generators.url = "github:nix-community/nixos-generators/"; # create custom kexec tarballs, etc.
+    # nixos-images.url = "github:nix-community/nixos-images"; # get a kexec tarball to use
   };
 
   outputs = inputs @ {self, ...}: let
@@ -62,8 +67,8 @@
     commonImports = h: [
       # Every host dir may contain the following:
       "${self.outPath}/hosts/${h}"
-      "${self.outPath}/hosts/${h}/hardware-configuration.nix"
-      "${self.outPath}/hosts/${h}/disko-config.nix"
+      "${self.outPath}/hosts/${h}/disk-config.nix"
+      inputs.nixos-facter-modules.nixosModules.facter
       inputs.home-manager.nixosModules.default
       inputs.sops-nix.nixosModules.sops
       inputs.disko.nixosModules.disko
@@ -75,8 +80,9 @@
       inherit inputs;
       lib = inputs.nixpkgs.lib;
     };
+    system = "x86_64-linux";
   in {
-    devShells.x86_64-linux.default = pkgs.mkShell {
+    devShells.${supportedSystems.linux}.default = pkgs.mkShell {
       buildInputs = [pkgs.deploy-rs pkgs.pfetch]; # deps needed at runtime.
       GREETING = "Hello, Nix!";
       shellHook = ''
@@ -84,37 +90,63 @@
         echo $GREETING
       '';
     };
+    packages.${supportedSystems.linux} = {
+    };
 
     nixosConfigurations.laptop = inputs.nixpkgs.lib.nixosSystem {
-      modules = commonImports "laptop";
+      modules = commonImports "laptop" ++ ["${self.outPath}/hosts/laptop/hardware-configuration.nix"];
       specialArgs = {
         inherit inputs self pkgsUnstable myHelper;
       };
     };
 
     nixosConfigurations.desktop = inputs.nixpkgs.lib.nixosSystem {
-      modules = commonImports "desktop";
+      modules = commonImports "desktop" ++ ["${self.outPath}/hosts/desktop/hardware-configuration.nix"];
+
       specialArgs = {
         inherit inputs self pkgsUnstable myHelper;
       };
     };
 
     nixosConfigurations.server = inputs.nixpkgs.lib.nixosSystem {
-      modules = commonImports "server";
+      modules = commonImports "desktop" ++ ["${self.outPath}/hosts/desktop/hardware-configuration.nix"];
       specialArgs = {
         inherit inputs self pkgsUnstable myHelper;
       };
     };
 
     nixosConfigurations.hetzner-vps = inputs.nixpkgs.lib.nixosSystem {
-      modules = commonImports "hetzner-vps";
+      modules = commonImports "hetzner-vps" ++ ["${self.outPath}/hosts/hetzner-vps/hardware-configuration.nix"];
+
       specialArgs = {
         inherit inputs self pkgsUnstable myHelper;
       };
     };
 
     nixosConfigurations.living-room = inputs.nixpkgs.lib.nixosSystem {
-      modules = commonImports "living-room";
+      modules = commonImports "living-room" ++ ["${self.outPath}/hosts/living-room/hardware-configuration.nix"];
+      specialArgs = {
+        inherit inputs self pkgsUnstable myHelper;
+      };
+    };
+
+    nixosConfigurations.test-machine = inputs.nixpkgs.lib.nixosSystem {
+      modules =
+        commonImports "test-machine"
+        ++ [
+          {config.facter.reportPath = "${self.outPath}/hosts/test-machine/facter.json";}
+        ];
+      specialArgs = {
+        inherit inputs self pkgsUnstable myHelper;
+      };
+    };
+
+    nixosConfigurations.llm-machine = inputs.nixpkgs.lib.nixosSystem {
+      modules =
+        commonImports "llm-machine"
+        [
+          {config.facter.reportPath = "${self.outPath}/hosts/test-machine/facter.json";}
+        ];
       specialArgs = {
         inherit inputs self pkgsUnstable myHelper;
       };
@@ -215,6 +247,16 @@
       profiles.system = {
         # user = "admin";
         path = inputs.deploy-rs.lib.${supportedSystems.darwinAmd}.activate.darwin self.darwinConfigurations.workLaptop;
+      };
+    };
+
+    deploy.nodes.test-machine = {
+      hostname = "test-machine";
+      sshUser = "root"; # username of the target machine
+      fastConnection = true; # Enable pipelined copying
+      profiles.system = {
+        user = "root"; # The user that the profile will be deployed to
+        path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.test-machine;
       };
     };
   };
