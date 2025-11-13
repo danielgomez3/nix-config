@@ -151,7 +151,7 @@
     nixosConfigurations.llm-machine = inputs.nixpkgs.lib.nixosSystem {
       modules =
         commonImports "llm-machine"
-        [
+        ++ [
           {config.facter.reportPath = "${self.outPath}/hosts/test-machine/facter.json";}
         ];
       specialArgs = {

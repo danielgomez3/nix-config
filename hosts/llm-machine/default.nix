@@ -12,13 +12,14 @@
   ];
   myVars.username = "danielgomez3"; # Specific username for this machine
   myVars.hostname = "llm-machine"; # Specific hostname for this machine
+  myVars.isNVIDIA = true;
   networking.hostName = config.myVars.hostname;
 
   users.users.${config.myVars.username} = {
-    description = "this a machine with gpus to run LLMs";
+    description = "this is machine with gpus for llms";
   };
 
   myNixOS = {
-    core-system.enable = true;
+    bundles.base-system.enable = true;
   };
 }

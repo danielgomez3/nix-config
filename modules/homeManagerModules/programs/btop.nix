@@ -13,7 +13,7 @@
 in {
   programs.btop = {
     enable = true;
-    package = pkgs.btop-rocm;
+    package = btopPackage;
     settings = {
       show_gpu = true;
       gpu_support = true;
