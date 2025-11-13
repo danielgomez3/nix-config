@@ -50,7 +50,7 @@
     jovian.inputs.nixpkgs.follows = "nixpkgs-unstable";
     alga.url = "github:Tenzer/alga"; # turn on TV's with WebOS
     # nixos-generators.url = "github:nix-community/nixos-generators/"; # create custom kexec tarballs, etc.
-    # nixos-images.url = "github:nix-community/nixos-images"; # get a kexec tarball to use
+    nixos-images.url = "github:nix-community/nixos-images/"; # get a kexec tarball to use
   };
 
   outputs = inputs @ {self, ...}: let
@@ -81,6 +81,7 @@
       lib = inputs.nixpkgs.lib;
     };
     system = "x86_64-linux";
+    nixpkgsNixosImages = inputs.nixos-images.inputs.nixos-unstable.legacyPackages.${system};
   in {
     devShells.${supportedSystems.linux}.default = pkgs.mkShell {
       buildInputs = [pkgs.deploy-rs pkgs.pfetch]; # deps needed at runtime.
@@ -91,6 +92,12 @@
       '';
     };
     packages.${supportedSystems.linux} = {
+      custom-kexec =
+        (nixpkgsNixosImages.nixos [
+          inputs.nixos-images.nixosModules.kexec-installer
+          inputs.nixos-images.nixosModules.noninteractive
+          "${self.outPath}/lib/custom-iso/kexec/custom-kexec.nix"
+        ]).config.system.build.kexecInstallerTarball;
     };
 
     nixosConfigurations.laptop = inputs.nixpkgs.lib.nixosSystem {
