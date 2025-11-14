@@ -9,7 +9,12 @@
   ...
 }: {
   # Add your lid switch configuration
-  services.logind.lidSwitchExternalPower = "ignore";
+  # TODO: reference same settings as system.nix for pxe boot
+  services.logind = {
+    lidSwitch = "ignore";
+    lidSwitchExternalPower = "ignore";
+    lidSwitchDocked = "ignore";
+  };
 
   # Not needed, nixos-anywhere already gives out your key
   # users.users.root.openssh.authorizedKeys.keys = [

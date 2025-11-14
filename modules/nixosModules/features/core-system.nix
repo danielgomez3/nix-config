@@ -57,6 +57,9 @@ in {
     };
   };
 
+  nix.settings.auto-optimise-store = true; # Optimize store every build. May slow down rebuilds
+  nix.settings.download-buffer-size = 9024288000; # 9 GB
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [

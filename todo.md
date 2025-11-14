@@ -1,1 +1,3 @@
 - make my 'server' recognized as 'server' and resolve across all devices in network
+- create 'core-minimal' with no stylix, bloat, etc.
+- add stylix to 'core'

@@ -25,7 +25,11 @@ let
           users.users.root.openssh.authorizedKeys.keys = [
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII8SFBz7G2gfy1uJ3PMcHQDwpKTPVJKHSMOge9GVEXHj daniel@server"
           ];
-          services.logind.lidSwitchExternalPower = "ignore"; # if it's a laptop, let the device still run if lid is closed
+          services.logind = {
+            lidSwitch = "ignore";
+            lidSwitchExternalPower = "ignore";
+            lidSwitchDocked = "ignore";
+          };
 
           system.stateVersion = config.system.nixos.release;
         };

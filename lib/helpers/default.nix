@@ -1,8 +1,11 @@
+# helpers/default.nix
 # NOTE: Credit to Vimjoyer 'myLib' <https://github.com/vimjoyer/nixconf/blob/main/myLib/default.nix>
-{inputs,lib}: let
-  myHelper = (import ./default.nix) {inherit inputs;};
+{
+  inputs,
+  lib,
+}: let
+  # myHelper = (import ./default.nix) {inherit inputs;};
   outputs = inputs.self.outputs;
-  
 in rec {
   # ================================================================ #
   # =                            My Lib                            = #
@@ -13,7 +16,6 @@ in rec {
   pkgsFor = sys: inputs.nixpkgs.legacyPackages.${sys};
 
   # ========================== Buildables ========================== #
-
 
   filesIn = dir: (map (fname: dir + "/${fname}")
     (builtins.attrNames (builtins.readDir dir)));
@@ -79,14 +81,12 @@ in rec {
     ]
     (system: pkgs inputs.nixpkgs.legacyPackages.${system});
 
-
   # NOTE: Additional functions.
   recSearchFileExtension = regex: path:
     builtins.filter
-      (f: builtins.match regex (builtins.toString f) != null)
-      (lib.filesystem.listFilesRecursive path);
+    (f: builtins.match regex (builtins.toString f) != null)
+    (lib.filesystem.listFilesRecursive path);
 
   readContentsOfFiles = files:
     builtins.map builtins.readFile files;
-  
 }

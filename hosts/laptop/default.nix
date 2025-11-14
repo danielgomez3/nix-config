@@ -21,24 +21,9 @@ in {
   myNixOS = {
     bundles.desktop-environment.enable = true;
     bundles.base-system.enable = true;
-    qemu.enable = true;
-    osx-kvm.enable = true;
-    yubikey-functionality.enable = true;
-    gpg.enable = true;
-    # gameboy-emuluation = true;
+    laptop-device-settings.enable = true;
   };
   home-manager.users.${username}.myHomeManager = {
     bundles.desktop-environment.enable = true;
-  };
-
-  services = {
-    libinput.touchpad.disableWhileTyping = true;
-    syncthing = {
-      guiAddress = "127.0.0.1:8383";
-    };
-  };
-
-  services.xserver = {
-    xkb.options = "caps:swapescape";
   };
 }

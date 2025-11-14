@@ -1,5 +1,6 @@
 # flake.nix
 # Author: danielgomezcoder@gmail.com
+# # TODO when refactoring, make sure iso uses the right hardware files
 # TODO: generate facter.nix for all machines, remove hardware-configuration
 # TODO: refactor and remove boilerplate code.
 # TODO: remove specialArgs?
@@ -49,7 +50,7 @@
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
     jovian.inputs.nixpkgs.follows = "nixpkgs-unstable";
     alga.url = "github:Tenzer/alga"; # turn on TV's with WebOS
-    # nixos-generators.url = "github:nix-community/nixos-generators/"; # create custom kexec tarballs, etc.
+    nixos-generators.url = "github:nix-community/nixos-generators/"; # create custom kexec tarballs, etc.
     nixos-images.url = "github:nix-community/nixos-images/"; # get a kexec tarball to use
   };
 
@@ -96,12 +97,31 @@
         (nixpkgsNixosImages.nixos [
           inputs.nixos-images.nixosModules.kexec-installer
           inputs.nixos-images.nixosModules.noninteractive
-          "${self.outPath}/lib/custom-iso/kexec/custom-kexec.nix"
+          "${self.outPath}/lib/custom-iso/kexec/custom-kexec.nix" # FIXME renable? disabling this might be bad
+          inputs.home-manager.nixosModules.default
+          # "${self.outPath}/modules/homeManagerModules/"
+          # "${self.outPath}/modules/nixosModules"
+          "${self.outPath}/modules/nixosModules/features/my-vars.nix"
+          # "${self.outPath}/modules/nixosModules/features/server-with-lid.nix"
+          # "${self.outPath}/modules/nixosModules/features/core-system.nix"
         ]).config.system.build.kexecInstallerTarball;
+
+      custom-iso = inputs.nixos-generators.nixosGenerate {
+        system = "x86_64-linux";
+        format = "iso";
+        modules =
+          commonImports
+          "custom-iso";
+      };
     };
 
     nixosConfigurations.laptop = inputs.nixpkgs.lib.nixosSystem {
-      modules = commonImports "laptop" ++ ["${self.outPath}/hosts/laptop/hardware-configuration.nix"];
+      modules =
+        commonImports "laptop"
+        ++ [
+          {config.facter.reportPath = "${self.outPath}/hosts/laptop/facter.json";}
+        ];
+
       specialArgs = {
         inherit inputs self pkgsUnstable myHelper;
       };
@@ -157,7 +177,17 @@
       modules =
         commonImports "llm-machine"
         ++ [
-          {config.facter.reportPath = "${self.outPath}/hosts/test-machine/facter.json";}
+          {config.facter.reportPath = "${self.outPath}/hosts/llm-machine/facter.json";}
+        ];
+      specialArgs = {
+        inherit inputs self pkgsUnstable myHelper;
+      };
+    };
+    nixosConfigurations.nas-server = inputs.nixpkgs.lib.nixosSystem {
+      modules =
+        commonImports "nas-server"
+        ++ [
+          {config.facter.reportPath = "${self.outPath}/hosts/nas-server/facter.json";}
         ];
       specialArgs = {
         inherit inputs self pkgsUnstable myHelper;
@@ -269,6 +299,15 @@
       profiles.system = {
         user = "root"; # The user that the profile will be deployed to
         path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.test-machine;
+      };
+    };
+    deploy.nodes.nas-server = {
+      hostname = "192.168.1.171";
+      sshUser = "root"; # username of the target machine
+      fastConnection = true; # Enable pipelined copying
+      profiles.system = {
+        user = "root"; # The user that the profile will be deployed to
+        path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.nas-server;
       };
     };
   };

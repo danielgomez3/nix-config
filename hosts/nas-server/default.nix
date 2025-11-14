@@ -1,4 +1,4 @@
-# xxhostnamexx/default.nix
+# nas-server/default.nix
 # NOTE: This contains all common features I want only my server to have!
 {
   config,
@@ -10,16 +10,17 @@
 }: {
   imports = [
   ];
-  myVars.username = "xxusernamexx"; # Specific username for this machine
-  myVars.hostname = "xxhostnamexx"; # Specific hostname for this machine
+  myVars.username = "daniel"; # Specific username for this machine
+  myVars.hostname = "nas-server"; # Specific hostname for this machine
   networking.hostName = config.myVars.hostname;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   users.users.${config.myVars.username} = {
-    description = "xxdescriptionxx";
+    description = "basic nas server on thinkpad, no RAID";
   };
 
   myNixOS = {
     bundles.base-system.enable = true;
+    server-with-lid.enable = true;
   };
 }
