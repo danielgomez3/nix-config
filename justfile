@@ -114,7 +114,7 @@ new host username block_device description:
 [confirm("Are you sure you want to potentially erase target machine's disk and deploy?")]
 deploy host ip_address:
     # Create a custom kexec tarball for nixos-anywhere to use
-    # nix build .#custom-kexec
+    nix build .#custom-kexec
     # create buffer to migrate age keys
     root_dir=$(mktemp -d) && \
     trap 'rm -rf "$root_dir"' EXIT && \

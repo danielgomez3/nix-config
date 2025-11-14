@@ -23,8 +23,7 @@ let
           # console.keyMap = "de";
           # hardware.video.hidpi.enable = true;
           users.users.root.openssh.authorizedKeys.keys = [
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAfIEr/ppknhpMfpGAMvMnm8bWQjB57KPy72qgUDz8u danielgomez3@server"
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIEDxnLGBIN5detRd1yIVPQxXWG0XaaBfjVSLkJQyerR daniel@desktop"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII8SFBz7G2gfy1uJ3PMcHQDwpKTPVJKHSMOge9GVEXHj daniel@server"
           ];
           services.logind.lidSwitchExternalPower = "ignore"; # if it's a laptop, let the device still run if lid is closed
 

@@ -53,7 +53,7 @@
     # };
     signing = {
       # gpg --list-secret-keys --keyid-format=long
-      key = "5E8044D0F8A9F629"; # FIXME: put in sops, or put private key somewhere??
+      key = "6827149CB91F9EAE"; # FIXME: put in sops, or put private key somewhere??
       signByDefault = true;
     };
   };

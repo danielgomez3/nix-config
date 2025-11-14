@@ -70,9 +70,12 @@ in {
   #   })
   # ];
   myNixOS = {
-    core-system.enable = lib.mkDefault true;
     systemd-boot.enable = lib.mkDefault true; # FIXME: does a base system need this? Or anyone at all?
+    core-system.enable = lib.mkDefault true;
     yubikey-functionality.enable = lib.mkDefault false;
+    hardware-examination.enable = lib.mkDefault true;
+    coding-environment.enable = lib.mkDefault true;
+    avahi.enable = lib.mkDefault true;
     internet.enable = lib.mkDefault true;
     tailscale.enable = lib.mkDefault false;
     stylix.enable = lib.mkDefault true;
