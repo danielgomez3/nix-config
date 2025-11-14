@@ -18,14 +18,12 @@ in {
   };
 
   # for gnome desktop on my desktop graphics
-  services.xserver.enable = true;
-  boot.initrd.kernelModules = ["amdgpu"];
-
   myNixOS = {
     bundles.base-system.enable = true;
     bundles.desktop-environment.enable = true;
     bundles.embedded-dev-environment.enable = true;
     bundles.desktop-gaming.enable = true;
+    amd-support.enable = true;
     virtualization.enable = false;
     yubikey-functionality.enable = true;
     discord.enable = true;

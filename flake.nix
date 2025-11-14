@@ -116,7 +116,12 @@
     };
 
     nixosConfigurations.server = inputs.nixpkgs.lib.nixosSystem {
-      modules = commonImports "desktop" ++ ["${self.outPath}/hosts/desktop/hardware-configuration.nix"];
+      modules =
+        commonImports "server"
+        ++ [
+          {config.facter.reportPath = "${self.outPath}/hosts/test-machine/facter.json";}
+        ];
+
       specialArgs = {
         inherit inputs self pkgsUnstable myHelper;
       };
@@ -215,7 +220,7 @@
     };
 
     deploy.nodes.server = {
-      hostname = "server";
+      hostname = "192.168.1.152";
       sshUser = "root";
       fastConnection = true; # Enable pipelined copying
       profiles.system = {

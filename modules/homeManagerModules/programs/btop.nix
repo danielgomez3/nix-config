@@ -1,15 +1,15 @@
 # btop.nix
 {
   pkgs,
-  config,
+  osConfig,
   ...
 }: let
   btopPackage =
-    if config.myVars.isAMD
+    if osConfig.myVars.isAMD
     then pkgs.btop-rocm
-    else if config.myVars.isNVIDIA
+    else if osConfig.myVars.isNVIDIA
     then pkgs.btop-cuda
-    else pkgs.btop; # else if config.myVars.btop
+    else pkgs.btop; # else if osConfig.myVars.btop
 in {
   programs.btop = {
     enable = true;

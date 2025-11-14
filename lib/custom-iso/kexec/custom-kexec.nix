@@ -11,9 +11,10 @@
   # Add your lid switch configuration
   services.logind.lidSwitchExternalPower = "ignore";
 
-  users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAfIEr/ppknhpMfpGAMvMnm8bWQjB57KPy72qgUDz8u danielgomez3@server"
-  ];
+  # Not needed, nixos-anywhere already gives out your key
+  # users.users.root.openssh.authorizedKeys.keys = [
+  #   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAfIEr/ppknhpMfpGAMvMnm8bWQjB57KPy72qgUDz8u danielgomez3@server"
+  # ];
 
   system.stateVersion = config.system.nixos.release;
 

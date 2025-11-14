@@ -10,7 +10,7 @@
 }: let
   username = config.myVars.username;
 in {
-  myVars.username = "danielgomez3"; # Specific username for this machine
+  myVars.username = "daniel"; # Specific username for this machine
   myVars.hostname = "server"; # Specific hostname for this machine
   myVars.isINTEL = true;
   myVars.isSyncthingServer = true;
@@ -23,23 +23,22 @@ in {
     bundles.base-system.enable = true;
     caching.enable = true;
     nix-netboot-serve.enable = false;
-    hydra.enable = false;
     borg-backup.enable = true;
     # plex.enable = true;
-    vaultwarden.enable = true;
-    nextcloud.enable = true;
-    immich.enable = true;
+    vaultwarden.enable = false;
+    nextcloud.enable = false;
+    immich.enable = false;
     remoteDeployment-nix-on-droid.enable = true;
     # mySws.enable = true;
     macos-emulation.enable = false;
     docker.enable = false;
-    ollama.enable = true;
-    wireguard-client.enable = true; # Maybe add to base-system.nix
+    ollama.enable = false;
+    wireguard-client.enable = false; # Maybe add to base-system.nix
     minecraft-server.enable = false;
     minecraft-server-docker.enable = true;
     plg-stack.enable = true;
     web-server.enable = false;
-    myNginxWebserver.enable = true;
+    myNginxWebserver.enable = false;
   };
 
   # home-manager.users.${username}.myHomeManager = {

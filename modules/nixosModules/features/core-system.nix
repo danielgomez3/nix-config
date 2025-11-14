@@ -17,6 +17,7 @@ in {
     openssh.enable = lib.mkDefault true;
     sops.enable = lib.mkDefault true;
     hardware-examination.enable = lib.mkDefault true;
+    avahi.enable = lib.mkDefault true;
   };
   home-manager.users.${config.myVars.username}.myHomeManager = {
     cli-apps.enable = lib.mkDefault true;
@@ -82,5 +83,7 @@ in {
     file
     efibootmgr # for forcing dual-boot in cli
     lm_sensors
+    gnutar
+    arp-scan # this one is sick: arp-scan --localnet
   ];
 }

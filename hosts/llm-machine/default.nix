@@ -10,7 +10,7 @@
 }: {
   imports = [
   ];
-  myVars.username = "danielgomez3"; # Specific username for this machine
+  myVars.username = "daniel"; # Specific username for this machine
   myVars.hostname = "llm-machine"; # Specific hostname for this machine
   myVars.isNVIDIA = true;
   networking.hostName = config.myVars.hostname;

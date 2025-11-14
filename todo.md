@@ -1,0 +1,1 @@
+- make my 'server' recognized as 'server' and resolve across all devices in network

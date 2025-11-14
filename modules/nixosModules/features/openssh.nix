@@ -14,12 +14,12 @@
 in {
   users.users.${config.myVars.username} = {
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAfIEr/ppknhpMfpGAMvMnm8bWQjB57KPy72qgUDz8u danielgomez3@server"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIEDxnLGBIN5detRd1yIVPQxXWG0XaaBfjVSLkJQyerR daniel@desktop"
     ];
   };
 
   users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAfIEr/ppknhpMfpGAMvMnm8bWQjB57KPy72qgUDz8u danielgomez3@server"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIEDxnLGBIN5detRd1yIVPQxXWG0XaaBfjVSLkJQyerR daniel@desktop"
   ];
 
   services.openssh = {

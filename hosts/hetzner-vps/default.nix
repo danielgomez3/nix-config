@@ -12,7 +12,7 @@
     ./firewall.nix
     ./nginx-proxy.nix
   ];
-  myVars.username = "danielgomezcoder"; # Specific username for this machine
+  myVars.username = "daniel"; # Specific username for this machine
   myVars.hostname = "hetzner-vps"; # Specific hostname for this machine
   networking.hostName = config.myVars.hostname;
 
