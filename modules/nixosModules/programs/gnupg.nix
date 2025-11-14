@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+# gnpupg.nix
+{
+  pkgs,
+  config,
+  ...
+}: {
   # services.pcscd.enable = true;
   # home.packages = [pkgs.gnupg];
   programs.gnupg.agent = {

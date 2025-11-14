@@ -1,7 +1,7 @@
 {...}: {
   services.avahi = {
     enable = true;
-    nssmdns = true; # mDNS
+    nssmdns4 = true; # mDNS
     publish = {
       enable = true; # allow avahi to publish your information to other devices in lan
       addresses = true; # advertise the IP addr of your system
