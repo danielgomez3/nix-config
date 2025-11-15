@@ -120,7 +120,7 @@ deploy host ip_address:
     trap 'rm -rf "$root_dir"' EXIT && \
     mkdir -p "${root_dir}/root/.config/sops/age" && \
     cp ~/.config/sops/age/keys.txt "${root_dir}/root/.config/sops/age/keys.txt" && \
-    nix run github:nix-community/nixos-anywhere/main -- --extra-files "$root_dir" --generate-hardware-config nixos-facter ./hosts/{{host}}/facter.json --kexec ./result/nixos-kexec-installer-x86_64-linux.tar.gz root@{{ip_address}} --copy-host-keys --flake .#{{host}}
+    nix run github:nix-community/nixos-anywhere/main -- --extra-files "$root_dir" --generate-hardware-config nixos-facter ./hosts/{{host}}/facter.json --phases kexec,disko,install --kexec ./result/nixos-kexec-installer-x86_64-linux.tar.gz root@{{ip_address}} --copy-host-keys --flake .#{{host}}
 
 netboot:
     nix build -f ./lib/nix-expressions/netboot/system.nix -o /tmp/run-pixiecore

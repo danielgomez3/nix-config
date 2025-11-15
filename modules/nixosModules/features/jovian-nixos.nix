@@ -56,8 +56,8 @@ in {
       autoStart = true;
       updater.splash = "steamos";
       user = "${config.myVars.username}";
-      desktopSession = "gamescope-wayland";
-      # desktopSession = "plasma";
+      # desktopSession = "gamescope-wayland";
+      desktopSession = "plasma";
     };
   };
 

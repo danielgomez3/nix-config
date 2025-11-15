@@ -88,5 +88,6 @@ in {
     lm_sensors
     gnutar
     arp-scan # this one is sick: arp-scan --localnet
+    nmap # even better: nmap -sn <ip>/24
   ];
 }

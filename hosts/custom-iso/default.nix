@@ -22,4 +22,8 @@
   myNixOS = {
     bundles.base-system.enable = true;
   };
+
+  home-manager.users.${config.myVars.username}.myHomeManager = {
+    transitory.enable = true;
+  };
 }
