@@ -22,5 +22,8 @@
   myNixOS = {
     bundles.base-system.enable = true;
     server-with-lid.enable = true;
+    gnupg.enable = false;
   };
+  # home-manager.users.${config.myVars.username}.myHomeManager = {
+  # };
 }

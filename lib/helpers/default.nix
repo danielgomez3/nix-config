@@ -4,8 +4,6 @@
   inputs,
   lib,
 }: let
-  # myHelper = (import ./default.nix) {inherit inputs;};
-  outputs = inputs.self.outputs;
 in rec {
   # ================================================================ #
   # =                            My Lib                            = #

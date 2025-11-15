@@ -81,7 +81,7 @@ in {
     stylix.enable = lib.mkDefault true;
     good-repl-access.enable = lib.mkDefault true;
     fonts.enable = lib.mkDefault true; # TODO change where fonts go, this could be too big
-    gnupg.enable = lib.mkDefault true;
+    gnupg.enable = lib.mkDefault false;
   };
 
   swapDevices = [
@@ -90,9 +90,6 @@ in {
       size = 16 * 1024; # 16GB
     }
   ];
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
   environment = {
     systemPackages = with pkgs; [
       # hapless # This now uses the overridden version from the overlay

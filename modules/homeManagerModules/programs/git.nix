@@ -4,13 +4,12 @@
   config,
   ...
 }: {
-  #
-  services.gpg-agent = {
-    enable = true;
-    defaultCacheTtl = 1800; # Cache passphrase for 30 minutes
-    # enableSshSupport = true;
-    # pinentryFlavor = "gnome3"; # Use "qt", "curses", etc., based on your DE
-  };
+  # services.gpg-agent = {
+  #   enable = true;
+  #   defaultCacheTtl = 1800; # Cache passphrase for 30 minutes
+  #   # enableSshSupport = true;
+  #   # pinentryFlavor = "gnome3"; # Use "qt", "curses", etc., based on your DE
+  # };
 
   programs.gpg.enable = true;
 

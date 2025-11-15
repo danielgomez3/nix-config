@@ -10,16 +10,17 @@
 
   # To disable installing GNOME's suite of applications
   # and only be left with GNOME shell.
-  services.gnome.core-apps.enable = false;
+  services.gnome.core-apps.enable = true;
   services.gnome.core-developer-tools.enable = false;
   services.gnome.games.enable = false;
-  # environment.gnome.excludePackages = with pkgs; [ gnome-tour gnome-user-docs ];
+  environment.gnome.excludePackages = with pkgs; [gnome-tour gnome-user-docs];
 
   services.xserver.xkb.options = "caps:swapescape";
 
   systemd.services.NetworkManager-wait-online.enable = false; # HACK: This is giving me problems for some reason..
 
   environment.systemPackages = with pkgs; [
+    nautilus
     gnomeExtensions.blur-my-shell
     gnomeExtensions.pop-shell
     gnomeExtensions.hide-top-bar

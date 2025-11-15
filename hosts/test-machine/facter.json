@@ -477,8 +477,8 @@
     ],
     "camera": [
       {
-        "index": 34,
-        "attached_to": 36,
+        "index": 31,
+        "attached_to": 44,
         "class_list": [
           "camera",
           "usb"
@@ -513,8 +513,8 @@
           "value": 0
         },
         "model": "Ricoh Company Integrated Camera",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb3/3-1/3-1.6/3-1.6:1.1",
-        "sysfs_bus_id": "3-1.6:1.1",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6:1.1",
+        "sysfs_bus_id": "1-1.6:1.1",
         "resources": [
           {
             "type": "baud",
@@ -578,8 +578,8 @@
         "module_alias": "usb:v5986p02D5d1011dcEFdsc02dp01ic0Eisc02ip00in01"
       },
       {
-        "index": 44,
-        "attached_to": 36,
+        "index": 42,
+        "attached_to": 44,
         "class_list": [
           "camera",
           "usb"
@@ -614,8 +614,8 @@
           "value": 0
         },
         "model": "Ricoh Company Integrated Camera",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb3/3-1/3-1.6/3-1.6:1.0",
-        "sysfs_bus_id": "3-1.6:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6:1.0",
+        "sysfs_bus_id": "1-1.6:1.0",
         "resources": [
           {
             "type": "baud",
@@ -861,7 +861,7 @@
           "itlb_multihit",
           "mmio_unknown"
         ],
-        "bogo": 4988.34,
+        "bogo": 4988.42,
         "cache": 3072,
         "units": 16,
         "physical_id": 0,
@@ -1198,95 +1198,8 @@
     ],
     "hub": [
       {
-        "index": 33,
-        "attached_to": 21,
-        "class_list": [
-          "usb",
-          "hub"
-        ],
-        "bus_type": {
-          "hex": "0086",
-          "name": "USB",
-          "value": 134
-        },
-        "slot": {
-          "bus": 0,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "010a",
-          "name": "Hub",
-          "value": 266
-        },
-        "vendor": {
-          "hex": "1d6b",
-          "name": "Linux 6.14.10 ehci_hcd",
-          "value": 7531
-        },
-        "device": {
-          "hex": "0002",
-          "name": "EHCI Host Controller",
-          "value": 2
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "6.14",
-          "value": 0
-        },
-        "serial": "0000:00:1a.0",
-        "model": "Linux 6.14.10 ehci_hcd EHCI Host Controller",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb3/3-0:1.0",
-        "sysfs_bus_id": "3-0:1.0",
-        "resources": [
-          {
-            "type": "baud",
-            "speed": 480000000,
-            "bits": 0,
-            "stop_bits": 0,
-            "parity": 0,
-            "handshake": 0
-          }
-        ],
-        "detail": {
-          "device_class": {
-            "hex": "0009",
-            "name": "hub",
-            "value": 9
-          },
-          "device_subclass": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "device_protocol": 0,
-          "interface_class": {
-            "hex": "0009",
-            "name": "hub",
-            "value": 9
-          },
-          "interface_subclass": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "interface_protocol": 0,
-          "interface_number": 0,
-          "interface_alternate_setting": 0
-        },
-        "hotplug": "usb",
-        "driver": "hub",
-        "driver_module": "usbcore",
-        "drivers": [
-          "hub"
-        ],
-        "driver_modules": [
-          "usbcore"
-        ],
-        "module_alias": "usb:v1D6Bp0002d0614dc09dsc00dp00ic09isc00ip00in00"
-      },
-      {
-        "index": 36,
-        "attached_to": 33,
+        "index": 34,
+        "attached_to": 45,
         "class_list": [
           "usb",
           "hub"
@@ -1314,8 +1227,8 @@
           "value": 36
         },
         "model": "Hub",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb3/3-1/3-1:1.0",
-        "sysfs_bus_id": "3-1:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1:1.0",
+        "sysfs_bus_id": "2-1:1.0",
         "resources": [
           {
             "type": "baud",
@@ -1364,94 +1277,7 @@
         "module_alias": "usb:v8087p0024d0000dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 37,
-        "attached_to": 22,
-        "class_list": [
-          "usb",
-          "hub"
-        ],
-        "bus_type": {
-          "hex": "0086",
-          "name": "USB",
-          "value": 134
-        },
-        "slot": {
-          "bus": 0,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "010a",
-          "name": "Hub",
-          "value": 266
-        },
-        "vendor": {
-          "hex": "1d6b",
-          "name": "Linux 6.14.10 ehci_hcd",
-          "value": 7531
-        },
-        "device": {
-          "hex": "0002",
-          "name": "EHCI Host Controller",
-          "value": 2
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "6.14",
-          "value": 0
-        },
-        "serial": "0000:00:1d.0",
-        "model": "Linux 6.14.10 ehci_hcd EHCI Host Controller",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/usb4/4-0:1.0",
-        "sysfs_bus_id": "4-0:1.0",
-        "resources": [
-          {
-            "type": "baud",
-            "speed": 480000000,
-            "bits": 0,
-            "stop_bits": 0,
-            "parity": 0,
-            "handshake": 0
-          }
-        ],
-        "detail": {
-          "device_class": {
-            "hex": "0009",
-            "name": "hub",
-            "value": 9
-          },
-          "device_subclass": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "device_protocol": 0,
-          "interface_class": {
-            "hex": "0009",
-            "name": "hub",
-            "value": 9
-          },
-          "interface_subclass": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "interface_protocol": 0,
-          "interface_number": 0,
-          "interface_alternate_setting": 0
-        },
-        "hotplug": "usb",
-        "driver": "hub",
-        "driver_module": "usbcore",
-        "drivers": [
-          "hub"
-        ],
-        "driver_modules": [
-          "usbcore"
-        ],
-        "module_alias": "usb:v1D6Bp0002d0614dc09dsc00dp00ic09isc00ip00in00"
-      },
-      {
-        "index": 40,
+        "index": 35,
         "attached_to": 25,
         "class_list": [
           "usb",
@@ -1488,8 +1314,8 @@
         },
         "serial": "0000:00:14.0",
         "model": "Linux 6.14.10 xhci-hcd xHCI Host Controller",
-        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-0:1.0",
-        "sysfs_bus_id": "1-0:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb3/3-0:1.0",
+        "sysfs_bus_id": "3-0:1.0",
         "resources": [
           {
             "type": "baud",
@@ -1538,8 +1364,172 @@
         "module_alias": "usb:v1D6Bp0002d0614dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 43,
-        "attached_to": 37,
+        "index": 37,
+        "attached_to": 25,
+        "class_list": [
+          "usb",
+          "hub"
+        ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "010a",
+          "name": "Hub",
+          "value": 266
+        },
+        "vendor": {
+          "hex": "1d6b",
+          "name": "Linux 6.14.10 xhci-hcd",
+          "value": 7531
+        },
+        "device": {
+          "hex": "0003",
+          "name": "xHCI Host Controller",
+          "value": 3
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "6.14",
+          "value": 0
+        },
+        "serial": "0000:00:14.0",
+        "model": "Linux 6.14.10 xhci-hcd xHCI Host Controller",
+        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb4/4-0:1.0",
+        "sysfs_bus_id": "4-0:1.0",
+        "detail": {
+          "device_class": {
+            "hex": "0009",
+            "name": "hub",
+            "value": 9
+          },
+          "device_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_protocol": 3,
+          "interface_class": {
+            "hex": "0009",
+            "name": "hub",
+            "value": 9
+          },
+          "interface_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "interface_protocol": 0,
+          "interface_number": 0,
+          "interface_alternate_setting": 0
+        },
+        "hotplug": "usb",
+        "driver": "hub",
+        "driver_module": "usbcore",
+        "drivers": [
+          "hub"
+        ],
+        "driver_modules": [
+          "usbcore"
+        ],
+        "module_alias": "usb:v1D6Bp0003d0614dc09dsc00dp03ic09isc00ip00in00"
+      },
+      {
+        "index": 41,
+        "attached_to": 21,
+        "class_list": [
+          "usb",
+          "hub"
+        ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "010a",
+          "name": "Hub",
+          "value": 266
+        },
+        "vendor": {
+          "hex": "1d6b",
+          "name": "Linux 6.14.10 ehci_hcd",
+          "value": 7531
+        },
+        "device": {
+          "hex": "0002",
+          "name": "EHCI Host Controller",
+          "value": 2
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "6.14",
+          "value": 0
+        },
+        "serial": "0000:00:1a.0",
+        "model": "Linux 6.14.10 ehci_hcd EHCI Host Controller",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-0:1.0",
+        "sysfs_bus_id": "1-0:1.0",
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 480000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          }
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "0009",
+            "name": "hub",
+            "value": 9
+          },
+          "device_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_protocol": 0,
+          "interface_class": {
+            "hex": "0009",
+            "name": "hub",
+            "value": 9
+          },
+          "interface_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "interface_protocol": 0,
+          "interface_number": 0,
+          "interface_alternate_setting": 0
+        },
+        "hotplug": "usb",
+        "driver": "hub",
+        "driver_module": "usbcore",
+        "drivers": [
+          "hub"
+        ],
+        "driver_modules": [
+          "usbcore"
+        ],
+        "module_alias": "usb:v1D6Bp0002d0614dc09dsc00dp00ic09isc00ip00in00"
+      },
+      {
+        "index": 44,
+        "attached_to": 41,
         "class_list": [
           "usb",
           "hub"
@@ -1567,8 +1557,8 @@
           "value": 36
         },
         "model": "Hub",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/usb4/4-1/4-1:1.0",
-        "sysfs_bus_id": "4-1:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1:1.0",
+        "sysfs_bus_id": "1-1:1.0",
         "resources": [
           {
             "type": "baud",
@@ -1618,7 +1608,7 @@
       },
       {
         "index": 45,
-        "attached_to": 25,
+        "attached_to": 22,
         "class_list": [
           "usb",
           "hub"
@@ -1639,23 +1629,33 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.14.10 xhci-hcd",
+          "name": "Linux 6.14.10 ehci_hcd",
           "value": 7531
         },
         "device": {
-          "hex": "0003",
-          "name": "xHCI Host Controller",
-          "value": 3
+          "hex": "0002",
+          "name": "EHCI Host Controller",
+          "value": 2
         },
         "revision": {
           "hex": "0000",
           "name": "6.14",
           "value": 0
         },
-        "serial": "0000:00:14.0",
-        "model": "Linux 6.14.10 xhci-hcd xHCI Host Controller",
-        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb2/2-0:1.0",
+        "serial": "0000:00:1d.0",
+        "model": "Linux 6.14.10 ehci_hcd EHCI Host Controller",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 480000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          }
+        ],
         "detail": {
           "device_class": {
             "hex": "0009",
@@ -1667,7 +1667,7 @@
             "name": "per_interface",
             "value": 0
           },
-          "device_protocol": 3,
+          "device_protocol": 0,
           "interface_class": {
             "hex": "0009",
             "name": "hub",
@@ -1691,7 +1691,7 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0003d0614dc09dsc00dp03ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0002d0614dc09dsc00dp00ic09isc00ip00in00"
       }
     ],
     "memory": [
@@ -1833,7 +1833,7 @@
           "hex": "0007",
           "value": 7
         },
-        "sysfs_id": "/devices/platform/i8042/serio1/input/input6",
+        "sysfs_id": "/devices/platform/i8042/serio1/input/input5",
         "unix_device_names": [
           "/dev/input/event9",
           "/dev/input/ + handler"
@@ -2030,8 +2030,8 @@
         "module_alias": "pci:v00008086d00001502sv000017AAsd000021F3bc02sc00i00"
       },
       {
-        "index": 41,
-        "attached_to": 40,
+        "index": 36,
+        "attached_to": 35,
         "class_list": [
           "network_controller",
           "usb"
@@ -2071,8 +2071,8 @@
           "value": 0
         },
         "model": "Sierra Wireless MC8355 - Gobi 3000(TM) Module",
-        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-4/1-4:1.0",
-        "sysfs_bus_id": "1-4:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb3/3-4/3-4:1.0",
+        "sysfs_bus_id": "3-4:1.0",
         "unix_device_name": "wwp0s20u4",
         "unix_device_names": [
           "wwp0s20u4"
@@ -2088,7 +2088,7 @@
           },
           {
             "type": "hwaddr",
-            "address": 51
+            "address": 101
           }
         ],
         "detail": {
@@ -2132,7 +2132,7 @@
     "network_interface": [
       {
         "index": 46,
-        "attached_to": 41,
+        "attached_to": 36,
         "class_list": [
           "network_interface"
         ],
@@ -2148,7 +2148,7 @@
         },
         "model": "Ethernet network interface",
         "sysfs_id": "/class/net/wwp0s20u4",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:14.0/usb1/1-4/1-4:1.0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:14.0/usb3/3-4/3-4:1.0",
         "unix_device_name": "wwp0s20u4",
         "unix_device_names": [
           "wwp0s20u4"
@@ -2156,7 +2156,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 51
+            "address": 101
           }
         ],
         "driver": "qmi_wwan",
@@ -2170,6 +2170,29 @@
       },
       {
         "index": 47,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_name": "lo",
+        "unix_device_names": [
+          "lo"
+        ]
+      },
+      {
+        "index": 48,
         "attached_to": 17,
         "class_list": [
           "network_interface"
@@ -2208,29 +2231,6 @@
         ],
         "driver_modules": [
           "e1000e"
-        ]
-      },
-      {
-        "index": 48,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_name": "lo",
-        "unix_device_names": [
-          "lo"
         ]
       }
     ],
@@ -2796,225 +2796,7 @@
     "usb": [
       {
         "index": 30,
-        "attached_to": 40,
-        "class_list": [
-          "usb",
-          "unknown"
-        ],
-        "bus_type": {
-          "hex": "0086",
-          "name": "USB",
-          "value": 134
-        },
-        "slot": {
-          "bus": 0,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "0007",
-          "name": "Communication controller",
-          "value": 7
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Serial controller",
-          "value": 0
-        },
-        "pci_interface": {
-          "hex": "0080",
-          "value": 128
-        },
-        "vendor": {
-          "hex": "1199",
-          "name": "Sierra Wireless Inc",
-          "value": 4505
-        },
-        "device": {
-          "hex": "9013",
-          "name": "Sierra Wireless MC8355 - Gobi 3000(TM) Module",
-          "value": 36883
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "0.02",
-          "value": 0
-        },
-        "model": "Sierra Wireless MC8355 - Gobi 3000(TM) Module",
-        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-4/1-4:1.3",
-        "sysfs_bus_id": "1-4:1.3",
-        "unix_device_name": "/dev/ttyUSB2",
-        "unix_device_number": {
-          "type": 99,
-          "major": 188,
-          "minor": 2,
-          "range": 1
-        },
-        "unix_device_names": [
-          "/dev/serial/by-id/usb-Sierra_Wireless_Inc_Sierra_Wireless_MC8355_-_Gobi_3000_TM__Module-if03-port0",
-          "/dev/serial/by-path/pci-0000:00:14.0-usb-0:4:1.3-port0",
-          "/dev/serial/by-path/pci-0000:00:14.0-usbv2-0:4:1.3-port0",
-          "/dev/ttyUSB2"
-        ],
-        "resources": [
-          {
-            "type": "baud",
-            "speed": 480000000,
-            "bits": 0,
-            "stop_bits": 0,
-            "parity": 0,
-            "handshake": 0
-          }
-        ],
-        "detail": {
-          "device_class": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "device_subclass": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "device_protocol": 0,
-          "interface_class": {
-            "hex": "00ff",
-            "name": "vendor_spec",
-            "value": 255
-          },
-          "interface_subclass": {
-            "hex": "00ff",
-            "name": "vendor_spec",
-            "value": 255
-          },
-          "interface_protocol": 255,
-          "interface_number": 3,
-          "interface_alternate_setting": 0
-        },
-        "hotplug": "usb",
-        "driver": "qcserial",
-        "driver_module": "qcserial",
-        "drivers": [
-          "qcserial"
-        ],
-        "driver_modules": [
-          "qcserial",
-          "usbserial"
-        ],
-        "module_alias": "usb:v1199p9013d0002dc00dsc00dp00icFFiscFFipFFin03"
-      },
-      {
-        "index": 31,
-        "attached_to": 40,
-        "class_list": [
-          "usb",
-          "unknown"
-        ],
-        "bus_type": {
-          "hex": "0086",
-          "name": "USB",
-          "value": 134
-        },
-        "slot": {
-          "bus": 0,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "0007",
-          "name": "Communication controller",
-          "value": 7
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Serial controller",
-          "value": 0
-        },
-        "pci_interface": {
-          "hex": "0080",
-          "value": 128
-        },
-        "vendor": {
-          "hex": "1199",
-          "name": "Sierra Wireless Inc",
-          "value": 4505
-        },
-        "device": {
-          "hex": "9013",
-          "name": "Sierra Wireless MC8355 - Gobi 3000(TM) Module",
-          "value": 36883
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "0.02",
-          "value": 0
-        },
-        "model": "Sierra Wireless MC8355 - Gobi 3000(TM) Module",
-        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-4/1-4:1.1",
-        "sysfs_bus_id": "1-4:1.1",
-        "unix_device_name": "/dev/ttyUSB0",
-        "unix_device_number": {
-          "type": 99,
-          "major": 188,
-          "minor": 0,
-          "range": 1
-        },
-        "unix_device_names": [
-          "/dev/serial/by-id/usb-Sierra_Wireless_Inc_Sierra_Wireless_MC8355_-_Gobi_3000_TM__Module-if01-port0",
-          "/dev/serial/by-path/pci-0000:00:14.0-usb-0:4:1.1-port0",
-          "/dev/serial/by-path/pci-0000:00:14.0-usbv2-0:4:1.1-port0",
-          "/dev/ttyUSB0"
-        ],
-        "resources": [
-          {
-            "type": "baud",
-            "speed": 480000000,
-            "bits": 0,
-            "stop_bits": 0,
-            "parity": 0,
-            "handshake": 0
-          }
-        ],
-        "detail": {
-          "device_class": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "device_subclass": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "device_protocol": 0,
-          "interface_class": {
-            "hex": "00ff",
-            "name": "vendor_spec",
-            "value": 255
-          },
-          "interface_subclass": {
-            "hex": "00ff",
-            "name": "vendor_spec",
-            "value": 255
-          },
-          "interface_protocol": 255,
-          "interface_number": 1,
-          "interface_alternate_setting": 0
-        },
-        "hotplug": "usb",
-        "driver": "qcserial",
-        "driver_module": "qcserial",
-        "drivers": [
-          "qcserial"
-        ],
-        "driver_modules": [
-          "qcserial",
-          "usbserial"
-        ],
-        "module_alias": "usb:v1199p9013d0002dc00dsc00dp00icFFiscFFipFFin01"
-      },
-      {
-        "index": 32,
-        "attached_to": 36,
+        "attached_to": 44,
         "class_list": [
           "usb",
           "unknown"
@@ -3055,8 +2837,8 @@
         },
         "serial": "B8763FA8CA9D",
         "model": "Broadcom BCM20702A0",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb3/3-1/3-1.4/3-1.4:1.2",
-        "sysfs_bus_id": "3-1.4:1.2",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.4/1-1.4:1.2",
+        "sysfs_bus_id": "1-1.4:1.2",
         "resources": [
           {
             "type": "baud",
@@ -3105,100 +2887,8 @@
         "module_alias": "usb:v0A5Cp21E6d0112dcFFdsc01dp01icFFiscFFipFFin02"
       },
       {
-        "index": 35,
-        "attached_to": 36,
-        "class_list": [
-          "usb",
-          "unknown"
-        ],
-        "bus_type": {
-          "hex": "0086",
-          "name": "USB",
-          "value": 134
-        },
-        "slot": {
-          "bus": 0,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "0000",
-          "name": "Unclassified device",
-          "value": 0
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Unclassified device",
-          "value": 0
-        },
-        "vendor": {
-          "hex": "0a5c",
-          "name": "Broadcom Corp",
-          "value": 2652
-        },
-        "device": {
-          "hex": "21e6",
-          "name": "BCM20702A0",
-          "value": 8678
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "1.12",
-          "value": 0
-        },
-        "serial": "B8763FA8CA9D",
-        "model": "Broadcom BCM20702A0",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb3/3-1/3-1.4/3-1.4:1.0",
-        "sysfs_bus_id": "3-1.4:1.0",
-        "resources": [
-          {
-            "type": "baud",
-            "speed": 12000000,
-            "bits": 0,
-            "stop_bits": 0,
-            "parity": 0,
-            "handshake": 0
-          }
-        ],
-        "detail": {
-          "device_class": {
-            "hex": "00ff",
-            "name": "vendor_spec",
-            "value": 255
-          },
-          "device_subclass": {
-            "hex": "0001",
-            "name": "audio",
-            "value": 1
-          },
-          "device_protocol": 1,
-          "interface_class": {
-            "hex": "00ff",
-            "name": "vendor_spec",
-            "value": 255
-          },
-          "interface_subclass": {
-            "hex": "0001",
-            "name": "audio",
-            "value": 1
-          },
-          "interface_protocol": 1,
-          "interface_number": 0,
-          "interface_alternate_setting": 0
-        },
-        "hotplug": "usb",
-        "driver": "btusb",
-        "driver_module": "btusb",
-        "drivers": [
-          "btusb"
-        ],
-        "driver_modules": [
-          "btusb"
-        ],
-        "module_alias": "usb:v0A5Cp21E6d0112dcFFdsc01dp01icFFisc01ip01in00"
-      },
-      {
-        "index": 38,
-        "attached_to": 40,
+        "index": 32,
+        "attached_to": 35,
         "class_list": [
           "usb",
           "unknown"
@@ -3242,8 +2932,8 @@
           "value": 0
         },
         "model": "Sierra Wireless MC8355 - Gobi 3000(TM) Module",
-        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-4/1-4:1.2",
-        "sysfs_bus_id": "1-4:1.2",
+        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb3/3-4/3-4:1.2",
+        "sysfs_bus_id": "3-4:1.2",
         "unix_device_name": "/dev/ttyUSB1",
         "unix_device_number": {
           "type": 99,
@@ -3306,8 +2996,8 @@
         "module_alias": "usb:v1199p9013d0002dc00dsc00dp00icFFiscFFipFFin02"
       },
       {
-        "index": 39,
-        "attached_to": 36,
+        "index": 33,
+        "attached_to": 44,
         "class_list": [
           "usb",
           "unknown"
@@ -3348,8 +3038,100 @@
         },
         "serial": "B8763FA8CA9D",
         "model": "Broadcom BCM20702A0",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb3/3-1/3-1.4/3-1.4:1.3",
-        "sysfs_bus_id": "3-1.4:1.3",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.4/1-1.4:1.0",
+        "sysfs_bus_id": "1-1.4:1.0",
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 12000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          }
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "00ff",
+            "name": "vendor_spec",
+            "value": 255
+          },
+          "device_subclass": {
+            "hex": "0001",
+            "name": "audio",
+            "value": 1
+          },
+          "device_protocol": 1,
+          "interface_class": {
+            "hex": "00ff",
+            "name": "vendor_spec",
+            "value": 255
+          },
+          "interface_subclass": {
+            "hex": "0001",
+            "name": "audio",
+            "value": 1
+          },
+          "interface_protocol": 1,
+          "interface_number": 0,
+          "interface_alternate_setting": 0
+        },
+        "hotplug": "usb",
+        "driver": "btusb",
+        "driver_module": "btusb",
+        "drivers": [
+          "btusb"
+        ],
+        "driver_modules": [
+          "btusb"
+        ],
+        "module_alias": "usb:v0A5Cp21E6d0112dcFFdsc01dp01icFFisc01ip01in00"
+      },
+      {
+        "index": 38,
+        "attached_to": 44,
+        "class_list": [
+          "usb",
+          "unknown"
+        ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0000",
+          "name": "Unclassified device",
+          "value": 0
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Unclassified device",
+          "value": 0
+        },
+        "vendor": {
+          "hex": "0a5c",
+          "name": "Broadcom Corp",
+          "value": 2652
+        },
+        "device": {
+          "hex": "21e6",
+          "name": "BCM20702A0",
+          "value": 8678
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "1.12",
+          "value": 0
+        },
+        "serial": "B8763FA8CA9D",
+        "model": "Broadcom BCM20702A0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.4/1-1.4:1.3",
+        "sysfs_bus_id": "1-1.4:1.3",
         "resources": [
           {
             "type": "baud",
@@ -3390,8 +3172,117 @@
         "module_alias": "usb:v0A5Cp21E6d0112dcFFdsc01dp01icFEisc01ip01in03"
       },
       {
-        "index": 42,
-        "attached_to": 36,
+        "index": 39,
+        "attached_to": 35,
+        "class_list": [
+          "usb",
+          "unknown"
+        ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0007",
+          "name": "Communication controller",
+          "value": 7
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Serial controller",
+          "value": 0
+        },
+        "pci_interface": {
+          "hex": "0080",
+          "value": 128
+        },
+        "vendor": {
+          "hex": "1199",
+          "name": "Sierra Wireless Inc",
+          "value": 4505
+        },
+        "device": {
+          "hex": "9013",
+          "name": "Sierra Wireless MC8355 - Gobi 3000(TM) Module",
+          "value": 36883
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "0.02",
+          "value": 0
+        },
+        "model": "Sierra Wireless MC8355 - Gobi 3000(TM) Module",
+        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb3/3-4/3-4:1.3",
+        "sysfs_bus_id": "3-4:1.3",
+        "unix_device_name": "/dev/ttyUSB2",
+        "unix_device_number": {
+          "type": 99,
+          "major": 188,
+          "minor": 2,
+          "range": 1
+        },
+        "unix_device_names": [
+          "/dev/serial/by-id/usb-Sierra_Wireless_Inc_Sierra_Wireless_MC8355_-_Gobi_3000_TM__Module-if03-port0",
+          "/dev/serial/by-path/pci-0000:00:14.0-usb-0:4:1.3-port0",
+          "/dev/serial/by-path/pci-0000:00:14.0-usbv2-0:4:1.3-port0",
+          "/dev/ttyUSB2"
+        ],
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 480000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          }
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_protocol": 0,
+          "interface_class": {
+            "hex": "00ff",
+            "name": "vendor_spec",
+            "value": 255
+          },
+          "interface_subclass": {
+            "hex": "00ff",
+            "name": "vendor_spec",
+            "value": 255
+          },
+          "interface_protocol": 255,
+          "interface_number": 3,
+          "interface_alternate_setting": 0
+        },
+        "hotplug": "usb",
+        "driver": "qcserial",
+        "driver_module": "qcserial",
+        "drivers": [
+          "qcserial"
+        ],
+        "driver_modules": [
+          "qcserial",
+          "usbserial"
+        ],
+        "module_alias": "usb:v1199p9013d0002dc00dsc00dp00icFFiscFFipFFin03"
+      },
+      {
+        "index": 40,
+        "attached_to": 44,
         "class_list": [
           "usb",
           "unknown"
@@ -3432,8 +3323,8 @@
         },
         "serial": "B8763FA8CA9D",
         "model": "Broadcom BCM20702A0",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb3/3-1/3-1.4/3-1.4:1.1",
-        "sysfs_bus_id": "3-1.4:1.1",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.4/1-1.4:1.1",
+        "sysfs_bus_id": "1-1.4:1.1",
         "resources": [
           {
             "type": "baud",
@@ -3480,6 +3371,115 @@
           "btusb"
         ],
         "module_alias": "usb:v0A5Cp21E6d0112dcFFdsc01dp01icFFisc01ip01in01"
+      },
+      {
+        "index": 43,
+        "attached_to": 35,
+        "class_list": [
+          "usb",
+          "unknown"
+        ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0007",
+          "name": "Communication controller",
+          "value": 7
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Serial controller",
+          "value": 0
+        },
+        "pci_interface": {
+          "hex": "0080",
+          "value": 128
+        },
+        "vendor": {
+          "hex": "1199",
+          "name": "Sierra Wireless Inc",
+          "value": 4505
+        },
+        "device": {
+          "hex": "9013",
+          "name": "Sierra Wireless MC8355 - Gobi 3000(TM) Module",
+          "value": 36883
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "0.02",
+          "value": 0
+        },
+        "model": "Sierra Wireless MC8355 - Gobi 3000(TM) Module",
+        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb3/3-4/3-4:1.1",
+        "sysfs_bus_id": "3-4:1.1",
+        "unix_device_name": "/dev/ttyUSB0",
+        "unix_device_number": {
+          "type": 99,
+          "major": 188,
+          "minor": 0,
+          "range": 1
+        },
+        "unix_device_names": [
+          "/dev/serial/by-id/usb-Sierra_Wireless_Inc_Sierra_Wireless_MC8355_-_Gobi_3000_TM__Module-if01-port0",
+          "/dev/serial/by-path/pci-0000:00:14.0-usb-0:4:1.1-port0",
+          "/dev/serial/by-path/pci-0000:00:14.0-usbv2-0:4:1.1-port0",
+          "/dev/ttyUSB0"
+        ],
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 480000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          }
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_protocol": 0,
+          "interface_class": {
+            "hex": "00ff",
+            "name": "vendor_spec",
+            "value": 255
+          },
+          "interface_subclass": {
+            "hex": "00ff",
+            "name": "vendor_spec",
+            "value": 255
+          },
+          "interface_protocol": 255,
+          "interface_number": 1,
+          "interface_alternate_setting": 0
+        },
+        "hotplug": "usb",
+        "driver": "qcserial",
+        "driver_module": "qcserial",
+        "drivers": [
+          "qcserial"
+        ],
+        "driver_modules": [
+          "qcserial",
+          "usbserial"
+        ],
+        "module_alias": "usb:v1199p9013d0002dc00dsc00dp00icFFiscFFipFFin01"
       }
     ],
     "usb_controller": [

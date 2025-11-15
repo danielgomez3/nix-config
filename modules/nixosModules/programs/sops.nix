@@ -39,10 +39,6 @@ in {
           # group = "vaultwarden";
           # mode = "0400"; # Read-only for vaultwarden user
         };
-        "gpg-private-key" = {
-          mode = "0400";
-          path = "/home/${username}/.gnupg/keys/git-signing-key.asc";
-        };
         "CLOUDFLARE_API_KEY" = {};
         "CLOUDFLARE_EMAIL" = {};
         "nextcloud-secret-pass" = {};

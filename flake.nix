@@ -50,7 +50,8 @@
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
     jovian.inputs.nixpkgs.follows = "nixpkgs-unstable";
     alga.url = "github:Tenzer/alga"; # turn on TV's with WebOS
-    nixos-generators.url = "github:nix-community/nixos-generators/"; # create custom kexec tarballs, etc.
+    nixos-generators.url = "github:nix-community/nixos-generators"; # create custom kexec tarballs, etc.
+    nixos-generators.inputs.nixpkgs.follows = "nixpkgs"; # create custom kexec tarballs, etc.
     nixos-images.url = "github:nix-community/nixos-images/"; # get a kexec tarball to use
   };
 
@@ -105,13 +106,15 @@
           # "${self.outPath}/modules/nixosModules/features/server-with-lid.nix"
           # "${self.outPath}/modules/nixosModules/features/core-system.nix"
         ]).config.system.build.kexecInstallerTarball;
-
       custom-iso = inputs.nixos-generators.nixosGenerate {
         system = "x86_64-linux";
         format = "iso";
         modules =
           commonImports
           "custom-iso";
+        specialArgs = {
+          inherit inputs self pkgsUnstable myHelper;
+        };
       };
     };
 
