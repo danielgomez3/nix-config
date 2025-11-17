@@ -76,7 +76,7 @@ in {
     hardware-examination.enable = lib.mkDefault true;
     coding-environment.enable = lib.mkDefault true;
     avahi.enable = lib.mkDefault true;
-    internet.enable = lib.mkDefault true;
+    network-config.enable = lib.mkDefault true;
     tailscale.enable = lib.mkDefault false;
     stylix.enable = lib.mkDefault true;
     good-repl-access.enable = lib.mkDefault true;

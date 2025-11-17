@@ -15,6 +15,7 @@ in {
   myNixOS = {
     openssh.enable = lib.mkDefault true;
     sops.enable = lib.mkDefault true;
+    user-config.enable = lib.mkDefault true;
   };
   home-manager.users.${config.myVars.username}.myHomeManager = {
     cli-apps.enable = lib.mkDefault true;
@@ -42,19 +43,6 @@ in {
     LC_PAPER = "en_US.UTF-8";
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
-  };
-
-  users = {
-    # Define a user account. Don't forget to set a password with 'passwd'.
-    mutableUsers = false; # Required for a password 'passwd' to be set via sops during system activation (over anything done imperatively)!
-    users.root.hashedPasswordFile = config.sops.secrets.user_password.path;
-    users.${config.myVars.username} = {
-      hashedPasswordFile = config.sops.secrets.user_password.path;
-      isNormalUser = true;
-      extraGroups = ["wheel"];
-      shell = pkgs.zsh;
-      ignoreShellProgramCheck = true;
-    };
   };
 
   nix.settings.auto-optimise-store = true; # Optimize store every build. May slow down rebuilds

@@ -32,6 +32,7 @@ in {
         };
         "dkim/private_key" = {};
         # "yubikey" = {};
+        "wifi_home.env" = {};
         "gmail_app_password" = {};
         "vaultwarden-env" = {
           # path = "/var/lib/vaultwarden/vaultwarden.env";
@@ -42,7 +43,6 @@ in {
         "CLOUDFLARE_API_KEY" = {};
         "CLOUDFLARE_EMAIL" = {};
         "nextcloud-secret-pass" = {};
-        "wireless.env" = {};
         "tailscale" = {};
         "borgbase/repo" = {};
         github_token = {

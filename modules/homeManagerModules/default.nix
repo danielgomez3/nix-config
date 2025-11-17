@@ -56,7 +56,7 @@ in {
         packages = with pkgs; [
           dig
           unzip
-          ffmpeg
+          # ffmpeg # failed build
           eza
           entr
           tldr

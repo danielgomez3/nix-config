@@ -73,11 +73,11 @@
       "${self.outPath}/hosts/${h}/disk-config.nix"
       inputs.nixos-facter-modules.nixosModules.facter
       inputs.home-manager.nixosModules.default
+      "${self.outPath}/modules/nixosModules"
+      "${self.outPath}/modules/homeManagerModules"
       inputs.sops-nix.nixosModules.sops
       inputs.disko.nixosModules.disko
       inputs.stylix.nixosModules.stylix
-      "${self.outPath}/modules/nixosModules"
-      "${self.outPath}/modules/homeManagerModules"
     ];
     myHelper = import ./lib/helpers/default.nix {
       inherit inputs;
@@ -107,17 +107,52 @@
           # "${self.outPath}/modules/nixosModules/features/server-with-lid.nix"
           # "${self.outPath}/modules/nixosModules/features/core-system.nix"
         ]).config.system.build.kexecInstallerTarball;
-      custom-iso = inputs.nixos-generators.nixosGenerate {
-        system = "x86_64-linux";
-        format = "iso";
-        modules =
-          commonImports
-          "custom-iso";
-        specialArgs = {
-          inherit inputs self pkgsUnstable myHelper;
-        };
+      # custom-iso = inputs.nixos-generators.nixosGenerate {
+      #   system = "x86_64-linux";
+      #   format = "iso";
+      #   modules = ["${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"];
+      #   specialArgs = {
+      #     inherit inputs self pkgsUnstable myHelper;
+      #   };
+      # };
+    };
+
+    custom-iso = self.nixosConfigurations.myIso.config.system.build.isoImage;
+
+    nixosConfigurations.myIso = inputs.nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        (inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+        inputs.home-manager.nixosModules.default
+        "${self.outPath}/modules/nixosModules"
+        "${self.outPath}/modules/homeManagerModules"
+        "${self.outPath}/hosts/custom-iso"
+        inputs.sops-nix.nixosModules.sops
+        inputs.stylix.nixosModules.stylix # XXX: not sure why this needs to even be h ere
+      ];
+      specialArgs = {
+        inherit inputs self pkgsUnstable myHelper;
       };
     };
+
+    # nixosConfigurations = {
+    # exampleIso = inputs.nixpkgs.lib.nixosSystem {
+    #   system = "x86_64-linux";
+    #   modules = [
+    #     ({
+    #       pkgs,
+    #       modulesPath,
+    #       ...
+    #     }: {
+    #       imports = [(modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")];
+    #       environment.systemPackages = [pkgs.neovim];
+    #     })
+    #   ];
+    #   specialArgs = {
+    #     inherit inputs self pkgsUnstable myHelper;
+    #   };
+    # };
+    # };
 
     nixosConfigurations.laptop = inputs.nixpkgs.lib.nixosSystem {
       modules =
@@ -234,7 +269,7 @@
     # };
 
     deploy.nodes.desktop = {
-      hostname = "desktop";
+      hostname = "192.168.1.159";
       sshUser = "root"; # username of the target machine
       fastConnection = true; # Enable pipelined copying
       profiles.system = {

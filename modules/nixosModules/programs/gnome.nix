@@ -21,6 +21,7 @@
 
   environment.systemPackages = with pkgs; [
     nautilus
+    gnome-sound-recorder
     gnomeExtensions.blur-my-shell
     gnomeExtensions.pop-shell
     gnomeExtensions.hide-top-bar

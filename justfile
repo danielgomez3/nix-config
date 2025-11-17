@@ -112,7 +112,7 @@ new host username block_device description:
 #     nix run github:nix-community/nixos-anywhere -- --extra-files "$root_dir" --generate-hardware-config nixos-generate-config ./hosts/{{host}}/hardware-configuration.nix root@{{ip_address}} --flake .#{{host}}
 
 [confirm("Are you sure you want to potentially erase target machine's disk and deploy?")]
-deploy host ip_address:
+deploy username host ip_address:
     # Create a custom kexec tarball for nixos-anywhere to use
     nix build .#custom-kexec
     # create buffer to migrate age keys
@@ -121,6 +121,9 @@ deploy host ip_address:
     mkdir -p "${root_dir}/root/.config/sops/age" && \
     cp ~/.config/sops/age/keys.txt "${root_dir}/root/.config/sops/age/keys.txt" && \
     nix run github:nix-community/nixos-anywhere/main -- --extra-files "$root_dir" --generate-hardware-config nixos-facter ./hosts/{{host}}/facter.json --phases kexec,disko,install --kexec ./result/nixos-kexec-installer-x86_64-linux.tar.gz root@{{ip_address}} --copy-host-keys --flake .#{{host}}
+    ssh {{username}}@{{host}} "ssh-keygen -t ed25519 -b 4096 -C '{{host}} key, danielgomezcoder@gmail.com'" -f /home/{{username}}/.ssh/id_ed25519 -N ""
+    ssh {{username}}@{{host}} "cat ~/.ssh/id_ed25519.pub" >> ~/.ssh/authorized_keys
+    ssh root@{{host}} "reboot"
 
 netboot:
     nix build -f ./lib/nix-expressions/netboot/system.nix -o /tmp/run-pixiecore

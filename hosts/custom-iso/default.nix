@@ -20,10 +20,19 @@
   };
 
   myNixOS = {
-    bundles.base-system.enable = true;
+    # bundles.base-system.enable = true; # TODO doesn't work!  change systemd boot..
+    # core-system.enable = true;
+    openssh.enable = true;
+    sops.enable = true;
+    user-config.enable = true;
+    wifi-config.enable = true;
   };
 
   home-manager.users.${config.myVars.username}.myHomeManager = {
-    transitory.enable = true;
+    # transitory.enable = true;
   };
+
+  # Donn't override minimal iso nixpkgs imp;ort!
+  # users.users.root.hashedPasswordFile = "";
+  # users.users.nixos.extraGroups = ["wheel"];
 }

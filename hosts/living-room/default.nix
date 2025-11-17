@@ -19,14 +19,15 @@
 
   myNixOS = {
     core-system.enable = true;
-    systemd-boot.enable = true;
+    # systemd-boot.enable = true;
     jovian-nixos.enable = true;
-    retroarch.enable = true;
+    retroarch.enable = false;
+    network-config.enable = true;
   };
 
-  services = {
-    lgtv = {
-      enable = true;
-    };
-  };
+  # services = {
+  #   lgtv = {
+  #     enable = true;
+  #   };
+  # };
 }

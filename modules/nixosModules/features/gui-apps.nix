@@ -42,10 +42,9 @@ in {
       hunspell
       hunspellDicts.uk_UA
       hunspellDicts.th_TH
-      cmus
       xournalpp
       feh
-      ardour
+      # ardour # failed build?
       audacity
       vlc
       evince
