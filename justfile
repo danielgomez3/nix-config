@@ -131,6 +131,10 @@ netboot:
     -sudo iptables -w -I nixos-fw -p tcp -m tcp --dport 64172 -j ACCEPT
     sudo $(realpath /tmp/run-pixiecore)
 
+test-iso:
+    nix build .#custom-iso
+    nix run nixpkgs#qemu -- -cdrom result/iso/*.iso -m 4096 -enable-kvm -vnc :1 &
+    nix run nixpkgs#novnc -- --vnc localhost:5901 &
 
 # To test my nix-darwin machine:
 # nix eval ".#darwinConfigurations.workLaptop.config.system.build.toplevel.drvPath"

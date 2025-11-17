@@ -10,7 +10,7 @@
 }: {
   imports = [
   ];
-  myVars.username = "daniel"; # Specific username for this machine
+  myVars.username = "nixos"; # Specific username for this machine
   myVars.hostname = "custom-iso"; # Specific hostname for this machine
   networking.hostName = config.myVars.hostname;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

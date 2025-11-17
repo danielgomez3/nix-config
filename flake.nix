@@ -122,13 +122,13 @@
     nixosConfigurations.myIso = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        (inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+        (inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix")
         inputs.home-manager.nixosModules.default
         "${self.outPath}/modules/nixosModules"
         "${self.outPath}/modules/homeManagerModules"
         "${self.outPath}/hosts/custom-iso"
         inputs.sops-nix.nixosModules.sops
-        inputs.stylix.nixosModules.stylix # XXX: not sure why this needs to even be h ere
+        inputs.stylix.nixosModules.stylix # XXX: not sure why this needs to even be here
       ];
       specialArgs = {
         inherit inputs self pkgsUnstable myHelper;
