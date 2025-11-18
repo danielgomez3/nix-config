@@ -48,7 +48,8 @@
       };
 
       "org/gnome/desktop/session" = {
-        idle-delay = "uint32 900";
+        # idle-delay = "uint32 900";
+        idle-delay = lib.gvariant.mkUint32 900; # Example: 300 seconds = 5 minutes
       };
 
       "org/gnome/desktop/peripherals/touchpad" = lib.mkIf config.myVars.isHardwareLimited {

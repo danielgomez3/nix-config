@@ -21,5 +21,8 @@
 
   myNixOS = {
     bundles.base-system.enable = true;
+    nvidia-support.enable = true;
+    # gnome.enable = true;
+    rdp-server-gnome.enable = true;
   };
 }

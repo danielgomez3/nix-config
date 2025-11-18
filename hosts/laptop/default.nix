@@ -24,6 +24,6 @@ in {
     laptop-device-settings.enable = true;
   };
   home-manager.users.${username}.myHomeManager = {
-    bundles.desktop-environment.enable = true;
+    # bundles.desktop-environment.enable = true;
   };
 }

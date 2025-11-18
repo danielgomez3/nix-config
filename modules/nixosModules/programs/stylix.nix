@@ -8,12 +8,10 @@
   stylix = {
     enable = true;
 
-    # TODO: Maybe make a new dir? Or maybe make this path more pure with a variable.
-    # image = "${self.outPath}/modules/nixosModules/additional/wallpapers/rose-pine-cat.png";
-    image = "${self.outPath}/modules/nixosModules/additional/wallpapers/ice-pink.png";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    # image = "${self.outPath}/modules/nixosModules/additional/wallpapers/nixlogo-bluepink-background-blue.png";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
 
-    # programs.firefox.enable = true;
+    image = "${self.outPath}/modules/nixosModules/additional/wallpapers/theme-darktooth-name-nixosblackgrey.jpg";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/default-dark.yaml";
   };
 }

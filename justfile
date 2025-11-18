@@ -8,6 +8,7 @@ host := "`hostname`"
 msg_default := "System build failed, commit broken!"
 msg_build := "No commit message given, building system, commit possibly broken!"
 msg_success := "Successful system build and/or apply to targets:" 
+# iso := `ls result/iso/*.iso`
 
 [confirm("This will possibly break configuration, do not use lightly.. (y/n)")]
 update:
@@ -17,23 +18,22 @@ update:
 _update_secrets:
     @nix flake update mysecrets
 
-[confirm("WARNING: commiting without testing. Not a good idea. Continue?")]
-commit:
-    @read -p "(optional) Amend commit msg: " amended_msg ; \
-    amended_msg=${msg:-"{{msg_success}}"}; \
-    git add --all; \
-    git commit --amend -m "$amended_msg"
-    
+   
+push:
+    git add -A :/
+    git commit
+    git push
     
 # target examples (default: your hostname):
-# desktop,server
-# laptop,server,desktop
+# just apply laptop,server,desktop
+apply-remote:
+    nohup for i in {server,test-machine,nas-server,llm-machine,living-room}; do just deploy-rs "$i"; done > /var/log/just-apply-remote.log
+    
+
 apply target=(host):
     #!/usr/bin/env bash
     just _update_secrets
     git add --all
-    # nix flake check
-
     input="{{target}}"
     IFS=',' read -r -a devices <<< "$input"
     for i in "${devices[@]}"; do
@@ -102,15 +102,6 @@ new host username block_device description:
     sed -i -E 's|\bxxblock_devicexx\b|{{block_device}}|g' ./hosts/{{host}}/*.nix
     git add -A :/
 
-# [confirm("Are you sure you want to potentially erase target machine's disk and deploy?")]
-# deploy host ip_address:
-#     # create buffer to migrate age keys
-#     root_dir=$(mktemp -d) && \
-#     trap 'rm -rf "$root_dir"' EXIT && \
-#     mkdir -p "${root_dir}/root/.config/sops/age" && \
-#     cp ~/.config/sops/age/keys.txt "${root_dir}/root/.config/sops/age/keys.txt" && \
-#     nix run github:nix-community/nixos-anywhere -- --extra-files "$root_dir" --generate-hardware-config nixos-generate-config ./hosts/{{host}}/hardware-configuration.nix root@{{ip_address}} --flake .#{{host}}
-
 [confirm("Are you sure you want to potentially erase target machine's disk and deploy?")]
 deploy username host ip_address:
     # Create a custom kexec tarball for nixos-anywhere to use
@@ -121,9 +112,8 @@ deploy username host ip_address:
     mkdir -p "${root_dir}/root/.config/sops/age" && \
     cp ~/.config/sops/age/keys.txt "${root_dir}/root/.config/sops/age/keys.txt" && \
     nix run github:nix-community/nixos-anywhere/main -- --extra-files "$root_dir" --generate-hardware-config nixos-facter ./hosts/{{host}}/facter.json --phases kexec,disko,install --kexec ./result/nixos-kexec-installer-x86_64-linux.tar.gz root@{{ip_address}} --copy-host-keys --flake .#{{host}}
-    ssh {{username}}@{{host}} "ssh-keygen -t ed25519 -b 4096 -C '{{host}} key, danielgomezcoder@gmail.com'" -f /home/{{username}}/.ssh/id_ed25519 -N ""
-    ssh {{username}}@{{host}} "cat ~/.ssh/id_ed25519.pub" >> ~/.ssh/authorized_keys
-    ssh root@{{host}} "reboot"
+    just ssh-keygen {{username}} {{ip_address}}
+    ssh root@ip_address "systemctl reboot"
 
 netboot:
     nix build -f ./lib/nix-expressions/netboot/system.nix -o /tmp/run-pixiecore
@@ -133,8 +123,18 @@ netboot:
 
 test-iso:
     nix build .#custom-iso
-    nix run nixpkgs#qemu -- -cdrom result/iso/*.iso -m 4096 -enable-kvm -vnc :1 &
-    nix run nixpkgs#novnc -- --vnc localhost:5901 &
+    nix run nixpkgs#qemu -- -cdrom result/iso/*.iso -m 4096 -enable-kvm -vnc :1 && \
+    nix run nixpkgs#novnc -- --vnc localhost:5901 
+
+[private]
+ssh-keygen username ip_address:
+    # Generate SSH key (only if doesn't exist)
+    ssh {{username}}@{{ip_address}} "test -f /home/{{username}}/.ssh/id_ed25519 || ssh-keygen -t ed25519 -b 4096 -C '{{ip_address}} key, danielgomezcoder@gmail.com' -f /home/{{username}}/.ssh/id_ed25519 -N ''"
+    # Copy the public key to local authorized_keys (avoid duplicates)
+    ssh {{username}}@{{ip_address}} "cat /home/daniel/.ssh/id_ed25519.pub" >> ~/.ssh/authorized_keys
+
+# deploy-iso host block_device:
+#     ssh root@{{host}} "dd conv=fsync oflag=direct bs=8M status=progress of={{block_device}}" < {{iso}} #  equivalent do: dd if=/dev/stdin of=/dev/sda
 
 # To test my nix-darwin machine:
 # nix eval ".#darwinConfigurations.workLaptop.config.system.build.toplevel.drvPath"

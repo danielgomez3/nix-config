@@ -42,7 +42,7 @@ in {
       hunspell
       hunspellDicts.uk_UA
       hunspellDicts.th_TH
-      xournalpp
+      # xournalpp
       feh
       # ardour # failed build?
       audacity

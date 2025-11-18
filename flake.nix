@@ -340,6 +340,15 @@
         path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.test-machine;
       };
     };
+    deploy.nodes.llm-machine = {
+      hostname = "llm-machine";
+      sshUser = "root"; # username of the target machine
+      fastConnection = true; # Enable pipelined copying
+      profiles.system = {
+        user = "root"; # The user that the profile will be deployed to
+        path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.llm-machine;
+      };
+    };
     deploy.nodes.nas-server = {
       hostname = "192.168.1.171";
       sshUser = "root"; # username of the target machine

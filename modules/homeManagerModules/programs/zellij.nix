@@ -13,18 +13,22 @@
         locked = {
           # "bind \"Alt i\"" = {
           # };
+          "bind \"Alt [\"" = {
+            SwitchToMode = ["entersearch"];
+          };
+
           "bind \"Alt j\"" = {
             EditScrollback = [];
           };
           "bind \"Alt \\\\\"" = {
             ToggleFloatingPanes = [];
           };
-          "bind \"Alt ]\"" = {
-            MoveTab = ["Right"];
-          };
-          "bind \"Alt [\"" = {
-            MoveTab = ["Left"];
-          };
+          # "bind \"Alt ]\"" = {
+          #   MoveTab = ["Right"];
+          # };
+          # "bind \"Alt [\"" = {
+          #   MoveTab = ["Left"];
+          # };
           "bind \"Alt l\"" = {
             GoToNextTab = [];
           };
@@ -50,6 +54,13 @@
             SwitchToMode = ["locked"];
           };
         };
+
+        # Doesn't work: make 'w' key (picking the manager) in locked mode automatically
+        # session = {
+        #   "bind \"w\"" = {
+        #     SwitchToMode = ["locked"];
+        #   };
+        # };
         # tab = {
         #   "bind \"Alt ]\"" = {
         #     MoveTab = ["Right"];

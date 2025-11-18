@@ -1,4 +1,5 @@
 # nixosModules/services/lgtv.nix
+# TODO: make services/ dir readable by my nixosModules helper.nix functions, this is not read!
 {
   lib,
   config,

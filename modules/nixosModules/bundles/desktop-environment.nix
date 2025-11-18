@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   ...
@@ -9,5 +10,9 @@
     gnome.enable = lib.mkDefault true;
     printing.enable = lib.mkDefault true;
     allow-sleep-then-hibernate.enable = lib.mkDefault false;
+  };
+
+  home-manager.users.${config.myVars.username}.myHomeManager = {
+    bundles.desktop-environment.enable = true;
   };
 }

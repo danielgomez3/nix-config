@@ -22,10 +22,10 @@
   myNixOS = {
     # bundles.base-system.enable = true; # TODO doesn't work!  change systemd boot..
     # core-system.enable = true;
-    openssh.enable = true;
-    sops.enable = true;
-    user-config.enable = true;
-    wifi-config.enable = true;
+    bundles.desktop-environment.enable = true;
+    core-system.enable = true;
+    iso-config.enable = true; # WIP
+    # wifi-config.enable = true;
   };
 
   home-manager.users.${config.myVars.username}.myHomeManager = {

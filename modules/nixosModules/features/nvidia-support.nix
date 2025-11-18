@@ -1,3 +1,4 @@
+# nvidia-support.nix
 {...}: {
   # hardware.nvidia.enabled = true; # already automatically enabled
   hardware.graphics.enable = true;
