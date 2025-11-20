@@ -110,7 +110,7 @@ repl-flake:
     git add -A :/
     cd {{invocation_directory()}}; nix repl --extra-experimental-features 'flakes' --expr "import \"{{justfile_directory()}}/lib/learning-nix/learning-nix.nix\""
 
-[confirm("This might potentially erase a directory/host with the same name. Continue?")]
+[confirm("This might potentially erase a directory/host with the same name. Continue? NOTE: do not use single quotes for desc or names!")]
 new host username block_device description:
     [ ! -d "./hosts/{{host}}" ] && scp -r ./lib/deployment/templateHost ./hosts/{{host}} || false
     sed -i -E 's/\bxxusernamexx\b/{{username}}/g' ./hosts/{{host}}/*.nix
@@ -143,6 +143,16 @@ test-iso:
     nix run nixpkgs#qemu -- -cdrom result/iso/*.iso -m 4096 -enable-kvm -vnc :1 && \
     nix run nixpkgs#novnc -- --vnc localhost:5901 
 
+# target is the host name, and the name of the .raw file when it's created. This builds from scratch AND tests the image.
+test-raw-image target:
+    $(nix-build ./lib/virtualization/qemu.nix)/bin/test-image ./{{target}}.raw
+
+build-test-raw-image target:
+    nix build .#nixosConfigurations.raw-image.config.system.build.diskoImagesScript 
+    sudo ./result --build-memory 8096 --pre-format-files ~/.config/sops/age/keys.txt /root/.config/sops/age/keys.txt
+    $(nix-build ./lib/virtualization/qemu.nix)/bin/test-image ./{{target}}.raw
+
+
 [private]
 ssh-keygen username ip_address:
     # Generate SSH key (only if doesn't exist)
@@ -150,8 +160,13 @@ ssh-keygen username ip_address:
     # Copy the public key to local authorized_keys (avoid duplicates)
     ssh {{username}}@{{ip_address}} "cat /home/daniel/.ssh/id_ed25519.pub" >> ~/.ssh/authorized_keys
 
-# deploy-iso host block_device:
-#     ssh root@{{host}} "dd conv=fsync oflag=direct bs=8M status=progress of={{block_device}}" < {{iso}} #  equivalent do: dd if=/dev/stdin of=/dev/sda
+deploy-image host image block_device:
+    ssh \
+    # -o NoneSwitch=yes -o NoneEnabled=yes \
+    -c aes128-gcm@openssh.com \
+    -o Compression=no \
+    root@{{host}} \
+    "dd conv=fsync oflag=direct bs=16M status=progress of={{block_device}}" < {{image}} #  equivalent do: dd if=/dev/stdin of=/dev/sda
 
 # To test my nix-darwin machine:
 # nix eval ".#darwinConfigurations.workLaptop.config.system.build.toplevel.drvPath"
@@ -172,10 +187,19 @@ path-info target:
     nix path-info -Sh .#nixosConfigurations.{{target}}.config.system.build.toplevel
 
 # Shows closure size
-show-size target:
-    nix build .#nixosConfigurations.{{target}}.config.system.build.toplevel
-    nix path-info --closure-size --human-readable ./result
+show-closure-size target:
+    nix build --no-link --print-out-paths .#nixosConfigurations.{{target}}.config.system.build.toplevel \
+    | xargs nix path-info --closure-size --human-readable 
+
+show-package-size target:
+    nix path-info --closure-size --human-readable "$(nix eval --raw nixpkgs#{{target}}.outPath)"
+
+# show-flake-size target:
+#     nix path-info --closure-size --human-readable "$(nix eval github:{{target}} --raw)" \
+#     | xargs nix path-info --closure-size --human-readable 
 
 # TODO: learn how this code works
 build-derivation derivation-file:
     nix-build -E 'with import <nixpkgs> {}; callPackage {{derivation-file}} {}'
+
+

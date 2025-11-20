@@ -55,6 +55,8 @@
     nixos-images.url = "github:nix-community/nixos-images/"; # get a kexec tarball to use
     impermanence.url = "github:nix-community/impermanence"; # make custom iso data impermanent
     jambi.url = "github:guttermonk/jambi";
+    # dictation.url = "github:jtara1/dictation";
+    # dictation.inputs.nixpkgs.follows = "nixpkgs"; # where nixpkgs is your var for nixos nixpkgs in inputs
   };
 
   outputs = inputs @ {self, ...}: let
@@ -127,6 +129,7 @@
         inputs.home-manager.nixosModules.default
         "${self.outPath}/modules/nixosModules"
         "${self.outPath}/modules/homeManagerModules"
+        inputs.disko.nixosModules.disko
         "${self.outPath}/hosts/custom-iso"
         inputs.sops-nix.nixosModules.sops
         inputs.stylix.nixosModules.stylix # XXX: not sure why this needs to even be here
@@ -228,6 +231,16 @@
         commonImports "nas-server"
         ++ [
           {config.facter.reportPath = "${self.outPath}/hosts/nas-server/facter.json";}
+        ];
+      specialArgs = {
+        inherit inputs self pkgsUnstable myHelper;
+      };
+    };
+    nixosConfigurations.raw-image = inputs.nixpkgs.lib.nixosSystem {
+      modules =
+        commonImports "raw-image"
+        ++ [
+          {config.facter.reportPath = "${self.outPath}/hosts/raw-image/facter.json";}
         ];
       specialArgs = {
         inherit inputs self pkgsUnstable myHelper;
@@ -357,6 +370,15 @@
       profiles.system = {
         user = "root"; # The user that the profile will be deployed to
         path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.nas-server;
+      };
+    };
+    deploy.nodes.raw-image = {
+      hostname = "raw-image";
+      sshUser = "root"; # username of the target machine
+      fastConnection = true; # Enable pipelined copying
+      profiles.system = {
+        user = "root"; # The user that the profile will be deployed to
+        path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.raw-image;
       };
     };
   };

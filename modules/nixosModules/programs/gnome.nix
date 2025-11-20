@@ -20,7 +20,6 @@
   systemd.services.NetworkManager-wait-online.enable = false; # HACK: This is giving me problems for some reason..
 
   environment.systemPackages = with pkgs; [
-    whisper-cpp
     nautilus
     gnome-sound-recorder
     gnomeExtensions.blur-my-shell

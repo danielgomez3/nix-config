@@ -1,3 +1,4 @@
+# modules/homeManagerModules/default.nix
 {
   pkgs,
   system,
