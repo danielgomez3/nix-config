@@ -8,8 +8,6 @@
   host,
   ...
 }: {
-  imports = [
-  ];
   myVars.username = "daniel"; # Specific username for this machine
   myVars.hostname = "raw-image"; # Specific hostname for this machine
   networking.hostName = config.myVars.hostname;
