@@ -22,6 +22,7 @@
 
   myNixOS = {
     core-system.enable = true;
+    stylix.enable = true;
     wireguard-server.enable = true;
     mail-server.enable = true;
   };

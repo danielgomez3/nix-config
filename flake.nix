@@ -54,6 +54,7 @@
     nixos-generators.inputs.nixpkgs.follows = "nixpkgs"; # create custom kexec tarballs, etc.
     nixos-images.url = "github:nix-community/nixos-images/"; # get a kexec tarball to use
     impermanence.url = "github:nix-community/impermanence"; # make custom iso data impermanent
+    jambi.url = "github:guttermonk/jambi";
   };
 
   outputs = inputs @ {self, ...}: let

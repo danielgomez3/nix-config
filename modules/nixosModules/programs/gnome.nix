@@ -20,11 +20,13 @@
   systemd.services.NetworkManager-wait-online.enable = false; # HACK: This is giving me problems for some reason..
 
   environment.systemPackages = with pkgs; [
+    whisper-cpp
     nautilus
     gnome-sound-recorder
     gnomeExtensions.blur-my-shell
     gnomeExtensions.pop-shell
     gnomeExtensions.hide-top-bar
+    gnomeExtensions.blurt
     # gnomeExtensions.arc-menu
   ];
   home-manager.users.${config.myVars.username} = {
@@ -37,6 +39,7 @@
           pkgs.gnomeExtensions.blur-my-shell.extensionUuid
           pkgs.gnomeExtensions.pop-shell.extensionUuid
           pkgs.gnomeExtensions.hide-top-bar.extensionUuid
+          pkgs.gnomeExtensions.blurt.extensionUuid
           # pkgs.gnomeExtensions.arc-menu.extensionUuid
         ];
 

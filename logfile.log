@@ -1,29 +1,24 @@
-error: flake 'git+file:///home/daniel/Downloads/nix-config' does not provide attribute 'packages.x86_64-linux.cutom-kexec', 'legacyPackages.x86_64-linux.cutom-kexec' or 'cutom-kexec'
-       Did you mean custom-kexec?
-these 13 derivations will be built:
-  /nix/store/bimamngq9snjd78y2adf4ddnpzkd1srr-root-authorized_keys.drv
-  /nix/store/n2zslh72c3srmya8m79vrg7ada2pz0hf-etc-systemd-logind.conf.drv
-  /nix/store/lzak815h8rh9f1ji69dfyvdx1psha9pr-etc-json.drv
-  /nix/store/5k4cx0aijbg5v2b9h3cn3gnz5kdby4rg-etc-dump.drv
-  /nix/store/9x3g54sn1ac9vk6xh8dv8vbqhyc3j9pq-etc-metadata.erofs.drv
-  /nix/store/hqfr5zb2jl4wg3qysk8a90hn9az0kyz5-etc.drv
-  /nix/store/knbgsp73bi2k39205i79zd5h4f73b8x8-etc-lowerdir.drv
-  /nix/store/7rwpqsj88a4zf5nk1kfxii2wzkx7hgqy-nixos-system-nixos-installer-kexec-25.11pre-git.drv
-  /nix/store/8qhfld6qgx7nv263gj5cdj5m7cqcxqhf-closure-info.drv
-  /nix/store/5j9ky21w805jdysh6d2fp6p3ab1d63ap-squashfs.img.drv
-  /nix/store/3v35nh28qk1gi7ava5fxqqvvhb23vmkx-initrd.drv
-  /nix/store/9lac4rlpf5yxdxl3p1bixypkqxxwv3hm-kexec-run.drv
-  /nix/store/2bb8nbq5r7j0h2wvzbix160bwsz0prdm-kexec-tarball.drv
-building '/nix/store/n2zslh72c3srmya8m79vrg7ada2pz0hf-etc-systemd-logind.conf.drv'...
-building '/nix/store/bimamngq9snjd78y2adf4ddnpzkd1srr-root-authorized_keys.drv'...
-building '/nix/store/lzak815h8rh9f1ji69dfyvdx1psha9pr-etc-json.drv'...
-building '/nix/store/knbgsp73bi2k39205i79zd5h4f73b8x8-etc-lowerdir.drv'...
-building '/nix/store/hqfr5zb2jl4wg3qysk8a90hn9az0kyz5-etc.drv'...
-building '/nix/store/5k4cx0aijbg5v2b9h3cn3gnz5kdby4rg-etc-dump.drv'...
-building '/nix/store/9x3g54sn1ac9vk6xh8dv8vbqhyc3j9pq-etc-metadata.erofs.drv'...
-building '/nix/store/7rwpqsj88a4zf5nk1kfxii2wzkx7hgqy-nixos-system-nixos-installer-kexec-25.11pre-git.drv'...
-building '/nix/store/8qhfld6qgx7nv263gj5cdj5m7cqcxqhf-closure-info.drv'...
-building '/nix/store/9lac4rlpf5yxdxl3p1bixypkqxxwv3hm-kexec-run.drv'...
-building '/nix/store/5j9ky21w805jdysh6d2fp6p3ab1d63ap-squashfs.img.drv'...
-building '/nix/store/3v35nh28qk1gi7ava5fxqqvvhb23vmkx-initrd.drv'...
-building '/nix/store/2bb8nbq5r7j0h2wvzbix160bwsz0prdm-kexec-tarball.drv'...
+sops-install-secrets: Imported /etc/ssh/ssh_host_rsa_key as GPG key with fingerprint 218fe920f3bf0aa5a87d7fefa18496e9d8daa268
+setting up /etc...
+sops-install-secrets: Imported /etc/ssh/ssh_host_rsa_key as GPG key with fingerprint 218fe920f3bf0aa5a87d7fefa18496e9d8daa268
+× home-manager-daniel.service - Home Manager environment for daniel
+     Loaded: loaded (/etc/systemd/system/home-manager-daniel.service; enabled; preset: ignored)
+     Active: failed (Result: exit-code) since Wed 2025-11-19 20:45:43 UTC; 268ms ago
+ Invocation: 173a17afe763479faab12fcdee75fc02
+    Process: 60827 ExecStart=/nix/store/h8pzml9hbqk4v0a6nsr9z2spjjsi0pmk-hm-setup-env /nix/store/cjqkvilv92m67k3lj2z01jiz4jlkd4sr-home-manager-generation (code=exited, status=1/FAILURE)
+   Main PID: 60827 (code=exited, status=1/FAILURE)
+         IP: 0B in, 0B out
+         IO: 0B read, 4K written
+   Mem peak: 6.5M
+        CPU: 401ms
+
+Nov 19 20:45:43 hetzner-vps hm-activate-daniel[60932]: building '/nix/store/fdcxiz01zk93lpmvgbz145am7fzdbj7p-user-environment.drv'...
+Nov 19 20:45:43 hetzner-vps hm-activate-daniel[60827]: Activating dconfSettings
+Nov 19 20:45:43 hetzner-vps hm-activate-daniel[60945]: dbus-daemon[60945]: [session uid=1000 pid=60945] Activating service name='ca.desrt.dconf' requested by ':1.0' (uid=1000 pid=60946 comm="/nix/store/82syfn0i4wmsg383r4iavn0c1jp2bc7d-dconf-")
+Nov 19 20:45:43 hetzner-vps hm-activate-daniel[60945]: dbus-daemon[60945]: [session uid=1000 pid=60945] Successfully activated service 'ca.desrt.dconf'
+Nov 19 20:45:43 hetzner-vps hm-activate-daniel[60827]: Activating linkGeneration
+Nov 19 20:45:43 hetzner-vps hm-activate-daniel[60827]: Creating home file links in /home/daniel
+Nov 19 20:45:43 hetzner-vps hm-activate-daniel[61089]: ln: failed to create symbolic link '/home/daniel/.gnupg/gpg.conf': Permission denied
+Nov 19 20:45:43 hetzner-vps systemd[1]: home-manager-daniel.service: Main process exited, code=exited, status=1/FAILURE
+Nov 19 20:45:43 hetzner-vps systemd[1]: home-manager-daniel.service: Failed with result 'exit-code'.
+Nov 19 20:45:43 hetzner-vps systemd[1]: Failed to start Home Manager environment for daniel.

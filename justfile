@@ -8,6 +8,7 @@ host := "`hostname`"
 msg_default := "System build failed, commit broken!"
 msg_build := "No commit message given, building system, commit possibly broken!"
 msg_success := "Successful system build and/or apply to targets:" 
+# devices := "server test-machine nas-server llm-machine living-room hetzner-vps desktop laptop
 # iso := `ls result/iso/*.iso`
 
 [confirm("This will possibly break configuration, do not use lightly.. (y/n)")]
@@ -26,8 +27,23 @@ push:
     
 # target examples (default: your hostname):
 # just apply laptop,server,desktop
-apply-remote:
-    nohup for i in {server,test-machine,nas-server,llm-machine,living-room}; do just deploy-rs "$i"; done > /var/log/just-apply-remote.log
+# apply-remote:
+#     # One method
+#     nohup bash -c 'for i in {server,test-machine,nas-server,llm-machine,living-room,hetzner-vps}; do just deploy-rs "$i"; done' > /var/log/just-apply-remote.log 2>&1 &
+
+# Deploy them in parallel, non-deterministically
+apply-all:
+    #!/usr/bin/env bash
+    # TODO: add usb device(s)
+    # TODO: make into one-off systemd unit?
+    : > /var/tmp/just-apply_all.log
+    just _update_secrets
+    git add --all
+    for i in server test-machine nas-server llm-machine living-room hetzner-vps desktop laptop; do
+        nohup nix run github:serokell/deploy-rs --show-trace -- --skip-checks ".#$i" \
+        | tee -a /var/tmp/just-apply_all.log \
+        | tee "/var/tmp/just-apply_$i.log" >/dev/null &
+    done 
     
 
 apply target=(host):
@@ -60,7 +76,8 @@ eval target=(host):
 
 # eval and build, result is stored in ./result symlink
 build target=(host):
-    nixos-rebuild build --flake ".#{{target}}" 
+    nix build .#nixosConfigurations.{{target}}.config.system.build.toplevel # same as: nixos-rebuild build --flake ".#{{target}}" 
+
     
 
     
@@ -139,3 +156,26 @@ ssh-keygen username ip_address:
 # To test my nix-darwin machine:
 # nix eval ".#darwinConfigurations.workLaptop.config.system.build.toplevel.drvPath"
 # nix eval ".#darwinConfigurations.workLaptop"
+
+
+# #
+# Tinkering
+# #
+
+# view metadata of a github flake
+# just metadata 'github:nix-community/stylix'
+metadata target:
+    nix flake metadata '{{target}}'
+
+# doesn't work? Trying to show closure size..
+path-info target:
+    nix path-info -Sh .#nixosConfigurations.{{target}}.config.system.build.toplevel
+
+# Shows closure size
+show-size target:
+    nix build .#nixosConfigurations.{{target}}.config.system.build.toplevel
+    nix path-info --closure-size --human-readable ./result
+
+# TODO: learn how this code works
+build-derivation derivation-file:
+    nix-build -E 'with import <nixpkgs> {}; callPackage {{derivation-file}} {}'

@@ -10,6 +10,7 @@
     gnome.enable = lib.mkDefault true;
     printing.enable = lib.mkDefault true;
     allow-sleep-then-hibernate.enable = lib.mkDefault false;
+    voice-transcription-gnome.enable = lib.mkDefault true;
   };
 
   home-manager.users.${config.myVars.username}.myHomeManager = {
