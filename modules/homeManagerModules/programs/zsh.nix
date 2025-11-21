@@ -48,6 +48,7 @@
       enable = true;
       plugins = [
         {name = "hlissner/zsh-autopair";}
+        {name = "popstas/zsh-command-time";}
         # {name = "chriskempson/base16-shell";}
       ];
     };
