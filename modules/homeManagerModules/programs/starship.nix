@@ -21,6 +21,13 @@
         # time_format = "%H:%M:%S";
         style = "bold dimmed white";
       };
+      cmd_duration = {
+        format = "underwent [ $duration ]";
+        disabled = false;
+        min_time = 0;
+        show_milliseconds = false;
+        # style = accent_style;
+      };
     };
   };
 }
