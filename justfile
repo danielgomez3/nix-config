@@ -120,6 +120,7 @@ new host username block_device description:
     sed -i -E 's|\bxxblock_devicexx\b|{{block_device}}|g' ./hosts/{{host}}/*.nix
     git add -A :/
 
+# Works with closed laptop lids, etc.
 [confirm("Are you sure you want to potentially erase target machine's disk and deploy?")]
 deploy username host ip_address:
     # Create a custom kexec tarball for nixos-anywhere to use
