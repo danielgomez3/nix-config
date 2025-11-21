@@ -21,7 +21,6 @@
 
   myNixOS = {
     core-system.enable = true;
-    systemd-boot.enable = true;
   };
 
   # home-manager.users.${config.myVars.username}.myHomeManager = {

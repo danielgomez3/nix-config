@@ -477,8 +477,8 @@
     ],
     "camera": [
       {
-        "index": 31,
-        "attached_to": 44,
+        "index": 35,
+        "attached_to": 33,
         "class_list": [
           "camera",
           "usb"
@@ -513,109 +513,8 @@
           "value": 0
         },
         "model": "Ricoh Company Integrated Camera",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6:1.1",
-        "sysfs_bus_id": "1-1.6:1.1",
-        "resources": [
-          {
-            "type": "baud",
-            "speed": 480000000,
-            "bits": 0,
-            "stop_bits": 0,
-            "parity": 0,
-            "handshake": 0
-          }
-        ],
-        "detail": {
-          "device_class": {
-            "hex": "00ef",
-            "name": "miscellaneous",
-            "value": 239
-          },
-          "device_subclass": {
-            "hex": "0002",
-            "name": "comm",
-            "value": 2
-          },
-          "device_protocol": 1,
-          "interface_class": {
-            "hex": "000e",
-            "name": "video",
-            "value": 14
-          },
-          "interface_subclass": {
-            "hex": "0002",
-            "name": "comm",
-            "value": 2
-          },
-          "interface_protocol": 0,
-          "interface_number": 1,
-          "interface_alternate_setting": 0,
-          "interface_association": {
-            "function_class": {
-              "hex": "000e",
-              "name": "video",
-              "value": 14
-            },
-            "function_subclass": {
-              "hex": "0003",
-              "name": "hid",
-              "value": 3
-            },
-            "function_protocol": 0,
-            "interface_count": 2,
-            "first_interface": 0
-          }
-        },
-        "hotplug": "usb",
-        "driver": "uvcvideo",
-        "driver_module": "uvcvideo",
-        "drivers": [
-          "uvcvideo"
-        ],
-        "driver_modules": [
-          "uvcvideo"
-        ],
-        "module_alias": "usb:v5986p02D5d1011dcEFdsc02dp01ic0Eisc02ip00in01"
-      },
-      {
-        "index": 42,
-        "attached_to": 44,
-        "class_list": [
-          "camera",
-          "usb"
-        ],
-        "bus_type": {
-          "hex": "0086",
-          "name": "USB",
-          "value": 134
-        },
-        "slot": {
-          "bus": 0,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "010f",
-          "name": "Camera",
-          "value": 271
-        },
-        "vendor": {
-          "hex": "5986",
-          "name": "Ricoh Company Ltd.",
-          "value": 22918
-        },
-        "device": {
-          "hex": "02d5",
-          "name": "Integrated Camera",
-          "value": 725
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "10.11",
-          "value": 0
-        },
-        "model": "Ricoh Company Integrated Camera",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6:1.0",
-        "sysfs_bus_id": "1-1.6:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb2/2-1/2-1.6/2-1.6:1.0",
+        "sysfs_bus_id": "2-1.6:1.0",
         "resources": [
           {
             "type": "baud",
@@ -677,6 +576,107 @@
           "uvcvideo"
         ],
         "module_alias": "usb:v5986p02D5d1011dcEFdsc02dp01ic0Eisc01ip00in00"
+      },
+      {
+        "index": 41,
+        "attached_to": 33,
+        "class_list": [
+          "camera",
+          "usb"
+        ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "010f",
+          "name": "Camera",
+          "value": 271
+        },
+        "vendor": {
+          "hex": "5986",
+          "name": "Ricoh Company Ltd.",
+          "value": 22918
+        },
+        "device": {
+          "hex": "02d5",
+          "name": "Integrated Camera",
+          "value": 725
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "10.11",
+          "value": 0
+        },
+        "model": "Ricoh Company Integrated Camera",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb2/2-1/2-1.6/2-1.6:1.1",
+        "sysfs_bus_id": "2-1.6:1.1",
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 480000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          }
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "00ef",
+            "name": "miscellaneous",
+            "value": 239
+          },
+          "device_subclass": {
+            "hex": "0002",
+            "name": "comm",
+            "value": 2
+          },
+          "device_protocol": 1,
+          "interface_class": {
+            "hex": "000e",
+            "name": "video",
+            "value": 14
+          },
+          "interface_subclass": {
+            "hex": "0002",
+            "name": "comm",
+            "value": 2
+          },
+          "interface_protocol": 0,
+          "interface_number": 1,
+          "interface_alternate_setting": 0,
+          "interface_association": {
+            "function_class": {
+              "hex": "000e",
+              "name": "video",
+              "value": 14
+            },
+            "function_subclass": {
+              "hex": "0003",
+              "name": "hid",
+              "value": 3
+            },
+            "function_protocol": 0,
+            "interface_count": 2,
+            "first_interface": 0
+          }
+        },
+        "hotplug": "usb",
+        "driver": "uvcvideo",
+        "driver_module": "uvcvideo",
+        "drivers": [
+          "uvcvideo"
+        ],
+        "driver_modules": [
+          "uvcvideo"
+        ],
+        "module_alias": "usb:v5986p02D5d1011dcEFdsc02dp01ic0Eisc02ip00in01"
       }
     ],
     "cdrom": [
@@ -848,6 +848,7 @@
           "arat",
           "pln",
           "pts",
+          "md_clear",
           "flush_l1d"
         ],
         "bugs": [
@@ -861,7 +862,7 @@
           "itlb_multihit",
           "mmio_unknown"
         ],
-        "bogo": 4988.42,
+        "bogo": 4989.08,
         "cache": 3072,
         "units": 16,
         "physical_id": 0,
@@ -1198,7 +1199,7 @@
     ],
     "hub": [
       {
-        "index": 34,
+        "index": 33,
         "attached_to": 45,
         "class_list": [
           "usb",
@@ -1227,7 +1228,7 @@
           "value": 36
         },
         "model": "Hub",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb2/2-1/2-1:1.0",
         "sysfs_bus_id": "2-1:1.0",
         "resources": [
           {
@@ -1277,7 +1278,7 @@
         "module_alias": "usb:v8087p0024d0000dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 35,
+        "index": 34,
         "attached_to": 25,
         "class_list": [
           "usb",
@@ -1441,8 +1442,8 @@
         "module_alias": "usb:v1D6Bp0003d0614dc09dsc00dp03ic09isc00ip00in00"
       },
       {
-        "index": 41,
-        "attached_to": 21,
+        "index": 40,
+        "attached_to": 22,
         "class_list": [
           "usb",
           "hub"
@@ -1476,9 +1477,9 @@
           "name": "6.14",
           "value": 0
         },
-        "serial": "0000:00:1a.0",
+        "serial": "0000:00:1d.0",
         "model": "Linux 6.14.10 ehci_hcd EHCI Host Controller",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-0:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
           {
@@ -1529,7 +1530,7 @@
       },
       {
         "index": 44,
-        "attached_to": 41,
+        "attached_to": 40,
         "class_list": [
           "usb",
           "hub"
@@ -1557,7 +1558,7 @@
           "value": 36
         },
         "model": "Hub",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/usb1/1-1/1-1:1.0",
         "sysfs_bus_id": "1-1:1.0",
         "resources": [
           {
@@ -1608,7 +1609,7 @@
       },
       {
         "index": 45,
-        "attached_to": 22,
+        "attached_to": 21,
         "class_list": [
           "usb",
           "hub"
@@ -1642,9 +1643,9 @@
           "name": "6.14",
           "value": 0
         },
-        "serial": "0000:00:1d.0",
+        "serial": "0000:00:1a.0",
         "model": "Linux 6.14.10 ehci_hcd EHCI Host Controller",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/usb2/2-0:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "resources": [
           {
@@ -2031,7 +2032,7 @@
       },
       {
         "index": 36,
-        "attached_to": 35,
+        "attached_to": 34,
         "class_list": [
           "network_controller",
           "usb"
@@ -2088,7 +2089,7 @@
           },
           {
             "type": "hwaddr",
-            "address": 101
+            "address": 56
           }
         ],
         "detail": {
@@ -2156,7 +2157,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 101
+            "address": 56
           }
         ],
         "driver": "qmi_wwan",
@@ -2170,29 +2171,6 @@
       },
       {
         "index": 47,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_name": "lo",
-        "unix_device_names": [
-          "lo"
-        ]
-      },
-      {
-        "index": 48,
         "attached_to": 17,
         "class_list": [
           "network_interface"
@@ -2231,6 +2209,29 @@
         ],
         "driver_modules": [
           "e1000e"
+        ]
+      },
+      {
+        "index": 48,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_name": "lo",
+        "unix_device_names": [
+          "lo"
         ]
       }
     ],
@@ -2796,7 +2797,7 @@
     "usb": [
       {
         "index": 30,
-        "attached_to": 44,
+        "attached_to": 33,
         "class_list": [
           "usb",
           "unknown"
@@ -2837,8 +2838,8 @@
         },
         "serial": "B8763FA8CA9D",
         "model": "Broadcom BCM20702A0",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.4/1-1.4:1.2",
-        "sysfs_bus_id": "1-1.4:1.2",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb2/2-1/2-1.4/2-1.4:1.3",
+        "sysfs_bus_id": "2-1.4:1.3",
         "resources": [
           {
             "type": "baud",
@@ -2862,33 +2863,25 @@
           },
           "device_protocol": 1,
           "interface_class": {
-            "hex": "00ff",
-            "name": "vendor_spec",
-            "value": 255
+            "hex": "00fe",
+            "name": "application",
+            "value": 254
           },
           "interface_subclass": {
-            "hex": "00ff",
-            "name": "vendor_spec",
-            "value": 255
+            "hex": "0001",
+            "name": "audio",
+            "value": 1
           },
-          "interface_protocol": 255,
-          "interface_number": 2,
+          "interface_protocol": 1,
+          "interface_number": 3,
           "interface_alternate_setting": 0
         },
         "hotplug": "usb",
-        "driver": "btusb",
-        "driver_module": "btusb",
-        "drivers": [
-          "btusb"
-        ],
-        "driver_modules": [
-          "btusb"
-        ],
-        "module_alias": "usb:v0A5Cp21E6d0112dcFFdsc01dp01icFFiscFFipFFin02"
+        "module_alias": "usb:v0A5Cp21E6d0112dcFFdsc01dp01icFEisc01ip01in03"
       },
       {
-        "index": 32,
-        "attached_to": 35,
+        "index": 31,
+        "attached_to": 34,
         "class_list": [
           "usb",
           "unknown"
@@ -2996,8 +2989,8 @@
         "module_alias": "usb:v1199p9013d0002dc00dsc00dp00icFFiscFFipFFin02"
       },
       {
-        "index": 33,
-        "attached_to": 44,
+        "index": 32,
+        "attached_to": 33,
         "class_list": [
           "usb",
           "unknown"
@@ -3038,8 +3031,8 @@
         },
         "serial": "B8763FA8CA9D",
         "model": "Broadcom BCM20702A0",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.4/1-1.4:1.0",
-        "sysfs_bus_id": "1-1.4:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb2/2-1/2-1.4/2-1.4:1.1",
+        "sysfs_bus_id": "2-1.4:1.1",
         "resources": [
           {
             "type": "baud",
@@ -3073,7 +3066,7 @@
             "value": 1
           },
           "interface_protocol": 1,
-          "interface_number": 0,
+          "interface_number": 1,
           "interface_alternate_setting": 0
         },
         "hotplug": "usb",
@@ -3085,95 +3078,11 @@
         "driver_modules": [
           "btusb"
         ],
-        "module_alias": "usb:v0A5Cp21E6d0112dcFFdsc01dp01icFFisc01ip01in00"
+        "module_alias": "usb:v0A5Cp21E6d0112dcFFdsc01dp01icFFisc01ip01in01"
       },
       {
         "index": 38,
-        "attached_to": 44,
-        "class_list": [
-          "usb",
-          "unknown"
-        ],
-        "bus_type": {
-          "hex": "0086",
-          "name": "USB",
-          "value": 134
-        },
-        "slot": {
-          "bus": 0,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "0000",
-          "name": "Unclassified device",
-          "value": 0
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Unclassified device",
-          "value": 0
-        },
-        "vendor": {
-          "hex": "0a5c",
-          "name": "Broadcom Corp",
-          "value": 2652
-        },
-        "device": {
-          "hex": "21e6",
-          "name": "BCM20702A0",
-          "value": 8678
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "1.12",
-          "value": 0
-        },
-        "serial": "B8763FA8CA9D",
-        "model": "Broadcom BCM20702A0",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.4/1-1.4:1.3",
-        "sysfs_bus_id": "1-1.4:1.3",
-        "resources": [
-          {
-            "type": "baud",
-            "speed": 12000000,
-            "bits": 0,
-            "stop_bits": 0,
-            "parity": 0,
-            "handshake": 0
-          }
-        ],
-        "detail": {
-          "device_class": {
-            "hex": "00ff",
-            "name": "vendor_spec",
-            "value": 255
-          },
-          "device_subclass": {
-            "hex": "0001",
-            "name": "audio",
-            "value": 1
-          },
-          "device_protocol": 1,
-          "interface_class": {
-            "hex": "00fe",
-            "name": "application",
-            "value": 254
-          },
-          "interface_subclass": {
-            "hex": "0001",
-            "name": "audio",
-            "value": 1
-          },
-          "interface_protocol": 1,
-          "interface_number": 3,
-          "interface_alternate_setting": 0
-        },
-        "hotplug": "usb",
-        "module_alias": "usb:v0A5Cp21E6d0112dcFFdsc01dp01icFEisc01ip01in03"
-      },
-      {
-        "index": 39,
-        "attached_to": 35,
+        "attached_to": 34,
         "class_list": [
           "usb",
           "unknown"
@@ -3281,8 +3190,8 @@
         "module_alias": "usb:v1199p9013d0002dc00dsc00dp00icFFiscFFipFFin03"
       },
       {
-        "index": 40,
-        "attached_to": 44,
+        "index": 39,
+        "attached_to": 33,
         "class_list": [
           "usb",
           "unknown"
@@ -3323,8 +3232,8 @@
         },
         "serial": "B8763FA8CA9D",
         "model": "Broadcom BCM20702A0",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.4/1-1.4:1.1",
-        "sysfs_bus_id": "1-1.4:1.1",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb2/2-1/2-1.4/2-1.4:1.2",
+        "sysfs_bus_id": "2-1.4:1.2",
         "resources": [
           {
             "type": "baud",
@@ -3353,12 +3262,12 @@
             "value": 255
           },
           "interface_subclass": {
-            "hex": "0001",
-            "name": "audio",
-            "value": 1
+            "hex": "00ff",
+            "name": "vendor_spec",
+            "value": 255
           },
-          "interface_protocol": 1,
-          "interface_number": 1,
+          "interface_protocol": 255,
+          "interface_number": 2,
           "interface_alternate_setting": 0
         },
         "hotplug": "usb",
@@ -3370,11 +3279,11 @@
         "driver_modules": [
           "btusb"
         ],
-        "module_alias": "usb:v0A5Cp21E6d0112dcFFdsc01dp01icFFisc01ip01in01"
+        "module_alias": "usb:v0A5Cp21E6d0112dcFFdsc01dp01icFFiscFFipFFin02"
       },
       {
-        "index": 43,
-        "attached_to": 35,
+        "index": 42,
+        "attached_to": 34,
         "class_list": [
           "usb",
           "unknown"
@@ -3480,6 +3389,98 @@
           "usbserial"
         ],
         "module_alias": "usb:v1199p9013d0002dc00dsc00dp00icFFiscFFipFFin01"
+      },
+      {
+        "index": 43,
+        "attached_to": 33,
+        "class_list": [
+          "usb",
+          "unknown"
+        ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0000",
+          "name": "Unclassified device",
+          "value": 0
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Unclassified device",
+          "value": 0
+        },
+        "vendor": {
+          "hex": "0a5c",
+          "name": "Broadcom Corp",
+          "value": 2652
+        },
+        "device": {
+          "hex": "21e6",
+          "name": "BCM20702A0",
+          "value": 8678
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "1.12",
+          "value": 0
+        },
+        "serial": "B8763FA8CA9D",
+        "model": "Broadcom BCM20702A0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb2/2-1/2-1.4/2-1.4:1.0",
+        "sysfs_bus_id": "2-1.4:1.0",
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 12000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          }
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "00ff",
+            "name": "vendor_spec",
+            "value": 255
+          },
+          "device_subclass": {
+            "hex": "0001",
+            "name": "audio",
+            "value": 1
+          },
+          "device_protocol": 1,
+          "interface_class": {
+            "hex": "00ff",
+            "name": "vendor_spec",
+            "value": 255
+          },
+          "interface_subclass": {
+            "hex": "0001",
+            "name": "audio",
+            "value": 1
+          },
+          "interface_protocol": 1,
+          "interface_number": 0,
+          "interface_alternate_setting": 0
+        },
+        "hotplug": "usb",
+        "driver": "btusb",
+        "driver_module": "btusb",
+        "drivers": [
+          "btusb"
+        ],
+        "driver_modules": [
+          "btusb"
+        ],
+        "module_alias": "usb:v0A5Cp21E6d0112dcFFdsc01dp01icFFisc01ip01in00"
       }
     ],
     "usb_controller": [
