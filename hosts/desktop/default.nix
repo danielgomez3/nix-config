@@ -29,11 +29,11 @@ in {
     yubikey-functionality.enable = true;
     discord.enable = true;
     rdp-client-gnome.enable = true;
-    voice-transcription.enable = true;
   };
 
-  # home-manager.users.${config.myVars.username}.myHomeManager = {
-  # };
+  home-manager.users.${config.myVars.username}.myHomeManager = {
+    jambi.enable = true;
+  };
 
   time.hardwareClockInLocalTime = true;
   hardware.keyboard.zsa.enable = true;

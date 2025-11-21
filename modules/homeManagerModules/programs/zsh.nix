@@ -28,6 +28,7 @@
       conf = "cd ~/Projects/repos-personal/flakes/flake/ && hx modules/coding.nix modules/all.nix";
       notes = "cd ~/Documents/notes/files && hx .";
       zrf = "zellij run floating";
+      jambi = "jambi -c $HOME/.config/jambi/config.toml record --live";
       # send_desktop_downloads_to_server = "${pkgs.rsync}/bin/rsync --remove-source-files -avz desktop:~/Downloads/* server:~/Downloads/";
       # send_desktop_downloads_to_server_cwd = "${pkgs.rsync}/bin/rsync --remove-source-files -avz desktop:~/Downloads/* server:~/Downloads/";
     };

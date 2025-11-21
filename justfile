@@ -64,6 +64,7 @@ deploy-rs target=(host):
 
 # Validates syntax and module structure, no build or result.
 eval target=(host):
+    git add -A :/
     nix eval ".#nixosConfigurations.{{target}}.config.system.build.toplevel.drvPath"
     # #!/usr/bin/env bash
     # input="{{target}}"
