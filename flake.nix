@@ -246,6 +246,16 @@
         inherit inputs self pkgsUnstable myHelper;
       };
     };
+    nixosConfigurations.persistent-usb = inputs.nixpkgs.lib.nixosSystem {
+      modules =
+        commonImports "persistent-usb"
+        ++ [
+          {config.facter.reportPath = "${self.outPath}/hosts/persistent-usb/facter.json";}
+        ];
+      specialArgs = {
+        inherit inputs self pkgsUnstable myHelper;
+      };
+    };
 
     # nix-on-droid switch --flake "github:danielgomez3/nix-config/deploy-rs#phone"
     # nixOnDroidConfigurations.phone = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
@@ -379,6 +389,15 @@
       profiles.system = {
         user = "root"; # The user that the profile will be deployed to
         path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.raw-image;
+      };
+    };
+    deploy.nodes.persistent-usb = {
+      hostname = "persistent-usb";
+      sshUser = "root"; # username of the target machine
+      fastConnection = true; # Enable pipelined copying
+      profiles.system = {
+        user = "root"; # The user that the profile will be deployed to
+        path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.persistent-usb;
       };
     };
   };
