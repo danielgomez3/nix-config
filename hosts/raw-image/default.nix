@@ -18,7 +18,7 @@
   };
 
   myNixOS = {
-    bundles.core-system.enable = true;
+    core-system.enable = true;
     raw-image-config.enable = true;
     # bundles.desktop-environment.enable = true;
   };

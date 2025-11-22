@@ -21,9 +21,8 @@
 
   myNixOS = {
     # bundles.base-system.enable = true; # TODO doesn't work!  change systemd boot..
-    # core-system.enable = true;
-    bundles.desktop-environment.enable = true;
     core-system.enable = true;
+    # bundles.desktop-environment.enable = true;
     iso-config.enable = true; # WIP
     # wifi-config.enable = true;
   };

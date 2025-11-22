@@ -125,7 +125,8 @@
     nixosConfigurations.myIso = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        (inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix")
+        # (inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix")
+        (inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
         inputs.home-manager.nixosModules.default
         "${self.outPath}/modules/nixosModules"
         "${self.outPath}/modules/homeManagerModules"
@@ -247,11 +248,7 @@
       };
     };
     nixosConfigurations.persistent-usb = inputs.nixpkgs.lib.nixosSystem {
-      modules =
-        commonImports "persistent-usb"
-        ++ [
-          {config.facter.reportPath = "${self.outPath}/hosts/persistent-usb/facter.json";}
-        ];
+      modules = commonImports "persistent-usb" ++ ["${self.outPath}/hosts/persistent-usb/hardware-configuration.nix"];
       specialArgs = {
         inherit inputs self pkgsUnstable myHelper;
       };

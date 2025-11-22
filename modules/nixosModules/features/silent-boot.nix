@@ -34,7 +34,7 @@
 
     # Boot Loader
     loader = {
-      timeout = 11;
+      timeout = lib.mkForce 11;
     };
   };
 }

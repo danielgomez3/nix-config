@@ -140,18 +140,27 @@ netboot:
     -sudo iptables -w -I nixos-fw -p tcp -m tcp --dport 64172 -j ACCEPT
     sudo $(realpath /tmp/run-pixiecore)
 
-test-iso:
+build-deploy-iso host image block_device:
     nix build .#custom-iso
-    nix run nixpkgs#qemu -- -cdrom result/iso/*.iso -m 4096 -enable-kvm -vnc :1 && \
+    just deploy-image {{host}} {{image}} {{block_device}}
+
+
+test-iso:
+    # nix build .#custom-iso
+    nix run nixpkgs#qemu -- -cdrom result/iso/*.iso -m 4096 -enable-kvm -vnc :1 & \
     nix run nixpkgs#novnc -- --vnc localhost:5901 
 
 # target is the host name, and the name of the .raw file when it's created. This builds from scratch AND tests the image.
-test-raw-image target:
-    $(nix-build ./lib/virtualization/qemu.nix)/bin/test-image ./{{target}}.raw
+# test-raw-image target:
+#     $(nix-build ./lib/virtualization/qemu.nix)/bin/test-image ./{{target}}.raw
+
+build-raw-image target:
+    nix build .#nixosConfigurations.raw-image.config.system.build.diskoImagesScript 
+    sudo ./result --build-memory 8096 --post-format-files ~/.config/sops/age/keys.txt /root/.config/sops/age/keys.txt
 
 build-test-raw-image target:
     nix build .#nixosConfigurations.raw-image.config.system.build.diskoImagesScript 
-    sudo ./result --build-memory 8096 --pre-format-files ~/.config/sops/age/keys.txt /root/.config/sops/age/keys.txt
+    sudo ./result --build-memory 8096 --post-format-files ~/.config/sops/age/keys.txt /root/.config/sops/age/keys.txt
     $(nix-build ./lib/virtualization/qemu.nix)/bin/test-image ./{{target}}.raw
 
 
@@ -164,11 +173,10 @@ ssh-keygen username ip_address:
 
 deploy-image host image block_device:
     ssh \
-    # -o NoneSwitch=yes -o NoneEnabled=yes \
     -c aes128-gcm@openssh.com \
     -o Compression=no \
     root@{{host}} \
-    "dd conv=fsync oflag=direct bs=16M status=progress of={{block_device}}" < {{image}} #  equivalent do: dd if=/dev/stdin of=/dev/sda
+    "dd conv=fsync oflag=direct bs=10M status=progress of={{block_device}}" < {{image}} #  equivalent do: dd if=/dev/stdin of=/dev/sda
 
 # To test my nix-darwin machine:
 # nix eval ".#darwinConfigurations.workLaptop.config.system.build.toplevel.drvPath"

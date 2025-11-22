@@ -1,10 +1,8 @@
-# disko-config.nix
 {
   disko.devices = {
     disk = {
       main = {
-        # imageName = "raw-image"; # NOTE setting is unique to .raw image hosts
-        device = "/dev/sda";
+        device = "/dev/disk/by-id/usb-PNY_USB_3.2.2_FD_071C571EAA8B2257-0:0";
         type = "disk";
         content = {
           type = "gpt";
