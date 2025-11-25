@@ -47,9 +47,7 @@ in {
 
   nix.settings.auto-optimise-store = true; # Optimize store every build. May slow down rebuilds
   nix.settings.download-buffer-size = 9024288000; # 9 GB
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
+  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

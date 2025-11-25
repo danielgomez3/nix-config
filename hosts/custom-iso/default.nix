@@ -16,7 +16,7 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   users.users.${config.myVars.username} = {
-    description = "this is a custom iso I want used and built for everywhere, which ssh access";
+    description = "this is a custom iso I want used and built for everywhere, which ssh access, and ssh access to my server";
   };
 
   myNixOS = {

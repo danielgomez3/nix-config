@@ -5,6 +5,7 @@
   inputs,
   config,
   host,
+  lib,
   ...
 }: let
   username = config.myVars.username;
@@ -17,9 +18,11 @@ in {
   users.users.${username} = {
     description = "desktop";
   };
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   # for gnome desktop on my desktop graphics
   myNixOS = {
+    bundles.pc-boot.enable = true;
     bundles.base-system.enable = true;
     bundles.desktop-environment.enable = true;
     bundles.embedded-dev-environment.enable = true;

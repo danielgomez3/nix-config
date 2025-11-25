@@ -57,6 +57,7 @@
     jambi.url = "github:guttermonk/jambi";
     # dictation.url = "github:jtara1/dictation";
     # dictation.inputs.nixpkgs.follows = "nixpkgs"; # where nixpkgs is your var for nixos nixpkgs in inputs
+    nix-software-center.url = "github:snowfallorg/nix-software-center";
   };
 
   outputs = inputs @ {self, ...}: let
@@ -86,8 +87,8 @@
       inherit inputs;
       lib = inputs.nixpkgs.lib;
     };
-    system = "x86_64-linux";
-    nixpkgsNixosImages = inputs.nixos-images.inputs.nixos-unstable.legacyPackages.${system};
+    # system = "x86_64-linux";
+    nixpkgsNixosImages = inputs.nixos-images.inputs.nixos-unstable.legacyPackages."x86_64-linux";
   in {
     devShells.${supportedSystems.linux}.default = pkgs.mkShell {
       buildInputs = [pkgs.deploy-rs pkgs.pfetch]; # deps needed at runtime.
@@ -160,6 +161,7 @@
     # };
 
     nixosConfigurations.laptop = inputs.nixpkgs.lib.nixosSystem {
+      system = supportedSystems.linux;
       modules =
         commonImports "laptop"
         ++ [
