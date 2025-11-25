@@ -20,6 +20,7 @@ in {
   };
 
   myNixOS = {
+    bundles.pc-boot.enable = true;
     bundles.base-system.enable = true;
     caching.enable = true;
     nix-netboot-serve.enable = false;

@@ -1,4 +1,4 @@
-# hosts/persistent-usb/default.nix
+# hosts/usb-luks/default.nix
 # NOTE: This contains all common features I want only my server to have!
 {
   config,
@@ -10,13 +10,13 @@
 }: {
   imports = [
   ];
-  myVars.username = "daniel"; # Specific username for this machine
-  myVars.hostname = "persistent-usb"; # Specific hostname for this machine
-  networking.hostName = config.myVars.hostname;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  myVars.username = "daniel"; # Specific username for this machine
+  myVars.hostname = "usb-luks"; # Specific hostname for this machine
+  networking.hostName = config.myVars.hostname;
 
   users.users.${config.myVars.username} = {
-    description = "Disko will help deploy this config to any usb or removeable media";
+    description = "persistent usb device with fde";
   };
 
   myNixOS = {

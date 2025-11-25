@@ -19,6 +19,7 @@
   };
 
   myNixOS = {
+    bundles.pc-boot.enable = true;
     core-system.enable = true;
     systemd-boot.enable = true;
     server-with-lid.enable = true;

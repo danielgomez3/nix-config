@@ -20,6 +20,7 @@
   };
 
   myNixOS = {
+    bundles.pc-boot.enable = true;
     bundles.base-system.enable = true;
     nvidia-support.enable = true;
     # gnome.enable = true;

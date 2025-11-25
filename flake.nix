@@ -111,35 +111,35 @@
           # "${self.outPath}/modules/nixosModules/features/server-with-lid.nix"
           # "${self.outPath}/modules/nixosModules/features/core-system.nix"
         ]).config.system.build.kexecInstallerTarball;
-      # custom-iso = inputs.nixos-generators.nixosGenerate {
-      #   system = "x86_64-linux";
-      #   format = "iso";
-      #   modules = ["${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"];
-      #   specialArgs = {
-      #     inherit inputs self pkgsUnstable myHelper;
-      #   };
-      # };
-    };
-
-    custom-iso = self.nixosConfigurations.myIso.config.system.build.isoImage;
-
-    nixosConfigurations.myIso = inputs.nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        # (inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix")
-        (inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
-        inputs.home-manager.nixosModules.default
-        "${self.outPath}/modules/nixosModules"
-        "${self.outPath}/modules/homeManagerModules"
-        inputs.disko.nixosModules.disko
-        "${self.outPath}/hosts/custom-iso"
-        inputs.sops-nix.nixosModules.sops
-        inputs.stylix.nixosModules.stylix # XXX: not sure why this needs to even be here
-      ];
-      specialArgs = {
-        inherit inputs self pkgsUnstable myHelper;
+      custom-iso = inputs.nixos-generators.nixosGenerate {
+        system = "x86_64-linux";
+        format = "iso";
+        modules = commonImports "persistent-usb" ++ ["${self.outPath}/hosts/persistent-usb/hardware-configuration.nix"];
+        specialArgs = {
+          inherit inputs self pkgsUnstable myHelper;
+        };
       };
     };
+
+    # custom-iso = self.nixosConfigurations.myIso.config.system.build.isoImage;
+
+    # nixosConfigurations.myIso = inputs.nixpkgs.lib.nixosSystem {
+    #   system = "x86_64-linux";
+    #   modules = [
+    #     # (inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix")
+    #     (inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+    #     inputs.home-manager.nixosModules.default
+    #     "${self.outPath}/modules/nixosModules"
+    #     "${self.outPath}/modules/homeManagerModules"
+    #     inputs.disko.nixosModules.disko
+    #     "${self.outPath}/hosts/custom-iso"
+    #     inputs.sops-nix.nixosModules.sops
+    #     inputs.stylix.nixosModules.stylix # XXX: not sure why this needs to even be here
+    #   ];
+    #   specialArgs = {
+    #     inherit inputs self pkgsUnstable myHelper;
+    #   };
+    # };
 
     # nixosConfigurations = {
     # exampleIso = inputs.nixpkgs.lib.nixosSystem {

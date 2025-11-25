@@ -19,6 +19,7 @@ in {
   };
 
   myNixOS = {
+    bundles.pc-boot.enable = true;
     bundles.base-system.enable = true;
     bundles.desktop-environment.enable = true;
     laptop-device-settings.enable = true;

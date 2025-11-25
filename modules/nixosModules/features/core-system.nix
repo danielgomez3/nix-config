@@ -16,6 +16,7 @@ in {
     openssh.enable = lib.mkDefault true;
     sops.enable = lib.mkDefault true;
     user-config.enable = lib.mkDefault true;
+    stylix.enable = lib.mkDefault true; # NOTE: this might be too big, and belong on base-system.nix
   };
   home-manager.users.${config.myVars.username}.myHomeManager = {
     cli-apps.enable = lib.mkDefault true;

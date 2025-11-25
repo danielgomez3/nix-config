@@ -15,32 +15,32 @@
       wallpaper = "theme-catpuccinlatte-name-bluepinknixlogo.png";
       scheme = "catppuccin-frappe.yaml";
     };
-    darktooth = {
-      wallpaper = "theme-darktooth-name-nixosblackgrey.jpg";
-      scheme = "darktooth.yaml";
+    defaultdark = {
+      wallpaper = "theme-defaultdark-name-nixosblackgrey.jpg";
+      scheme = "default-dark.yaml";
     };
     # gruvbox = {
     #   wallpaper = "theme-gruvbox-name-somename.jpg";
     #   scheme = "gruvbox-dark.yaml";
     # };
-    # nord = {
-    #   wallpaper = "theme-nord-name-somename.jpg";
-    #   scheme = "nord.yaml";
-    # };
+    nord = {
+      wallpaper = "theme-nord-name-purplelogo.jpg";
+      scheme = "nord.yaml";
+    };
     # Add more theme bundles as needed
   };
 
   # Map hosts to theme bundles
   hostThemes = {
     laptop = "catpuccin";
-    desktop = "darktooth";
-    workstation = "nord";
-    server = "gruvbox";
+    desktop = "defaultdark";
+    persistent-usb = "nord";
+    # server = "gruvbox";
     # Add all your hosts here
   };
 
   # Get theme bundle for current host
-  themeName = hostThemes.${host} or "darktooth"; # fallback theme
+  themeName = hostThemes.${host} or "defaultdark"; # fallback theme
   theme = themeBundles.${themeName};
 
   image = wallpaperDir + theme.wallpaper;

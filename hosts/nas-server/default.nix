@@ -20,6 +20,7 @@
   };
 
   myNixOS = {
+    bundles.pc-boot.enable = true;
     bundles.base-system.enable = true;
     server-with-lid.enable = true;
     gnupg.enable = false;

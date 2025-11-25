@@ -5,6 +5,6 @@
   ...
 }: {
   environment.systemPackages = [
-    inputs.nix-software-center.packages.${config.nixpkgs.hostPlatform}.nix-software-center
+    inputs.nix-software-center.packages.${config.nixpkgs.hostPlatform.system}.nix-software-center
   ];
 }

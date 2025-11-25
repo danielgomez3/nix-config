@@ -1,6 +1,5 @@
 # iso-config.nix
-# TODO
-#   users.users.nixos = lib.mkForce {}; # Completely override/remove the nixos user
+# NOTE: this is not needed anymore
 {inputs, ...}: {
   system.stateVersion = "25.11";
   boot.loader.systemd-boot.enable = true;

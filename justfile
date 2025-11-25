@@ -140,6 +140,9 @@ netboot:
     -sudo iptables -w -I nixos-fw -p tcp -m tcp --dport 64172 -j ACCEPT
     sudo $(realpath /tmp/run-pixiecore)
 
+deploy-usb:
+    sudo nix run 'github:nix-community/disko/latest#disko-install' -- --extra-files ~/.config/sops/age/keys.txt root/.config/sops/age/keys.txt --flake '.#persistent-usb' --disk main /dev/sda
+
 build-deploy-iso host image block_device:
     nix build .#custom-iso
     just deploy-image {{host}} {{image}} {{block_device}}
