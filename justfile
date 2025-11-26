@@ -153,9 +153,10 @@ deploy-usb flake target:
     -sudo wipefs -a {{target}}
     sudo nix run 'github:nix-community/disko/latest#disko-install' -- --extra-files ~/.config/sops/age/keys.txt root/.config/sops/age/keys.txt --flake '.#{{flake}}' --disk main {{target}}
 
-# Assumes that you have a usb mounted, and you're going to 'infect' a hard drive on that computer.
-# deploy-usb-remote flake network_target block_device:
-#     ssh {{root@network_target}} "nix run 'github:nix-community/disko/latest#disko-install' -- --extra-files ~/.config/sops/age/keys.txt root/.config/sops/age/keys.txt --flake '.#{{flake}}' --disk main {{block_device}}"
+# Assumes that you have a usb mounted on a device, and you're going to 'infect' a hard drive on that computer.
+deploy-usb-remote flake network_target block_device:
+    ssh root@{{network_target}} nix run 'github:nix-community/disko/latest#disko-install' -- --extra-files ~/.config/sops/age/keys.txt root/.config/sops/age/keys.txt --flake 'github:danielgomez3/nix-config#{{flake}}' --disk main {{block_device}}
+
 
 build-deploy-iso host image block_device:
     nix build .#custom-iso
