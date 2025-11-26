@@ -30,6 +30,7 @@ in {
         user_password = {
           neededForUsers = true;
         };
+        "luks_password" = {};
         "dkim/private_key" = {};
         # "yubikey" = {};
         "wifi_home.env" = {};

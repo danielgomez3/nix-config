@@ -105,16 +105,12 @@
           inputs.nixos-images.nixosModules.noninteractive
           "${self.outPath}/lib/custom-iso/kexec/custom-kexec.nix" # FIXME renable? disabling this might be bad
           inputs.home-manager.nixosModules.default
-          # "${self.outPath}/modules/homeManagerModules/"
-          # "${self.outPath}/modules/nixosModules"
           "${self.outPath}/modules/nixosModules/features/my-vars.nix"
-          # "${self.outPath}/modules/nixosModules/features/server-with-lid.nix"
-          # "${self.outPath}/modules/nixosModules/features/core-system.nix"
         ]).config.system.build.kexecInstallerTarball;
       custom-iso = inputs.nixos-generators.nixosGenerate {
         system = "x86_64-linux";
         format = "iso";
-        modules = commonImports "persistent-usb" ++ ["${self.outPath}/hosts/persistent-usb/hardware-configuration.nix"];
+        modules = commonImports "usb-luks" ++ ["${self.outPath}/hosts/usb-luks/hardware-configuration.nix"];
         specialArgs = {
           inherit inputs self pkgsUnstable myHelper;
         };
@@ -251,6 +247,12 @@
     };
     nixosConfigurations.persistent-usb = inputs.nixpkgs.lib.nixosSystem {
       modules = commonImports "persistent-usb" ++ ["${self.outPath}/hosts/persistent-usb/hardware-configuration.nix"];
+      specialArgs = {
+        inherit inputs self pkgsUnstable myHelper;
+      };
+    };
+    nixosConfigurations.usb-luks = inputs.nixpkgs.lib.nixosSystem {
+      modules = commonImports "usb-luks" ++ ["${self.outPath}/hosts/usb-luks/hardware-configuration.nix"];
       specialArgs = {
         inherit inputs self pkgsUnstable myHelper;
       };
@@ -397,6 +399,15 @@
       profiles.system = {
         user = "root"; # The user that the profile will be deployed to
         path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.persistent-usb;
+      };
+    };
+    deploy.nodes.usb-luks = {
+      hostname = "usb-luks";
+      sshUser = "root"; # username of the target machine
+      fastConnection = true; # Enable pipelined copying
+      profiles.system = {
+        user = "root"; # The user that the profile will be deployed to
+        path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.usb-luks;
       };
     };
   };

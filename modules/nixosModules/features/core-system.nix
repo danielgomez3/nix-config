@@ -79,5 +79,6 @@ in {
     procs # view processes, cpu usage, and memory. Like btop and ps aux had a baby
     uutils-coreutils-noprefix # updated version of 'dd' with progress param.
     grc # colorize can cmd: grc nmap
+    gptfdisk
   ];
 }

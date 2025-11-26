@@ -21,8 +21,7 @@
   };
 
   myNixOS = {
-    core-system.enable = true;
-    stylix.enable = true;
+    bundles.base-system.enable = true;
     wireguard-server.enable = true;
     mail-server.enable = true;
   };

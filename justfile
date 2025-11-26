@@ -120,9 +120,18 @@ new host username block_device description:
     sed -i -E 's|\bxxblock_devicexx\b|{{block_device}}|g' ./hosts/{{host}}/*.nix
     git add -A :/
 
-# Works with closed laptop lids, etc.
+
 [confirm("Are you sure you want to potentially erase target machine's disk and deploy?")]
 deploy username host ip_address:
+    root_dir=$(mktemp -d) && \
+    trap 'rm -rf "$root_dir"' EXIT && \
+    mkdir -p "${root_dir}/root/.config/sops/age" && \
+    cp ~/.config/sops/age/keys.txt "${root_dir}/root/.config/sops/age/keys.txt" && \
+    nix run github:nix-community/nixos-anywhere/main -- --extra-files "$root_dir" --generate-hardware-config nixos-facter ./hosts/{{host}}/facter.json root@{{ip_address}} --copy-host-keys --flake .#{{host}}
+
+# Works with closed laptop lids, etc.
+[confirm("Are you sure you want to potentially erase target machine's disk and deploy?")]
+deploy-custom-kexec username host ip_address:
     # Create a custom kexec tarball for nixos-anywhere to use
     nix build .#custom-kexec
     # create buffer to migrate age keys
@@ -131,7 +140,7 @@ deploy username host ip_address:
     mkdir -p "${root_dir}/root/.config/sops/age" && \
     cp ~/.config/sops/age/keys.txt "${root_dir}/root/.config/sops/age/keys.txt" && \
     nix run github:nix-community/nixos-anywhere/main -- --extra-files "$root_dir" --generate-hardware-config nixos-facter ./hosts/{{host}}/facter.json --phases kexec,disko,install --kexec ./result/nixos-kexec-installer-x86_64-linux.tar.gz root@{{ip_address}} --copy-host-keys --flake .#{{host}}
-    just ssh-keygen {{username}} {{ip_address}}
+    # just ssh-keygen {{username}} {{ip_address}}
     ssh root@ip_address "systemctl reboot"
 
 netboot:
@@ -140,8 +149,13 @@ netboot:
     -sudo iptables -w -I nixos-fw -p tcp -m tcp --dport 64172 -j ACCEPT
     sudo $(realpath /tmp/run-pixiecore)
 
-deploy-usb:
-    sudo nix run 'github:nix-community/disko/latest#disko-install' -- --extra-files ~/.config/sops/age/keys.txt root/.config/sops/age/keys.txt --flake '.#persistent-usb' --disk main /dev/sda
+deploy-usb flake target:
+    -sudo wipefs -a {{target}}
+    sudo nix run 'github:nix-community/disko/latest#disko-install' -- --extra-files ~/.config/sops/age/keys.txt root/.config/sops/age/keys.txt --flake '.#{{flake}}' --disk main {{target}}
+
+# Assumes that you have a usb mounted, and you're going to 'infect' a hard drive on that computer.
+# deploy-usb-remote flake network_target block_device:
+#     ssh {{root@network_target}} "nix run 'github:nix-community/disko/latest#disko-install' -- --extra-files ~/.config/sops/age/keys.txt root/.config/sops/age/keys.txt --flake '.#{{flake}}' --disk main {{block_device}}"
 
 build-deploy-iso host image block_device:
     nix build .#custom-iso

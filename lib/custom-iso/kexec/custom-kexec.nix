@@ -10,11 +10,17 @@
 }: {
   # Add your lid switch configuration
   # TODO: reference same settings as system.nix for pxe boot
+  myVars.username = "daniel"; # Specific username for this machine
+  myVars.hostname = "custom-kexec"; # Specific hostname for this machine
+  networking.hostName = config.myVars.hostname;
+
   services.logind = {
     lidSwitch = "ignore";
     lidSwitchExternalPower = "ignore";
     lidSwitchDocked = "ignore";
   };
+
+  environment.systemPackages = [pkgs.networkmanager];
 
   # Not needed, nixos-anywhere already gives out your key
   # users.users.root.openssh.authorizedKeys.keys = [
@@ -23,5 +29,10 @@
 
   system.stateVersion = config.system.nixos.release;
 
-  # Additional settings to prevent sleep
+  networking.networkmanager.enable = true;
+  hardware.enableRedistributableFirmware = true;
+  # networking.wireless = {
+  #   enable = true;
+  #   userControlled.enable = true;
+  # };
 }
