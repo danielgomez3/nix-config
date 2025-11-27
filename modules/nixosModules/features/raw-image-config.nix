@@ -1,3 +1,4 @@
+# raw-image-config.nix
 {
   pkgs,
   lib,
@@ -12,5 +13,6 @@
   # system.stateVersion = config.system.nixos.release;
   # Adjust this to your liking.
   # WARNING: if you set a too low value the image might be not big enough to contain the nixos installation
-  disko.devices.disk.main.imageSize = "7G";
+  disko.devices.disk.main.imageSize = "30G";
+  disko.devices.disk.main.imageName = "${config.myVars.hostname}"; # Set your preferred name
 }

@@ -22,6 +22,7 @@ in {
     bundles.pc-boot.enable = true;
     bundles.base-system.enable = true;
     bundles.desktop-environment.enable = true;
+    raw-image-config.enable = true;
     laptop-device-settings.enable = true;
     nix-software-center.enable = true;
   };

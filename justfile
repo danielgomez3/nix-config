@@ -172,13 +172,15 @@ test-iso:
 # test-raw-image target:
 #     $(nix-build ./lib/virtualization/qemu.nix)/bin/test-image ./{{target}}.raw
 
+# WORKS!
 build-raw-image target:
-    nix build .#nixosConfigurations.raw-image.config.system.build.diskoImagesScript 
-    sudo ./result --build-memory 8096 --post-format-files ~/.config/sops/age/keys.txt /root/.config/sops/age/keys.txt
+    nix build .#nixosConfigurations.{{target}}.config.system.build.diskoImagesScript 
+    sudo ./result --build-memory 2048 --pre-format-files /run/secrets/luks_password /run/secrets/luks_password --post-format-files ~/.config/sops/age/keys.txt /root/.config/sops/age/keys.txt
 
+# UNTESTED
 build-test-raw-image target:
     nix build .#nixosConfigurations.raw-image.config.system.build.diskoImagesScript 
-    sudo ./result --build-memory 8096 --post-format-files ~/.config/sops/age/keys.txt /root/.config/sops/age/keys.txt
+    sudo ./result --build-memory 8096 --pre-format-files /run/curent/luks_password /run/current/luks_password --post-format-files ~/.config/sops/age/keys.txt /root/.config/sops/age/keys.txt
     $(nix-build ./lib/virtualization/qemu.nix)/bin/test-image ./{{target}}.raw
 
 
