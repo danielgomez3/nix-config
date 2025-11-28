@@ -25,7 +25,8 @@
     bundles.desktop-environment.enable = true;
     # fde-config.enable = true;
     # zram.enable = true;
-    laptop-device-settings.enable = true;
+    installer-usb-config.enable = true;
+    # laptop-device-settings.enable = true;
   };
 
   # home-manager.users.${config.myVars.username}.myHomeManager = {

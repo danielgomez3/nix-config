@@ -1,4 +1,5 @@
 # raw-image-config.nix
+# NOTE: this is needed if you want to generate a .raw image?
 {
   pkgs,
   lib,

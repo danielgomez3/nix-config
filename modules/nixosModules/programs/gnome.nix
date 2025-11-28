@@ -26,6 +26,7 @@
     gnomeExtensions.pop-shell
     gnomeExtensions.hide-top-bar
     gnomeExtensions.blurt
+    gnomeExtensions.caffeine
     # gnomeExtensions.arc-menu
   ];
   home-manager.users.${config.myVars.username} = {
@@ -39,6 +40,7 @@
           pkgs.gnomeExtensions.pop-shell.extensionUuid
           pkgs.gnomeExtensions.hide-top-bar.extensionUuid
           pkgs.gnomeExtensions.blurt.extensionUuid
+          pkgs.gnomeExtensions.caffeine.extensionUuid
           # pkgs.gnomeExtensions.arc-menu.extensionUuid
         ];
 
