@@ -49,7 +49,7 @@
     (myHelper.filesIn ./bundles);
 in {
   home-manager = {
-    backupFileExtension = "hm-backup";
+    backupFileExtension = "backup";
     extraSpecialArgs = {inherit inputs self pkgsUnstable;};
     users.${username} = {
       home = {

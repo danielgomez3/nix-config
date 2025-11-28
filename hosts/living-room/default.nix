@@ -1,5 +1,6 @@
 # heztner-vps/default.nix
 # NOTE: This contains all common features I want only my server to have!
+# TODO: make jovian and kde-plasma into a bundle
 {
   config,
   pkgs,
@@ -18,11 +19,17 @@
   };
 
   myNixOS = {
-    core-system.enable = true;
+    bundles.base-system.enable = true;
     # systemd-boot.enable = true;
     jovian-nixos.enable = true;
-    retroarch.enable = false;
+    # kde-plasma.enable = true;
+    bundles.desktop-environment.enable = true;
+    retroarch.enable = true;
     network-config.enable = true;
+  };
+
+  home-manager.users.${config.myVars.username}.myHomeManager = {
+    chromium.enable = true;
   };
 
   # services = {

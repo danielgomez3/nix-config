@@ -33,6 +33,7 @@
   # Map hosts to theme bundles
   hostThemes = {
     laptop = "catpuccin";
+    living-room = "catpuccin";
     desktop = "defaultdark";
     persistent-usb = "nord";
     # server = "gruvbox";

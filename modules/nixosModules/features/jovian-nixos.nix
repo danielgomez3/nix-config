@@ -5,28 +5,25 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }: let
   # Local user account for auto login
   # Separate and distinct from Steam login
   # Can be any name you like
 in {
-  myNixOS = {
-    kde-desktop.enable = false;
-  };
-
-  #
-  # Dependencies
-  #
-  networking.networkmanager.enable = true;
-  nixpkgs.config.allowUnfree = true;
-
   #
   # Imports
   #
   imports = [
     inputs.jovian.nixosModules.default
   ];
+
+  #
+  # Dependencies
+  #
+  networking.networkmanager.enable = true;
+  nixpkgs.config.allowUnfree = true;
 
   #
   # Boot
@@ -47,6 +44,10 @@ in {
   #   autoStart = true;
   # };
 
+  services.desktopManager.plasma6.enable = false;
+  services.displayManager.gdm.enable = lib.mkForce false;
+
+  # environment.variables.GDK_SCALE = "2";
   jovian = {
     steamos = {
       useSteamOSConfig = true;
@@ -56,8 +57,8 @@ in {
       autoStart = true;
       updater.splash = "steamos";
       user = "${config.myVars.username}";
-      desktopSession = "gamescope-wayland";
-      # desktopSession = "plasma";
+      # desktopSession = "gamescope-wayland";
+      desktopSession = "gnome";
     };
   };
 

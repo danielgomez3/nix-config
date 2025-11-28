@@ -32,6 +32,7 @@ in {
     yubikey-functionality.enable = true;
     discord.enable = true;
     rdp-client-gnome.enable = true;
+    retroarch.enable = true;
   };
 
   home-manager.users.${config.myVars.username}.myHomeManager = {

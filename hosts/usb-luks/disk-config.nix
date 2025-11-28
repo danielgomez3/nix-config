@@ -4,7 +4,8 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/sda";
+        # device = "/dev/sda";
+        device = "/dev/disk/by-id/usb-PNY_USB_3.2.2_FD_071C571EAA8B2257-0:0";
         content = {
           type = "gpt";
           partitions = {

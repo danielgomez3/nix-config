@@ -175,7 +175,7 @@ test-iso:
 # WORKS!
 build-raw-image target:
     nix build .#nixosConfigurations.{{target}}.config.system.build.diskoImagesScript 
-    sudo ./result --build-memory 2048 --pre-format-files /run/secrets/luks_password /run/secrets/luks_password --post-format-files ~/.config/sops/age/keys.txt /root/.config/sops/age/keys.txt
+    sudo ./result --build-memory 2048 --pre-format-files /run/secrets/luks_password /run/secrets/luks_password --post-format-files /root/.config/sops/age/keys.txt /root/.config/sops/age/keys.txt
 
 # UNTESTED
 build-test-raw-image target:
