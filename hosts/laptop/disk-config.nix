@@ -4,7 +4,7 @@
       main = {
         # imageSize = "40G";
         type = "disk";
-        device = "/dev/sda";
+        device = "/dev/disk/by-id/scsi-0WDC_SDINFDO4-128G_WDC";
         content = {
           type = "gpt";
           partitions = {

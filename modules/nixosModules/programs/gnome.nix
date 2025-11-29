@@ -4,7 +4,15 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  caffeine = pkgs.gnomeExtensions.caffeine.overrideAttrs (oldAttrs: {
+    version = "59"; # Specify the desired version
+    src = pkgs.fetchurl {
+      url = "https://github.com/eonpatapon/gnome-shell-extension-caffeine/archive/refs/tags/v59.tar.gz";
+      sha256 = "sha256-dNjq1pdZeyChGVjNXmc6MPjw/71yyC86bhV9V0tNxbI=; # Replace with the actual SHA256";
+    };
+  });
+in {
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
@@ -24,9 +32,10 @@
     gnome-sound-recorder
     gnomeExtensions.blur-my-shell
     gnomeExtensions.pop-shell
-    gnomeExtensions.hide-top-bar
+    # gnomeExtensions.hide-top-bar
     gnomeExtensions.blurt
     gnomeExtensions.caffeine
+    gnomeExtensions.keep-awake
     # gnomeExtensions.arc-menu
   ];
   home-manager.users.${config.myVars.username} = {
@@ -38,9 +47,10 @@
         enabled-extensions = [
           pkgs.gnomeExtensions.blur-my-shell.extensionUuid
           pkgs.gnomeExtensions.pop-shell.extensionUuid
-          pkgs.gnomeExtensions.hide-top-bar.extensionUuid
+          # pkgs.gnomeExtensions.hide-top-bar.extensionUuid
           pkgs.gnomeExtensions.blurt.extensionUuid
           pkgs.gnomeExtensions.caffeine.extensionUuid
+          pkgs.gnomeExtensions.keep-awake.extensionUuid
           # pkgs.gnomeExtensions.arc-menu.extensionUuid
         ];
 
@@ -79,10 +89,16 @@
         tile-by-default = true;
       };
 
-      "org/gnome/shell/extensions/hidetopbar" = {
-        enable-active-window = false;
-        enable-intellihide = false;
+      "org/gnome/shell/extensions/caffeine" = {
+        user-enabled = true;
+        show-indicator = "always";
+        screen-blank = "always";
       };
+
+      # "org/gnome/shell/extensions/hidetopbar" = {
+      #   enable-active-window = false;
+      #   enable-intellihide = false;
+      # };
 
       # TODO: change conditionaly for laptop and desktop
       # "org/gnome/settings-daemon/plugins/power" = {

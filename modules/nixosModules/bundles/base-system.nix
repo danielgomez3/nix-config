@@ -47,6 +47,7 @@ in {
       waypipe # x11 forwarding alternative:
       age
       nix-tree
+      aria2
     ];
   };
 }
