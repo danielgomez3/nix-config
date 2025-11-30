@@ -118,8 +118,6 @@ in {
                 # passwordFile = "/tmp/pass";
                 passwordFile = config.sops.secrets."luks_password".path; # or use keyFile for persistent storage
                 extraFormatArgs = [
-                  "--type luks1"
-                  "--iter-time 1000"
                 ];
                 settings = {
                   allowDiscards = true;
