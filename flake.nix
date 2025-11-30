@@ -159,12 +159,12 @@
 
     nixosConfigurations.laptop = inputs.nixpkgs.lib.nixosSystem {
       system = supportedSystems.linux;
-      modules =
-        commonImports "laptop"
-        ++ [
-          {config.facter.reportPath = "${self.outPath}/hosts/laptop/facter.json";}
-        ];
-
+      # modules =
+      #   commonImports "laptop"
+      #   ++ [
+      #     {config.facter.reportPath = "${self.outPath}/hosts/laptop/facter.json";}
+      #   ];
+      modules = commonImports "laptop" ++ ["${self.outPath}/hosts/laptop/hardware-configuration.nix"];
       specialArgs = {
         inherit inputs self pkgsUnstable myHelper;
       };

@@ -127,7 +127,7 @@ deploy username host ip_address:
     trap 'rm -rf "$root_dir"' EXIT && \
     mkdir -p "${root_dir}/root/.config/sops/age" && \
     cp ~/.config/sops/age/keys.txt "${root_dir}/root/.config/sops/age/keys.txt" && \
-    nix run github:nix-community/nixos-anywhere/main -- --extra-files "$root_dir" --generate-hardware-config nixos-facter ./hosts/{{host}}/facter.json root@{{ip_address}} --copy-host-keys --flake .#{{host}}
+    nix run github:nix-community/nixos-anywhere/main -- --extra-files "$root_dir" --copy-host-keys --flake .#{{host}} --target-host root@{{ip_address}}
 
 # Works with closed laptop lids, etc.
 [confirm("Are you sure you want to potentially erase target machine's disk and deploy?")]
