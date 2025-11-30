@@ -23,8 +23,8 @@
     },
     "bluetooth": [
       {
-        "index": 39,
-        "attached_to": 37,
+        "index": 40,
+        "attached_to": 38,
         "class_list": [
           "usb",
           "bluetooth"
@@ -105,8 +105,8 @@
         "module_alias": "usb:v0BDAp4853d0000dcE0dsc01dp01icE0isc01ip01in00"
       },
       {
-        "index": 43,
-        "attached_to": 37,
+        "index": 44,
+        "attached_to": 38,
         "class_list": [
           "usb",
           "bluetooth"
@@ -445,8 +445,8 @@
     ],
     "camera": [
       {
-        "index": 38,
-        "attached_to": 37,
+        "index": 39,
+        "attached_to": 38,
         "class_list": [
           "camera",
           "usb"
@@ -547,7 +547,7 @@
       },
       {
         "index": 45,
-        "attached_to": 37,
+        "attached_to": 38,
         "class_list": [
           "camera",
           "usb"
@@ -819,7 +819,7 @@
         "fpu_exception": false,
         "cpuid_level": 32,
         "write_protect": false,
-        "tlb_size": 32682,
+        "tlb_size": 32576,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -911,7 +911,7 @@
       },
       {
         "index": 35,
-        "attached_to": 30,
+        "attached_to": 14,
         "class_list": [
           "disk",
           "usb",
@@ -938,37 +938,36 @@
           "value": 0
         },
         "vendor": {
-          "hex": "090c",
-          "name": "MS",
-          "value": 2316
+          "hex": "154b",
+          "name": "PNY",
+          "value": 5451
         },
         "device": {
-          "hex": "2320",
-          "name": "YSUWD10-128GSY",
-          "value": 8992
+          "hex": "1007",
+          "name": "USB 3.2.2 FD",
+          "value": 4103
         },
         "revision": {
           "hex": "0000",
-          "name": "1000",
+          "name": "PMAP",
           "value": 0
         },
-        "serial": "AA000000000000003140",
-        "model": "MS YSUWD10-128GSY",
+        "serial": "071C571EAA8B2257",
+        "model": "PNY USB 3.2.2 FD",
         "sysfs_id": "/class/block/sda",
         "sysfs_bus_id": "0:0:0:0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:14.0/usb4/4-1/4-1:1.0/host0/target0:0:0/0:0:0:0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:0d.0/usb2/2-1/2-1:1.0/host0/target0:0:0/0:0:0:0",
         "unix_device_names": [
-          "/dev/disk/by-id/ata-YSUWD10-128GSY_AA000000000000003140",
-          "/dev/disk/by-id/usb-MS_YSUWD10-128GSY_AA000000000000003140-0:0",
-          "/dev/disk/by-path/pci-0000:00:14.0-usb-0:1:1.0-scsi-0:0:0:0",
-          "/dev/disk/by-path/pci-0000:00:14.0-usbv3-0:1:1.0-scsi-0:0:0:0",
+          "/dev/disk/by-id/usb-PNY_USB_3.2.2_FD_071C571EAA8B2257-0:0",
+          "/dev/disk/by-path/pci-0000:00:0d.0-usb-0:1:1.0-scsi-0:0:0:0",
+          "/dev/disk/by-path/pci-0000:00:0d.0-usbv3-0:1:1.0-scsi-0:0:0:0",
           "/dev/sda"
         ],
         "unix_device_name2": "/dev/sg0",
         "resources": [
           {
             "type": "disk_geo",
-            "cylinders": 15566,
+            "cylinders": 30401,
             "heads": 255,
             "sectors": 63,
             "size": "0x0",
@@ -977,7 +976,7 @@
           {
             "type": "size",
             "unit": "sectors",
-            "value_1": 250069680,
+            "value_1": 488397168,
             "value_2": 512
           }
         ],
@@ -991,7 +990,7 @@
           "sd_mod",
           "uas"
         ],
-        "module_alias": "usb:v090Cp2320d0100dc00dsc00dp00ic08isc06ip62in00"
+        "module_alias": "usb:v154Bp1007d0110dc00dsc00dp00ic08isc06ip62in00"
       }
     ],
     "graphics_card": [
@@ -1075,7 +1074,7 @@
     ],
     "hub": [
       {
-        "index": 37,
+        "index": 38,
         "attached_to": 30,
         "class_list": [
           "usb",
@@ -1162,7 +1161,7 @@
         "module_alias": "usb:v1D6Bp0002d0612dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 40,
+        "index": 41,
         "attached_to": 30,
         "class_list": [
           "usb",
@@ -1239,7 +1238,7 @@
         "module_alias": "usb:v1D6Bp0003d0612dc09dsc00dp03ic09isc00ip00in00"
       },
       {
-        "index": 41,
+        "index": 42,
         "attached_to": 14,
         "class_list": [
           "usb",
@@ -2674,8 +2673,8 @@
     },
     "usb": [
       {
-        "index": 42,
-        "attached_to": 37,
+        "index": 43,
+        "attached_to": 38,
         "class_list": [
           "usb",
           "unknown"
@@ -2892,7 +2891,7 @@
         "sysfs_bus_id": "0000:00:14.0",
         "detail": {
           "function": 0,
-          "command": 1030,
+          "command": 1026,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 48

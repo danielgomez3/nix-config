@@ -33,6 +33,8 @@ in {
     discord.enable = true;
     rdp-client-gnome.enable = true;
     retroarch.enable = true;
+    # declarative-flatpak.enable = true;
+    flatpak.enable = true;
   };
 
   home-manager.users.${config.myVars.username}.myHomeManager = {

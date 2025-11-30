@@ -1,15 +1,18 @@
-{pkgs,lib,...}:{
-
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.mangohud = {
     enable = true;
-    enableSessionWide = true;
+    enableSessionWide = false;
     settingsPerApplication = {
       mpv = {
         no_display = true;
       };
     };
     settings = {
-      output_folder = "~/.config/mangologs";    
+      output_folder = "~/.config/mangologs";
       # CPU
       cpu_stats = 1;
       cpu_temp = 1;
@@ -28,8 +31,6 @@
       fps = true;
 
       # no_display = true; # Hide hud by default (Show by holding right-shift then press F12)
-      
     };
-
   };
 }

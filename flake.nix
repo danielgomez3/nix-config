@@ -58,6 +58,7 @@
     # dictation.url = "github:jtara1/dictation";
     # dictation.inputs.nixpkgs.follows = "nixpkgs"; # where nixpkgs is your var for nixos nixpkgs in inputs
     nix-software-center.url = "github:snowfallorg/nix-software-center";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
 
   outputs = inputs @ {self, ...}: let
