@@ -1,69 +1,148 @@
-{config, ...}: {
+# {config, ...}: {
+#   disko.devices = {
+#     disk = {
+#       main = {
+#         # imageSize = "40G";
+#         type = "disk";
+#         device = "/dev/disk/by-id/scsi-0WDC_SDINFDO4-128G_WDC";
+#         content = {
+#           type = "gpt";
+#           partitions = {
+#             ESP = {
+#               label = "boot";
+#               name = "ESP";
+#               size = "512M";
+#               type = "EF00";
+#               content = {
+#                 type = "filesystem";
+#                 format = "vfat";
+#                 mountpoint = "/boot";
+#                 mountOptions = [
+#                   "defaults"
+#                   "umask=0077"
+#                 ];
+#               };
+#             };
+#             luks = {
+#               size = "100%";
+#               content = {
+#                 type = "luks";
+#                 name = "cryptroot";
+#                 # Remove FIDO2 settings and use password instead
+#                 passwordFile = config.sops.secrets."luks_password".path; # or use keyFile for persistent storage
+#                 # passwordFile = "/tmp/secret.key"; # or use keyFile for persistent storage
+#                 # Alternative: remove passwordFile and you'll be prompted during build
+#                 extraOpenArgs = [
+#                   "--allow-discards"
+#                   "--perf-no_read_workqueue"
+#                   "--perf-no_write_workqueue"
+#                 ];
+#                 content = {
+#                   type = "btrfs";
+#                   extraArgs = ["-L" "nixos" "-f"];
+#                   subvolumes = {
+#                     "/root" = {
+#                       mountpoint = "/";
+#                       mountOptions = ["subvol=root" "compress=zstd" "noatime"];
+#                     };
+#                     "/home" = {
+#                       mountpoint = "/home";
+#                       mountOptions = ["subvol=home" "compress=zstd" "noatime"];
+#                     };
+#                     "/nix" = {
+#                       mountpoint = "/nix";
+#                       mountOptions = ["subvol=nix" "compress=zstd" "noatime"];
+#                     };
+#                     "/persist" = {
+#                       mountpoint = "/persist";
+#                       mountOptions = ["subvol=persist" "compress=zstd" "noatime"];
+#                     };
+#                     "/log" = {
+#                       mountpoint = "/var/log";
+#                       mountOptions = ["subvol=log" "compress=zstd" "noatime"];
+#                     };
+#                     "/swap" = {
+#                       mountpoint = "/swap";
+#                       swap.swapfile.size = "8G";
+#                     };
+#                   };
+#                 };
+#               };
+#             };
+#           };
+#         };
+#       };
+#     };
+#   };
+#   fileSystems."/persist".neededForBoot = true;
+#   fileSystems."/var/log".neededForBoot = true;
+# }
+{config, ...}: let
+  btrfsopt = [
+    "compress=zstd"
+    "noatime"
+    "ssd"
+    "space_cache=v2"
+    "user_subvol_rm_allowed"
+  ];
+in {
   disko.devices = {
     disk = {
       main = {
-        # imageSize = "40G";
         type = "disk";
-        device = "/dev/disk/by-id/scsi-0WDC_SDINFDO4-128G_WDC";
+        device = "/dev/sda";
         content = {
           type = "gpt";
           partitions = {
-            ESP = {
-              label = "boot";
-              name = "ESP";
-              size = "512M";
-              type = "EF00";
+            boot = {
+              name = "boot";
+              size = "1M";
+              type = "ef02";
+            };
+            esp = {
+              name = "esp";
+              size = "500M";
+              type = "ef00";
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [
-                  "defaults"
-                  "umask=0077"
-                ];
               };
             };
             luks = {
               size = "100%";
               content = {
                 type = "luks";
-                name = "cryptroot";
-                # Remove FIDO2 settings and use password instead
+                name = "nixos";
+                # passwordFile = "/tmp/pass";
                 passwordFile = config.sops.secrets."luks_password".path; # or use keyFile for persistent storage
-                # passwordFile = "/tmp/secret.key"; # or use keyFile for persistent storage
-                # Alternative: remove passwordFile and you'll be prompted during build
-                extraOpenArgs = [
-                  "--allow-discards"
-                  "--perf-no_read_workqueue"
-                  "--perf-no_write_workqueue"
+
+                additionalKeyFiles = ["/nixos-enc.key"];
+                extraFormatArgs = [
+                  "--type luks1"
+                  "--iter-time 1000"
                 ];
+                settings = {
+                  allowDiscards = true;
+                };
                 content = {
                   type = "btrfs";
-                  extraArgs = ["-L" "nixos" "-f"];
                   subvolumes = {
-                    "/root" = {
+                    "@root" = {
                       mountpoint = "/";
-                      mountOptions = ["subvol=root" "compress=zstd" "noatime"];
+                      mountOptions = btrfsopt;
                     };
-                    "/home" = {
+                    "@home" = {
                       mountpoint = "/home";
-                      mountOptions = ["subvol=home" "compress=zstd" "noatime"];
+                      mountOptions = btrfsopt;
                     };
-                    "/nix" = {
+                    "@nix" = {
                       mountpoint = "/nix";
-                      mountOptions = ["subvol=nix" "compress=zstd" "noatime"];
+                      mountOptions = btrfsopt;
                     };
-                    "/persist" = {
-                      mountpoint = "/persist";
-                      mountOptions = ["subvol=persist" "compress=zstd" "noatime"];
-                    };
-                    "/log" = {
-                      mountpoint = "/var/log";
-                      mountOptions = ["subvol=log" "compress=zstd" "noatime"];
-                    };
-                    "/swap" = {
-                      mountpoint = "/swap";
-                      swap.swapfile.size = "8G";
+                    "@data" = {
+                      mountpoint = "/data";
+                      mountOptions = btrfsopt;
                     };
                   };
                 };
@@ -74,6 +153,4 @@
       };
     };
   };
-  fileSystems."/persist".neededForBoot = true;
-  fileSystems."/var/log".neededForBoot = true;
 }
