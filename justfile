@@ -155,7 +155,7 @@ deploy-usb flake target:
 
 # Assumes that you have a usb mounted on a device, and you're going to 'infect' a hard drive on that computer.
 deploy-usb-remote flake network_target block_device:
-    ssh root@{{network_target}} nix run 'github:nix-community/disko/latest#disko-install' -- --extra-files /root/.config/sops/age/keys.txt /run/secrets/luks_password --flake 'github:danielgomez3/nix-config/new-main#{{flake}}' --disk main {{block_device}}
+    ssh root@{{network_target}} nix run 'github:nix-community/disko/latest#disko-install' -- --extra-files /root/.config/sops/age/keys.txt /run/secrets/luks_password --flake 'github:danielgomez3/nix-config/new-main#{{flake}}' --write-efi-boot-entries --disk main {{block_device}}
 
 
 build-deploy-iso host image block_device:

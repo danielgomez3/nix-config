@@ -1,4 +1,4 @@
-# laptop.nix
+# laptop/default.nix
 # NOTE: This contains all common features I want only my laptop to have!
 {
   config,
