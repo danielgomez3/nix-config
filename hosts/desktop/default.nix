@@ -24,12 +24,12 @@ in {
   myNixOS = {
     bundles.pc-boot.enable = true;
     bundles.base-system.enable = true;
+    yubikey-functionality.enable = true;
     bundles.desktop-environment.enable = true;
     bundles.embedded-dev-environment.enable = true;
     bundles.desktop-gaming.enable = true;
     amd-support.enable = true;
     virtualization.enable = false;
-    yubikey-functionality.enable = true;
     discord.enable = true;
     rdp-client-gnome.enable = true;
     retroarch.enable = true;
