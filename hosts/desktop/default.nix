@@ -20,7 +20,6 @@ in {
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  # for gnome desktop on my desktop graphics
   myNixOS = {
     bundles.pc-boot.enable = true;
     bundles.base-system.enable = true;
@@ -35,6 +34,7 @@ in {
     retroarch.enable = true;
     # declarative-flatpak.enable = true;
     flatpak.enable = true;
+    docker.enable = true;
   };
 
   home-manager.users.${config.myVars.username}.myHomeManager = {

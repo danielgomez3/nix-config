@@ -27,7 +27,7 @@
             # Linux root partition - starts after Windows space
             root = {
               # Reserve 100GB at the beginning for Windows
-              start = "230G"; # Adjust this size based on your needs
+              start = "200G"; # Adjust this size based on your needs
               size = "100%"; # Take all remaining space for whatever you want (NixOS installation)
               content = {
                 type = "filesystem";

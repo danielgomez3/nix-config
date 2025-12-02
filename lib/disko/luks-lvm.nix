@@ -1,4 +1,3 @@
-# NOTE: this worked, couldn't log in!
 {config, ...}: {
   disko.devices = {
     disk = {

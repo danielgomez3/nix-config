@@ -27,6 +27,14 @@
       wallpaper = "theme-nord-name-purplelogo.jpg";
       scheme = "nord.yaml";
     };
+    atelier-forest = {
+      wallpaper = "theme-atelierforest-name-hogwarts.jpg";
+      scheme = "atelier-forest.yaml";
+    };
+    everforest = {
+      wallpaper = "theme-everforest-name-ray.jpg";
+      scheme = "everforest.yaml";
+    };
     # Add more theme bundles as needed
   };
 

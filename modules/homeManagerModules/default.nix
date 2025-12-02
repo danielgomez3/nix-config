@@ -10,8 +10,8 @@
   pkgsUnstable,
   ...
 }: let
-  cfg = config.home-manager.users.${username}.myHomeManager;
-  username = config.myVars.username;
+  cfg = config.home-manager.users.${config.myVars.username}.myHomeManager;
+  # username = config.myVars.username;
 
   # Taking all modules in ./features and adding enables to them
   features =
@@ -51,39 +51,9 @@ in {
   home-manager = {
     backupFileExtension = "backup";
     extraSpecialArgs = {inherit inputs self pkgsUnstable;};
-    users.${username} = {
+    users.${config.myVars.username} = {
       home = {
         stateVersion = "24.05";
-        packages = with pkgs; [
-          dig
-          unzip
-          # ffmpeg # failed build
-          eza
-          entr
-          tldr
-          bc
-          tree
-          zip
-          pciutils
-          usbutils
-          #cifs-utils  # FIXME: same
-          samba
-          # cli apps
-          yt-dlp
-          beets
-          spotdl
-          #protonvpn-cli_2  # FIXME: same
-          tesseract
-          ocrmypdf
-          #android-tools adb-sync android-tools ventoy  # FIXME: same, but allowUnfree for darwin
-          # Nix
-          sops
-          just
-          nixos-anywhere
-          ssh-to-age
-          colmena
-          #disko  # FIXME: allow unfree for darwin
-        ];
       };
       imports =
         [

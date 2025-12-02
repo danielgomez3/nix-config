@@ -12,6 +12,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Nix Options version as well
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-kexec.url = "github:NixOS/nixpkgs/b81d4ded7076a39af7edfb1b50f024ef5fbb8b3f";
+    # nixpkgs-gnome.url = "github:nixos/nixpkgs/nixos-25.05";
     home-manager.url = "github:nix-community/home-manager"; # hm-stable
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager-unstable.url = "github:nix-community/home-manager"; # hm-unstable
@@ -38,10 +39,9 @@
     nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs"; # Add this to your flake inputs
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     cosmic-manager.url = "github:HeitorAugustoLN/cosmic-manager";
     cosmic-manager.inputs.nixpkgs.follows = "nixpkgs";
-    cosmic-manager.inputs.home-manager.follows = "home-manager";
+    # cosmic-manager.inputs.home-manager.follows = "home-manager";
     nvf.url = "github:notashelf/nvf";
     nvf.inputs.nixpkgs.follows = "nixpkgs";
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
@@ -59,6 +59,8 @@
     # dictation.inputs.nixpkgs.follows = "nixpkgs"; # where nixpkgs is your var for nixos nixpkgs in inputs
     nix-software-center.url = "github:snowfallorg/nix-software-center";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+    inputs.import-tree.url = "github:vic/import-tree";
+    inputs.flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
   outputs = inputs @ {self, ...}: let
