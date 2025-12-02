@@ -1,3 +1,4 @@
+# desktop-environment.nix
 {
   config,
   pkgs,

@@ -39,8 +39,6 @@
     nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs"; # Add this to your flake inputs
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-    cosmic-manager.url = "github:HeitorAugustoLN/cosmic-manager";
-    cosmic-manager.inputs.nixpkgs.follows = "nixpkgs";
     # cosmic-manager.inputs.home-manager.follows = "home-manager";
     nvf.url = "github:notashelf/nvf";
     nvf.inputs.nixpkgs.follows = "nixpkgs";
@@ -184,7 +182,7 @@
       modules =
         commonImports "server"
         ++ [
-          {config.facter.reportPath = "${self.outPath}/hosts/test-machine/facter.json";}
+          {config.facter.reportPath = "${self.outPath}/hosts/server/facter.json";}
         ];
 
       specialArgs = {
