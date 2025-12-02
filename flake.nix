@@ -9,6 +9,7 @@
   description = "danielgomezcoder's NixOS configuration";
 
   inputs = {
+    # Nix
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Nix Options version as well
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-kexec.url = "github:NixOS/nixpkgs/b81d4ded7076a39af7edfb1b50f024ef5fbb8b3f";
@@ -18,7 +19,6 @@
     home-manager-unstable.url = "github:nix-community/home-manager"; # hm-unstable
     home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs-unstable";
     deploy-rs.url = "github:serokell/deploy-rs";
-    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     stylix.url = "github:nix-community/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     mysecrets.url = "git+ssh://git@github.com/danielgomez3/nix-secrets.git?ref=main&shallow=1";
@@ -29,19 +29,18 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     nix-netboot-serve.url = "github:determinatesystems/nix-netboot-serve";
     nur.url = "github:nix-community/NUR"; # Haven't used yet
-    nix-doom-emacs-unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened";
-    quickemu.url = "https://flakehub.com/f/quickemu-project/quickemu/4.9.7";
-    nix-on-droid.url = "github:nix-community/nix-on-droid/release-24.05";
-    nix-on-droid.inputs.nixpkgs.follows = "nixpkgs";
-    # MacOS emu
-    nixtheplanet.url = "github:matthewcroughan/nixtheplanet";
-    # nix-darwin
+
+    # Systems
     nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs"; # Add this to your flake inputs
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-    # cosmic-manager.inputs.home-manager.follows = "home-manager";
+    nix-on-droid.url = "github:nix-community/nix-on-droid/release-24.05";
+    nix-on-droid.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Programs/software
     nvf.url = "github:notashelf/nvf";
     nvf.inputs.nixpkgs.follows = "nixpkgs";
+    # cosmic-manager.inputs.home-manager.follows = "home-manager";
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     nixcraft.url = "github:loystonpais/nixcraft";
     nixcraft.inputs.nixpkgs.follows = "nixpkgs"; # Set correct nixpkgs name
@@ -53,12 +52,19 @@
     nixos-images.url = "github:nix-community/nixos-images/"; # get a kexec tarball to use
     impermanence.url = "github:nix-community/impermanence"; # make custom iso data impermanent
     jambi.url = "github:guttermonk/jambi";
+    nix-doom-emacs-unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened";
     # dictation.url = "github:jtara1/dictation";
     # dictation.inputs.nixpkgs.follows = "nixpkgs"; # where nixpkgs is your var for nixos nixpkgs in inputs
     nix-software-center.url = "github:snowfallorg/nix-software-center";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
+    # Nix flake Utility
     # inputs.import-tree.url = "github:vic/import-tree";
     # inputs.flake-parts.url = "github:hercules-ci/flake-parts";
+
+    # Emulation
+    nixtheplanet.url = "github:matthewcroughan/nixtheplanet";
+    quickemu.url = "https://flakehub.com/f/quickemu-project/quickemu/4.9.7";
   };
 
   outputs = inputs @ {self, ...}: let
