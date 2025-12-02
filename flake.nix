@@ -57,8 +57,8 @@
     # dictation.inputs.nixpkgs.follows = "nixpkgs"; # where nixpkgs is your var for nixos nixpkgs in inputs
     nix-software-center.url = "github:snowfallorg/nix-software-center";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-    inputs.import-tree.url = "github:vic/import-tree";
-    inputs.flake-parts.url = "github:hercules-ci/flake-parts";
+    # inputs.import-tree.url = "github:vic/import-tree";
+    # inputs.flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
   outputs = inputs @ {self, ...}: let
