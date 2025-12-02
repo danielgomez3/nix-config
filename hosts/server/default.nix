@@ -12,6 +12,7 @@
 in {
   myVars.username = "daniel"; # Specific username for this machine
   myVars.hostname = "server"; # Specific hostname for this machine
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   myVars.isINTEL = true;
   myVars.isSyncthingServer = true;
 
@@ -38,7 +39,7 @@ in {
     minecraft-server.enable = false;
     minecraft-server-docker.enable = true;
     plg-stack.enable = true;
-    web-server.enable = false;
+    web-server.enable = true;
     myNginxWebserver.enable = false;
   };
 

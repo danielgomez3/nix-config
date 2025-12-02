@@ -60,13 +60,13 @@ in {
       # desktopSession = "gamescope-wayland";
       desktopSession = "gnome";
     };
-    decky-loader = {
-      enable = true;
-      extraPackages = [];
-      # extraPythonPackages = [];
-      stateDir = "/var/lib/decky-loader";
-      user = "${config.myVars.username}";
-    };
+    # decky-loader = {
+    #   enable = true;
+    #   extraPackages = [];
+    #   # extraPythonPackages = [];
+    #   stateDir = "/var/lib/decky-loader";
+    #   user = "${config.myVars.username}";
+    # };
     devices = {
       steamdeck = {
         autoUpdate = true;

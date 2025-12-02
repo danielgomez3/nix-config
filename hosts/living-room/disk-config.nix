@@ -6,7 +6,7 @@
   disko.devices = {
     disk = {
       main = {
-        device = "/dev/sda"; # Change this to your actual disk
+        device = "/dev/nvme0n1"; # Change this to your actual disk
         type = "disk";
         content = {
           type = "gpt";

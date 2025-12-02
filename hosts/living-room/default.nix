@@ -26,6 +26,7 @@
     bundles.desktop-environment.enable = true;
     retroarch.enable = true;
     network-config.enable = true;
+    netbootxyz.enable = true;
   };
 
   home-manager.users.${config.myVars.username}.myHomeManager = {

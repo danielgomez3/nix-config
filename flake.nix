@@ -13,12 +13,12 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Nix Options version as well
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-kexec.url = "github:NixOS/nixpkgs/b81d4ded7076a39af7edfb1b50f024ef5fbb8b3f";
-    # nixpkgs-gnome.url = "github:nixos/nixpkgs/nixos-25.05";
     home-manager.url = "github:nix-community/home-manager"; # hm-stable
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager-unstable.url = "github:nix-community/home-manager"; # hm-unstable
     home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs-unstable";
     deploy-rs.url = "github:serokell/deploy-rs";
+    nixos-facter.url = "github:nix-community/nixos-generators"; # create custom kexec tarballs, etc.
     stylix.url = "github:nix-community/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     mysecrets.url = "git+ssh://git@github.com/danielgomez3/nix-secrets.git?ref=main&shallow=1";
@@ -27,7 +27,6 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    nix-netboot-serve.url = "github:determinatesystems/nix-netboot-serve";
     nur.url = "github:nix-community/NUR"; # Haven't used yet
 
     # Systems
@@ -40,6 +39,7 @@
     # Programs/software
     nvf.url = "github:notashelf/nvf";
     nvf.inputs.nixpkgs.follows = "nixpkgs";
+    nix-netboot-serve.url = "github:determinatesystems/nix-netboot-serve";
     # cosmic-manager.inputs.home-manager.follows = "home-manager";
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     nixcraft.url = "github:loystonpais/nixcraft";
@@ -82,7 +82,6 @@
       # Every host dir may contain the following:
       "${self.outPath}/hosts/${h}"
       "${self.outPath}/hosts/${h}/disk-config.nix"
-      inputs.nixos-facter-modules.nixosModules.facter
       inputs.home-manager.nixosModules.default
       "${self.outPath}/modules/nixosModules"
       "${self.outPath}/modules/homeManagerModules"
@@ -190,7 +189,6 @@
         ++ [
           {config.facter.reportPath = "${self.outPath}/hosts/server/facter.json";}
         ];
-
       specialArgs = {
         inherit inputs self pkgsUnstable myHelper;
       };

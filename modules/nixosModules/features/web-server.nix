@@ -1,7 +1,7 @@
 # web-server.nix
 {...}: {
   services.nginx = {
-    enable = false;
+    enable = true;
 
     # Only listen on WireGuard interface for security
     virtualHosts."local.danielgomezcoder.org" = {
