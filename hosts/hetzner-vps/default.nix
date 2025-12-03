@@ -22,7 +22,7 @@
   };
 
   myNixOS = {
-    systemd-boot.enable = true;
+    # systemd-boot.enable = true;
     core-system.enable = true;
     # bundles.base-system.enable = true;
     # openssh.enable = true;
@@ -30,8 +30,8 @@
     mail-server.enable = true;
   };
 
-  home-manager.users.${config.myVars.username}.myHomeManager = {
-    zsh.enable = true;
-    btop.enable = true;
-  };
+  # home-manager.users.${config.myVars.username}.myHomeManager = {
+  #   zsh.enable = true;
+  #   btop.enable = true;
+  # };
 }
