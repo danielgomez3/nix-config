@@ -19,6 +19,11 @@ in {
       keyFile = "/root/.config/sops/age/keys.txt";
       # generateKey = true;
     };
+    templates = {
+      "minecraft-cf-api-key".content = ''
+        CF_API_KEY=${config.sops.placeholder."minecraft/CF_API_KEY"}
+      '';
+    };
     secrets = lib.mkMerge [
       {
         email = {};

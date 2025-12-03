@@ -33,7 +33,6 @@ in {
     rdp-client-gnome.enable = true;
     retroarch.enable = true;
     # declarative-flatpak.enable = true;
-    flatpak.enable = true;
     docker.enable = true;
   };
 

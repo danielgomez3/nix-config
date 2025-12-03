@@ -35,7 +35,7 @@ in {
     macos-emulation.enable = false;
     docker.enable = false;
     ollama.enable = false;
-    wireguard-client.enable = false; # Maybe add to base-system.nix
+    wireguard-client.enable = true; # Maybe add to base-system.nix
     minecraft-server.enable = false;
     minecraft-server-docker.enable = true;
     plg-stack.enable = true;
