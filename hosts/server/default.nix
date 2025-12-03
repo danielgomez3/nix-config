@@ -36,11 +36,10 @@ in {
     docker.enable = false;
     ollama.enable = false;
     wireguard-client.enable = true; # Maybe add to base-system.nix
-    minecraft-server.enable = false;
     minecraft-server-docker.enable = true;
     plg-stack.enable = true;
-    web-server.enable = true;
-    myNginxWebserver.enable = false;
+    web-server.enable = false; # dleteeme
+    myNginxWebserver.enable = true;
   };
 
   # home-manager.users.${username}.myHomeManager = {
