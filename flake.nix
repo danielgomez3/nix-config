@@ -18,7 +18,7 @@
     home-manager-unstable.url = "github:nix-community/home-manager"; # hm-unstable
     home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs-unstable";
     deploy-rs.url = "github:serokell/deploy-rs";
-    nixos-facter.url = "github:nix-community/nixos-generators"; # create custom kexec tarballs, etc.
+    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     stylix.url = "github:nix-community/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     mysecrets.url = "git+ssh://git@github.com/danielgomez3/nix-secrets.git?ref=main&shallow=1";
@@ -88,6 +88,7 @@
       inputs.sops-nix.nixosModules.sops
       inputs.disko.nixosModules.disko
       inputs.stylix.nixosModules.stylix
+      inputs.nixos-facter-modules.nixosModules.facter
     ];
     myHelper = import ./lib/helpers/default.nix {
       inherit inputs;

@@ -14,6 +14,7 @@
   ];
   myVars.username = "daniel"; # Specific username for this machine
   myVars.hostname = "hetzner-vps"; # Specific hostname for this machine
+  myVars.isINTEL = true;
   networking.hostName = config.myVars.hostname;
 
   users.users.${config.myVars.username} = {
@@ -21,8 +22,16 @@
   };
 
   myNixOS = {
-    bundles.base-system.enable = true;
+    systemd-boot.enable = true;
+    core-system.enable = true;
+    # bundles.base-system.enable = true;
+    # openssh.enable = true;
     wireguard-server.enable = true;
     mail-server.enable = true;
+  };
+
+  home-manager.users.${config.myVars.username}.myHomeManager = {
+    zsh.enable = true;
+    btop.enable = true;
   };
 }
