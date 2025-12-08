@@ -1,9 +1,8 @@
 {
-pkgs,
-config,
-...
+  pkgs,
+  config,
+  ...
 }: {
-
   programs.bash = {
     enable = false;
     enableCompletion = true;
@@ -17,10 +16,13 @@ config,
     shellAliases = {
       f = "fg";
       j = "jobs";
-      l = "eza --icons --color=always --group-directories-first";
-      la = "eza -a --icons --color=always --group-directories-first";
-      lt = "eza --icons --color=always --tree --level 2 --group-directories-first";
-      lta = "eza -a --icons --color=always --tree --level 2 --group-directories-first";
+      l = "ls -l";
+      ls = "${pkgs.eza}/bin/eza --icons --color=always --group-directories-first";
+      la = "${pkgs.eza}/bin/eza -a --icons --color=always --group-directories-first";
+      lt = "${pkgs.eza}/bin/eza --icons --color=always --tree --level 2 --group-directories-first";
+      lta = "${pkgs.eza}/bin/eza -a --icons --color=always --tree --level 2 --group-directories-first";
+      # grep = "grep --color=always -IrnE --exclude-dir='.*'";
+
       grep = "grep --color=always -IrnE --exclude-dir='.*'";
       less = "less -FR";
       productivity = "cd ~/Documents/productivity/ && hx todo.md credentials.md";
@@ -29,6 +31,4 @@ config,
       zrf = "zellij run floating";
     };
   };
-
 }
-

@@ -27,6 +27,6 @@ in {
     nix-software-center.enable = true;
   };
   home-manager.users.${username}.myHomeManager = {
-    # chromium.enable = true;
+    chromium.enable = true;
   };
 }

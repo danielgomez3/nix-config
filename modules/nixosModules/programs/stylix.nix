@@ -41,9 +41,10 @@
   # Map hosts to theme bundles
   hostThemes = {
     laptop = "catpuccin";
-    living-room = "catpuccin";
+    living-room = "nord";
     desktop = "defaultdark";
-    persistent-usb = "nord";
+    server = "defaultdark";
+    persistent-usb = "everforest";
     # server = "gruvbox";
     # Add all your hosts here
   };

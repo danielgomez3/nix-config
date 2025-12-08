@@ -48,6 +48,9 @@ in {
       age
       nix-tree
       aria2
+      eza
+      tldr
+      tree
     ];
   };
 }

@@ -1,4 +1,9 @@
-{...}: {
+{pkgs, ...}: {
+  # nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfreePredicate = _: true;
+  # home.packages = [
+  #   pkgs.google-chrome
+  # ];
   programs.chromium = {
     enable = true;
     # homepageLocation = "https://www.startpage.com/";

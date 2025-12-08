@@ -61,6 +61,7 @@
     # Nix flake Utility
     # inputs.import-tree.url = "github:vic/import-tree";
     # inputs.flake-parts.url = "github:hercules-ci/flake-parts";
+    wrapper-manager.url = "github:viperML/wrapper-manager";
 
     # Emulation
     nixtheplanet.url = "github:matthewcroughan/nixtheplanet";
@@ -164,7 +165,7 @@
     # };
 
     nixosConfigurations.laptop = inputs.nixpkgs.lib.nixosSystem {
-      system = supportedSystems.linux;
+      # system = supportedSystems.linux;
       # modules =
       #   commonImports "laptop"
       #   ++ [

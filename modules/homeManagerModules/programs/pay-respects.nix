@@ -11,7 +11,7 @@
   #     '';
   # };
   programs.pay-respects = {
-    enable = true;
+    enable = false;
     # package = pkgsUnstable.pay-respects;
     enableZshIntegration = true;
     options = [

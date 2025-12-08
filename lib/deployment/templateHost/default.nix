@@ -14,6 +14,7 @@
   myVars.username = "xxusernamexx"; # Specific username for this machine
   myVars.hostname = "xxhostnamexx"; # Specific hostname for this machine
   networking.hostName = config.myVars.hostname;
+  myVars.isAMD = true;
 
   users.users.${config.myVars.username} = {
     description = "xxdescriptionxx";
